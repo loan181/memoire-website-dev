@@ -356,7 +356,7 @@ LanguageCode.init = function() {
                     length: 3,
                     colour: '#ccc',
                     snap: true},
-            media: '../blockly/media/',
+            media: 'blocklySrc/media/',
             oneBasedIndex: false, // Indice commence à 0 (pas à 1)
             rtl: rtl,
             toolbox: toolboxXml,
@@ -556,9 +556,9 @@ LanguageCode.discard = function() {
 };
 
 // Load the Code demo's language strings.
-document.write('<script src="../msg/0DEF.js"></script>\n');
-document.write('<script src="../msg/' + LanguageCode.LANG + '.js"></script>\n');
+document.write('<script src="msg/0DEF.js"></script>\n');
+document.write('<script src="msg/' + LanguageCode.LANG + '.js"></script>\n');
 // Load Blockly's language strings.
-document.write('<script src="../blockly/msg/js/' + LanguageCode.LANG + '.js"></script>\n');
+document.write('<script src="blocklySrc/msg/js/' + LanguageCode.LANG + '.js"></script>\n');
 
 window.addEventListener('load', LanguageCode.init);
