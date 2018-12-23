@@ -1,0 +1,24 @@
+<h1>Exercices intéractif de Machine Learning</h1>
+
+<div class="card-deck">
+    {% for card in page.cards %}
+
+        {% assign cardClass = "card custom-card" %}
+        {% unless card.available %} <!-- equivalent à if not -->
+            {% assign cardClass = cardClass | append : " isDisabled" %}
+        {% endunless %}
+
+        <a href= "{{ card.href }}" class= "{{ cardClass }}">
+            <img class="card-img-top" src={{ "img/" | append : card.picture }} style="height:220px; padding: 8px" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ card.title }}</h5>
+                <p class="card-text">
+                    {{ card.text }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <p class="text-muted"><small class="text-muted">{{ card.version }}</small></p>
+            </div>
+        </a>
+    {% endfor %}
+</div>

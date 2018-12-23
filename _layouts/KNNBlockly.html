@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+    <!-- Canva JS-->
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <!-- Blockly imports -->
+    <script src="../blockly/blockly_compressed.js"></script>
+    <script src="../blockly/blocks_compressed.js"></script>
+    <script src="../blockly/javascript_compressed.js"></script>
+    <!-- My Scripts -->
+    <script src="../customJS/KNNFunctions.js"></script>
+    <script src="../customJS/GraphFunctions.js"></script>
+</head>
+
+<body>
+{% include nav.html %}
+<main role="main" class="container" style="max-width: 95%">
+    <!--<h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;-->
+    <!--<a href="../index.html">Demos</a> &gt; Fixed Blockly</h1>-->
+
+    <!--<p>This is a simple demo of injecting Blockly into a fixed-sized 'div' element.</p>-->
+
+    <!--<p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure-blockly/web/fixed-size">injecting fixed-sized Blockly</a>&hellip;</p>-->
+    <h1><span class="B_title"> </span></h1>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+            <!-- Utilities -->
+            <li class="nav-item button">
+                <button id="newCodeButton" type="button" class="btn btn-outline-secondary" onclick="LanguageCode.discard()" data-toggle="tooltip" data-tooltip="new"><i class="far fa-file"></i></button>
+            </li>
+            <li class="nav-item button">
+                <button id="dlCodeButton" type="button" class="btn btn-outline-secondary" onclick="downloadProject()" data-toggle="tooltip" data-tooltip="download"><i class="fas fa-save"></i></button>
+            </li>
+
+            <li class="nav-item button" data-toggle="tooltip" data-tooltip="upload">
+                <label for="upload_project" class="btn btn-outline-secondary" style="margin-bottom: 0px">
+                    <i class="fa fa-folder-open"></i>
+                </label>
+                <input id="upload_project" type="file" hidden>
+            </li>
+
+            <li class="nav-item dropdown" data-toggle="tooltip" data-tooltip="export">
+                <button class="btn btn-outline-secondary dropdown-toggle" id="navbarDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-file-export"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                    <a class="dropdown-item" href="#" onclick="downloadSvg()"><i class="fas fa-shapes"></i> SVG</a>
+                    <a class="dropdown-item" href="#" onclick="convertSvgToPng()"><i class="fas fa-image"></i> PNG</a>
+                </div>
+            </li>
+
+
+            <!-- Testings button -->
+            <li class="nav-item button">
+                <button id="showCodeButton" type="button" class="btn btn-info" onclick="showCode()" data-toggle="tooltip" data-tooltip="showCode"><i class="far fa-eye"></i></button>
+            </li>
+            <li class="nav-item button">
+                <button id="runCodeButton" type="button" class="btn btn-primary" onclick="runBlocklyCode()" data-toggle="tooltip" data-tooltip="executeCode"><i class="fas fa-play"></i> <i class="fas fa-vial"></i></button>
+            </li>
+
+            <!-- Run prediction -->
+            <li class="nav-item button">
+                <button id="runPredictionCodeButton" type="button" class="btn btn-primary" onclick="runPredictionCode()" data-toggle="tooltip" data-tooltip="executeCode"><i class="fas fa-play"></i> <i class="fas fa-dice"></i></button>
+            </li>
+        </ul>
+
+        <!-- Help -->
+        <a target="_blank" href="files/BlocklyKNN.pdf" role="button" id="helpButton" class="btn btn-warning" data-toggle="tooltip" data-tooltip="help"><i class="fas fa-question-circle"></i></a>
+
+
+        <!-- Language -->
+        <form class="form-inline" >
+            <div class="form-group">
+                <label for="languageMenu" class="control-label" style="padding-right: 4px; padding-left: 14px;"><i class="fas fa-globe"></i>  </label>
+                <select class="form-control" id="languageMenu" data-toggle="tooltip" data-tooltip="langage"></select>
+            </div>
+        </form>
+    </nav>
+
+    <!-- Progress bar of prediction -->
+    <div class="mt-2 col-md-12">
+        <h6 style="float: left; margin-right: 1em;"> <span class="B_predictionProgress"></span> : </h6>
+        <div class="progress" style="height: 32px;">
+            <div id="predictionProgressBar" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">?</div>
+        </div>
+    </div>
+
+    <!-- 2 Rows -->
+    <div class="row h-100 mt-2 col-md-12">
+        <div class="col-sm-4" >
+
+            <div class="accordion" id="accordionControlPanel">
+                <!-- Graph -->
+                <div class="card">
+                    <div class="card-header" style="padding: 0;" id="headingGraph">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseGraph" aria-expanded="true" aria-controls="collapseGraph">
+                                <i class="fas fa-chart-area"></i> <span class="B_graphAndDatas"></span>
+                            </button>
+                        </h5>
+
+                    <div id="collapseGraph" class="collapse show" aria-labelledby="headingGraph">
+                        <div class="card-body">
+                            <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+                            <!-- Boutton pour afficher une fenêtre modal avec le tableau utilisé -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#irisDataModal">
+                                <i class="fas fa-table"></i> <span class="B_trainingSet"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" onclick="deleteAddedMarkers()">
+                                <i class="fas fa-eraser"></i> <span class="B_erasedMarkers"></span>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="irisDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Training set :</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table-sm table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Sepal Length</th>
+                                                    <th scope="col">Sepal Width</th>
+                                                    <th scope="col">Petal Length</th>
+                                                    <th scope="col">Petal Width</th>
+                                                    <th scope="col">Class</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% assign nbrIris = site.data.iris_data.size | minus : 1 %}
+                                                    {% for i in (0 .. nbrIris) %}
+
+                                                        {% if site.data.iris_data[i].Class == "Iris-setosa" %}
+                                                            {% assign rowClass = "table-primary" %}
+                                                        {% elsif site.data.iris_data[i].Class == "Iris-versicolor" %}
+                                                            {% assign rowClass = "table-danger" %}
+                                                        {% else %}
+                                                            {% assign rowClass = "table-success" %}
+                                                        {% endif %}
+                                                        <tr class="{{ rowClass }}">
+                                                            <th scope="row"> {{ i | plus : 1}}</th>
+                                                            <td>{{site.data.iris_data[i].Sepal_Length}}</td>
+                                                            <td>{{site.data.iris_data[i].Sepal_Width}}</td>
+                                                            <td>{{site.data.iris_data[i].Petal_Length}}</td>
+                                                            <td>{{site.data.iris_data[i].Petal_Width}}</td>
+                                                            <td>{{site.data.iris_data[i].Class}}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Axis dropdowns & K -->
+                <div class="card">
+                    <div class="card-header" style="padding: 0;" id="headingParam">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseParam" aria-expanded="true" aria-controls="collapseParam">
+                                <i class="fas fa-sliders-h"></i> <span class="B_parameters"></span>
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseParam" class="collapse show" aria-labelledby="headingParam">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="axisXChoice" class="col-sm-3 col-form-label"><span class="B_axisX"></span> :</label>
+                                <select class="form-control col-sm-9" id="axisXChoice">
+                                    <option selected="selected">sepal length</option>
+                                    <option>sepal width</option>
+                                    <option>petal length</option>
+                                    <option>petal width</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="axisYChoice" class="col-sm-3 col-form-label"><span class="B_axisY"></span> :</label>
+                                <select class="form-control col-sm-9" id="axisYChoice">
+                                    <option>sepal length</option>
+                                    <option selected="selected">sepal width</option>
+                                    <option>petal length</option>
+                                    <option>petal width</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="KChoice" class="col-sm-3 col-form-label">K :</label>
+                                <input type="number" class="form-control col-sm-9" id="KChoice" value="3" min="1" max="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+        <div id="blocklyArea" class="col-sm-8">
+            <!-- Blockly here -->
+            <div id="blocklyDiv" style="position: static"></div>
+        </div>
+    </div>
+
+
+
+</main>
+<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+    {% include KNN/toolbox.xml %}
+</xml>
+
+<script src="../customJS/languageCode.js"></script>
+<script src="../customJS/BlocklyScripts.js"></script>
+</body>
+</html>

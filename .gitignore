@@ -1,0 +1,6 @@
+_*.bat
+_site/
+.idea/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata

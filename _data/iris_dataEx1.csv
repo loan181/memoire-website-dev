@@ -1,0 +1,13 @@
+Sepal_Length,Sepal_Width,Petal_Length,Petal_Width,Class
+4.6,3.6,1.0,0.2,Iris-setosa
+4.3,3.0,1.1,0.1,Iris-setosa
+5.0,3.2,1.2,0.2,Iris-setosa
+5.8,4.0,1.2,0.2,Iris-setosa
+5.1,2.5,3.0,1.1,Iris-versicolor
+5.0,2.3,3.3,1.0,Iris-versicolor
+4.9,2.4,3.3,1.0,Iris-versicolor
+5.0,2.0,3.5,1.0,Iris-versicolor
+4.9,2.5,4.5,1.7,Iris-virginica
+6.2,2.8,4.8,1.8,Iris-virginica
+6.0,3.0,4.8,1.8,Iris-virginica
+6.3,2.7,4.9,1.8,Iris-virginica

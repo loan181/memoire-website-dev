@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    {% include head.html %}
+    <script src="/js/contentForTeacher.js"></script>
+</head>
+
+<body>
+{% include nav.html %}
+<main role="main" class="container">
+    <h1>Exercices préparatoires pour la méthode des K plus proche voisins</h1>
+
+    <h2>Introduction</h2>
+    <p>
+        Il existe plusieurs variation de la fleur d’Iris, parmi celles-ci 3 sont particulièrement difficile à identifier et demande des test biologiques très couteux et qui prennent longtemps afin d’affirmer avec certitude l’origine de la fleur. Ces 3 fleurs sont l’Iris-setosa, l’Iris-versicolor et l’Iris-viginica
+    </p>
+
+    <div class="card-deck">
+        {% for flower in page.flowers %}
+        <div class="card">
+
+            <img class="rounded center-thumb" src="{{ flower.picture }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ flower.name }}</h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <p>
+        Une récente recherche scientifique suggère que l’on peut discerner les 3 fleurs en mesurant certaines éléments de la fleur, plus particulièrement les longueur et largeur du <a href="https://fr.wikipedia.org/wiki/S%C3%A9pale">sépale</a> et de la pétale.
+        <br>Après avoir prélevé et analysé les échantillons aux labos voici les résultats obtenus :
+    </p>
+
+    <table class="table table-hover" id="table1">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Classe</th>
+            <th scope="col">Longueur Sépale</th>
+            <th scope="col">Largeur Sépale</th>
+            <th scope="col">Longueur Pétale</th>
+            <th scope="col">Largeur Pétale</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% assign nbrIris = site.data.iris_dataEx1.size | minus : 1 %}
+        {% for i in (0 .. nbrIris) %}
+
+        {% if site.data.iris_dataEx1[i].Class == "Iris-setosa" %}
+        {% assign rowClass = "table-primary" %}
+        {% elsif site.data.iris_dataEx1[i].Class == "Iris-versicolor" %}
+        {% assign rowClass = "table-danger" %}
+        {% else %}
+        {% assign rowClass = "table-success" %}
+        {% endif %}
+        <tr class="{{ rowClass }}">
+            <th scope="row"> {{ i | plus : 1}}</th>
+            <td>{{site.data.iris_dataEx1[i].Class}}</td>
+            <td>{{site.data.iris_dataEx1[i].Sepal_Length}}</td>
+            <td>{{site.data.iris_dataEx1[i].Sepal_Width}}</td>
+            <td>{{site.data.iris_dataEx1[i].Petal_Length}}</td>
+            <td>{{site.data.iris_dataEx1[i].Petal_Width}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <caption>Différentes mesures (en cm) pour 4 fleurs de chaque variété</caption>
+    </table>
+
+    <h2>1) Identification de 2 facteurs importants </h2>
+    <p>
+    Regarde attentivement les résultats obtenus dans le <a href="#table1">premier tableau</a> et choisi parmi les 4 mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale) <strong>2</strong> mesures qui selon toi te permettent de discerner au mieux les fleurs.
+    </p>
+
+
+    {% answer %}
+    <select class="form-control">
+        <option>sepal length</option>
+        <option>sepal width</option>
+        <option>petal length</option>
+        <option>petal width</option>
+    </select>
+
+    <select class="form-control">
+        <option>sepal length</option>
+        <option>sepal width</option>
+        <option>petal length</option>
+        <option>petal width</option>
+    </select>
+    {% endanswer %}
+
+
+    {% correction %}
+        Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).
+    {% endcorrection %}
+
+
+
+</main>
+</body>
+
+</html>
