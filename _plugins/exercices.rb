@@ -32,6 +32,30 @@ module Jekyll
       '
     end
   end
+
+  class HelpBlock < Liquid::Block
+    def render(context)
+      text = super
+      output = '
+      <div class="card border-warning mb-3">
+        <div class="card-header">
+            <button class="btn btn-link" type="button" onclick="toggleNext(this)">
+                Aide
+            </button>
+        </div>
+        <div class="collapse hide">
+            <div class="card-body">
+              <p>'
+      output += "#{text}"
+      output += '
+          </p>
+          </div>
+        </div>
+      </div>'
+    end
+  end
 end
+
 Liquid::Template.register_tag('answer', Jekyll::ReplyBlock)
 Liquid::Template.register_tag('correction', Jekyll::CorrectionBlock)
+Liquid::Template.register_tag('help', Jekyll::HelpBlock)
