@@ -10,9 +10,9 @@ module Jekyll
 
     def render(context)
       output = "<img src=\""
-      output += "img/blocklyBlocks/"
+      output += "/img/blocklyBlocks/"
       output += "#{@text}".strip
-      output += ".svg\">"
+      output += ".svg\" class=\"img-fluid\">"
     end
   end
 end
