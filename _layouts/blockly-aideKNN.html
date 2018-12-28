@@ -158,6 +158,61 @@
                 </table>
 
                 <h2>Exemples</h2>
+                <h3>Créer une fleur artificielle</h3>
+                <p>
+                    Pour tester ton programme, il peut être utile de créer des fleurs "artificielles".
+                    Ce sont des fleurs qui apparaitront sur le graphe, mais qui ne sont pas dans le training set.<br>
+                </p>
+                <p>
+                    Pour cela on va d'abord créer une fleur avec le bloc supplémentaire en spécifiant les coordonnées <code>x</code> et <code>y</code> désiré.
+                </p>
+                <div class="mx-auto" align="center">
+                    {% blockly_block createFlower %}
+                </div>
+                <p>
+                    Après cela il faut qu'on exécute le code pour mettre à jour le graphe via le boutton
+                    <button class="btn btn-primary"><i class="fas fa-play"></i> <i class="fas fa-vial"></i></button><br>
+                    Une croix cyan apparaitra comme marqueur de ta/tes fleur(s) ajouté.
+                </p>
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            Attention que le graphique se mettra à jour selon les paramètres que tu as choisi pour l’axe x et y dans le panneau des paramètres.<br>
+                        </p>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <img src="/img/KNN/addFlowerPar1.PNG" class="img-fluid float-left">
+                                </div>
+                                <div class="col-sm">
+                                    <img src="/img/KNN/addFlowerPar2.PNG" class="img-fluid float-right">
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-muted"><br>Ici la même fleur est ajouté (au coordonnées (6.1, 1.7)), mais les axes sont différents</small>
+                    </div>
+                </div>
+
+                <h4>Manipuler une fleur artificielle</h4>
+                <p>
+                    Les fleurs que tu créé artificiellement sont considéré comme des fleurs classiqie dans le code.
+                    Tu peux les utiliser avec tout les autres blocs utilisant des fleurs.
+                </p>
+                <p>
+                    Tu peux par exemple tester le bloc {% blockly_block kNearest %} pour tester si il renvoie bien les K fleurs les plus prochent de la fleur ajouté.
+                </p>
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/exampleBlockAppKNN.svg" class="img-fluid"><br>
+                </div>
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/exampleBlockAppKNNRes.PNG" class="img-fluid">
+                </div>
+                <small class="text-muted">
+                    Dans cet exemple, on ajoute une fleur artificielle en (4.9, 4.2) avec comme axe x le sepal length et y le petal length.
+                    On demande les K (ici 3) plus proche voisins qu’on affiche à l’écran dans une boite de dialogue.<br>
+                    On voit graphiquement que les 3 plus proche de la croix sont 1e carré vert (virginica) et 2 triangles rouge (versicolor),
+                    ce qui est bien le résultat annoncé dans la boite de dialogue
+                </small>
 
                 <h2>Objectif</h2>
             </main>
