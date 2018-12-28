@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>TEST</title>
+    {% include head.html %}
 </head>
+
 <body>
-<p>{% blockly_block kNearest %}</p>
+    <p>{% blockly_block kNearest %}</p>
+    <img src="/img/KNN/exKNNGraphiqueCorr.png" class="pop">
+    {% include enlargeImage.html %}
 </body>
 </html>
