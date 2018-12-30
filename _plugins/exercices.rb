@@ -54,8 +54,46 @@ module Jekyll
       </div>'
     end
   end
+
+  class RecommendedBlocks < Liquid::Tag
+
+    def initialize(tag_name, text, tokens)
+      super
+      @text = text
+    end
+
+    def render(context)
+      splitedString = @text.split(" ") # split by space each blocks
+      ret = ""
+
+      ret += output = '
+      <div class="card border-info mb-3">
+        <div class="card-header">
+            <button class="btn btn-link" type="button" onclick="toggleNext(this)">
+                Blocs recommandés
+            </button>
+        </div>
+        <div class="collapse hide">
+            <div class="card-body">
+      '
+      ret += '<div class="card-group">'
+      for elem in splitedString
+        ret += '<div class="card">
+                        <img class="card-img-center" src="/img/blocklyBlocks/'
+        ret += elem
+        ret += '.svg">
+                    </div>'
+      end
+      ret += '</div>'
+      ret += '</div>
+        </div>
+      </div>'
+      return ret
+    end
+  end
 end
 
 Liquid::Template.register_tag('answer', Jekyll::ReplyBlock)
 Liquid::Template.register_tag('correction', Jekyll::CorrectionBlock)
 Liquid::Template.register_tag('help', Jekyll::HelpBlock)
+Liquid::Template.register_tag('recommendedBlocks', Jekyll::RecommendedBlocks)

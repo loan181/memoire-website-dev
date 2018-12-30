@@ -4,6 +4,7 @@
 <head>
     {% include head.html %}
     {% include table_content.html %}
+    <script src="/js/contentForTeacher.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#toc">
@@ -63,11 +64,11 @@
                         <th><button class="btn btn-info"><i class="far fa-eye"></i></button></th>
                         <td>Voir le code JavaScript généré par Blockly dans une fenêtre pop-up</td>
                     </tr>
-                    <tr>
+                    <tr id="testCode">
                         <th><button class="btn btn-primary"><i class="fas fa-play"></i> <i class="fas fa-vial"></i></button></th>
                         <td>Tester le code. Se contentera d’exécutera le code du projet tel quel.</td>
                     </tr>
-                    <tr>
+                    <tr id="testPredicateur">
                         <th><button class="btn btn-primary"><i class="fas fa-play"></i> <i class="fas fa-dice"></i></button></th>
                         <td>Tester le prédicteur. Lance le programme en évaluant si les prédiction sont correctes.<br>Cela te permettra de réussir ton objectif !</td>
                     </tr>
@@ -110,7 +111,7 @@
                         </div>
                     </li>
 
-                    <li class="media my-4">
+                    <li class="media my-4" id="parameterPanel">
                         <img src="/img/KNN/site-parameters.png"  class="mr-3 img-fluid" >
                         <div class="media-body">
                             <h4 class="mt-0 mb-1">Paneau Paramètres</h4>
@@ -195,7 +196,7 @@
 
                 <h4>Manipuler une fleur artificielle</h4>
                 <p>
-                    Les fleurs que tu créé artificiellement sont considéré comme des fleurs classiqie dans le code.
+                    Les fleurs que tu créé artificiellement sont considéré comme des fleurs classique dans le code.
                     Tu peux les utiliser avec tout les autres blocs utilisant des fleurs.
                 </p>
                 <p>
@@ -215,6 +216,108 @@
                 </small>
 
                 <h2>Objectif</h2>
+                <p>
+                    Ton but sera de définir la fonction <code>classify(newIris)</code>.
+                    Cette fonction prends une fleur en argument <code>newIris</code> et renvoie le nom prédit de cette fleur.
+                </p>
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/classifyFunction.svg" class="img-fluid">
+                </div>
+                <p>
+                    La qualité de ton prédicteur est représenté par la barre de progression bleu en dessous de la barre d'outil.<br>
+                    Cette barre se met à jour à chaque fois que tu <a href="#testPredicateur">teste ton prédicateur</a> en testant ta fonction de classification <code>classify</code>.<br>
+                    Ton objectif final est d'atteindre la meilleure prédiction possible (100%)
+                </p>
+                <div class="mt-2 col-md-12">
+                    <h6 style="float: left; margin-right: 1em;"> Prédiction courante : </h6>
+                    <div class="progress" style="height: 32px;">
+                        <div id="predictionProgressBar" class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;">100.00%</div>
+                    </div>
+                </div>
+
+                <p>
+                    Pour cela, il faut que tu modifie cette fonction de manière qu’elle implémente le concept vu de l’algorithme des K plus proches voisins.
+                    En plus de cela tu as différent <a href="#parameterPanel">paramètres</a> que tu peux faire varier,
+                    tu devra trouver la combinaison qui te donnera la meilleur prédiction.
+                </p>
+
+                <h3>Implémentation</h3>
+                <p>
+                    L’algorithme peut être séparé en plusieurs étapes distinctes qui petit à petit te rapprocheront de la solution.
+                    Je vais t’aider dans cette partie à atteindre la bonne solution en te donnant les intuitions.<br>
+                    Libre à toi de faire autrement si tu le souhaite tant que la prédiction finale est bonne.
+                </p>
+
+                <h4>Etape 0 : Bien commencer !</h4>
+                <p>
+                    Dans la section <code>TODO</code> de la boite à outil de blockly tu trouvera une première implémentation de la fonction que tu dois faire.<br>
+                    Commence par la prendre et test le résultat de ton prédicteur avec.
+                </p>
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/classifyFunctionDefault.svg" class="img-fluid">
+                </div>
+
+                <p>
+                    Normalement tu devrais avoir un résultat d’environ 33% et chaque fois que tu re-test le prédicteur,
+                    il donnera un résultat différent.<br>
+                    C’est normal car le prédicteur que je te donne ici est totalement aléatoire et se contente de donner un nom parmi ceux disponible de manière aléatoire.
+                    Autrement dit, pour chaque fleur il a 1 chance sur 3 de deviner correctement (d’où les 33%).
+                </p>
+
+                <div class="mt-2 col-md-12">
+                    <h6 style="float: left; margin-right: 1em;"> Prédiction courante : </h6>
+                    <div class="progress" style="height: 32px;">
+                        <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%;">33.33%</div>
+                    </div>
+                </div>
+
+                <h4>Etape 1 : Compteur pour chaque fleur</h4>
+                <p>
+                    Dans l’état actuel des choses la variable <code>kNearestNeighboursClasses</code>
+                    contient une liste (de longueur K) avec le nom des K fleurs les plus proche qu'on n'utilise pas.<br>
+                    Il faut créer un compteur qui compte le nombre de fois que chaque nom de fleur apparait.<br>
+                    Tu peux utiliser la liste renvoyé par {% blockly_block getAllFlowers %} pour l’ordre des noms dans le compteur.
+                </p>
+                <h5>Exemples</h5>
+                <p>
+                    Sachant que {% blockly_block getAllFlowers %} renvoie toujours la même liste (<code>["Iris-setosa", "Iris-versicolor", "Iris-virginica"]</code>)<br>
+                    Avec <code>kNearestNeighboursClasses = ["Iris-setosa", "Iris-versicolor", "Iris-virginica", "Iris-setosa", "Iris-versicolor", "Iris-setosa"]</code>
+                    le compteur serait à la fin <code>[3, 2, 1]</code> (setosa apparait 3 fois, versicolor 2 fois et virginica 1 fois).
+                </p>
+
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/etape1Ex.jpg" class="img-fluid">
+                </div>
+                <small class="text-muted" align="left">
+                    Comme on test en utilisant le <a href="#testCode">bouton de test expérimental</a>, il ne faut pas oublier d'appeller la fonction (d'où le premier bloc).<br>
+                    On créé d'abord la liste avec les 6 noms de fleurs comme mis dans l'exemple.<br>
+                    On applique ensuite les modifications à la variable <code>counter</code> comme indiqué au dessus (caché ici par le rectangle noir).<br>
+                    On affiche le résultat qui apparait dans une boite de dialogue qui est bien celui attendu.<br>
+                </small>
+
+                <p>
+                    Voici des exemples supplémentiares pour tester que le comportement est correct:
+                </p>
+                <ul>
+                    <li><code>["Iris-versicolor"]</code> -> <code>[0, 1, 0]</code></li>
+                    <li><code>["Iris-versicolor", "Iris-versicolor", "Iris-setosa"] </code> -> <code>[1, 2, 0]</code></li>
+                </ul>
+
+                {% help %}
+                Cette étape est la compliqué à réaliser. Ne te décourage pas !<br>
+                On peut découper cette étape en sous-étape :<br>
+                On commence par initialiser le compteur à 0 pour tout les noms de fleurs<br>
+                On parcourt la liste des éléments de <code>kNearestNeighboursClasses</code> un par un. Pour chacun :<br>
+                <ol>
+                    <li>On récupère son indice dans la liste des noms des fleurs</li>
+                    <li>On augmente de un à l’indice correspondant (on ne peut pas le faire directement avec Blobkly, du coup tu peux récupérer la valeur, lui ajouter un, puis remplacer la valeur précédente)</li>
+                </ol>
+                {% endhelp %}
+
+
+                {% recommendedBlocks getAllFlowers forEach createList findFirtstOccurence getList setList plus %}
+
+
             </main>
         </div>
     </div>
