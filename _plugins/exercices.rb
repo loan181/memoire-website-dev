@@ -63,7 +63,7 @@ module Jekyll
     end
 
     def render(context)
-      splitedString = @text.split(" ") # split by space each blocks
+      splitedString = @text.split(" ").shuffle # split by space each blocks
       ret = ""
 
       ret += output = '
@@ -76,15 +76,25 @@ module Jekyll
         <div class="collapse hide">
             <div class="card-body">
       '
-      ret += '<div class="card-group">'
+      ret += '
+      <div class="container">
+      <div class="row">
+'
       for elem in splitedString
-        ret += '<div class="card">
-                        <img class="card-img-center" src="/img/blocklyBlocks/'
+        ret += '
+          <div class="col-sm-4" style="padding-left: 2px;padding-right: 2px;">
+              <div class="card">
+                 <img class="card-img-center img-fluid" src="/img/blocklyBlocks/'
         ret += elem
         ret += '.svg">
-                    </div>'
+                    </div>
+                </div>
+                '
       end
-      ret += '</div>'
+      ret += '
+      </div>
+      </div>
+      '
       ret += '</div>
         </div>
       </div>'
