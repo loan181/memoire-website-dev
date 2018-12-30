@@ -12,7 +12,11 @@ a.isDisabled {
 }
 
 .pop {
-    cursor: pointer;
+    cursor: zoom-in;
+}
+
+.imagepreview {
+    cursor: zoom-out;
 }
 
 .center-thumb {
