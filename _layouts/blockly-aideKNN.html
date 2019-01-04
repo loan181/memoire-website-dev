@@ -350,10 +350,13 @@
                 <div class="mx-auto" align="center">
                     <img src="/img/KNN/step2Sol.svg" class="img-fluid">
                 </div>
+                Le code est très simple ici,
+                j’ai uniquement gardé en mémoire la valeur de l’indice puisqu’on peut déterminer la valeur à partir de là.
+                Mais on peut également créer une variable supplémentaire pour retenir la valeur courante maximum si ça leur permet de mieux comprendre.
                 {% endcorrection %}
 
                 <p>
-                    Voici des exemples supplémentiares pour tester que le comportement est correct:
+                    Voici des exemples supplémentaires pour tester que le comportement est correct:
                 </p>
                 <ul>
                     <li><code>[0, 1, 0]</code> -> <code>1</code></li>
@@ -361,10 +364,62 @@
                     <li><code>[3, 2, 5]</code> -> <code>2</code></li>
                     <li><code>[9999, 2, 5]</code> -> <code>0</code></li>
                     <li><code>[1, 2, 1]</code> -> <code>1</code> (en cas d’ambiguïté, on prends le premier maximum rencontré)</li>
+                </ul>
 
+                <h3>Etape 3 : Déterminer la fleur majoritaire correspondante</h3>
+                <p>
+                    Maintenant qu’on à l’information de l’indice du nom de fleur la plus proche,
+                    il nous suffit de renvoyer l’élément correspondant dans la liste de référence.
+                </p>
+                <h4>Exemples</h4>
+                <p>
+                    Avec <code>maxIndexCourant</code> à <code>0</code> on aura comme résultat <code>"Iris-setosa"</code>.
+                </p>
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/etape3Ex.jpg" class="img-fluid">
+                </div>
+                <small class="text-muted">
+                    Iris-setosa est bien la fleur majoritaire de la liste des 6 fleurs donnée
+                </small>
+
+                {% help %}
+                Cette étape est très simple, tu n'aura pas besoin de plus de 2-3 blocs pour la résoudre
+                {% endhelp %}
+
+                {% correction %}
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/step3Sol.svg" class="img-fluid">
+                </div>
+                {% endcorrection %}
+
+                <p>
+                    Voici des exemples supplémentaires pour tester que le comportement est correct:
+                </p>
+                <ul>
+                    <li><code>1</code> -> <code>"Iris-versicolor"</code></li>
+                    <li><code>2</code> -> <code>"Iris-virginica"</code></li>
                 </ul>
 
 
+                <h3>Etape finale : Obtenir 100%</h3>
+                <p>
+                    N’oublie pas de rétablir la variable <code>kNearestNeighboursClasses</code> comme elle l’était initialement.<br>
+                    Test ta méthode avec des fleurs que tu créé pour voir si ton prédicteur à l’air de renvoyer les bonnes valeurs.<br>
+                    <br>
+                    Après cela, il ne te reste plus qu’à faire un peu le tri dans ton code !
+                    Enlève tout les <code>afficher ...</code> qui seront gênant quand tu évaluera ton prédicteur,
+                    choisis bien tes paramètres (<a href="#parameterPanel">K, Axe x et Axe y</a>) et croise les doigts pour atteindre les 100% !
+                </p>
+
+                {% correction %}
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/solutionKNN.svg" class="img-fluid">
+                </div>
+                Avec par exemple comme paramètres :
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/solParametersKNN.png" class="img-fluid">
+                </div>
+                {% endcorrection %}
             </main>
         </div>
     </div>
