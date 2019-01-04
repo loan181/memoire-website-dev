@@ -286,7 +286,7 @@
                 <div class="mx-auto" align="center">
                     <img src="/img/KNN/etape1Ex.jpg" class="img-fluid">
                 </div>
-                <small class="text-muted" align="left">
+                <small class="text-muted">
                     Comme on test en utilisant le <a href="#testCode">bouton de test expérimental</a>, il ne faut pas oublier d'appeller la fonction (d'où le premier bloc).<br>
                     On créé d'abord la liste avec les 6 noms de fleurs comme mis dans l'exemple.<br>
                     On applique ensuite les modifications à la variable <code>counter</code> comme indiqué au dessus (caché ici par le rectangle noir).<br>
@@ -312,8 +312,59 @@
                 </ol>
                 {% endhelp %}
 
-
                 {% recommendedBlocks getAllFlowers forEach createList findFirtstOccurence getList setList plus %}
+
+                {% correction %}
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/step1Sol.svg" class="img-fluid">
+                </div>
+                {% endcorrection %}
+
+                <h3>Etape 2 : Déterminer la majorité</h3>
+                <p>
+                    Maintenant qu’on à compté le nombre d’occurence de chaque fleur,
+                    il nous reste à trouver celle qui apparait le plus.
+                    Autrement dit, il faut trouver l’indice de la valeur maximum du compteur <code>counter</code>.<br>
+                    En cas d’ambiguïté, on prends le premier maximum rencontré<br>
+                    Pour cela on va d’abord créer une variable <code>maxIndexCourant</code>.
+                    Ensuite on va parcourir notre compteur,
+                    chaque fois qu’on rencontre une valeur plus grande que <code>maxIndexCourant</code> on va la mettre à jour.
+                </p>
+                <h4>Exemples</h4>
+                <p>
+                Avec <code>counter = [3, 2 , 1]</code> l’indice de la valeur maximum est <code>0</code>
+                (car à l’indice <code>0</code> on à le maximum de la liste (<code>3</code>)).
+                </p>
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/etape2Ex.jpg" class="img-fluid">
+                </div>
+                <small class="text-muted">
+                    La fleur qu'on retrouve le plus dans la liste d'exemple est l'iris-setosa,
+                    son indice dans la liste {% blockly_block getAllFlowers %} est bien 0 (première fleur)
+                </small>
+
+                {% recommendedBlocks forIInCounter getList if strictlyGreater %}
+
+
+                {% correction %}
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/step2Sol.svg" class="img-fluid">
+                </div>
+                {% endcorrection %}
+
+                <p>
+                    Voici des exemples supplémentiares pour tester que le comportement est correct:
+                </p>
+                <ul>
+                    <li><code>[0, 1, 0]</code> -> <code>1</code></li>
+                    <li><code>[1, 2, 0]</code> -> <code>1</code></li>
+                    <li><code>[3, 2, 5]</code> -> <code>2</code></li>
+                    <li><code>[9999, 2, 5]</code> -> <code>0</code></li>
+                    <li><code>[1, 2, 1]</code> -> <code>1</code> (en cas d’ambiguïté, on prends le premier maximum rencontré)</li>
+
+                </ul>
+
+
             </main>
         </div>
     </div>
