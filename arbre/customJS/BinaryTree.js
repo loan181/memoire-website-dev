@@ -7,6 +7,7 @@ var operationType = {
     LOWER : 5,
     LOWER_EQ : 6,
 };
+var operationChar = ["NONE", '=', '≠', '>', '⩾', '<', '⩽'];
 
 class Node {
     constructor() {
@@ -20,7 +21,7 @@ class Node {
         this.drawText = paper.text(0, 0, "+");
 
         this.treeDepth = 1;
-        this.treeIndex = 1
+        this.treeIndex = 1;
 
         // Leaf have no left and right child
         this.left = null;
@@ -48,7 +49,12 @@ class Node {
         this.drawText.attr("text", "("+this.treeDepth+", "+this.treeIndex+")");
     }
 
-    modify(value) {
+    modify(axis, operation, value) {
+
+        this.parameter = axis;
+        this.operator = operation;
+        this.valueToCompare = value;
+        // I am no longer a leaf, i become a node !
         this.left = new Node();
         this.left.treeDepth = this.treeDepth + 1;
         this.left.treeIndex = this.treeIndex * 2 - 1;
@@ -63,8 +69,8 @@ class Node {
             stroke: "#000",
             "stroke-width": 1
         });
-        this.drawText = paper.text(0, 0, value);
-        this.valueToCompare = value;
+        this.drawText = paper.text(0, 0, axis + " " + operationChar[operation] + " " + value);
+
     }
 }
 
@@ -82,9 +88,6 @@ class BinaryTree {
             var x = current.treeIndex * 640 / (Math.pow(2, (current.treeDepth-1))+1);
             var y = current.treeDepth * 480 / (this.totalDepth+1);
             current.move(x, y);
-            current.replaceTextWithDepthIndex();
-
-            console.log(x, y);
 
             if (current.left != null) {
                 stackedNode.push(current.left);
@@ -114,20 +117,38 @@ class BinaryTree {
         return null;
     }
 
+    /**
+     * Show the modal when a leaf is clicked.
+     * As it is asynchronous, we will kindly wait for its call back
+     * @param drawShape
+     */
     leafClicked(drawShape) {
-        var clickedLeaf = this.findLeafFromdrawShape(drawShape);
-        // TODO : faire une modale avec les vraie valeur
-        var valStr = prompt("Enter a Value", "0");
-        var val = parseInt(valStr);
+        lastClickedLeaf = this.findLeafFromdrawShape(drawShape);
+        $('#askParameters').modal("show");
+    }
 
-        clickedLeaf.modify(val);
-        if (clickedLeaf.treeDepth + 1 > this.totalDepth) {
-            this.totalDepth = clickedLeaf.treeDepth + 1;
+    /**
+     * Activated by the mocal feedback
+     */
+    parseAskParametersValues() {
+       var axisObj = document.getElementById("axisChoice");
+       var axis = axisObj.options[axisObj.selectedIndex ].value;
+       var operationObj = document.getElementById('operationChoice');
+       var operation = operationObj.options[operationObj.selectedIndex ].value;
+       var value = document.getElementById('valueChoice').value;
+       this.askParameterFeedback(axis, operation, value);
+    }
+
+    askParameterFeedback(axis, operation, value) {
+        lastClickedLeaf.modify(axis, operation, value);
+
+        if (lastClickedLeaf.treeDepth + 1 > this.totalDepth) {
+            this.totalDepth = lastClickedLeaf.treeDepth + 1;
         }
         this.refreshTreeDraw();
     }
 }
-
+let lastClickedLeaf = null;
 let paper = Raphael("container", 640, 480);
 var background = paper.rect(0, 0, 640, 480).attr({
     fill: 'gray'

@@ -8,6 +8,44 @@
 
 <body>
     <div id="container"></div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#askParameters">
+        Launch demo modal
+    </button>
+
+    <div class="modal fade" id="askParameters" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <select class="form-control" id="axisChoice">
+                            <option>x</option>
+                            <option>y</option>
+                        </select>
+                        <select class="form-control" id="operationChoice" >
+                            <option value=1>=</option>
+                            <option value=2>&ne;</option>
+                            <option value=3>&gt;</option>
+                            <option value=4>&ge;</option>
+                            <option value=5>&lt;</option>
+                            <option value=6>&le;</option>
+                        </select>
+                        <input type="number" id="valueChoice" class="form-control" value="0" step="0.1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="BT.parseAskParametersValues()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="customJS/BinaryTree.js"></script>
 </body>
 </html>
