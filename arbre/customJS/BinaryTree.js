@@ -82,7 +82,6 @@ class Node {
             flowerProportions[key] /= 40; //this.associatedFlower.length;
             flowerProportions[key] *= 100;
         }
-        // TODO : meilleur représentation (dans une boite de texte en bas ?)
         console.log(flowerProportions);
         var text = "";
         for (var key in flowerProportions){
@@ -236,8 +235,8 @@ class BinaryTree {
         var stackedNode = [this.root];
         while (stackedNode.length != 0) {
             var current = stackedNode.pop();
-            var x = current.treeIndex * 640 / (Math.pow(2, (current.treeDepth-1))+1);
-            var y = current.treeDepth * 480 / (this.totalDepth+1);
+            var x = current.treeIndex * paper.width / (Math.pow(2, (current.treeDepth-1))+1);
+            var y = current.treeDepth * paper.height / (this.totalDepth+1);
             current.move(x, y);
 
             if (current.left != null) {
@@ -351,9 +350,17 @@ class BinaryTree {
         this.refreshTreeDraw();
     }
 }
+
+function canvaSizeChange(newW, newH) {
+    paper.setSize(newW, newH);
+
+    BT.refreshTreeDraw();
+}
+
 let lastClickedLeaf = null;
-let paper = Raphael("container", 640, 480);
-var background = paper.rect(0, 0, 640, 480).attr({
+let paper = Raphael("treeContainer", 640, 480);
+// Big background (not need to resize it as it is huge)
+var background = paper.rect(-1, -1, 5000, 5000).attr({
     fill: 'gray'
 });
 let BT = new BinaryTree();
