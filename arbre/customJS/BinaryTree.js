@@ -14,6 +14,7 @@ class Node {
         this.associatedFlower = [];
         this.treeDepth = 1;
         this.treeIndex = 1;
+        this.draw = paper.set();
 
         this.infoText = null;
 
@@ -26,25 +27,29 @@ class Node {
             this.drawText.remove();
         }
 
-        // TODO : analyser l'utilisation d'un set comme groupe d'objet :
-        //  http://dmitrybaranovskiy.github.io/raphael/reference.html#Paper.set
-
         this.drawShape = paper.circle(0, 0, 20).attr({
             fill: "#FFF",
             stroke: "#000",
             "stroke-width": 1
-        }).mouseup(function(e) {
-            BT.leafClicked(this);
         });
         this.drawText = paper.text(0, 0, "+");
 
-        this.drawShape.hover(
+        this.draw.clear();
+        this.draw.push(
+            this.drawShape,
+            this.drawText
+        );
+
+        this.draw.hover(
             this.displayProportionOfEachFlower,
             this.unDisplayProportionOfEachFlower,
             this,
             this
         );
 
+        this.draw.mouseup(function(e) {
+            BT.leafClicked(this);
+        });
 
         // Leaf have no left and right child
         if (this.left != null) {
@@ -82,6 +87,9 @@ class Node {
         var text = "";
         for (var key in flowerProportions){
             text += key + " : " + flowerProportions[key] +"%\n"
+        }
+        if (text === "") {
+            text = "(vide)";
         }
         this.infoText = paper.text(this.x, this.y+45, text);
     }
@@ -199,13 +207,19 @@ class Node {
             fill: "#FFF",
             stroke: "#000",
             "stroke-width": 1
-        }).mouseup(function(e) {
-            BT.nodeClicked(this);
         });
         this.drawText = paper.text(0, 0, axis + " " + operationChar[operation] + " " + value).attr({
             "font-size": 14
         });
 
+        this.draw.clear();
+        this.draw.push(
+            this.drawShape,
+            this.drawText
+        );
+        this.draw.mouseup(function(e) {
+            BT.nodeClicked(this);
+        })
     }
 }
 
@@ -240,8 +254,11 @@ class BinaryTree {
         while (stackedNode.length != 0) {
             var current = stackedNode.pop();
 
-            if (current.drawShape == drawShape) {
-                return current;
+            // Iterate on all items in the set of the draw
+            for (let i = 0; i < current.draw.items.length; i++) {
+                if (current.draw.items[i] === drawShape) {
+                    return current;
+                }
             }
 
             if (current.left != null) {
