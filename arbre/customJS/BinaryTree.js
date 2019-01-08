@@ -98,37 +98,15 @@ class Node {
         this.drawShape.translate(x-this.x, y-this.y);
     }
 
-    /**
-     * Call whenever a node is modify
-     * Either it was already a node and its value updated
-     * or it is a leaf that became a node
-     * @param axis
-     * @param operation
-     * @param value
-     */
-    modify(axis, operation, value) {
-        this.parameter = axis;
-        this.operator = operation;
-        this.valueToCompare = value;
-
-        // Create a new node if I am a leaf (leaf -> node)
-        if (this.left == null) {
-            this.left = new Node();
-            this.left.treeDepth = this.treeDepth + 1;
-            this.left.treeIndex = this.treeIndex * 2 - 1;
-            this.right = new Node();
-            this.right.treeDepth = this.treeDepth + 1;
-            this.right.treeIndex = this.treeIndex * 2;
-        }
-
-        // Update child flower associated
+    updateChildCorrespondingFlower() {
         var trueFlowerIndex = [];
         var falseFlowerIndex = [];
         for (let i = 0; i < this.associatedFlower.length; i++) {
             let flowerInd = this.associatedFlower[i];
             let correspondingFlower = trainingSet[flowerInd];
-            let correspondingFlowerValue = correspondingFlower.get(axis);
-            switch (parseInt(operation)) {
+            let correspondingFlowerValue = correspondingFlower.get(this.parameter);
+            let value = this.valueToCompare;
+            switch (parseInt(this.operator)) {
                 case operationType.EQUAL:
                     if (correspondingFlowerValue === value) {trueFlowerIndex.push(flowerInd);}
                     else {falseFlowerIndex.push(flowerInd);}
@@ -157,11 +135,42 @@ class Node {
                     console.warn("Unknown operation selected");
             }
         }
-
         this.right.setFlowersIndex(trueFlowerIndex);
         this.left.setFlowersIndex(falseFlowerIndex);
-        // TODO : mettre à jour les enfants du noeud s'il en à
-        
+
+        // If my child have child, they must recursively update too
+        if (this.left.left != null) {
+            this.left.updateChildCorrespondingFlower();
+        }
+        if (this.right.left != null) {
+            this.right.updateChildCorrespondingFlower();
+        }
+
+    }
+
+    /**
+     * Call whenever a node is modify
+     * Either it was already a node and its value updated
+     * or it is a leaf that became a node
+     * @param axis
+     * @param operation
+     * @param value
+     */
+    modify(axis, operation, value) {
+        this.parameter = axis;
+        this.operator = operation;
+        this.valueToCompare = value;
+
+        // Create a new node if I am a leaf (leaf -> node)
+        if (this.left == null) { // if I am a leaf;
+            this.left = new Node();
+            this.left.treeDepth = this.treeDepth + 1;
+            this.left.treeIndex = this.treeIndex * 2 - 1;
+            this.right = new Node();
+            this.right.treeDepth = this.treeDepth + 1;
+            this.right.treeIndex = this.treeIndex * 2;
+        }
+        this.updateChildCorrespondingFlower();
 
         this.drawShape.remove();
         this.drawText.remove();
