@@ -7,9 +7,23 @@
 </head>
 
 <body>
-    <div id="container">
-    </div>
+{% include nav.html %}
+<main role="main" class="container" style="max-width: 95%">
+    <h1>Arbre de décision intéractif</h1>
 
+    <div class="row h-100 mt-2 col-md-12">
+        <!-- Graphe, tableau dynamique, etc -->
+        <div class="col-sm-4">
+            Graphe, tableau dynamique, etc
+        </div>
+
+        <!-- Visualisation graphique -->
+        <div id="container" class="col-sm-8">
+        </div>
+    </div>
+</main>
+
+    <!-- Modal asking inputs for nodes -->
     <div class="modal fade" id="askParameters" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -46,5 +60,6 @@
     </div>
     <script src="customJS/Flower.js"></script>
     <script src="customJS/BinaryTree.js"></script>
+
 </body>
 </html>
