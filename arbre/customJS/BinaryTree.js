@@ -11,6 +11,7 @@ var operationChar = ["NONE", '=', '≠', '>', '⩾', '<', '⩽'];
 
 class Node {
     constructor() {
+        this.associatedFlower = [];
         this.treeDepth = 1;
         this.treeIndex = 1;
 
@@ -28,6 +29,8 @@ class Node {
             "stroke-width": 1
         }).mouseup(function(e) {
             BT.leafClicked(this);
+        }).mouseover(function(e) {
+            BT.leafHover(this);
         });
         this.drawText = paper.text(0, 0, "+");
 
@@ -42,6 +45,28 @@ class Node {
         this.parameter = null;
         this.operator = operationType.NONE;
         this.valueToCompare = null;
+    }
+
+    setFlowersIndex(flowersIndexList) {
+        this.associatedFlower = flowersIndexList;
+    }
+
+    displayProportionOfEachFlower() {
+        // Count the proportion of the flower of the leaf
+        let flowerProportions = {};
+        for (let i = 0; i < this.associatedFlower.length; i++) {
+            let flowerInd = this.associatedFlower[i];
+            let flowerIndName = trainingSet[flowerInd].get("name");
+            flowerProportions[flowerIndName] = (flowerProportions[flowerIndName] || 0) + 1;
+        }
+        for (var key in flowerProportions){
+            // TODO : corriger, on veut la proportion par rapport au training set
+            //  il y à 40 de chaque fleur
+            flowerProportions[key] /= 40; //this.associatedFlower.length;
+            flowerProportions[key] *= 100;
+        }
+        // TODO : meilleur représentation (dans une boite de texte en bas ?)
+        console.log(flowerProportions);
     }
 
     delete() {
@@ -73,29 +98,83 @@ class Node {
         this.drawShape.translate(x-this.x, y-this.y);
     }
 
+    /**
+     * Call whenever a node is modify
+     * Either it was already a node and its value updated
+     * or it is a leaf that became a node
+     * @param axis
+     * @param operation
+     * @param value
+     */
     modify(axis, operation, value) {
-
         this.parameter = axis;
         this.operator = operation;
         this.valueToCompare = value;
-        // I am no longer a leaf, i become a node !
-        this.left = new Node();
-        this.left.treeDepth = this.treeDepth + 1;
-        this.left.treeIndex = this.treeIndex * 2 - 1;
-        this.right = new Node();
-        this.right.treeDepth = this.treeDepth + 1;
-        this.right.treeIndex = this.treeIndex * 2;
+
+        // Create a new node if I am a leaf (leaf -> node)
+        if (this.left == null) {
+            this.left = new Node();
+            this.left.treeDepth = this.treeDepth + 1;
+            this.left.treeIndex = this.treeIndex * 2 - 1;
+            this.right = new Node();
+            this.right.treeDepth = this.treeDepth + 1;
+            this.right.treeIndex = this.treeIndex * 2;
+        }
+
+        // Update child flower associated
+        var trueFlowerIndex = [];
+        var falseFlowerIndex = [];
+        for (let i = 0; i < this.associatedFlower.length; i++) {
+            let flowerInd = this.associatedFlower[i];
+            let correspondingFlower = trainingSet[flowerInd];
+            let correspondingFlowerValue = correspondingFlower.get(axis);
+            switch (parseInt(operation)) {
+                case operationType.EQUAL:
+                    if (correspondingFlowerValue === value) {trueFlowerIndex.push(flowerInd);}
+                    else {falseFlowerIndex.push(flowerInd);}
+                    break;
+                case operationType.NOT_EQUAL:
+                    if (correspondingFlowerValue !== value) {trueFlowerIndex.push(flowerInd);}
+                    else {falseFlowerIndex.push(flowerInd);}
+                    break;
+                case operationType.GRATER:
+                    if (correspondingFlowerValue > value) {trueFlowerIndex.push(flowerInd);}
+                    else {falseFlowerIndex.push(flowerInd);}
+                    break;
+                case operationType.GRATER_EQ:
+                    if (correspondingFlowerValue >= value) {trueFlowerIndex.push(flowerInd);}
+                    else {falseFlowerIndex.push(flowerInd);}
+                    break;
+                case operationType.LOWER:
+                    if (correspondingFlowerValue < value) {trueFlowerIndex.push(flowerInd);}
+                    else {falseFlowerIndex.push(flowerInd);}
+                    break;
+                case operationType.LOWER_EQ:
+                    if (correspondingFlowerValue <= value) {trueFlowerIndex.push(flowerInd);}
+                    else {falseFlowerIndex.push(flowerInd);}
+                    break;
+                default:
+                    console.warn("Unknown operation selected");
+            }
+        }
+
+        this.right.setFlowersIndex(trueFlowerIndex);
+        this.left.setFlowersIndex(falseFlowerIndex);
+        // TODO : mettre à jour les enfants du noeud s'il en à
+        
 
         this.drawShape.remove();
         this.drawText.remove();
-        this.drawShape = paper.rect(-20, -20, 40, 40, 2).attr({
+        this.drawShape = paper.rect(-100, -20, 200, 40, 2).attr({
             fill: "#FFF",
             stroke: "#000",
             "stroke-width": 1
         }).mouseup(function(e) {
             BT.nodeClicked(this);
         });
-        this.drawText = paper.text(0, 0, axis + " " + operationChar[operation] + " " + value);
+        this.drawText = paper.text(0, 0, axis + " " + operationChar[operation] + " " + value).attr({
+            "font-size": 14
+        });
 
     }
 }
@@ -104,6 +183,8 @@ class BinaryTree {
     constructor() {
         this.totalDepth = 1;
         this.root = new Node();
+        let allFlowersIndex = Array.apply(null, {length: trainingSet.length}).map(Number.call, Number);
+        this.root.setFlowersIndex(allFlowersIndex);
         this.refreshTreeDraw();
     }
 
@@ -186,6 +267,15 @@ class BinaryTree {
             this.totalDepth = lastClickedLeaf.treeDepth + 1;
         }
         this.refreshTreeDraw();
+    }
+
+    /**
+     * Action to do when the designated flower is hovered
+     * @param drawShape
+     */
+    leafHover(drawShape) {
+        var clickedLeaf = this.findLeafFromdrawShape(drawShape);
+        clickedLeaf.displayProportionOfEachFlower();
     }
 
     refreshTotalDepth() {
