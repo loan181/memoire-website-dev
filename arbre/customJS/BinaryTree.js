@@ -15,6 +15,8 @@ class Node {
         this.treeDepth = 1;
         this.treeIndex = 1;
 
+        this.infoText = null;
+
         this.reset();
     }
 
@@ -23,16 +25,26 @@ class Node {
             this.drawShape.remove();
             this.drawText.remove();
         }
+
+        // TODO : analyser l'utilisation d'un set comme groupe d'objet :
+        //  http://dmitrybaranovskiy.github.io/raphael/reference.html#Paper.set
+
         this.drawShape = paper.circle(0, 0, 20).attr({
             fill: "#FFF",
             stroke: "#000",
             "stroke-width": 1
         }).mouseup(function(e) {
             BT.leafClicked(this);
-        }).mouseover(function(e) {
-            BT.leafHover(this);
         });
         this.drawText = paper.text(0, 0, "+");
+
+        this.drawShape.hover(
+            this.displayProportionOfEachFlower,
+            this.unDisplayProportionOfEachFlower,
+            this,
+            this
+        );
+
 
         // Leaf have no left and right child
         if (this.left != null) {
@@ -67,6 +79,15 @@ class Node {
         }
         // TODO : meilleur représentation (dans une boite de texte en bas ?)
         console.log(flowerProportions);
+        var text = "";
+        for (var key in flowerProportions){
+            text += key + " : " + flowerProportions[key] +"%\n"
+        }
+        this.infoText = paper.text(this.x, this.y+45, text);
+    }
+
+    unDisplayProportionOfEachFlower() {
+        this.infoText.remove();
     }
 
     delete() {
@@ -282,10 +303,10 @@ class BinaryTree {
      * Action to do when the designated flower is hovered
      * @param drawShape
      */
-    leafHover(drawShape) {
-        var clickedLeaf = this.findLeafFromdrawShape(drawShape);
-        clickedLeaf.displayProportionOfEachFlower();
-    }
+    // leafHover(drawShape) {
+    //     var clickedLeaf = this.findLeafFromdrawShape(drawShape);
+    //     clickedLeaf.displayProportionOfEachFlower();
+    // }
 
     refreshTotalDepth() {
         var deepestDepth = 0;
