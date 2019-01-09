@@ -47,9 +47,9 @@ class Node {
             this
         );
 
-        this.draw.mouseup(function(e) {
-            BT.leafClicked(this);
-        });
+        this.draw.mouseup(
+            (e) =>{this.leafClicked();}
+        );
 
         // Leaf have no left and right child
         if (this.left != null) {
@@ -91,6 +91,28 @@ class Node {
             text = "(vide)";
         }
         this.infoText = paper.text(this.x, this.y+45, text);
+    }
+
+    /**
+     * Show the modal when a leaf is clicked.
+     * As it is asynchronous, we will kindly wait for its call back
+     */
+    leafClicked() {
+        lastClickedLeaf = this;
+        document.getElementById("deleteButton").classList.add("invisible");
+        document.getElementById("modalParametersTitle").textContent = "Ajouter un noeud";
+        $('#askParameters').modal("show");
+    }
+
+    /**
+     * Show the modal when a node is clicked.
+     * As it is asynchronous, we will kindly wait for its call back
+     */
+    nodeClicked() {
+        lastClickedLeaf = this;
+        document.getElementById("deleteButton").classList.remove("invisible");
+        document.getElementById("modalParametersTitle").textContent = "Modifier un noeud";
+        $('#askParameters').modal("show");
     }
 
     unDisplayProportionOfEachFlower() {
@@ -216,9 +238,9 @@ class Node {
             this.drawShape,
             this.drawText
         );
-        this.draw.mouseup(function(e) {
-            BT.nodeClicked(this);
-        })
+        this.draw.mouseup(
+            (e) => {this.nodeClicked();}
+        );
     }
 }
 
@@ -248,52 +270,6 @@ class BinaryTree {
         }
     }
 
-    findLeafFromdrawShape(drawShape) {
-        var stackedNode = [this.root];
-        while (stackedNode.length != 0) {
-            var current = stackedNode.pop();
-
-            // Iterate on all items in the set of the draw
-            for (let i = 0; i < current.draw.items.length; i++) {
-                if (current.draw.items[i] === drawShape) {
-                    return current;
-                }
-            }
-
-            if (current.left != null) {
-                stackedNode.push(current.left);
-            }
-            if (current.right != null) {
-                stackedNode.push(current.right);
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Show the modal when a leaf is clicked.
-     * As it is asynchronous, we will kindly wait for its call back
-     * @param drawShape
-     */
-    leafClicked(drawShape) {
-        lastClickedLeaf = this.findLeafFromdrawShape(drawShape);
-        document.getElementById("deleteButton").classList.add("invisible");
-        document.getElementById("modalParametersTitle").textContent = "Ajouter un noeud";
-        $('#askParameters').modal("show");
-    }
-
-    /**
-     * Show the modal when a node is clicked.
-     * As it is asynchronous, we will kindly wait for its call back
-     * @param drawShape
-     */
-    nodeClicked(drawShape) {
-        lastClickedLeaf = this.findLeafFromdrawShape(drawShape);
-        document.getElementById("deleteButton").classList.remove("invisible");
-        document.getElementById("modalParametersTitle").textContent = "Modifier un noeud";
-        $('#askParameters').modal("show");
-    }
-
     /**
      * Activated by the mocal feedback
      */
@@ -314,15 +290,6 @@ class BinaryTree {
         }
         this.refreshTreeDraw();
     }
-
-    /**
-     * Action to do when the designated flower is hovered
-     * @param drawShape
-     */
-    // leafHover(drawShape) {
-    //     var clickedLeaf = this.findLeafFromdrawShape(drawShape);
-    //     clickedLeaf.displayProportionOfEachFlower();
-    // }
 
     refreshTotalDepth() {
         var deepestDepth = 0;
@@ -360,7 +327,7 @@ function canvaSizeChange(newW, newH) {
 let lastClickedLeaf = null;
 let paper = Raphael("treeContainer", 640, 480);
 // Big background (not need to resize it as it is huge)
-var background = paper.rect(-1, -1, 5000, 5000).attr({
+paper.rect(-1, -1, 5000, 5000).attr({
     fill: 'gray'
 });
 let BT = new BinaryTree();

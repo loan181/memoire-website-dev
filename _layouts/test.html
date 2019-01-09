@@ -25,8 +25,9 @@
                     stroke: "#000",
                     "stroke-width": 1
                 });
+                // Source : https://stackoverflow.com/a/36498180
                 this.drawShape.mouseup(
-                    () => {this.test(this.val, 41)}
+                    (e) => {this.test(this.val, e)}
                 );
             }
 
