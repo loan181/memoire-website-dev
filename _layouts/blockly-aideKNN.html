@@ -26,13 +26,13 @@
 
                 <img src="/img/KNN/site.PNG" class="img-fluid">
 
-                Le site est divisé en 3 parties.
+                Le site est divisé en trois parties.
 
                 <h2>Structure du site</h2>
                 <h3>La barre d'outil</h3>
                 <img src="/img/KNN/outils.png" class="img-fluid">
                 <p>
-                    Dans la partie supérieur de l’écran tu as différents boutons te permettant de réaliser certaines actions que nous allons détailler ici.
+                    Dans la partie supérieure de l’écran tu as différents boutons te permettant de réaliser certaines actions que nous allons détailler ici.
                 </p>
                 <table class="table table-hover">
                     <thead>
@@ -44,7 +44,7 @@
                     <tbody>
                     <tr>
                         <th><button class="btn btn-outline-secondary"><i class="far fa-file"></i></button></th>
-                        <td>Commencer un nouveau projet, cela effacera tout les blocs.</td>
+                        <td>Commencer un nouveau projet, cela effacera tous les blocs.</td>
                     </tr>
                     <tr>
                         <td><button class="btn btn-outline-secondary"><i class="fas fa-save"></i></button></td>
@@ -56,7 +56,7 @@
                     </tr>
                     <tr>
                         <th><button class="btn btn-outline-secondary dropdown-toggle"><i class="fas fa-file-export"></i></button></th>
-                        <td>Exporte le projet (blocs) sous forme d’images (SVG (vectoriel) ou PNG ).<br>Attention que si tu exporte en image tu ne peux pas l’ouvrir comme projet</td>
+                        <td>Exporte le projet (blocs) sous forme d’images (SVG (vectoriel) ou PNG ).<br>Attention que si tu exportes en image tu ne peux pas l’ouvrir comme projet</td>
                     </tr>
                     <tr>
                         <th><button class="btn btn-info"><i class="far fa-eye"></i></button></th>
@@ -68,7 +68,7 @@
                     </tr>
                     <tr id="testPredicateur">
                         <th><button class="btn btn-primary"><i class="fas fa-play"></i> <i class="fas fa-dice"></i></button></th>
-                        <td>Tester le prédicteur. Lance le programme en évaluant si les prédiction sont correctes.<br>Cela te permettra de réussir ton objectif !</td>
+                        <td>Tester le prédicateur. Lance le programme en évaluant si les prédictions sont correctes.<br>Cela te permettra de réussir ton objectif !</td>
                     </tr>
                     <tr>
                         <th><button class="btn btn-warning"><i class="fas fa-question-circle"></i></button></th>
@@ -88,7 +88,7 @@
                     </tbody>
                 </table>
 
-                <h3>Données et Paramètre</h3>
+                <h3>Données et Paramètres</h3>
                 <p>
                     La partie de gauche te permet d'observer les données ainsi que de modifier les paramètres de l'algorithme.
                 </p>
@@ -98,13 +98,13 @@
                     <li class="media">
                         <img src="/img/KNN/site-graphAndDatas.png"  class="mr-3 img-fluid" >
                         <div class="media-body">
-                            <h4 class="mt-0 mb-1">Paneau Graphe et données</h4>
+                            <h4 class="mt-0 mb-1">Panneau Graphe et Données</h4>
                             Te permet de consulter et visualiser les données du training set.
                             Chaque point du graphe correspond à une fleur du training set.
                             Sa forme et couleur définit sa classe comme légendé en dessous du graphe.<br>
                             Tu peux survoler avec ta souris un point pour obtenir des informations le concernant.<br>
                             Tu pourra également ajouter des fleurs "artificielle" dans le graphe via Blockly.
-                            Pour effacer ses derniers tu pourra utiliser le boutton jaune avec la gomme<br><br>
+                            Pour effacer ses derniers tu pourra utiliser le bouton jaune avec la gomme<br><br>
 
                         </div>
                     </li>
@@ -112,7 +112,7 @@
                     <li class="media my-4" id="parameterPanel">
                         <img src="/img/KNN/site-parameters.png"  class="mr-3 img-fluid" >
                         <div class="media-body">
-                            <h4 class="mt-0 mb-1">Paneau Paramètres</h4>
+                            <h4 class="mt-0 mb-1">Panneau Paramètres</h4>
                             Te permet de modifier le comportement de l'algorithme des K plus proches voisins.<br>
                             La modification des axes mettra également à jour le graphe du training set selon le choix.
 
@@ -125,7 +125,7 @@
 
                 <h4>Blocs supplémentaires</h4>
                 <p>
-                    Beaucoup de concept vus précédemment ont étaient déjà implémenté pour toi.
+                    Beaucoup de concept vu précédemment ont déjà été implémentés pour toi.
                     Nous te donnons déjà implémenté et fonctionnels les blocs suivants :
                 </p>
 
@@ -160,23 +160,23 @@
                 <h3>Créer une fleur artificielle</h3>
                 <p>
                     Pour tester ton programme, il peut être utile de créer des fleurs "artificielles".
-                    Ce sont des fleurs qui apparaitront sur le graphe, mais qui ne sont pas dans le training set.<br>
+                    Ce sont des fleurs qui apparaîtront sur le graphe, mais qui ne sont pas dans le training set.<br>
                 </p>
                 <p>
-                    Pour cela on va d'abord créer une fleur avec le bloc supplémentaire en spécifiant les coordonnées <code>x</code> et <code>y</code> désiré.
+                    Pour cela on va d'abord créer une fleur avec le bloc supplémentaire en spécifiant les coordonnées <code>x</code> et <code>y</code> désirés.
                 </p>
                 <div class="mx-auto" align="center">
                     {% blockly_block createFlower %}
                 </div>
                 <p>
-                    Après cela il faut qu'on exécute le code pour mettre à jour le graphe via le boutton
+                    Après cela il faut qu'on exécute le code pour mettre à jour le graphe via le bouton
                     <button class="btn btn-primary"><i class="fas fa-play"></i> <i class="fas fa-vial"></i></button><br>
                     Une croix cyan apparaitra comme marqueur de ta/tes fleur(s) ajouté.
                 </p>
                 <div class="card">
                     <div class="card-body">
                         <p>
-                            Attention que le graphique se mettra à jour selon les paramètres que tu as choisi pour l’axe x et y dans le panneau des paramètres.<br>
+                            Attention que le graphique se mettra à jour selon les paramètres que tu as choisis pour l’axe x et y dans le panneau des paramètres.<br>
                         </p>
                         <div class="container-fluid">
                             <div class="row">
@@ -188,17 +188,17 @@
                                 </div>
                             </div>
                         </div>
-                        <small class="text-muted"><br>Ici la même fleur est ajouté (au coordonnées (6.1, 1.7)), mais les axes sont différents</small>
+                        <small class="text-muted"><br>Ici la même fleur est ajoutée (au coordonnées (6.1, 1.7)), mais les axes sont différents</small>
                     </div>
                 </div>
 
                 <h4>Manipuler une fleur artificielle</h4>
                 <p>
-                    Les fleurs que tu créé artificiellement sont considéré comme des fleurs classique dans le code.
-                    Tu peux les utiliser avec tout les autres blocs utilisant des fleurs.
+                    Les fleurs que tu créés artificiellement sont considérées comme des fleurs classiques dans le code.
+                    Tu peux les utiliser avec tous les autres blocs utilisant des fleurs.
                 </p>
                 <p>
-                    Tu peux par exemple tester le bloc {% blockly_block kNearest %} pour tester si il renvoie bien les K fleurs les plus prochent de la fleur ajouté.
+                    Tu peux par exemple tester le bloc {% blockly_block kNearest %} pour tester s'il renvoie bien les K fleurs les plus proches de la fleur ajoutée.
                 </p>
                 <div class="mx-auto" align="center">
                     <img src="/img/KNN/exampleBlockAppKNN.svg" class="img-fluid"><br>
@@ -216,13 +216,13 @@
                 <h2>Objectif</h2>
                 <p>
                     Ton but sera de définir la fonction <code>classify(newIris)</code>.
-                    Cette fonction prends une fleur en argument <code>newIris</code> et renvoie le nom prédit de cette fleur.
+                    Cette fonction prend une fleur en argument <code>newIris</code> et renvoie le nom prédit de cette fleur.
                 </p>
                 <div class="mx-auto" align="center">
                     <img src="/img/KNN/classifyFunction.svg" class="img-fluid">
                 </div>
                 <p>
-                    La qualité de ton prédicteur est représenté par la barre de progression bleu en dessous de la barre d'outil.<br>
+                    La qualité de ton prédicateur est représentée par la barre de progression bleu en dessous de la barre d'outil.<br>
                     Cette barre se met à jour à chaque fois que tu <a href="#testPredicateur">teste ton prédicateur</a> en testant ta fonction de classification <code>classify</code>.<br>
                     Ton objectif final est d'atteindre la meilleure prédiction possible (100%)
                 </p>
@@ -234,16 +234,16 @@
                 </div>
 
                 <p>
-                    Pour cela, il faut que tu modifie cette fonction de manière qu’elle implémente le concept vu de l’algorithme des K plus proches voisins.
+                    Pour cela, il faut que tu modifies cette fonction de manière qu’elle implémente le concept vu de l’algorithme des K plus proches voisins.
                     En plus de cela tu as différent <a href="#parameterPanel">paramètres</a> que tu peux faire varier,
-                    tu devra trouver la combinaison qui te donnera la meilleur prédiction.
+                    tu devras trouver la combinaison qui te donnera la meilleure prédiction.
                 </p>
 
                 <h3>Implémentation</h3>
                 <p>
-                    L’algorithme peut être séparé en plusieurs étapes distinctes qui petit à petit te rapprocheront de la solution.
+                    L’algorithme peut être séparé en plusieurs étapes distinctes qui, petit à petit, te rapprocheront de la solution.
                     Je vais t’aider dans cette partie à atteindre la bonne solution en te donnant les intuitions.<br>
-                    Libre à toi de faire autrement si tu le souhaite tant que la prédiction finale est bonne.
+                    Libre à toi de faire autrement si tu le souhaites tant que la prédiction finale est bonne.
                 </p>
 
                 <h3>Etape 0 : Bien commencer !</h3>
