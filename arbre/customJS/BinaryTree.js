@@ -244,6 +244,12 @@ class Node {
     }
 }
 
+class Branch {
+    constructor(nodeParent, nodeChild) {
+        // TODO
+    }
+}
+
 class BinaryTree {
     constructor() {
         this.totalDepth = 1;
