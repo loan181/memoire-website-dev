@@ -58,6 +58,8 @@ class Node {
         }
         this.left = null;
         this.right = null;
+        this.leftBranch = null;
+        this.rightBranch = null;
 
         this.parameter = null;
         this.operator = operationType.NONE;
@@ -198,6 +200,13 @@ class Node {
 
     }
 
+    refreshBranchDraw() {
+        if (this.leftBranch != null) {
+            this.leftBranch.refreshDraw();
+            this.rightBranch.refreshDraw();
+        }
+    }
+
     /**
      * Call whenever a node is modify
      * Either it was already a node and its value updated
@@ -216,9 +225,12 @@ class Node {
             this.left = new Node();
             this.left.treeDepth = this.treeDepth + 1;
             this.left.treeIndex = this.treeIndex * 2 - 1;
+            this.leftBranch = new Branch(this, this.left);
+
             this.right = new Node();
             this.right.treeDepth = this.treeDepth + 1;
             this.right.treeIndex = this.treeIndex * 2;
+            this.rightBranch = new Branch(this, this.right);
         }
         this.updateChildCorrespondingFlower();
 
@@ -246,7 +258,24 @@ class Node {
 
 class Branch {
     constructor(nodeParent, nodeChild) {
-        // TODO
+        this.nodeParent = nodeParent;
+        this.nodeChild = nodeChild;
+        this.draw = null;
+    }
+
+    refreshDraw() {
+        let node1X = this.nodeParent.x;
+        let node1Y = this.nodeParent.y;
+        let node2X = this.nodeChild.x;
+        let node2Y = this.nodeChild.y;
+
+        // See : http://dmitrybaranovskiy.github.io/raphael/reference.html#Paper.path
+        let pathString = "M" + node1X + "," + node1Y + "L" + node2X + "," + node2Y;
+
+        if (this.draw != null) {
+            this.draw.remove();
+        }
+        this.draw = paper.path(pathString);
     }
 }
 
@@ -261,11 +290,24 @@ class BinaryTree {
 
     refreshTreeDraw() {
         var stackedNode = [this.root];
-        while (stackedNode.length != 0) {
+        while (stackedNode.length !== 0) {
             var current = stackedNode.pop();
             var x = current.treeIndex * paper.width / (Math.pow(2, (current.treeDepth-1))+1);
             var y = current.treeDepth * paper.height / (this.totalDepth+1);
             current.move(x, y);
+
+            if (current.left != null) {
+                stackedNode.push(current.left);
+            }
+            if (current.right != null) {
+                stackedNode.push(current.right);
+            }
+        }
+        // We need to wait until a child is moved to update the branch
+        stackedNode = [this.root];
+        while (stackedNode.length !== 0) {
+            var current = stackedNode.pop();
+            current.refreshBranchDraw();
 
             if (current.left != null) {
                 stackedNode.push(current.left);
@@ -335,5 +377,5 @@ let paper = Raphael("treeContainer", 640, 480);
 // Big background (not need to resize it as it is huge)
 paper.rect(-1, -1, 5000, 5000).attr({
     fill: 'gray'
-});
+}).toBack();
 let BT = new BinaryTree();
