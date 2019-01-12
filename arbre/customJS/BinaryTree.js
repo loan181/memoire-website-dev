@@ -58,6 +58,11 @@ class Node {
         }
         this.left = null;
         this.right = null;
+
+        if (this.leftBranch != null) {
+            this.leftBranch.delete();
+            this.rightBranch.delete();
+        }
         this.leftBranch = null;
         this.rightBranch = null;
 
@@ -135,6 +140,12 @@ class Node {
 
         this.left = null;
         this.right = null;
+
+        // Remove my 2 branches
+        if (this.leftBranch != null) {
+            this.leftBranch.delete();
+            this.rightBranch.delete();
+        }
     }
 
     get x() {
@@ -280,6 +291,16 @@ class Branch {
             this.draw.remove();
         }
         this.draw = paper.path(pathString);
+    }
+
+    delete() {
+        console.log("Branch is deleted :(");
+        if (this.draw != null) {
+            this.draw.remove();
+        }
+        this.draw = null;
+        this.nodeParent = null;
+        this.nodeChild = null;
     }
 }
 
