@@ -254,6 +254,10 @@ class Node {
             (e) => {this.nodeClicked();}
         );
     }
+
+    moveInFront() {
+        this.draw.toFront();
+    }
 }
 
 class Branch {
@@ -308,6 +312,7 @@ class BinaryTree {
         while (stackedNode.length !== 0) {
             var current = stackedNode.pop();
             current.refreshBranchDraw();
+            current.moveInFront();
 
             if (current.left != null) {
                 stackedNode.push(current.left);
@@ -342,7 +347,7 @@ class BinaryTree {
     refreshTotalDepth() {
         var deepestDepth = 0;
         var stackedNode = [this.root];
-        while (stackedNode.length != 0) {
+        while (stackedNode.length !== 0) {
             var current = stackedNode.pop();
 
             if (current.treeDepth > deepestDepth) {
