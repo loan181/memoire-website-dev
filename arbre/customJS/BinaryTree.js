@@ -83,6 +83,7 @@ class Node {
         if (this.isLeaf()) {
             this.displayProportionOfEachFlower();
         }
+        highlightAllMarkers();
         drawPointsIndex(this.associatedFlower);
     }
 
@@ -90,6 +91,7 @@ class Node {
         if (this.isLeaf()) {
             this.unDisplayProportionOfEachFlower();
         }
+        unHighlightAllMarkers();
         resetPlotWithDefaultData();
     }
 

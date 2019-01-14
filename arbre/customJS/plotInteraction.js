@@ -30,6 +30,21 @@ function drawPointsIndex(listOfMarkersIndex) {
     redrawPlot();
 }
 
+function highlightAllMarkers() {
+    for (let i = 0; i < 3; i++) {
+        figure.data[i].marker.line = {
+            color: 'rgb(255, 255, 0)',
+            width: 1
+        };
+    }
+}
+
+function unHighlightAllMarkers() {
+    for (let i = 0; i < 3; i++) {
+        figure.data[i].marker.line = {};
+    }
+}
+
 function redrawPlot() {
     Plotly.redraw("graphContainer");
 }
