@@ -78,13 +78,13 @@
         let resizeDebounce = null;
 
         function resizeTreeCanva() {
-            var containerWidth = treeContainer.offsetWidth;
-            var containerHeight = treeContainer.offsetHeight;
+            let containerWidth = treeContainer.offsetWidth;
+            let containerHeight = treeContainer.offsetHeight;
             canvaSizeChange(containerWidth, containerHeight);
         }
 
         function resizePlot() {
-            var bb = graphContainer.getBoundingClientRect();
+            let bb = graphContainer.getBoundingClientRect();
             Plotly.relayout(graphContainer, {
                 width: bb.width,
                 height: bb.height
