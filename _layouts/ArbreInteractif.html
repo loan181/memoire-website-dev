@@ -10,6 +10,8 @@
     <!-- Plotlyjs -->
     <script type="text/javascript" src="customJS/plotlyjs-bundle.js"></script>
     <script type="text/javascript" src="customJS/figure.js"></script>
+
+    <script type="text/javascript" src="customJS/plotInteraction.js"></script>
 </head>
 
 <body>
@@ -111,6 +113,7 @@
             frames: figure.frames,
             config: {"mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A", "linkText": "Export to plot.ly", "showLink": true}
         });
+        resetPlotWithDefaultData();
     </script>
 </body>
 </html>
