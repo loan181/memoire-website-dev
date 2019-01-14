@@ -82,15 +82,17 @@ class Node {
     hover() {
         if (this.isLeaf()) {
             this.displayProportionOfEachFlower();
+            highlightAllMarkers();
+            drawPointsIndex(this.associatedFlower);
         } else {
             let axis = "y";
-            if (this.parameter === "petal length") {
+            if (this.parameter === "petal width") {
                 axis = "x";
             }
             highlightCondition(axis, this.operator, this.valueToCompare);
+            highlightMarkerCondition(this.left.associatedFlower, this.right.associatedFlower);
         }
-        highlightAllMarkers();
-        drawPointsIndex(this.associatedFlower);
+
     }
 
     unHover() {
@@ -98,8 +100,9 @@ class Node {
             this.unDisplayProportionOfEachFlower();
         } else {
             unhighlightCondition();
+            unhighlightMarkerCondition();
         }
-        unHighlightAllMarkers();
+        unHighlightAllMarkers(); // Yellow if leaf, and red/green if node
         resetPlotWithDefaultData();
     }
 

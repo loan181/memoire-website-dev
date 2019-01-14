@@ -19,7 +19,7 @@ function resetPlotWithDefaultData() {
 }
 
 function drawPointsIndex(listOfMarkersIndex) {
-    resetAllDatas();
+        resetAllDatas();
     for (let i = 0; i < listOfMarkersIndex.length; i++) {
         let markerIdx = listOfMarkersIndex[i];
         let correspondingFlower = trainingSet[markerIdx];
@@ -32,8 +32,8 @@ function drawPointsIndex(listOfMarkersIndex) {
 
 function highlightCondition(axis, operation, value) {
     let line = {"type":'line'};
-    let rectangleIn =  {"type":'rect', "fillcolor": 'rgb(0, 255, 0)', "opacity" : 0.2, 'line': {'width': 0}};
-    let rectangleOut =  {"type":'rect', "fillcolor": 'rgb(255, 0, 0)', "opacity" : 0.2, 'line': {'width': 0}};
+    let rectangleIn =  {"type":'rect', "fillcolor": 'rgb(0, 255, 0)', "opacity" : 0.1, 'line': {'width': 0}};
+    let rectangleOut =  {"type":'rect', "fillcolor": 'rgb(255, 0, 0)', "opacity" : 0.1, 'line': {'width': 0}};
 
     // Green line if inclusive operator ( ==, <= and >= ), red otherwise
     line['line'] = {};
@@ -113,12 +113,64 @@ function highlightAllMarkers() {
     }
 }
 
+function highlightMarkerCondition(indexesOut, indexesIn) {
+
+    // Need to add *2 more datas to stored (car on risque d'avoir à la fois les in et les out), ils ont chacun leur ligne de contour de couleur différent
+    resetAllDatas(); // reset before duplicate
+    for (let i = 0; i < 3; i++) {
+        figure.data[i+3] = jQuery.extend(true, {}, figure.data[i]); // deepcopy
+        figure.data[i+3].uid += "2";
+    }
+    for (let i = 0; i < 3; i++) {
+        figure.data[i].name += " out";
+        figure.data[i].marker.line = {
+            color: 'rgb(255, 0, 0)',
+            width: 1
+        };
+
+        figure.data[i+3].name += " in";
+        figure.data[i+3].marker.line = {
+            color: 'rgb(0, 255, 0)',
+            width: 1
+        };
+
+    }
+
+    for (let i = 0; i < indexesOut.length; i++) {
+        let markerIdx = indexesOut[i];
+        let correspondingFlower = trainingSet[markerIdx];
+        let correspondingDataIdx =  Math.floor(markerIdx / 40);
+        figure.data[correspondingDataIdx].x.push(correspondingFlower.get("petal width"));
+        figure.data[correspondingDataIdx].y.push(correspondingFlower.get("petal length"));
+    }
+
+    for (let i = 0; i < indexesIn.length; i++) {
+        let markerIdx = indexesIn[i];
+        let correspondingFlower = trainingSet[markerIdx];
+        let correspondingDataIdx =  Math.floor(markerIdx / 40);
+        figure.data[correspondingDataIdx+3].x.push(correspondingFlower.get("petal width"));
+        figure.data[correspondingDataIdx+3].y.push(correspondingFlower.get("petal length"));
+    }
+
+    redrawPlot();
+}
+
+function unhighlightMarkerCondition() {
+    for (let i = 0; i < 3; i++) {
+        figure.data.pop();
+        figure.data[i].name = figure.data[i].name.slice(0, figure.data[i].name.length -4); // Get rid of " out"
+    }
+}
+
 function unHighlightAllMarkers() {
     for (let i = 0; i < 3; i++) {
         figure.data[i].marker.line = {};
     }
 }
 
+// TODO : need BIG global refactoring, cald too often in intermediate function.
+//  En gros ça serait cool de l'appeler explicitement à la fin des gros changements sur figure, au lieu de l'appeller à la fin des fonctions intermédiaire
+//  Par exemple dans BinaryTree.Node.hover ou on devrait appeller le redraw explicitement à la fin au lieu de redraw 14x avec les fonctions intermédiaire
 function redrawPlot() {
     Plotly.redraw("graphContainer");
 }
