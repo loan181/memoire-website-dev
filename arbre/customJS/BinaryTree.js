@@ -294,7 +294,6 @@ class Branch {
     }
 
     delete() {
-        console.log("Branch is deleted :(");
         if (this.draw != null) {
             this.draw.remove();
         }

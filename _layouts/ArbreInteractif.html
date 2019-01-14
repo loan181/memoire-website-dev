@@ -3,7 +3,13 @@
 
 <head>
     {% include head.html %}
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script>
+
+    <!-- Raphael -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script>
+
+    <!-- Plotlyjs -->
+    <script type="text/javascript" src="customJS/plotlyjs-bundle.js"></script>
+    <script type="text/javascript" src="customJS/figure.js"></script>
 </head>
 
 <body>
@@ -11,10 +17,11 @@
 <main role="main" class="container" style="max-width: 95%">
     <h1>Arbre de décision intéractif</h1>
 
-    <div class="row h-100 mt-2 col-md-12">
+    <div class="row mt-2 col-md-12">
         <!-- Graphe, tableau dynamique, etc -->
         <div class="col-sm-4">
-            Graphe, tableau dynamique, etc
+            <div id="graphContainer" class="container plotly-graph-div">
+            </div>
         </div>
 
         <!-- Visualisation graphique -->
@@ -60,20 +67,49 @@
     </div>
     <script src="customJS/Flower.js"></script>
     <script src="customJS/BinaryTree.js"></script>
-    <script>
-        function resizeCanva() {
-            var treeContainer = document.getElementById("treeContainer");
+    <script type="text/javascript">
+
+        window.PLOTLYENV={'BASE_URL': 'https://plot.ly'};
+
+
+        let treeContainer = document.getElementById("treeContainer");
+        let graphContainer = document.getElementById('graphContainer');
+
+        let resizeDebounce = null;
+
+        function resizeTreeCanva() {
             var containerWidth = treeContainer.offsetWidth;
             var containerHeight = treeContainer.offsetHeight;
             canvaSizeChange(containerWidth, containerHeight);
         }
 
+        function resizePlot() {
+            var bb = graphContainer.getBoundingClientRect();
+            Plotly.relayout(graphContainer, {
+                width: bb.width,
+                height: bb.height
+            });
+        }
+
         $(window).ready(function () {
-            resizeCanva();
+            resizeTreeCanva();
+            resizePlot();
         });
 
         $(window).resize(function() {
-            resizeCanva();
+            resizeTreeCanva();
+
+            if (resizeDebounce) {
+                window.clearTimeout(resizeDebounce);
+            }
+            resizeDebounce = window.setTimeout(resizePlot, 100);
+        });
+
+        Plotly.plot(graphContainer,  {
+            data: figure.data,
+            layout: figure.layout,
+            frames: figure.frames,
+            config: {"mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A", "linkText": "Export to plot.ly", "showLink": true}
         });
     </script>
 </body>
