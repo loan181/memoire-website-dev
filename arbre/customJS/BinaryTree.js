@@ -82,6 +82,12 @@ class Node {
     hover() {
         if (this.isLeaf()) {
             this.displayProportionOfEachFlower();
+        } else {
+            let axis = "y";
+            if (this.parameter === "petal length") {
+                axis = "x";
+            }
+            highlightCondition(axis, this.operator, this.valueToCompare);
         }
         highlightAllMarkers();
         drawPointsIndex(this.associatedFlower);
@@ -90,6 +96,8 @@ class Node {
     unHover() {
         if (this.isLeaf()) {
             this.unDisplayProportionOfEachFlower();
+        } else {
+            unhighlightCondition();
         }
         unHighlightAllMarkers();
         resetPlotWithDefaultData();
@@ -189,7 +197,7 @@ class Node {
             let correspondingFlower = trainingSet[flowerInd];
             let correspondingFlowerValue = correspondingFlower.get(this.parameter);
             let value = this.valueToCompare;
-            switch (parseInt(this.operator)) {
+            switch (this.operator) {
                 case operationType.EQUAL:
                     if (correspondingFlowerValue === value) {trueFlowerIndex.push(flowerInd);}
                     else {falseFlowerIndex.push(flowerInd);}
@@ -248,7 +256,7 @@ class Node {
      */
     modify(axis, operation, value) {
         this.parameter = axis;
-        this.operator = operation;
+        this.operator = parseInt(operation);
         this.valueToCompare = value;
 
         // Create a new node if I am a leaf (leaf -> node)
