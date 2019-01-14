@@ -41,8 +41,8 @@ class Node {
         );
 
         this.draw.hover(
-            this.displayProportionOfEachFlower,
-            this.unDisplayProportionOfEachFlower,
+            this.hover,
+            this.unHover,
             this,
             this
         );
@@ -71,8 +71,26 @@ class Node {
         this.valueToCompare = null;
     }
 
+    isLeaf() {
+        return this.leftBranch === null;
+    }
+
     setFlowersIndex(flowersIndexList) {
         this.associatedFlower = flowersIndexList;
+    }
+
+    hover() {
+        if (this.isLeaf()) {
+            this.displayProportionOfEachFlower();
+        }
+        drawPointsIndex(this.associatedFlower);
+    }
+
+    unHover() {
+        if (this.isLeaf()) {
+            this.unDisplayProportionOfEachFlower();
+        }
+        resetPlotWithDefaultData();
     }
 
     displayProportionOfEachFlower() {
@@ -260,6 +278,12 @@ class Node {
         this.draw.push(
             this.drawShape,
             this.drawText
+        );
+        this.draw.hover(
+            this.hover,
+            this.unHover,
+            this,
+            this
         );
         this.draw.mouseup(
             (e) => {this.nodeClicked();}
