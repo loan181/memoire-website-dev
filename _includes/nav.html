@@ -9,23 +9,27 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/"><i class="fas fa-home"></i></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/KNN">K plus proches voisins</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="/KNN/" role="button" aria-haspopup="true" aria-expanded="false">
+                    K plus proches voisins <i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu showOnHover" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/KNN/ex-preparatoires">Exercices préparatoires</a>
+                    <a class="dropdown-item" href="/KNN/blockly-aide">Consignes et utilisation pour la phase pratique</a>
+                    <a class="dropdown-item" href="/KNN/blockly">Phase pratique (Blockly)</a>
+                </div>
             </li>
-            <!--<li class="nav-item dropdown">-->
-                <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                    <!--Dropdown-->
-                <!--</a>-->
-                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                    <!--<a class="dropdown-item" href="#">Action</a>-->
-                    <!--<a class="dropdown-item" href="#">Another action</a>-->
-                    <!--<div class="dropdown-divider"></div>-->
-                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                <!--</div>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-                <!--<a class="nav-link disabled" href="#">Disabled</a>-->
-            <!--</li>-->
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="/arbre/" role="button" aria-haspopup="true" aria-expanded="false">
+                    Arbre de décisions <i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu showOnHover" aria-labelledby="navbarDropdown">
+                    <!--<a class="dropdown-item" href="/KNN/ex-preparatoires">Exercices préparatoires</a>-->
+                    <!--<a class="dropdown-item" href="/KNN/blockly-aide">Consignes et utilisation pour la phase pratique</a>-->
+                    <!--<a class="dropdown-item" href="/KNN/blockly">Phase pratique (Blockly)</a>-->
+                </div>
+            </li>
         </ul>
         <!--<form class="form-inline my-2 my-lg-0">-->
             <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
@@ -33,3 +37,15 @@
         <!--</form>-->
     </div>
 </nav>
+
+<script>
+    // Automatically highlight in the dropdown if the link match
+    var allLinks = document.getElementsByTagName("a");
+    for(var i = 0; i < allLinks.length; i++){
+        var curLink = allLinks[i];
+        if (curLink.href === window.location.href) {
+            curLink.className += " active";
+            break;
+        }
+    }
+</script>
