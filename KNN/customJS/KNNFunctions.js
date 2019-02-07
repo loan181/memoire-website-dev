@@ -284,22 +284,6 @@ function calculatePrediction(classifyFunction) {
 
 function updateHTMLRatioText(text) {
     try {
-        let spanElem = document.getElementById("currentPredictionText");
-        spanElem.textContent = text;
-        if (text >= 99.9) {
-            spanElem.className = "badge badge-success";
-        } else if (text >= 49.9) {
-            spanElem.className = "badge badge-warning";
-        } else {
-            spanElem.className = "badge badge-danger";
-        }
-    }
-    catch (e) {
-        console.warn("Erreur pour l'update de texte de prédiction ");
-        console.log(e);
-    }
-
-    try {
         let progressPredictionBar = document.getElementById("predictionProgressBar");
         let val = text+"%";
         progressPredictionBar.style.width = val;
