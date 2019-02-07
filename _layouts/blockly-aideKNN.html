@@ -304,144 +304,49 @@
                     </div>
                 </div>
 
-                <h3>Etape 1 : Compteur pour chaque fleur</h3>
+                <h3>Etape principale : K plus proches voisins</h3>
                 <p>
-                    Dans l’état actuel des choses la variable <code>kNearestNeighboursClasses</code>
-                    contient une liste (de longueur K) avec le nom des K fleurs les plus proche qu'on n'utilise pas.<br>
-                    Il faut créer un compteur qui compte le nombre de fois que chaque nom de fleur apparait.<br>
-                    Tu peux utiliser la liste renvoyé par {% blockly_block getAllFlowers %} pour l’ordre des noms dans le compteur.
-                </p>
-                <h4>Exemples</h4>
-                <p>
-                    Sachant que {% blockly_block getAllFlowers %} renvoie toujours la même liste (<code>["Iris-setosa", "Iris-versicolor", "Iris-virginica"]</code>)<br>
-                    Avec <code>kNearestNeighboursClasses = ["Iris-setosa", "Iris-versicolor", "Iris-virginica", "Iris-setosa", "Iris-versicolor", "Iris-setosa"]</code>
-                    le compteur serait à la fin <code>[3, 2, 1]</code> (setosa apparait 3 fois, versicolor 2 fois et virginica 1 fois).
+                    Pour réaliser à bien ce projet il est important que tu comprenne bien comment utiliser les compteurs et à quoi ils vont nous servir.<br><br>
+                    L'idée générale est d'augmenter le compteur de chacune des K fleurs les plus proches pour ensuite déterminer celle qui est en majorité
                 </p>
 
-                <div class="mx-auto" align="center">
-                    <img src="/img/KNN/etape1Ex.jpg" class="img-fluid">
-                </div>
+                <p>
+                    Voilà différents exemple pour t'entrainer et voir si tes résultats sont correctes :
+                </p>
                 <small class="text-muted">
-                    Comme on test en utilisant le <a href="#testCode">bouton de test expérimental</a>, il ne faut pas oublier d'appeller la fonction (d'où le premier bloc).<br>
-                    On créé d'abord la liste avec les 6 noms de fleurs comme mis dans l'exemple.<br>
-                    On applique ensuite les modifications à la variable <code>counter</code> comme indiqué au dessus (caché ici par le rectangle noir).<br>
-                    On affiche le résultat qui apparait dans une boite de dialogue qui est bien celui attendu.<br>
+                    Le code principal de l'algorithme est ici caché ici dans la fonction <code>code...</code>, mait tu n'es bien-entendu pas obliger d'implémenter une fonction pour ça ;)<br>
+                    Tu peux recopier la partie du code avec <code>afficher...</code> si tu veux avoir le même affichage que moi (en supposant que tes compteurs se mettent correctement à jour)<br>
+                    Fais bien attention que les paramètres et les coordonnées de la fleur créé changent entre chacun des exemples !
                 </small>
 
-                <p>
-                    Voici des exemples supplémentiares pour tester que le comportement est correct:
-                </p>
-                <ul>
-                    <li><code>["Iris-versicolor"]</code> -> <code>[0, 1, 0]</code></li>
-                    <li><code>["Iris-versicolor", "Iris-versicolor", "Iris-setosa"] </code> -> <code>[1, 2, 0]</code></li>
-                </ul>
+                <div class="mx-auto" align="center">
+                    <img src="/img/KNN/stepMainEx1.PNG" class="img-fluid">
+                    <br>
+                    <img src="/img/KNN/stepMainEx2.PNG" class="img-fluid">
+                    <br>
+                    <img src="/img/KNN/stepMainEx3.PNG" class="img-fluid">
+                </div>
+
+                {% recommendedBlocks countersReset countersIncrease countersGetMinMax getK forI %}
 
                 {% help %}
-                Cette étape est la compliqué à réaliser. Ne te décourage pas !<br>
-                On peut découper cette étape en sous-étape :<br>
-                On commence par initialiser le compteur à 0 pour tout les noms de fleurs<br>
-                On parcourt la liste des éléments de <code>kNearestNeighboursClasses</code> un par un. Pour chacun :<br>
+                    Une structure correcte du code est la suivante :
                 <ol>
-                    <li>On récupère son indice dans la liste des noms des fleurs</li>
-                    <li>On augmente de un à l’indice correspondant (on ne peut pas le faire directement avec Blobkly, du coup tu peux récupérer la valeur, lui ajouter un, puis remplacer la valeur précédente)</li>
+                    <li>Réinitialiser le compteur, chacune des trois fleurs à un compteur qui est mis à 0</li>
+                    <li>Pour chacune des K fleurs les plus proches, il faudra augmenter leur compteur individuel de 1</li>
+                    <li>Une fois les K fleurs parcouru, il suffit de choisir celle qui à la valeur de compteur la plus haute et mettre à jour le résultat renvoyé</li>
                 </ol>
                 {% endhelp %}
 
-                {% recommendedBlocks getAllFlowers forEach createList findFirtstOccurence getList setList plus %}
-
                 {% correction %}
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/step1Sol.svg" class="img-fluid">
+                    <img src="/img/KNN/solutionKNN.svg" class="img-fluid">
                 </div>
                 {% endcorrection %}
-
-                <h3>Etape 2 : Déterminer la majorité</h3>
-                <p>
-                    Maintenant qu’on à compté le nombre d’occurence de chaque fleur,
-                    il nous reste à trouver celle qui apparait le plus.
-                    Autrement dit, il faut trouver l’indice de la valeur maximum du compteur <code>counter</code>.<br>
-                    En cas d’ambiguïté, on prends le premier maximum rencontré<br>
-                    Pour cela on va d’abord créer une variable <code>maxIndexCourant</code>.
-                    Ensuite on va parcourir notre compteur,
-                    chaque fois qu’on rencontre une valeur plus grande que <code>maxIndexCourant</code> on va la mettre à jour.
-                </p>
-                <h4>Exemples</h4>
-                <p>
-                Avec <code>counter = [3, 2 , 1]</code> l’indice de la valeur maximum est <code>0</code>
-                (car à l’indice <code>0</code> on à le maximum de la liste (<code>3</code>)).
-                </p>
-                <div class="mx-auto" align="center">
-                    <img src="/img/KNN/etape2Ex.jpg" class="img-fluid">
-                </div>
-                <small class="text-muted">
-                    La fleur qu'on retrouve le plus dans la liste d'exemple est l'iris-setosa,
-                    son indice dans la liste {% blockly_block getAllFlowers %} est bien 0 (première fleur)
-                </small>
-
-                {% recommendedBlocks forIInCounter getList if strictlyGreater %}
-
-
-                {% correction %}
-                <div class="mx-auto" align="center">
-                    <img src="/img/KNN/step2Sol.svg" class="img-fluid">
-                </div>
-                Le code est très simple ici,
-                j’ai uniquement gardé en mémoire la valeur de l’indice puisqu’on peut déterminer la valeur à partir de là.
-                Mais on peut également créer une variable supplémentaire pour retenir la valeur courante maximum si ça leur permet de mieux comprendre.
-                {% endcorrection %}
-
-                <p>
-                    Voici des exemples supplémentaires pour tester que le comportement est correct:
-                </p>
-                <ul>
-                    <li><code>[0, 1, 0]</code> -> <code>1</code></li>
-                    <li><code>[1, 2, 0]</code> -> <code>1</code></li>
-                    <li><code>[3, 2, 5]</code> -> <code>2</code></li>
-                    <li><code>[9999, 2, 5]</code> -> <code>0</code></li>
-                    <li><code>[1, 2, 1]</code> -> <code>1</code> (en cas d’ambiguïté, on prends le premier maximum rencontré)</li>
-                </ul>
-
-                <h3>Etape 3 : Déterminer la fleur majoritaire correspondante</h3>
-                <p>
-                    Maintenant qu’on à l’information de l’indice du nom de fleur la plus proche,
-                    il nous suffit de renvoyer l’élément correspondant dans la liste de référence.
-                </p>
-                <h4>Exemples</h4>
-                <p>
-                    Avec <code>maxIndexCourant</code> à <code>0</code> on aura comme résultat <code>"Iris-setosa"</code>.
-                </p>
-                <div class="mx-auto" align="center">
-                    <img src="/img/KNN/etape3Ex.jpg" class="img-fluid">
-                </div>
-                <small class="text-muted">
-                    Iris-setosa est bien la fleur majoritaire de la liste des 6 fleurs donnée
-                </small>
-
-                {% help %}
-                Cette étape est très simple, tu n'aura pas besoin de plus de 2-3 blocs pour la résoudre
-                {% endhelp %}
-
-                {% correction %}
-                <div class="mx-auto" align="center">
-                    <img src="/img/KNN/step3Sol.svg" class="img-fluid">
-                </div>
-                {% endcorrection %}
-
-                <p>
-                    Voici des exemples supplémentaires pour tester que le comportement est correct:
-                </p>
-                <ul>
-                    <li><code>1</code> -> <code>"Iris-versicolor"</code></li>
-                    <li><code>2</code> -> <code>"Iris-virginica"</code></li>
-                </ul>
-
 
                 <h3>Etape finale : Obtenir 100%</h3>
                 <p>
-                    N’oublie pas de rétablir la variable <code>kNearestNeighboursClasses</code> comme elle l’était initialement.<br>
-                    Test ta méthode avec des fleurs que tu créé pour voir si ton prédicteur à l’air de renvoyer les bonnes valeurs.<br>
-                    <br>
-                    Après cela, il ne te reste plus qu’à faire un peu le tri dans ton code !
+                    Une fois que ton implémentation te parait correxte, il ne te reste plus qu’à faire un peu le tri dans ton code !
                     Enlève tout les <code>afficher ...</code> qui seront gênant quand tu évaluera ton prédicteur,
                     choisis bien tes paramètres (<a href="#parameterPanel">K, Axe x et Axe y</a>) et croise les doigts pour atteindre les 100% !
                 </p>
