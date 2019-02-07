@@ -139,25 +139,35 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{% blockly_block getAllFlowers %}</td>
-                        <td>Donne le nom des différentes fleurs/classes.<br> Dans l'ordre : <code>["Iris-setosa", "Iris-versicolor", "Iris-virginica"]</code></td>
-                        <td>Liste de Strings</td>
+                        <td>{% blockly_block getK %}</td>
+                        <td>Donne la valeur de K définie dans le <a href="#parameterPanel">Panneau Paramètres</a> </td>
+                        <td>Nombre</td>
+                    </tr>
+                    <tr>
+                        <td>{% blockly_block countersReset %}</td>
+                        <td>Permet de réinitialiser le compteur de chaque fleur à zéro</td>
+                        <td><i>Rien</i></td>
+                    </tr>
+                    <tr>
+                        <td>{% blockly_block countersIncrease %}</td>
+                        <td>Ajoute la valeur donné à la i-ème fleur la plus proche</td>
+                        <td><i>Rien</i></td>
+                    </tr>
+                    <tr>
+                        <td>{% blockly_block countersGetMinMax %}</td>
+                        <td>Récupère la fleur associée au compteur avec la valeur minimale/maximale</td>
+                        <td>String (nom de fleur)</td>
                     </tr>
                     <tr>
                         <td>{% blockly_block createFlower %}</td>
-                        <td>Permet de créer une fleur qui aura les valeurs données en <code>x</code> et <code>y</code> (dépend de ce que tu as fixer comme paramètres).</td>
+                        <td>Permet de créer une fleur artificielle qui aura les valeurs données en <code>x</code> et <code>y</code> (dépend de ce que tu as fixer comme paramètres).<br>Voir <a href="#createArtificalFlower">ci-dessous</a></td>
                         <td>Fleur</td>
-                    </tr>
-                    <tr>
-                        <td>{% blockly_block kNearest %}</td>
-                        <td>Renvoie le nom des K plus proches fleurs de <code>iris</code></td>
-                        <td>Liste de Strings</td>
                     </tr>
                     </tbody>
                 </table>
 
                 <h2>Exemples</h2>
-                <h3>Créer une fleur artificielle</h3>
+                <h3 id="createArtificalFlower">Créer une fleur artificielle</h3>
                 <p>
                     Pour tester ton programme, il peut être utile de créer des fleurs "artificielles".
                     Ce sont des fleurs qui apparaîtront sur le graphe, mais qui ne sont pas dans le training set.<br>
@@ -194,23 +204,32 @@
 
                 <h4>Manipuler une fleur artificielle</h4>
                 <p>
-                    Les fleurs que tu créés artificiellement sont considérées comme des fleurs classiques dans le code.
+                    Les fleurs que tu créés artificiellement sont considérées comme des fleurs "classiques" dans le code.
                     Tu peux les utiliser avec tous les autres blocs utilisant des fleurs.
                 </p>
                 <p>
-                    Tu peux par exemple tester le bloc {% blockly_block kNearest %} pour tester s'il renvoie bien les K fleurs les plus proches de la fleur ajoutée.
+                    Voici un exemple un peu complexe d'utilisation possible:
                 </p>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/exampleBlockAppKNN.svg" class="img-fluid"><br>
+                    <img src="/img/KNN/exampleBlockAppCompteur.svg" class="img-fluid"><br>
                 </div>
+                <br>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/exampleBlockAppKNNRes.PNG" class="img-fluid">
+                    <img src="/img/KNN/exampleBlockAppCompteurRes.PNG" class="img-fluid">
                 </div>
                 <small class="text-muted">
-                    Dans cet exemple, on ajoute une fleur artificielle en (4.9, 4.2) avec comme axe x le sepal length et y le petal length.
-                    On demande les K (ici 3) plus proche voisins qu’on affiche à l’écran dans une boite de dialogue.<br>
-                    On voit graphiquement que les 3 plus proche de la croix sont 1e carré vert (virginica) et 2 triangles rouge (versicolor),
-                    ce qui est bien le résultat annoncé dans la boite de dialogue
+                    Dans cet exemple, on ajoute une fleur artificielle en (4.9, 4.2) avec comme axe x le sepal length et y le petal length.<br>
+                    On commence par réinitialiser les compteurs des 3 fleurs en les mettant à zéro<br>
+                    Ensuite, on ajoute au compteur de la fleur la plus proche la valeur -10. Dans notre cas, la fleur la plus proche est un carré vert (virginica), son compteur étant de 0, il passe à -10.<br>
+                    Après cela, on ajoute au compteur de la 2ème fleur la plus proche la valeur 20. Dans notre cas, la 2ème fleur la plus proche est un triangle rouge (versicolor), son compteur étant de 0, il passe à 20.<br>
+                    Enfin, on affiche la fleur de valeur minimale et maximale de notre compteur. A ce stade, notre compteur vaut :
+                    <ul>
+                        <li>20 pour les Iris-versicolor</li>
+                        <li>0 pour les Iris-setosa</li>
+                        <li>-10 pour les Iris-virginica</li>
+                    </ul>
+                    Le message indique donc bien : <code>Iris-virginica  ||  Iris-versicolor</code><br>
+                    Attention que <code>K</code> est totalement ignoré dans cet exemple, il faudra le prendre en compte quand tu devras résoudre le problème ;)
                 </small>
 
                 <h2>Objectif</h2>

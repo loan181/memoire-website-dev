@@ -62,7 +62,3 @@ nav[data-toggle='toc'] {
     display: block;
 }
 
-.dropdown>.dropdown-toggle:active {
-    /*Without this, clicking will make it sticky*/
-    pointer-events: none;
-}
