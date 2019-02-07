@@ -32,6 +32,7 @@
     </shadow>
   </value>
 </block>
+<block type="getcounter"></block>
 <block type="text_print">
   <value name="TEXT">
     <shadow type="text">

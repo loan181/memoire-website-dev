@@ -377,3 +377,11 @@ function retrievecounterflower(maxOrMin) {
         return maxFlower;
     }
 }
+
+function getCounterToPrint() {
+    let text = "";
+    for (let i = 0; i < flowerName.length; i++) {
+        text += " - " + flowerName[i] + " : " + flowerCounter[flowerName[i]] + "\n";
+    }
+    return text;
+}
