@@ -28,8 +28,11 @@ Plotly.plot(graphContainer,  {
     data: figure.data,
     layout: figure.layout,
     frames: figure.frames,
-    config: {"mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A", "linkText": "Export to plot.ly", "showLink": false}
+    config: {
+        "mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A",
+        "linkText": "Export to plot.ly",
+        "showLink": false,
+        "locale" : 'fr'
+    }
 });
 resetPlotWithDefaultData();
-
-// TODO : mettre en français par défaut : https://github.com/plotly/plotly.js/tree/master/dist#to-include-localization
