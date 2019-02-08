@@ -4,6 +4,7 @@ var figure = {
 
     "layout": {
         "autosize": true,
+        "hovermode" : "closest",
         "yaxis": {
             "range": [
                 0.6047226798462384, 

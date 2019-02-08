@@ -2,9 +2,6 @@
 <html lang="en">
 <head>
     {% include head.html %}
-    <!-- Canva JS-->
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <!-- Blockly imports -->
     <script src="blocklySrc/blockly_compressed.js"></script>
     <script src="blocklySrc/blocks_compressed.js"></script>
@@ -14,10 +11,10 @@
     <script src="customJS/GraphFunctions.js"></script>
 
     <!-- Plotlyjs -->
-    <script type="text/javascript" src="../arbre/customJS/plotlyjs-bundle.js"></script>
-    <script type="text/javascript" src="../arbre/customJS/figure.js"></script>
-
-    <script type="text/javascript" src="../arbre/customJS/plotInteraction.js"></script>
+    <script type="text/javascript" src="/js/shared/plotlyjs-bundle.js"></script>
+    <script type="text/javascript" src="/js/shared/figure.js"></script>
+    <script type="text/javascript" src="/js/shared/plotInteraction.js"></script>
+    <script type="text/javascript" src="customJS/plotInteraction.js"></script>
 </head>
 
 <body>
@@ -113,9 +110,9 @@
                     <div id="collapseGraph" class="collapse show" aria-labelledby="headingGraph">
                         <div class="card-body">
                             <!-- Graph -->
-                            <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
-
+                            <!--<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>-->
                             <div id="graphContainer" class="container plotly-graph-div"></div>
+
                             <!-- Boutton pour afficher une fenêtre modal avec le tableau utilisé -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#irisDataModal">
                                 <i class="fas fa-table"></i> <span class="B_trainingSet"></span>
@@ -239,40 +236,6 @@
 
 <script src="customJS/languageCode.js"></script>
 <script src="customJS/BlocklyScripts.js"></script>
-
-<script type="text/javascript">
-    window.PLOTLYENV={'BASE_URL': 'https://plot.ly'};
-
-    let graphContainer = document.getElementById('graphContainer');
-
-    let resizeDebounce = null;
-
-    function resizePlot() {
-        let bb = graphContainer.getBoundingClientRect();
-        Plotly.relayout(graphContainer, {
-            width: bb.width,
-            height: bb.height
-        });
-    }
-
-    $(window).ready(function () {
-        resizePlot();
-    });
-
-    $(window).resize(function() {
-        if (resizeDebounce) {
-            window.clearTimeout(resizeDebounce);
-        }
-        resizeDebounce = window.setTimeout(resizePlot, 100);
-    });
-
-    Plotly.plot(graphContainer,  {
-        data: figure.data,
-        layout: figure.layout,
-        frames: figure.frames,
-        config: {"mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A", "linkText": "Export to plot.ly", "showLink": true}
-    });
-    resetPlotWithDefaultData();
-</script>
+<script src="/js/shared/plot.js"></script>
 </body>
 </html>

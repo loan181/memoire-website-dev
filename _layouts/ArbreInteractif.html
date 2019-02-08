@@ -8,10 +8,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script>
 
     <!-- Plotlyjs -->
-    <script type="text/javascript" src="customJS/plotlyjs-bundle.js"></script>
-    <script type="text/javascript" src="customJS/figure.js"></script>
-
+    <script type="text/javascript" src="/js/shared/plotlyjs-bundle.js"></script>
+    <script type="text/javascript" src="/js/shared/figure.js"></script>
+    <script type="text/javascript" src="/js/shared/plotInteraction.js"></script>
     <script type="text/javascript" src="customJS/plotInteraction.js"></script>
+
 </head>
 
 <body>
@@ -32,87 +33,44 @@
     </div>
 </main>
 
-    <!-- Modal asking inputs for nodes -->
-    <div class="modal fade" id="askParameters" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalParametersTitle"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<!-- Modal asking inputs for nodes -->
+<div class="modal fade" id="askParameters" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalParametersTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <select class="form-control" id="axisChoice">
+                        <option>petal length</option>
+                        <option>petal width</option>
+                    </select>
+                    <select class="form-control" id="operationChoice" >
+                        <option value=1>=</option>
+                        <option value=2>&ne;</option>
+                        <option value=3>&gt;</option>
+                        <option value=4>&ge;</option>
+                        <option value=5>&lt;</option>
+                        <option value=6>&le;</option>
+                    </select>
+                    <input type="number" id="valueChoice" class="form-control" value="0" step="0.1">
                 </div>
-                <div class="modal-body">
-                    <div class="input-group">
-                        <select class="form-control" id="axisChoice">
-                            <option>petal length</option>
-                            <option>petal width</option>
-                        </select>
-                        <select class="form-control" id="operationChoice" >
-                            <option value=1>=</option>
-                            <option value=2>&ne;</option>
-                            <option value=3>&gt;</option>
-                            <option value=4>&ge;</option>
-                            <option value=5>&lt;</option>
-                            <option value=6>&le;</option>
-                        </select>
-                        <input type="number" id="valueChoice" class="form-control" value="0" step="0.1">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" id="deleteButton" data-dismiss="modal" onclick="BT.deleteNode()">Supprimer</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="BT.parseAskParametersValues()">Sauver</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="deleteButton" data-dismiss="modal" onclick="BT.deleteNode()">Supprimer</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="BT.parseAskParametersValues()">Sauver</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
             </div>
         </div>
     </div>
-    <script src="customJS/Flower.js"></script>
-    <script src="customJS/BinaryTree.js"></script>
-    <script type="text/javascript">
-        window.PLOTLYENV={'BASE_URL': 'https://plot.ly'};
+</div>
+<script src="customJS/Flower.js"></script>
+<script src="customJS/BinaryTree.js"></script>
+<script src="/js/shared/plot.js"></script>
 
-
-        let treeContainer = document.getElementById("treeContainer");
-        let graphContainer = document.getElementById('graphContainer');
-
-        let resizeDebounce = null;
-
-        function resizeTreeCanva() {
-            let containerWidth = treeContainer.offsetWidth;
-            let containerHeight = treeContainer.offsetHeight;
-            canvaSizeChange(containerWidth, containerHeight);
-        }
-
-        function resizePlot() {
-            let bb = graphContainer.getBoundingClientRect();
-            Plotly.relayout(graphContainer, {
-                width: bb.width,
-                height: bb.height
-            });
-        }
-
-        $(window).ready(function () {
-            resizeTreeCanva();
-            resizePlot();
-        });
-
-        $(window).resize(function() {
-            resizeTreeCanva();
-
-            if (resizeDebounce) {
-                window.clearTimeout(resizeDebounce);
-            }
-            resizeDebounce = window.setTimeout(resizePlot, 100);
-        });
-
-        Plotly.plot(graphContainer,  {
-            data: figure.data,
-            layout: figure.layout,
-            frames: figure.frames,
-            config: {"mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A", "linkText": "Export to plot.ly", "showLink": true}
-        });
-        resetPlotWithDefaultData();
-    </script>
 </body>
 </html>
