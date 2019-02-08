@@ -3,6 +3,7 @@ var currentXCat = categories[0];
 var currentYCat = categories[1];
 
 var options;
+
 window.onload = function() {
     options = {
         animationEnabled: true,
@@ -52,7 +53,6 @@ window.onload = function() {
         } else {
             curData.name = "ajouté";
         }
-
         options.data.push(curData);
     }
 
@@ -75,11 +75,13 @@ window.onload = function() {
         currentYCat = $(this).val();
         refreshGraph();
     });
-
+    addMarkersToCustomAdded()
     refreshGraph();
-}
+};
 
 function refreshGraph() {
+    refreshPlot();
+
     options.title.text = currentXCat + " vs " + currentYCat;
     options.axisX.title = currentXCat;
     options.axisY.title = currentYCat;
@@ -101,7 +103,16 @@ function refreshGraph() {
     $("#chartContainer").CanvasJSChart(options); // Refresh graph
 }
 
+function refreshPlot() {
+    modifyTitle(currentXCat + " vs " + currentYCat);
+    modifyXAxisName(currentXCat);
+    modifyYAxisName(currentYCat);
+    resetPlotWithXYData(currentXCat, currentYCat);
+    redrawPlot();
+}
+
 function deleteAddedMarkers() {
+    deletedAllAddedMarkers();
     if ( options.data[3].dataPoints.length !== 0) {
         options.data[3].dataPoints = [];
         refreshGraph();

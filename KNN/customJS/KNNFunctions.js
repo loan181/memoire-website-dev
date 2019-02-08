@@ -327,6 +327,8 @@ function createFlower(x, y) {
     }
     options.data[3].dataPoints.push({x: x, y: y});
     refreshGraph();
+    addCustomMarker(x, y);
+    refreshPlot();
     return new Flower(args[0], args[1], args[2], args[3], "");
 }
 

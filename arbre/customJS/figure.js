@@ -1,7 +1,9 @@
 var figure = {
-    "frames": [], 
+
+    "frames": [],
+
     "layout": {
-        "autosize": true, 
+        "autosize": true,
         "yaxis": {
             "range": [
                 0.6047226798462384, 
@@ -9,9 +11,9 @@ var figure = {
             ], 
             "type": "linear", 
             "autorange": true, 
-            "title": "Length"
+            "title": "y"
         }, 
-        "height": 1006, 
+        "height": 500,
         "width": 1532, 
         "xaxis": {
             "range": [
@@ -20,14 +22,16 @@ var figure = {
             ], 
             "type": "linear", 
             "autorange": true, 
-            "title": "Width"
+            "title": "x"
         }, 
         "legend": {
-            "y": 1.0157384987893463, 
-            "x": 0.02228484386900228
+            // "y": 1.0157384987893463,
+            // "x": 0.02228484386900228,
+            "orientation": "h"
         },
         "shapes" : []
-    }, 
+    },
+
     "data": [
         {
             "uid": "252198", 
@@ -394,4 +398,4 @@ var figure = {
             "name": "Virginica"
         }
     ]
-}
+};

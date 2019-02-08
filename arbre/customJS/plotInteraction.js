@@ -7,19 +7,78 @@ function resetAllDatas() {
 }
 
 function resetPlotWithDefaultData() {
+    resetPlotWithXYData("petal width", "petal length");
+    redrawPlot();
+}
+
+function resetPlotWithXYData(axisX, axisY) {
     resetAllDatas();
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 40; j++) {
             let correspondingFlower = trainingSet[i*40 + j];
-            figure.data[i].x[j] = correspondingFlower.get("petal width");
-            figure.data[i].y[j] = correspondingFlower.get("petal length");
+            figure.data[i].x[j] = correspondingFlower.get(axisX);
+            figure.data[i].y[j] = correspondingFlower.get(axisY);
         }
     }
     redrawPlot();
 }
 
+function modifyTitle(newName) {
+    // figure.layout.title.text = newName // Ne fonctionne pas :(
+    Plotly.relayout(graphContainer, {title:newName})
+}
+
+function modifyXAxisName(newName) {
+    figure.layout.xaxis.title.text = newName
+}
+
+function modifyYAxisName(newName) {
+    figure.layout.yaxis.title.text = newName
+}
+
+
+// TODO : need BIG global refactoring, cald too often in intermediate function.
+//  En gros ça serait cool de l'appeler explicitement à la fin des gros changements sur figure, au lieu de l'appeller à la fin des fonctions intermédiaire
+//  Par exemple dans BinaryTree.Node.hover ou on devrait appeller le redraw explicitement à la fin au lieu de redraw 14x avec les fonctions intermédiaire
+function redrawPlot() {
+    Plotly.redraw("graphContainer");
+}
+
+// KNN specific function
+function addMarkersToCustomAdded() {
+    figure.data.push(
+        {
+            "marker": {
+                "color": "#23beaa",
+                "line": {
+                    "color": "#187c6f",
+                    "width": 0.5
+                },
+                "size": 12,
+                "symbol" : "x"
+            },
+            "mode": "markers",
+            "y": [],
+            "x": [],
+            "type": "scatter",
+            "name": "ajouté"
+        }
+    );
+}
+
+function deletedAllAddedMarkers() {
+    figure.data[3].x = [];
+    figure.data[3].y = [];
+}
+
+function addCustomMarker(x, y) {
+    figure.data[3].x.push(x);
+    figure.data[3].y.push(y);
+}
+
+// Decision Tree specific function
 function drawPointsIndex(listOfMarkersIndex) {
-        resetAllDatas();
+    resetAllDatas();
     for (let i = 0; i < listOfMarkersIndex.length; i++) {
         let markerIdx = listOfMarkersIndex[i];
         let correspondingFlower = trainingSet[markerIdx];
@@ -166,11 +225,4 @@ function unHighlightAllMarkers() {
     for (let i = 0; i < 3; i++) {
         figure.data[i].marker.line = {};
     }
-}
-
-// TODO : need BIG global refactoring, cald too often in intermediate function.
-//  En gros ça serait cool de l'appeler explicitement à la fin des gros changements sur figure, au lieu de l'appeller à la fin des fonctions intermédiaire
-//  Par exemple dans BinaryTree.Node.hover ou on devrait appeller le redraw explicitement à la fin au lieu de redraw 14x avec les fonctions intermédiaire
-function redrawPlot() {
-    Plotly.redraw("graphContainer");
 }
