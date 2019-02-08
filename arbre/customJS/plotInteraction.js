@@ -82,7 +82,7 @@ function drawPointsIndex(listOfMarkersIndex) {
     for (let i = 0; i < listOfMarkersIndex.length; i++) {
         let markerIdx = listOfMarkersIndex[i];
         let correspondingFlower = trainingSet[markerIdx];
-        let correspondingDataIdx =  Math.floor(markerIdx / 40);
+        let correspondingDataIdx = Math.floor(markerIdx / 40);
         figure.data[correspondingDataIdx].x.push(correspondingFlower.get("petal width"));
         figure.data[correspondingDataIdx].y.push(correspondingFlower.get("petal length"));
     }
