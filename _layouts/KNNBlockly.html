@@ -12,6 +12,12 @@
     <!-- My Scripts -->
     <script src="customJS/KNNFunctions.js"></script>
     <script src="customJS/GraphFunctions.js"></script>
+
+    <!-- Plotlyjs -->
+    <script type="text/javascript" src="../arbre/customJS/plotlyjs-bundle.js"></script>
+    <script type="text/javascript" src="../arbre/customJS/figure.js"></script>
+
+    <script type="text/javascript" src="../arbre/customJS/plotInteraction.js"></script>
 </head>
 
 <body>
@@ -95,7 +101,7 @@
         <div class="col-sm-4" >
 
             <div class="accordion" id="accordionControlPanel">
-                <!-- Graph -->
+                <!-- Graph panel -->
                 <div class="card">
                     <div class="card-header" style="padding: 0;" id="headingGraph">
                         <h5 class="mb-0">
@@ -106,7 +112,10 @@
 
                     <div id="collapseGraph" class="collapse show" aria-labelledby="headingGraph">
                         <div class="card-body">
+                            <!-- Graph -->
                             <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+
+                            <div id="graphContainer" class="container plotly-graph-div"></div>
                             <!-- Boutton pour afficher une fenêtre modal avec le tableau utilisé -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#irisDataModal">
                                 <i class="fas fa-table"></i> <span class="B_trainingSet"></span>
@@ -230,5 +239,40 @@
 
 <script src="customJS/languageCode.js"></script>
 <script src="customJS/BlocklyScripts.js"></script>
+
+<script type="text/javascript">
+    window.PLOTLYENV={'BASE_URL': 'https://plot.ly'};
+
+    let graphContainer = document.getElementById('graphContainer');
+
+    let resizeDebounce = null;
+
+    function resizePlot() {
+        let bb = graphContainer.getBoundingClientRect();
+        Plotly.relayout(graphContainer, {
+            width: bb.width,
+            height: bb.height
+        });
+    }
+
+    $(window).ready(function () {
+        resizePlot();
+    });
+
+    $(window).resize(function() {
+        if (resizeDebounce) {
+            window.clearTimeout(resizeDebounce);
+        }
+        resizeDebounce = window.setTimeout(resizePlot, 100);
+    });
+
+    Plotly.plot(graphContainer,  {
+        data: figure.data,
+        layout: figure.layout,
+        frames: figure.frames,
+        config: {"mapboxAccessToken": "pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A", "linkText": "Export to plot.ly", "showLink": true}
+    });
+    resetPlotWithDefaultData();
+</script>
 </body>
 </html>

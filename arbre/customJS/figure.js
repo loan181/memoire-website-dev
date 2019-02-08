@@ -34,9 +34,9 @@ var figure = {
             "ysrc": "chris:17556:81b2bc", 
             "xsrc": "chris:17556:eceb94", 
             "marker": {
-                "color": "#66c2a5", 
+                "color": "#4f81bc",
                 "line": {
-                    "color": "rgb(102, 102, 102)", 
+                    "color": "#365880",
                     "width": 0.5
                 }, 
                 "size": 12,
@@ -262,9 +262,9 @@ var figure = {
             ], 
             "type": "scatter", 
             "marker": {
-                "color": "#fc8d62", 
+                "color": "#c0504e",
                 "line": {
-                    "color": "rgb(102, 102, 102)", 
+                    "color": "#803634",
                     "width": 0.5
                 }, 
                 "size": 12,
@@ -277,9 +277,9 @@ var figure = {
             "ysrc": "chris:17556:8709b9", 
             "xsrc": "chris:17556:771b24", 
             "marker": {
-                "color": "#8da0cb", 
+                "color": "#9bbb58",
                 "line": {
-                    "color": "rgb(102, 102, 102)", 
+                    "color": "#6a803c",
                     "width": 0.5
                 }, 
                 "size": 12,
