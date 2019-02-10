@@ -1,1 +1,2 @@
 exclude: ['_site', '.idea']
+source: src
