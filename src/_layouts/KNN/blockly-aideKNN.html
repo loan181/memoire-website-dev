@@ -4,7 +4,7 @@
 <head>
     {% include head.html %}
     {% include table_content.html %}
-    <script src="/js/contentForTeacher.js"></script>
+    <script src="/static/js/contentForTeacher.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#toc">
@@ -24,13 +24,13 @@
                     Maintenant que nous avons une bonne compréhension et intuition de l’algorithme des K plus proche voisins nous allons le mettre en pratique à l’aide de Blockly.
                 </p>
 
-                <img src="/img/KNN/site.PNG" class="img-fluid">
+                <img src="/static/img/KNN/site.PNG" class="img-fluid">
 
                 Le site est divisé en trois parties.
 
                 <h2>Structure du site</h2>
                 <h3>La barre d'outil</h3>
-                <img src="/img/KNN/outils.png" class="img-fluid">
+                <img src="/static/img/KNN/outils.png" class="img-fluid">
                 <p>
                     Dans la partie supérieure de l’écran tu as différents boutons te permettant de réaliser certaines actions que nous allons détailler ici.
                 </p>
@@ -96,7 +96,7 @@
                 <ul class="list-unstyled">
 
                     <li class="media">
-                        <img src="/img/KNN/site-graphAndDatas.png" class="mr-3 img-fluid" >
+                        <img src="/static/img/KNN/site-graphAndDatas.png" class="mr-3 img-fluid" >
                         <div class="media-body">
                             <h4 class="mt-0 mb-1">Panneau Graphe et Données</h4>
                             Te permet de consulter et visualiser les données du training set.
@@ -110,7 +110,7 @@
                     </li>
 
                     <li class="media my-4" id="parameterPanel">
-                        <img src="/img/KNN/site-parameters.png" class="mr-3 img-fluid" >
+                        <img src="/static/img/KNN/site-parameters.png" class="mr-3 img-fluid" >
                         <div class="media-body">
                             <h4 class="mt-0 mb-1">Panneau Paramètres</h4>
                             Te permet de modifier le comportement de l'algorithme des K plus proches voisins.<br>
@@ -196,10 +196,10 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm">
-                                    <img src="/img/KNN/addFlowerPar1.PNG" class="img-fluid float-left">
+                                    <img src="/static/img/KNN/addFlowerPar1.PNG" class="img-fluid float-left">
                                 </div>
                                 <div class="col-sm">
-                                    <img src="/img/KNN/addFlowerPar2.PNG" class="img-fluid float-right">
+                                    <img src="/static/img/KNN/addFlowerPar2.PNG" class="img-fluid float-right">
                                 </div>
                             </div>
                         </div>
@@ -216,11 +216,11 @@
                     Voici un exemple un peu complexe d'utilisation possible:
                 </p>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/exampleBlockAppCompteur2.svg" class="img-fluid"><br>
+                    <img src="/static/img/KNN/exampleBlockAppCompteur2.svg" class="img-fluid"><br>
                 </div>
                 <br>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/exampleBlockAppCompteurRes2.PNG" class="img-fluid">
+                    <img src="/static/img/KNN/exampleBlockAppCompteurRes2.PNG" class="img-fluid">
                 </div>
                 <small class="text-muted">
                     Dans cet exemple, on ajoute une fleur artificielle en (4.9, 4.2) avec comme axe x le sepal length et y le petal length.<br>
@@ -238,11 +238,11 @@
                 <br>
                 <br>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/exampleBlockAppCompteur.svg" class="img-fluid"><br>
+                    <img src="/static/img/KNN/exampleBlockAppCompteur.svg" class="img-fluid"><br>
                 </div>
                 <br>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/exampleBlockAppCompteurRes.PNG" class="img-fluid">
+                    <img src="/static/img/KNN/exampleBlockAppCompteurRes.PNG" class="img-fluid">
                 </div>
                 <small class="text-muted">
                    Pareil que l'exemple précédent, sauf qu'au lieu d'afficher les valeurs des compteurs on indique les fleurs avec les valeurs de compteur minimale et maximale
@@ -254,7 +254,7 @@
                     Cette fonction prend une fleur en argument <code>newIris</code> et renvoie le nom prédit de cette fleur.
                 </p>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/classifyFunction.svg" class="img-fluid">
+                    <img src="/static/img/KNN/classifyFunction.svg" class="img-fluid">
                 </div>
                 <p>
                     La qualité de ton prédicateur est représentée par la barre de progression bleu en dessous de la barre d'outil.<br>
@@ -287,7 +287,7 @@
                     Commence par la prendre et test le résultat de ton prédicteur avec.
                 </p>
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/classifyFunctionDefault.svg" class="img-fluid">
+                    <img src="/static/img/KNN/classifyFunctionDefault.svg" class="img-fluid">
                 </div>
 
                 <p>
@@ -320,11 +320,11 @@
                 </small>
 
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/stepMainEx1.PNG" class="img-fluid">
+                    <img src="/static/img/KNN/stepMainEx1.PNG" class="img-fluid">
                     <br>
-                    <img src="/img/KNN/stepMainEx2.PNG" class="img-fluid">
+                    <img src="/static/img/KNN/stepMainEx2.PNG" class="img-fluid">
                     <br>
-                    <img src="/img/KNN/stepMainEx3.PNG" class="img-fluid">
+                    <img src="/static/img/KNN/stepMainEx3.PNG" class="img-fluid">
                 </div>
 
                 {% recommendedBlocks countersReset countersIncrease countersGetMinMax getK forI %}
@@ -340,7 +340,7 @@
 
                 {% correction %}
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/solutionKNN.svg" class="img-fluid">
+                    <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
                 </div>
                 {% endcorrection %}
 
@@ -353,11 +353,11 @@
 
                 {% correction %}
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/solutionKNN.svg" class="img-fluid">
+                    <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
                 </div>
                 Avec par exemple comme paramètres :
                 <div class="mx-auto" align="center">
-                    <img src="/img/KNN/solParametersKNN.png" class="img-fluid">
+                    <img src="/static/img/KNN/solParametersKNN.png" class="img-fluid">
                 </div>
                 {% endcorrection %}
             </main>

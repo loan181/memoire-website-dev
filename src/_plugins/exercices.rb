@@ -84,7 +84,7 @@ module Jekyll
         ret += '
           <div class="col-sm-4" style="padding-left: 2px;padding-right: 2px;">
               <div class="card">
-                 <img class="card-img-center img-fluid" src="/img/blocklyBlocks/'
+                 <img class="card-img-center img-fluid" src="/static/img/blocklyBlocks/'
         ret += elem
         ret += '.svg">
                     </div>

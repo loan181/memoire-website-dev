@@ -9,7 +9,7 @@
         {% endunless %}
 
         <a href= "{{ card.href }}" class= "{{ cardClass }}">
-            <img class="card-img-top" src={{ "img/" | append : card.picture }} style="height:220px; padding: 8px" alt="Card image cap">
+            <img class="card-img-top" src={{ "static/img/" | append : card.picture }} style="height:220px; padding: 8px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ card.title }}</h5>
                 <p class="card-text">
