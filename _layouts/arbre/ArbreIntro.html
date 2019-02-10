@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    {% include head.html %}
+</head>
+
+<body>
+{% include nav.html %}
+
+<div class="jumbotron" style="
+    background: url('/img/ArbreDecision.svg');
+         /*position: fixed;*/
+    width: 100%;
+    height: 550px; /*same height as jumbotron */
+    top: 0;
+    left: 0;
+    z-index: -999;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-blend-mode: soft-light;
+    -webkit-background-blend-mode: soft-lightsoft-light;
+    ">
+
+</div>
+
+<main role="main" class="container">
+    <h1>Arbre de décisions</h1>
+    <hr class="my-4">
+    <p class="lead">Méthode de classification</p>
+    <p>
+        Outil d'aide à la décision représentant un ensemble de choix sous la forme graphique d'un arbre. <br>
+        Les différentes décisions possibles sont situées aux extrémités des branches (les « feuilles » de l'arbre), et sont atteints en fonction de décisions prises à chaque étape.
+    </p>
+    <div align="center">
+        <!--<a class="btn btn-primary" href="ex-preparatoires" role="button">Exercices préparatoires</a>-->
+        <!--<a class="btn btn-primary" href="blockly-aide" role="button">Consignes et utilisation pour la phase pratique</a>-->
+        <a class="btn btn-primary" href="arbre-interactif" role="button">Phase pratique (Arbre intéractif)</a>
+    </div>
+</main>
+
+    <script>
+        var jumboHeight = $('.jumbotron').outerHeight();
+        function parallax(){
+            var scrolled = $(window).scrollTop();
+            $('.jumbotron-bg').css('height', (jumboHeight-scrolled) + 'px');
+        }
+        $(window).scroll(function(e){
+            parallax();
+        });
+    </script>
+</body>
+
+</html>
