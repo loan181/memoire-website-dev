@@ -124,7 +124,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for i in (1..3) %}
+                    {% for i in (1..3) %} <!-- Nombre de feuilles -->
                     <tr>
                         <th scope="row">{{ i }}</th>
                         {% for j in (1..4) %} <!-- 4 fruits -->
@@ -145,6 +145,123 @@
 
                 {% correction %}
                 <img src="/static/img/arbre/ex1corr1.PNG" class="img-fluid">
+                {% endcorrection %}
+
+
+                <ul>
+                    <li>Couleur jaune ?</li>
+                    <ul>
+                        <li>Forme Courbé ? (pour la branche "oui")</li>
+                        <li>Couleur orange ? (pour la branche "non")</li>
+                    </ul>
+                </ul>
+
+                {% answer %}
+                <table class="table table-hover" >
+                    <thead>
+                    <tr>
+                        <th scope="col">Feuille</th>
+                        <th scope="col">Banane</th>
+                        <th scope="col">Pomme</th>
+                        <th scope="col">Orange</th>
+                        <th scope="col">Citron</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in (1..4) %} <!-- Nombre de feuilles -->
+                    <tr>
+                        <th scope="row">{{ i }}</th>
+                        {% for j in (1..4) %} <!-- 4 fruits -->
+                        <td>
+                            <div class="input-group">
+                                <input type="number" min="0" max="100" value="0" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endanswer %}
+
+                {% correction %}
+                <img src="/static/img/arbre/ex1corr2.PNG" class="img-fluid">
+                {% endcorrection %}
+
+
+                <ul>
+                    <li>Couleur rose ?</li>
+                    <ul>
+                        <li>Forme hélicoïdale ? (pour la branche "non")</li>
+                        <ul>
+                            <li>Couleur bleue ? (pour la branche "non")</li>
+                        </ul>
+                    </ul>
+                </ul>
+
+                {% answer %}
+                <table class="table table-hover" >
+                    <thead>
+                    <tr>
+                        <th scope="col">Feuille</th>
+                        <th scope="col">Banane</th>
+                        <th scope="col">Pomme</th>
+                        <th scope="col">Orange</th>
+                        <th scope="col">Citron</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in (1..1) %} <!-- Nombre de feuilles -->
+                    <tr>
+                        <th scope="row">{{ i }}</th>
+                        {% for j in (1..4) %} <!-- 4 fruits -->
+                        <td>
+                            <div class="input-group">
+                                <input type="number" min="0" max="100" value="0" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endanswer %}
+
+                {% correction %}
+                <img src="/static/img/arbre/ex1corr3.PNG" class="img-fluid">
+                {% endcorrection %}
+
+
+                <p>
+                    D'après les différents arbres que tu as dessiné dans cet exercice, répond aux questions suivantes :
+                </p>
+
+                <p>
+                    Quel arbre serai le plus adapté pour différencier une pomme d’un citron ? Justifie ton choix :
+                </p>
+
+                {% answer %}
+                <div class="form-group">
+                    <select class="form-control">
+                        <option>Arbre 1</option>
+                        <option>Arbre 2</option>
+                        <option>Arbre 3</option>
+                    </select>
+                    <label for="repEx1-1"></label>
+                    <textarea class="form-control" rows="4" id="repEx1-1"></textarea>
+                </div>
+                {% endanswer %}
+
+                {% correction %}
+                Le 2eme arbre est plus adapté que les autres pour différencier une pomme d’un citron.<br>
+                Les questions/décisions du premier ne permettent pas de distinguer les 2 fruits (ils sont tout les 2 pas orange ni courbé).
+                Le dernier arbre est encore pire, on ne peut y distinguer aucun fruit !
                 {% endcorrection %}
             </main>
         </div>
