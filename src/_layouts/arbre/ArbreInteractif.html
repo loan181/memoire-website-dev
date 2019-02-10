@@ -71,6 +71,21 @@
 <script src="customJS/Flower.js"></script>
 <script src="customJS/BinaryTree.js"></script>
 <script src="/static/js/shared/plot.js"></script>
+<script>
+    let treeContainer = document.getElementById("treeContainer");
 
+    function resizeTreeCanva() {
+        let containerWidth = treeContainer.offsetWidth;
+        let containerHeight = treeContainer.offsetHeight;
+        canvaSizeChange(containerWidth, containerHeight);
+    }
+
+    $(window).ready(function () {
+        resizeTreeCanva();
+    });
+    $(window).resize(function() {
+        resizeTreeCanva();
+    });
+</script>
 </body>
 </html>
