@@ -1,3 +1,22 @@
 ---
 layout: test
 ---
+
+<script src="arbre/customJS/ID3.js"></script>
+<script>
+    console.log(gain("Decision", "Wind", datasIndex));
+    console.log(gain("Decision", "Outlook", datasIndex));
+    console.log(gain("Decision", "Temperature", datasIndex));
+    console.log(gain("Decision", "Humidity", datasIndex));
+    console.log("\n");
+
+    console.log(gain("Decision", "Temperature", findOccurence("Outlook", datasIndex)["Sunny"]));
+    console.log(gain("Decision", "Humidity", findOccurence("Outlook", datasIndex)["Sunny"]));
+    console.log(gain("Decision", "Wind", findOccurence("Outlook", datasIndex)["Sunny"]));
+    console.log("\n");
+
+    console.log(gain("Decision", "Temperature", findOccurence("Outlook", datasIndex)["Rain"]));
+    console.log(gain("Decision", "Humidity", findOccurence("Outlook", datasIndex)["Rain"]));
+    console.log(gain("Decision", "Wind", findOccurence("Outlook", datasIndex)["Rain"]));
+    console.log("\n");
+</script>
