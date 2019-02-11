@@ -12,6 +12,47 @@ class Tennis {
     }
 }
 
+class DecisionTree {
+    constructor(root) {
+        this.root = root;
+    }
+}
+
+class Node {
+    constructor(datasIndex, availableAttributes, target) {
+        this.datasIndex = datasIndex;
+        this.availableAttributes = availableAttributes;
+        this.target = target;
+
+        this.bestGainAttribute = null;
+        this.findBestGain();
+    }
+
+    findBestGain() {
+        let bestGainValueIndex = -1;
+        let bestGainValue = 0;
+        for (let i = 0; i < this.availableAttributes.length; i++) {
+            let curAttribute = this.availableAttributes[i];
+            let curGain = gain(this.target, curAttribute, this.datasIndex);
+            if (curGain > bestGainValue) {
+                bestGainValueIndex = i;
+                bestGainValue = curGain;
+            }
+        }
+
+        if (bestGainValueIndex !== -1)
+            this.bestGainAttribute = this.availableAttributes[bestGainValueIndex];
+    }
+}
+
+function createDecisionTree() {
+    let attributes = ["Day", "Outlook", "Temperature", "Humidity", "Wind", "Decision"];
+    let target = attributes[5]; // "Decision"
+
+    let root = new Node(datasIndex, attributes.splice(1, attributes.length-2), target); // Drop the target (et aussi on drop day, sinon c'est trop facile)
+    let decTree = new DecisionTree(root);
+}
+
 function findOccurence(information, dataSetIndex) {
     let ret = {};
     for (let i = 0; i < dataSetIndex.length; i++) {
@@ -63,7 +104,7 @@ data = `1	Sunny	Hot	High	Weak	No
 
 dataSplitted = data.split("\n");
 datas = [];
-datasIndex = [];
+datasIndex = []; // [0 .. datas.length]
 
 for (let i=0; i < dataSplitted.length; i++) {
     let ts = dataSplitted[i].split("\t");
