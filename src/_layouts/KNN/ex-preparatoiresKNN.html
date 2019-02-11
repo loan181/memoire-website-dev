@@ -94,19 +94,68 @@
 
 
                 {% answer %}
-                <select class="form-control">
-                    <option>sepal length</option>
-                    <option>sepal width</option>
-                    <option>petal length</option>
-                    <option>petal width</option>
-                </select>
+                    <select class="form-control" data-answer="petal length & petal width">
+                        <option>sepal length & sepal width</option>
+                        <option>sepal length & petal length</option>
+                        <option>sepal length & petal width</option>
 
-                <select class="form-control">
-                    <option>sepal length</option>
-                    <option>sepal width</option>
-                    <option>petal length</option>
-                    <option>petal width</option>
-                </select>
+                        <option>sepal width & petal length</option>
+                        <option>sepal width & petal width</option>
+
+                        <option>petal length & petal width</option>
+                    </select>
+
+
+
+                    <button type="button" class="btn btn-primary" onclick="checkAnswer(this)">Vérifier réponse</button>
+                    <span class="exFeedback"></span>
+                    <script>
+                        function checkAnswer(elem) {
+                            let parent = elem.parentNode;
+                            let all = parent.querySelectorAll('[data-answer]');
+                            console.log(all);
+
+                            let feedback = "unknown";
+                            for (let i = 0; i < all.length; i++) {
+                                let curElement = all[i];
+                                let tagName = curElement.tagName;
+                                let curElementAnswer = curElement.getAttribute("data-answer");
+
+                                switch(tagName) {
+                                    case "SELECT":
+                                        let selectText = curElement.options[curElement.selectedIndex].text;
+                                        if (selectText === curElementAnswer) {
+                                            feedback = "correct";
+                                        }
+                                        else {
+                                            feedback = "wrong";
+                                        }
+                                        break;
+
+                                    default:
+                                        console.warn("Don't handle this kind of tag : " + tagName);
+                                }
+                            }
+
+                            let feedbackSpan = parent.getElementsByClassName("exFeedback")[0];
+                            let feedbackSpanText = 'default';
+                            switch(feedback) {
+                                case "unknown":
+                                    feedbackSpanText = '<i class="fas fa-question"></i>';
+                                    break;
+                                case "correct":
+                                    feedbackSpanText = '<i class="fas fa-check"></i>';
+                                    break;
+                                case "wrong":
+                                    feedbackSpanText = '<i class="fas fa-times"></i>';
+                                    break;
+                                case "warning":
+                                    feedbackSpanText = '<i class="fas fa-exclamation"></i>';
+                                    break;
+                            }
+                            feedbackSpan.innerHTML = feedbackSpanText;
+                        }
+                    </script>
                 {% endanswer %}
 
 
@@ -153,7 +202,7 @@
                 </table>
 
                 {% answer %}
-                <select class="form-control">
+                <select class="form-control" data-answer="Iris-setosa">
                     <option>Iris-setosa</option>
                     <option>Iris-versicolor</option>
                     <option>Iris-virginica</option>
@@ -175,7 +224,7 @@
                 </p>
 
                 {% answer %}
-                <div class="form-group">
+                <div class="form-group" data-answer="coucou">
                     <label for="repEx2-1"></label>
                     <textarea class="form-control" rows="4" id="repEx2-1"></textarea>
                 </div>
