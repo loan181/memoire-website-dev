@@ -16,6 +16,27 @@ class DecisionTree {
     constructor(root) {
         this.root = root;
     }
+
+    extend() {
+        let nodeStack = [this.root];
+        while (nodeStack.length > 0) {
+            let currentNode = nodeStack.pop();
+            let currentNodeOcc = findOccurence(currentNode.bestGainAttribute, currentNode.datasIndex);
+
+            let substractMyAttribute = currentNode.availableAttributes.slice(); // copy
+            var index = currentNode.availableAttributes.indexOf(currentNode.bestGainAttribute);
+            substractMyAttribute.splice(index, 1);
+
+            for (let keyDecisions in currentNodeOcc) {
+                let currentState = currentNodeOcc[keyDecisions];
+                let newChildNode = new Node(currentState, substractMyAttribute, currentNode.target);
+                currentNode.addChildNode(newChildNode);
+                if (newChildNode.bestGainAttribute != null) {
+                    nodeStack.push(newChildNode);
+                }
+            }
+        }
+    }
 }
 
 class Node {
@@ -24,6 +45,7 @@ class Node {
         this.availableAttributes = availableAttributes;
         this.target = target;
 
+        this.children = [];
         this.bestGainAttribute = null;
         this.findBestGain();
     }
@@ -43,6 +65,10 @@ class Node {
         if (bestGainValueIndex !== -1)
             this.bestGainAttribute = this.availableAttributes[bestGainValueIndex];
     }
+
+    addChildNode(node) {
+        this.children.push(node);
+    }
 }
 
 function createDecisionTree() {
@@ -51,6 +77,9 @@ function createDecisionTree() {
 
     let root = new Node(datasIndex, attributes.splice(1, attributes.length-2), target); // Drop the target (et aussi on drop day, sinon c'est trop facile)
     let decTree = new DecisionTree(root);
+    decTree.extend();
+
+    console.log(decTree.root);
 }
 
 function findOccurence(information, dataSetIndex) {
