@@ -5,18 +5,46 @@ layout: test
 <script src="arbre/customJS/ID3.js"></script>
 <script>
     console.log(gain("Decision", "Wind", datasIndex));
-    console.log(gain("Decision", "Outlook", datasIndex));
+    console.log(gain("Decision", "Outlook", datasIndex)); // -> best
     console.log(gain("Decision", "Temperature", datasIndex));
     console.log(gain("Decision", "Humidity", datasIndex));
     console.log("\n");
 
-    console.log(gain("Decision", "Temperature", findOccurence("Outlook", datasIndex)["Sunny"]));
-    console.log(gain("Decision", "Humidity", findOccurence("Outlook", datasIndex)["Sunny"]));
-    console.log(gain("Decision", "Wind", findOccurence("Outlook", datasIndex)["Sunny"]));
+    let firstBranch = "Outlook";
+    let state1 = findOccurence(firstBranch, datasIndex)["Sunny"];
+    let state2 = findOccurence(firstBranch, datasIndex)["Rain"];
+
+    console.log(gain("Decision", "Temperature", state1));
+    console.log(gain("Decision", "Humidity", state1)); // -> best
+    console.log(gain("Decision", "Wind", state1));
     console.log("\n");
 
-    console.log(gain("Decision", "Temperature", findOccurence("Outlook", datasIndex)["Rain"]));
-    console.log(gain("Decision", "Humidity", findOccurence("Outlook", datasIndex)["Rain"]));
-    console.log(gain("Decision", "Wind", findOccurence("Outlook", datasIndex)["Rain"]));
+    console.log(gain("Decision", "Temperature", state2));
+    console.log(gain("Decision", "Humidity", state2));
+    console.log(gain("Decision", "Wind", state2)); // -> best
     console.log("\n");
+
+    let secondBranch1 = "Humidity";
+    let state11 = findOccurence(secondBranch1, state1)["High"];
+    let state12 = findOccurence(secondBranch1, state1)["Normal"];
+
+    console.log(gain("Decision", "Temperature", state11));
+    console.log(gain("Decision", "Wind", state11));
+    console.log("\n");
+
+    console.log(gain("Decision", "Temperature", state12));
+    console.log(gain("Decision", "Wind", state12));
+    console.log("\n");
+
+    let secondBranch2 = "Wind";
+    let state21 = findOccurence(secondBranch2, state2)["Weak"];
+    let state22 = findOccurence(secondBranch2, state2)["Strong"];
+
+    console.log(gain("Decision", "Temperature", state21));
+    console.log(gain("Decision", "Humidity", state21));
+    console.log("\n");
+
+    console.log(gain("Decision", "Temperature", state22));
+    console.log(gain("Decision", "Humidity", state22));
+
 </script>
