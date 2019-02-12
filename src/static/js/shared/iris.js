@@ -139,3 +139,47 @@ const trainingSet = [
     new Flower(6.0, 3.0, 4.8, 1.8, "Iris-virginica"),
     new Flower(6.9, 3.1, 5.4, 2.1, "Iris-virginica")
 ];
+const predictionSet = [
+    new Flower(5.0, 3.5, 1.3, 0.3, "Iris-setosa"),
+    new Flower(4.5, 2.3, 1.3, 0.3, "Iris-setosa"),
+    new Flower(4.4, 3.2, 1.3, 0.2, "Iris-setosa"),
+    new Flower(5.0, 3.5, 1.6, 0.6, "Iris-setosa"),
+    new Flower(5.1, 3.8, 1.9, 0.4, "Iris-setosa"),
+    new Flower(4.8, 3.0, 1.4, 0.3, "Iris-setosa"),
+    new Flower(5.1, 3.8, 1.6, 0.2, "Iris-setosa"),
+    new Flower(4.6, 3.2, 1.4, 0.2, "Iris-setosa"),
+    new Flower(5.3, 3.7, 1.5, 0.2, "Iris-setosa"),
+    new Flower(5.0, 3.3, 1.4, 0.2, "Iris-setosa"),
+    new Flower(5.5, 2.6, 4.4, 1.2, "Iris-versicolor"),
+    new Flower(6.1, 3.0, 4.6, 1.4, "Iris-versicolor"),
+    new Flower(5.8, 2.6, 4.0, 1.2, "Iris-versicolor"),
+    new Flower(5.0, 2.3, 3.3, 1.0, "Iris-versicolor"),
+    new Flower(5.6, 2.7, 4.2, 1.3, "Iris-versicolor"),
+    new Flower(5.7, 3.0, 4.2, 1.2, "Iris-versicolor"),
+    new Flower(5.7, 2.9, 4.2, 1.3, "Iris-versicolor"),
+    new Flower(6.2, 2.9, 4.3, 1.3, "Iris-versicolor"),
+    new Flower(5.1, 2.5, 3.0, 1.1, "Iris-versicolor"),
+    new Flower(5.7, 2.8, 4.1, 1.3, "Iris-versicolor"),
+    new Flower(6.7, 3.1, 5.6, 2.4, "Iris-virginica"),
+    new Flower(6.9, 3.1, 5.1, 2.3, "Iris-virginica"),
+    new Flower(5.8, 2.7, 5.1, 1.9, "Iris-virginica"),
+    new Flower(6.8, 3.2, 5.9, 2.3, "Iris-virginica"),
+    new Flower(6.7, 3.3, 5.7, 2.5, "Iris-virginica"),
+    new Flower(6.7, 3.0, 5.2, 2.3, "Iris-virginica"),
+    new Flower(6.3, 2.5, 5.0, 1.9, "Iris-virginica"),
+    new Flower(6.5, 3.0, 5.2, 2.0, "Iris-virginica"),
+    new Flower(6.2, 3.4, 5.4, 2.3, "Iris-virginica"),
+    new Flower(5.9, 3.0, 5.1, 1.8, "Iris-virginica")
+];
+
+function getTrainingSet() {
+    return trainingSet;
+}
+
+function getPredictionSet() {
+    return predictionSet;
+}
+
+function getClassesName() {
+    return flowerName;
+}
