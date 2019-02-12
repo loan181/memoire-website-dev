@@ -60,5 +60,6 @@ nav[data-toggle='toc'] {
 
 .dropdown:hover>.showOnHover {
     display: block;
+    margin-top:0px; /* Remonte un peu la dropdown pour faciliter l'utilisation */
 }
 
