@@ -3,13 +3,14 @@
 
 <head>
     {% include head.html %}
+    <title>{{ page.pageTitle }}</title>
 </head>
 
 <body>
 {% include nav.html %}
 
 <div class="jumbotron" style="
-    background: url('/static/img/KNN.svg');
+    background: url({{ page.jumbotronPicture }});
          /*position: fixed;*/
     width: 100%;
     height: 550px; /*same height as jumbotron */
@@ -23,21 +24,19 @@
     background-blend-mode: soft-light;
     -webkit-background-blend-mode: soft-lightsoft-light;
     ">
-
 </div>
 
 <main role="main" class="container">
-    <h1>Méthodes des K plus proches voisins</h1>
+    <h1> {{ page.algoTitle }}</h1>
     <hr class="my-4">
-    <p class="lead">Méthode de classification</p>
+    <p class="lead">{{ page.algoSmallDefinition }}</p>
     <p>
-        A partir d'une entrée <code>x</code> on déterminera sa classe à partir de ses <code>K</code> voisins les plus proches.<br>
-        Après cela avec l'information de la classe réelle de l'entrée, nous serons en mesure d'évaluer l'exactitude de notre prédicateur.
+        {{ page.algoShortDescription }}
     </p>
     <div align="center">
-        <a class="btn btn-primary" href="ex-preparatoires" role="button">Exercices préparatoires</a>
-        <a class="btn btn-primary" href="blockly-aide" role="button">Consignes et utilisation pour la phase pratique</a>
-        <a class="btn btn-primary" href="blockly" role="button">Phase pratique (Blockly)</a>
+        {% for link in page.algoLinksToPages %}
+            <a class="btn btn-primary" href={{ link.href }} role="button">{{ link.text }}</a>
+        {% endfor %}
     </div>
 </main>
 
