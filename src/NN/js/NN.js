@@ -442,6 +442,20 @@ function recognize() {
     console.log(nnOutput);
     nnOutput.reduce(function(p,c,i){if(p<c) {maxIndex=i; return c;} else return p;});
     console.log('maxIndex: '+maxIndex);
+    // Update bar to reflect each percentage
+    for (let i = 0; i < 10; i++) {
+        let curBar = document.getElementById("percentBar"+i);
+        let estimation = nnOutput[i]*100;
+        let val = estimation.toFixed(2)+"%";
+        curBar.style.width = val;
+        curBar.textContent = val;
+        if (i === maxIndex) {
+            curBar.className = "progress-bar progress-bar-striped progress-bar-animated bg-success";
+        } else {
+            curBar.className = "progress-bar";
+        }
+    }
+    // Update text of site
     document.getElementById('nnOut').innerHTML=maxIndex;
     clearBeforeDraw = true;
     var dt = new Date() - t1;
@@ -546,6 +560,6 @@ function findxy(res, e) {
     }
 }
 
-$('document').ready(function(){
+document.addEventListener("DOMContentLoaded", function(event) {
     init();
 });
