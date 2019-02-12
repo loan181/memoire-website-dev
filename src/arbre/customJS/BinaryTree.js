@@ -115,15 +115,13 @@ class Node {
             flowerProportions[flowerIndName] = (flowerProportions[flowerIndName] || 0) + 1;
         }
         for (var key in flowerProportions){
-            // TODO : corriger, on veut la proportion par rapport au training set
-            //  il y à 40 de chaque fleur
-            flowerProportions[key] /= 40; //this.associatedFlower.length;
+            flowerProportions[key] /= this.associatedFlower.length;
             flowerProportions[key] *= 100;
         }
         console.log(flowerProportions);
         var text = "";
         for (var key in flowerProportions){
-            text += key + " : " + flowerProportions[key] +"%\n"
+            text += key + " : " + flowerProportions[key].toFixed(2) +"%\n"
         }
         if (text === "") {
             text = "(vide)";
