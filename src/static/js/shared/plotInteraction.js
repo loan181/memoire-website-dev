@@ -43,7 +43,7 @@ function modifyYAxisName(newName) {
 function redrawPlot() {
     Plotly.redraw("graphContainer");
 }
-
+/*
 // KNN specific function
 function addMarkersToCustomAdded() {
     figure.data.push(
@@ -226,3 +226,4 @@ function unHighlightAllMarkers() {
         figure.data[i].marker.line = {};
     }
 }
+*/

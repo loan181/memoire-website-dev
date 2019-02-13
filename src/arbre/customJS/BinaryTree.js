@@ -85,9 +85,15 @@ class Node {
             highlightAllMarkers();
             drawPointsIndex(this.associatedFlower);
         } else {
-            let axis = "y";
-            if (this.parameter === "petal width") {
+            let axis = null;
+            if (this.parameter === currentXCat) {
                 axis = "x";
+            }
+            else if (this.parameter === currentYCat) {
+                axis = "y";
+            }
+            else {
+                console.error("Unkwnon parameter as axis : " + this.parameter);
             }
             highlightCondition(axis, this.operator, this.valueToCompare);
             highlightMarkerCondition(this.left.associatedFlower, this.right.associatedFlower);

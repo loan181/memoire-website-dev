@@ -110,10 +110,12 @@
     // Update modal text
     function afterXChange() {
         $('#axisXName').text(currentXCat);
+        BT.reset();
     }
 
     function afterYChange() {
         $('#axisYName').text(currentYCat);
+        BT.reset();
     }
     afterXChange();
     afterYChange();

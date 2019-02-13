@@ -34,3 +34,5 @@ function deleteAddedMarkers() {
     deletedAllAddedMarkers();
     redrawPlot();
 }
+
+addMarkersToCustomAdded();

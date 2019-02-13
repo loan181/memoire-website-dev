@@ -18,7 +18,6 @@ window.onload = function() {
         } catch(e) {}
         refreshPlotInformation();
     });
-    addMarkersToCustomAdded();
     refreshPlotInformation();
 };
 
