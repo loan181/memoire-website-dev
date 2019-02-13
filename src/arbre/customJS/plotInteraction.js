@@ -5,8 +5,8 @@ function drawPointsIndex(listOfMarkersIndex) {
         let markerIdx = listOfMarkersIndex[i];
         let correspondingFlower = trainingSet[markerIdx];
         let correspondingDataIdx = Math.floor(markerIdx / 40);
-        figure.data[correspondingDataIdx].x.push(correspondingFlower.get("petal width"));
-        figure.data[correspondingDataIdx].y.push(correspondingFlower.get("petal length"));
+        figure.data[correspondingDataIdx].x.push(correspondingFlower.get(currentXCat));
+        figure.data[correspondingDataIdx].y.push(correspondingFlower.get(currentYCat));
     }
     redrawPlot();
 }
@@ -121,16 +121,16 @@ function highlightMarkerCondition(indexesOut, indexesIn) {
         let markerIdx = indexesOut[i];
         let correspondingFlower = trainingSet[markerIdx];
         let correspondingDataIdx =  Math.floor(markerIdx / 40);
-        figure.data[correspondingDataIdx].x.push(correspondingFlower.get("petal width"));
-        figure.data[correspondingDataIdx].y.push(correspondingFlower.get("petal length"));
+        figure.data[correspondingDataIdx].x.push(correspondingFlower.get(currentXCat));
+        figure.data[correspondingDataIdx].y.push(correspondingFlower.get(currentYCat));
     }
 
     for (let i = 0; i < indexesIn.length; i++) {
         let markerIdx = indexesIn[i];
         let correspondingFlower = trainingSet[markerIdx];
         let correspondingDataIdx =  Math.floor(markerIdx / 40);
-        figure.data[correspondingDataIdx+3].x.push(correspondingFlower.get("petal width"));
-        figure.data[correspondingDataIdx+3].y.push(correspondingFlower.get("petal length"));
+        figure.data[correspondingDataIdx+3].x.push(correspondingFlower.get(currentXCat));
+        figure.data[correspondingDataIdx+3].y.push(correspondingFlower.get(currentYCat));
     }
 
     redrawPlot();

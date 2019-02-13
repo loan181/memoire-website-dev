@@ -7,7 +7,7 @@ function resetAllDatas() {
 }
 
 function resetPlotWithDefaultData() {
-    resetPlotWithXYData("petal width", "petal length");
+    resetPlotWithXYData(currentXCat, currentYCat);
     redrawPlot();
 }
 
