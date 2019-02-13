@@ -112,14 +112,19 @@ class Node {
         resetPlotWithDefaultData();
     }
 
-    displayProportionOfEachFlower() {
-        // Count the proportion of the flower of the leaf
-        let flowerProportions = {};
+    get flowerCounter() {
+        let flowerCounter = {};
         for (let i = 0; i < this.associatedFlower.length; i++) {
             let flowerInd = this.associatedFlower[i];
             let flowerIndName = trainingSet[flowerInd].get("name");
-            flowerProportions[flowerIndName] = (flowerProportions[flowerIndName] || 0) + 1;
+            flowerCounter[flowerIndName] = (flowerCounter[flowerIndName] || 0) + 1;
         }
+        return flowerCounter
+    }
+
+    displayProportionOfEachFlower() {
+        // Count the proportion of the flower of the leaf
+        let flowerProportions = this.flowerCounter;
 
         // TODO : trouver le maximum (qui déterminera la fleur)
         for (var key in flowerProportions){
@@ -250,6 +255,21 @@ class Node {
             this.leftBranch.refreshDraw();
             this.rightBranch.refreshDraw();
         }
+    }
+
+    // TODO : peut être precompute
+    get majorityClass() {
+        let ret = null;
+        let countClassesDictionary = this.flowerCounter;
+
+        let curMaxValue = -1;
+        for (var className in countClassesDictionary) {
+            if (countClassesDictionary[className] > curMaxValue) {
+                ret = className;
+                curMaxValue = countClassesDictionary[className];
+            }
+        }
+        return ret;
     }
 
     /**
@@ -445,6 +465,7 @@ class BinaryTree {
             if (currentNode.parameter === currentXCat) {
                 myValue = xValue;
             }
+            // TODO : CORRIGER !! visiblement on ne vas pas dans le bon Node :(
             let correctBranch = currentNode.evaluate(currentNode.parameter, currentNode.operator, myValue);
             if (correctBranch) {
                 currentNode = currentNode.right;
@@ -452,7 +473,7 @@ class BinaryTree {
                 currentNode = currentNode.left;
             }
         }
-        // TODO : determine the flower majority when leaf is reached
+        return currentNode.majorityClass;
     }
 }
 
