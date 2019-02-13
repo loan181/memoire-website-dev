@@ -65,8 +65,8 @@
             <div class="modal-body">
                 <div class="input-group">
                     <select class="form-control" id="axisChoice">
-                        <option>petal length</option>
-                        <option>petal width</option>
+                        <option id="axisXName">x</option>
+                        <option id="axisYName">y</option>
                     </select>
                     <select class="form-control" id="operationChoice" >
                         <option value=1>=</option>
@@ -106,6 +106,15 @@
     $(window).resize(function() {
         resizeTreeCanva();
     });
+
+    // Update modal text
+    function afterXChange() {
+        $('#axisXName').text(currentXCat);
+    }
+
+    function afterYChange() {
+        $('#axisYName').text(currentYCat);
+    }
 </script>
 </body>
 </html>
