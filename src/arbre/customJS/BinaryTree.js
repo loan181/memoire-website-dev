@@ -342,8 +342,15 @@ class Branch {
 
 class BinaryTree {
     constructor() {
+       this.reset();
+    }
+
+    reset() {
         this.totalDepth = 1;
-        this.root = new Node();
+        if (this.root !== undefined)
+            this.root.reset();
+        else
+            this.root = new Node();
         let allFlowersIndex = Array.apply(null, {length: trainingSet.length}).map(Number.call, Number);
         this.root.setFlowersIndex(allFlowersIndex);
         this.refreshTreeDraw();
