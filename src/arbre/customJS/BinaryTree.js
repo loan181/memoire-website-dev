@@ -198,6 +198,25 @@ class Node {
         this.drawShape.translate(x-this.x, y-this.y);
     }
 
+    evaluate(parameter, operation, value) {
+        switch (operation) {
+            case operationType.EQUAL:
+                return parameter === value;
+            case operationType.NOT_EQUAL:
+                return parameter !== value;
+            case operationType.GRATER:
+                return parameter > value;
+            case operationType.GRATER_EQ:
+                return parameter >= value;
+            case operationType.LOWER:
+                return parameter < value;
+            case operationType.LOWER_EQ:
+                return parameter <= value;
+            default:
+                console.warn("Unknown operation selected : " + operation);
+        }
+    }
+
     updateChildCorrespondingFlower() {
         var trueFlowerIndex = [];
         var falseFlowerIndex = [];
@@ -206,33 +225,11 @@ class Node {
             let correspondingFlower = trainingSet[flowerInd];
             let correspondingFlowerValue = correspondingFlower.get(this.parameter);
             let value = this.valueToCompare;
-            switch (this.operator) {
-                case operationType.EQUAL:
-                    if (correspondingFlowerValue === value) {trueFlowerIndex.push(flowerInd);}
-                    else {falseFlowerIndex.push(flowerInd);}
-                    break;
-                case operationType.NOT_EQUAL:
-                    if (correspondingFlowerValue !== value) {trueFlowerIndex.push(flowerInd);}
-                    else {falseFlowerIndex.push(flowerInd);}
-                    break;
-                case operationType.GRATER:
-                    if (correspondingFlowerValue > value) {trueFlowerIndex.push(flowerInd);}
-                    else {falseFlowerIndex.push(flowerInd);}
-                    break;
-                case operationType.GRATER_EQ:
-                    if (correspondingFlowerValue >= value) {trueFlowerIndex.push(flowerInd);}
-                    else {falseFlowerIndex.push(flowerInd);}
-                    break;
-                case operationType.LOWER:
-                    if (correspondingFlowerValue < value) {trueFlowerIndex.push(flowerInd);}
-                    else {falseFlowerIndex.push(flowerInd);}
-                    break;
-                case operationType.LOWER_EQ:
-                    if (correspondingFlowerValue <= value) {trueFlowerIndex.push(flowerInd);}
-                    else {falseFlowerIndex.push(flowerInd);}
-                    break;
-                default:
-                    console.warn("Unknown operation selected");
+
+            if (this.evaluate(correspondingFlowerValue, this.operator, value)) {
+                trueFlowerIndex.push(flowerInd);
+            } else {
+                falseFlowerIndex.push(flowerInd);
             }
         }
         this.right.setFlowersIndex(trueFlowerIndex);
@@ -345,6 +342,7 @@ class Branch {
         this.nodeChild = null;
     }
 }
+
 
 class BinaryTree {
     constructor() {
