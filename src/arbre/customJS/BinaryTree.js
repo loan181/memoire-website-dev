@@ -131,7 +131,7 @@ class Node {
             flowerProportions[key] /= this.associatedFlower.length;
             flowerProportions[key] *= 100;
         }
-        console.log(flowerProportions);
+        // console.log(flowerProportions);
         var text = "";
         for (var key in flowerProportions){
             text += key + " : " + flowerProportions[key].toFixed(2) +"%\n"
@@ -465,8 +465,7 @@ class BinaryTree {
             if (currentNode.parameter === currentXCat) {
                 myValue = xValue;
             }
-            // TODO : CORRIGER !! visiblement on ne vas pas dans le bon Node :(
-            let correctBranch = currentNode.evaluate(currentNode.parameter, currentNode.operator, myValue);
+            let correctBranch = currentNode.evaluate(myValue, currentNode.operator, currentNode.valueToCompare);
             if (correctBranch) {
                 currentNode = currentNode.right;
             } else {
@@ -475,6 +474,16 @@ class BinaryTree {
         }
         return currentNode.majorityClass;
     }
+}
+
+function testClassify() {
+    let correctGuess = 0;
+    for (let i = 0; i < predictionSet.length; i++) {
+        let currentFlower = predictionSet[i];
+        if (BT.classify(currentFlower.get(currentXCat), currentFlower.get(currentYCat)) === currentFlower.get("name"))
+            correctGuess += 1;
+    }
+    return correctGuess / predictionSet.length;
 }
 
 function canvaSizeChange(newW, newH) {
