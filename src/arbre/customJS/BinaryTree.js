@@ -437,6 +437,23 @@ class BinaryTree {
         this.refreshTotalDepth(); // We can't guess the new depth when a node was deleted
         this.refreshTreeDraw();
     }
+
+    classify(xValue, yValue) {
+        let currentNode = this.root;
+        while(!currentNode.isLeaf()) {
+            let myValue = yValue;
+            if (currentNode.parameter === currentXCat) {
+                myValue = xValue;
+            }
+            let correctBranch = currentNode.evaluate(currentNode.parameter, currentNode.operator, myValue);
+            if (correctBranch) {
+                currentNode = currentNode.right;
+            } else {
+                currentNode = currentNode.left;
+            }
+        }
+        // TODO : determine the flower majority when leaf is reached
+    }
 }
 
 function canvaSizeChange(newW, newH) {
