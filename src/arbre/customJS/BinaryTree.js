@@ -114,6 +114,8 @@ class Node {
             let flowerIndName = trainingSet[flowerInd].get("name");
             flowerProportions[flowerIndName] = (flowerProportions[flowerIndName] || 0) + 1;
         }
+
+        // TODO : trouver le maximum (qui déterminera la fleur)
         for (var key in flowerProportions){
             flowerProportions[key] /= this.associatedFlower.length;
             flowerProportions[key] *= 100;
@@ -436,6 +438,6 @@ let lastClickedLeaf = null;
 let paper = Raphael("treeContainer", 640, 480);
 // Big background (not need to resize it as it is huge)
 paper.rect(-1, -1, 5000, 5000).attr({
-    fill: 'gray'
+    fill: "#b4b4b4"
 }).toBack();
 let BT = new BinaryTree();

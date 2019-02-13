@@ -25,6 +25,25 @@
         <div class="col-sm-4">
             <div id="graphContainer" class="container plotly-graph-div">
             </div>
+            <div class="form-group row">
+            <label for="axisXChoice" class="col-sm-3 col-form-label">Axe x :</label>
+            <select class="form-control col-sm-9" id="axisXChoice">
+                <option selected="selected">sepal length</option>
+                <option>sepal width</option>
+                <option>petal length</option>
+                <option>petal width</option>
+            </select>
+        </div>
+
+        <div class="form-group row">
+            <label for="axisYChoice" class="col-sm-3 col-form-label">Axe y :</label>
+            <select class="form-control col-sm-9" id="axisYChoice">
+                <option>sepal length</option>
+                <option selected="selected">sepal width</option>
+                <option>petal length</option>
+                <option>petal width</option>
+            </select>
+        </div>
         </div>
 
         <!-- Visualisation graphique -->
@@ -71,6 +90,7 @@
 <script src="/static/js/shared/iris.js"></script>
 <script src="customJS/BinaryTree.js"></script>
 <script src="/static/js/shared/plot.js"></script>
+<script src="/static/js/shared/GraphFunctions.js"></script>
 <script>
     let treeContainer = document.getElementById("treeContainer");
 

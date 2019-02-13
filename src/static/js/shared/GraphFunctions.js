@@ -12,7 +12,7 @@ window.onload = function() {
         currentYCat = $(this).val();
         refreshPlotInformation();
     });
-    addMarkersToCustomAdded()
+    addMarkersToCustomAdded();
     refreshPlotInformation();
 };
 
@@ -21,10 +21,5 @@ function refreshPlotInformation() {
     modifyXAxisName(currentXCat);
     modifyYAxisName(currentYCat);
     resetPlotWithXYData(currentXCat, currentYCat);
-    redrawPlot();
-}
-
-function deleteAddedMarkers() {
-    deletedAllAddedMarkers();
     redrawPlot();
 }

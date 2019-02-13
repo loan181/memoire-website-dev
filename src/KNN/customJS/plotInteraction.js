@@ -29,3 +29,8 @@ function addCustomMarker(x, y) {
     figure.data[3].x.push(x);
     figure.data[3].y.push(y);
 }
+
+function deleteAddedMarkers() {
+    deletedAllAddedMarkers();
+    redrawPlot();
+}
