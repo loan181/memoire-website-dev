@@ -22,6 +22,7 @@
 
 <body>
 {% include nav.html %}
+
 <main role="main" class="container" style="max-width: 95%">
     <!--<h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;-->
     <!--<a href="../index.html">Demos</a> &gt; Fixed Blockly</h1>-->
@@ -31,25 +32,25 @@
     <!--<p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure-blockly/web/fixed-size">injecting fixed-sized Blockly</a>&hellip;</p>-->
     <h1><span class="B_title"> </span></h1>
 
+    <div id="toolBox"></div>
+
+    <script src="/static/js/shared/ToolBox.js"></script>
+    <script>
+        let TB = new ToolBox("toolBox");
+
+        TB.addButtonNew("LanguageCode.discard()");
+        TB.addButtonDownload("downloadProject()");
+        TB.addButtonUpload();
+        TB.addExportButton([
+            ["SVG", "fas fa-shapes", "downloadSvg()"],
+            ["PNG" , "fas fa-image", "convertSvgToPng()"]
+        ]);
+
+        TB.draw();
+    </script>
 
     <nav class="nav navbar-expand-lg navbar-light bg-light">
         <ul class="nav">
-
-            <!-- Utilities -->
-            <li class="nav-item button">
-                <button id="newCodeButton" type="button" class="btn btn-outline-secondary" onclick="LanguageCode.discard()" data-toggle="tooltip" data-tooltip="new"><i class="far fa-file"></i></button>
-            </li>
-            <li class="nav-item button">
-                <button id="dlCodeButton" type="button" class="btn btn-outline-secondary" onclick="downloadProject()" data-toggle="tooltip" data-tooltip="download"><i class="fas fa-save"></i></button>
-            </li>
-
-            <li class="nav-item button" data-toggle="tooltip" data-tooltip="upload">
-                <label for="upload_project" class="btn btn-outline-secondary" style="margin-bottom: 0px">
-                    <i class="fa fa-folder-open"></i>
-                </label>
-                <input id="upload_project" type="file" hidden>
-            </li>
-
             <li class="nav-item dropdown" data-toggle="tooltip" data-tooltip="export">
                 <button class="btn btn-outline-secondary dropdown-toggle" id="navbarDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-file-export"></i>
