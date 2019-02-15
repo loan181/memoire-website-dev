@@ -7,9 +7,13 @@ module Jekyll
       output = '
       <div class="card border-primary mb-3">
         <div class="card-header">Réponse</div>
-        <div class="card-body text-primary">'
+          <div class="card-body text-primary">'
       output += "#{text}"
       output += '
+          </div>
+          <div class="card-footer">
+            <button type="button" class="btn btn-primary" onclick="checkAnswer(this)">Vérifier réponse</button>
+            <span class="exFeedback"></span>
           </div>
         </div>
       '
