@@ -113,7 +113,7 @@
                     <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
                 {% endcorrection %}
 
-                <h3>2.1) Identification d'une nouvelle fleur</h3>
+                <h3>Identifier une nouvelle fleur</h3>
                 <p>
                     En te fiant au <a href="#table1">Tableau 1</a> quel est la fleur, selon toi,
                     qui correspond aux mesures suivantes ?
@@ -172,10 +172,10 @@
                     </p>
                 {% endcorrection %}
 
-                <h3>Vérification graphique</h3>
+                <h4>Vérification graphique</h4>
                 <p>
                     Voici le graphique correspondant aux données du <a href="#table1">Tableau 1</a> en utilisant la sépale comme mesure pour les axes :
-                    <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
+                    <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid"><br>
                     Visualise les coordonnées où cette nouvelle fleur dans le graphique serait.<br>
                     Que remarques-tu par rapport à la distance aux fleurs déjà présentes ?
                 </p>
@@ -248,7 +248,7 @@
                 {% answer %}
                     <select class="form-control" data-answer="Verte">
                         <option>Jaune</option>
-                        <option>Vert</option>
+                        <option>Verte</option>
                     </select>
                 {% endanswer %}
 
@@ -263,7 +263,7 @@
                 {% answer %}
                     <select class="form-control">
                         <option>Jaune</option>
-                        <option>Vert</option>
+                        <option>Verte</option>
                     </select>
                     <div class="form-group" data-answer="égalité,pas,égale">
                         <label for="repEx3-Majority"></label>
@@ -293,7 +293,7 @@
                 {% endcorrection %}
 
 
-                <h3>4) Prédiction</h3>
+                <h3>Prédiction</h3>
                 <p>
                     Voici trois nouvelles iris dont la variété est connue (mais pas donné) :
                 </p>
@@ -340,31 +340,32 @@
                     pour cela on va utiliser le <a href="#table1">Tableau 1</a> comme modèle et on va prédire selon deux modèles de métrique différente.
                 </p>
 
-                <h3>4.1) Prédiction pour différente métriques</h3>
+                <h3>Prédiction pour différente métriques</h3>
                 <p>
                     Pour les trois fleurs données dans <a href="#table2">Tableau 2</a>, avec le <a href="#table1">Tableau 1</a>
                     comme modèle d’entrainement en regardant la majorité parmi les trois voisins les plus proches (avec une distance euclidienne),
                     détermine les fleurs avec les métriques données ci-après.<br>
-                    Pour cela tu peux soit dessiner un graphique avec les deux métriques comme dans l’étape 2)
-                    ou bien tu le fais en regardant les valeurs du tableau en calculant la distance avec chaque fleur.
+                    Pour cela tu peux t'aider des graphiques que je te donne :
+                    <img src="/static/img/KNN/exKNNGraphiqueMetriqueSepale.png" class="img-fluid">
+                    <img src="/static/img/KNN/exKNNGraphiqueMetriquePetale.png" class="img-fluid">
                 </p>
 
                 {% answer %}
                     Prédicateur 1 ; Métrique sépale (longueur et largeur) :<br>
                     <label for="repEx4.1-P1F1" class="col-sm-2 col-form-label">Iris 1</label>
-                    <select class="form-control col-sm-9" id="repEx4.1-P1F1">
+                    <select class="form-control col-sm-9" id="repEx4.1-P1F1" data-answer="Iris-virginica">
                         <option>Iris-setosa</option>
                         <option>Iris-versicolor</option>
                         <option>Iris-virginica</option>
                     </select>
                     <label for="repEx4.1-P1F2" class="col-sm-2 col-form-label">Iris 2</label>
-                    <select class="form-control col-sm-9" id="repEx4.1-P1F2">
+                    <select class="form-control col-sm-9" id="repEx4.1-P1F2" data-answer="Iris-setosa">
                         <option>Iris-setosa</option>
                         <option>Iris-versicolor</option>
                         <option>Iris-virginica</option>
                     </select>
                     <label for="repEx4.1-P1F3" class="col-sm-2 col-form-label">Iris 3</label>
-                    <select class="form-control col-sm-9" id="repEx4.1-P1F3">
+                    <select class="form-control col-sm-9" id="repEx4.1-P1F3" data-answer="Iris-versicolor">
                         <option>Iris-setosa</option>
                         <option>Iris-versicolor</option>
                         <option>Iris-virginica</option>
@@ -372,31 +373,24 @@
                     <br>
                     Prédicateur 2 ; Métrique pétale (longueur et largeur) :<br>
                     <label for="repEx4.1-P2F1" class="col-sm-2 col-form-label">Iris 1</label>
-                    <select class="form-control col-sm-9" id="repEx4.1-P2F1">
+                    <select class="form-control col-sm-9" id="repEx4.1-P2F1" data-answer="Iris-setosa">
                         <option>Iris-setosa</option>
                         <option>Iris-versicolor</option>
                         <option>Iris-virginica</option>
                     </select>
                     <label for="repEx4.1-P2F2" class="col-sm-2 col-form-label">Iris 2</label>
-                    <select class="form-control col-sm-9" id="repEx4.1-P2F2">
+                    <select class="form-control col-sm-9" id="repEx4.1-P2F2" data-answer="Iris-versicolor">
                         <option>Iris-setosa</option>
                         <option>Iris-versicolor</option>
                         <option>Iris-virginica</option>
                     </select>
                     <label for="repEx4.1-P2F3" class="col-sm-2 col-form-label">Iris 3</label>
-                    <select class="form-control col-sm-9" id="repEx4.1-P2F3">
+                    <select class="form-control col-sm-9" id="repEx4.1-P2F3" data-answer="Iris-virginica">
                         <option>Iris-setosa</option>
                         <option>Iris-versicolor</option>
                         <option>Iris-virginica</option>
                     </select>
                 {% endanswer %}
-
-                {% help %}
-                    Si tu as des difficultés à créer les graphiques pour les deux métriques je te les donne ici :<br>
-                    <img src="/static/img/KNN/exKNNGraphiqueMetriqueSepale.png">
-                    <img src="/static/img/KNN/exKNNGraphiqueMetriquePetale.png">
-                {% endhelp %}
-
 
                 {% correction %}
                     Les données sont choisis de sortes qu’il n’y ait pas d’ambiguïtés dans les votes pour la majorité.<br>
@@ -405,7 +399,7 @@
                     Prédicateur 2 : 1:Setosa 2:Versicolor 3: Virginica <br>
                 {% endcorrection %}
 
-                <h3>4.2) Précision de notre prédiction</h3>
+                <h3>Précision de notre prédiction</h3>
                 <p>
                     Une fois l’étape précédente terminée, nous allons analyser l’exactitude de nos prédictions.<br>
                     Pendant que nous étions occupés avec nos passionnantes prédictions,
@@ -441,7 +435,7 @@
 
                 {% answer %}
                     Prédicateur 1 ; Métrique sépale (longueur et largeur) :<br>
-                    <select class="form-control col-sm-9">
+                    <select class="form-control col-sm-9" data-answer="0 (aucune)">
                         <option>0 (aucune)</option>
                         <option>1</option>
                         <option>2</option>
@@ -450,7 +444,7 @@
 
                     <br>
                     Prédicateur 2 ; Métrique pétale (longueur et largeur) :<br>
-                    <select class="form-control col-sm-9">
+                    <select class="form-control col-sm-9" data-answer="2">
                         <option>0 (aucune)</option>
                         <option>1</option>
                         <option>2</option>
@@ -469,7 +463,7 @@
                 {% answer %}
                     <div class="form-group">
                         <label for="repEx4-2-justification"></label>
-                        <textarea class="form-control" rows="6" id="repEx4-2-justification"></textarea>
+                        <textarea class="form-control" rows="6" id="repEx4-2-justification" data-answer="2,second"></textarea>
                     </div>
                 {% endanswer %}
 
