@@ -84,7 +84,7 @@
                 </table>
 
                 <h2>Exercices</h2>
-                <h3 id="ex1">1.1) Identification de 2 facteurs importants </h3>
+                <h3 id="ex1">Identification de 2 facteurs importants </h3>
                 <p>
                     Regarde attentivement les résultats obtenus dans le <a href="#table1">Tableau 1</a>
                     et choisi parmi les quatre mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale)
@@ -93,35 +93,24 @@
 
 
                 {% answer %}
-                    <select class="form-control" data-answer="petal length & petal width">
-                        <option>sepal length & sepal width</option>
-                        <option>sepal length & petal length</option>
-                        <option>sepal length & petal width</option>
+                    <select class="form-control" data-answer="largeur pétale & longueur pétale">
+                        <option>largeur sépale & longueur sépale</option>
+                        <option>largeur sépale & largeur pétale</option>
+                        <option>largeur sépale & longueur pétale</option>
 
-                        <option>sepal width & petal length</option>
-                        <option>sepal width & petal width</option>
+                        <option>longueur sépale & largeur pétale</option>
+                        <option>longueur sépale & longueur pétale</option>
 
-                        <option>petal length & petal width</option>
+                        <option>largeur pétale & longueur pétale</option>
                     </select>
                 {% endanswer %}
 
 
                 {% correction %}
-                Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).
-                {% endcorrection %}
-
-                <h3>1.2) Dessin de graphiques </h3>
-                <p>
-                    Avec les deux mesures choisies dans <a href="#ex1">l’exercice précédent</a> place des marqueurs dans la feuille graphique ci-dessous.
-                    Choisi une couleur par classe de fleur. N’oublie pas d’indiquer cette couleur dans la légende situer sur la droite du graphique ainsi qu’un titre et le nom des axes.
-                </p>
-
-                {% answer %}
-                <img src="/static/img/KNN/GrilleKNN.png">
-                {% endanswer %}
-
-                {% correction %}
-                <img src="/static/img/KNN/GrilleKNNCorr.png">
+                    Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
+                    Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
+                    Le graphique correspondant est le suivant :<br>
+                    <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
                 {% endcorrection %}
 
                 <h3>2.1) Identification d'une nouvelle fleur</h3>
@@ -158,9 +147,9 @@
 
                 {% correction %}
                 <p>
-                    C'est une <i>Iris-virginica</i><br>
-                    Si l’élève à choisi les 2 premières mesures (longueurs et largeur de sépale) il aura du mal à dire si c’est une versicolor ou une virginica. Basé sur les critères de longueur et largeur de pétale par-contre on peut deviner la réponse correcte.<br>
-                    En ayant dessiné le graphique dans l’exercice précédent il se sera sans doute rendu compte que les fleurs de même classes ont tendance à être proche graphiquement, ça devrait lui donner l’intuition de trouver la bonne réponse.
+                    C'est (probalement) une <i>Iris-virginica</i>.<br>
+                    La longueur et la largeur de la sépale ne nous permettent pas de pouvoir donner des informations fiables sur la fleur.<br>
+                    Cepandant la longueur et la largeur de la sépale sont très proche des <i>Iris-virginica</i> existantes.
                 </p>
                 {% endcorrection %}
 
@@ -173,27 +162,35 @@
                 {% answer %}
                 <div class="form-group">
                     <label for="repEx2-1"></label>
-                    <textarea class="form-control" rows="4" id="repEx2-1" data-answer="groupe,proche"></textarea>
+                    <textarea class="form-control" rows="4" id="repEx2-1" data-answer="non,trompe,proche"></textarea>
                 </div>
                 {% endanswer %}
 
-                <h3>2.2) Vérification graphique</h3>
+                {% correction %}
+                    <p>
+                        Il se trompe probablement, d'après les données qu'on a dans le tableau 1, cette fleur n'a aucune de ses mesures proches des autres <i>Iris-setosa</i>.
+                    </p>
+                {% endcorrection %}
+
+                <h3>Vérification graphique</h3>
                 <p>
-                    Sans le tracer sur ton graphique, visualise où cette nouvelle fleur dans ton graphique serait.<br>
+                    Voici le graphique correspondant aux données du <a href="#table1">Tableau 1</a> en utilisant la sépale comme mesure pour les axes :
+                    <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
+                    Visualise les coordonnées où cette nouvelle fleur dans le graphique serait.<br>
                     Que remarques-tu par rapport à la distance aux fleurs déjà présentes ?
                 </p>
                 {% answer %}
                 <div class="form-group">
                     <label for="repEx2-2"></label>
-                    <textarea class="form-control" rows="2" id="repEx2-2"></textarea>
+                    <textarea class="form-control" rows="2" id="repEx2-2" data-answer="proche,groupe,vert,virginica"></textarea>
                 </div>
                 {% endanswer %}
 
                 {% correction %}
-                Il est censé remarquer que la fleur se trouve dans le "regroupement" formé par toutes les autres <i>Iris-virginica</i>
+                    La fleur ajouté se trouve dans le "regroupement" formé par toutes les autres <i>Iris-virginica</i>
                 {% endcorrection %}
 
-                <h3>3) K-plus proche voisins </h3>
+                <h3>K-plus proche voisins </h3>
                 <p>
                     Sur le graphique suivant, visualise un marqueur au coordonnée (5.1, 2.6)
                 </p>
@@ -207,14 +204,14 @@
                 </p>
 
                 {% answer %}
-                <select class="form-control">
+                <select class="form-control" data-answer="Jaune">
                     <option>Jaune</option>
                     <option>Vert</option>
                 </select>
                 {% endanswer %}
 
                 {% correction %}
-                Jaune
+                Jaune (il est juste un peu plus bas)
                 {% endcorrection %}
 
 
@@ -224,17 +221,17 @@
 
                 {% answer %}
                 <label for="repEx3-Nearest" class="col-sm-2 col-form-label">Plus proche:</label>
-                <select class="form-control col-sm-9" id="repEx3-Nearest">
+                <select class="form-control col-sm-9" id="repEx3-Nearest" data-answer="Jaune">
                     <option>Jaune</option>
                     <option>Vert</option>
                 </select>
                 <label for="repEx3-Nearest2" class="col-sm-2 col-form-label">2eme plus proche:</label>
-                <select class="form-control col-sm-9" id="repEx3-Nearest2">
+                <select class="form-control col-sm-9" id="repEx3-Nearest2" data-answer="Vert">
                     <option>Jaune</option>
                     <option>Vert</option>
                 </select>
                 <label for="repEx3-Nearest3" class="col-sm-2 col-form-label">3eme plus proche:</label>
-                <select class="form-control col-sm-9" id="repEx3-Nearest3">
+                <select class="form-control col-sm-9" id="repEx3-Nearest3" data-answer="Vert">
                     <option>Jaune</option>
                     <option>Vert</option>
                 </select>
