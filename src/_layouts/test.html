@@ -58,10 +58,9 @@
 
     function addLog(text) {
         let logRef = db.ref('logs');
-        let newLog = logRef.push();
-        newLog.set({
-            timeStamp: Date(),
-            info : text
+        logRef.push({
+            TS: firebase.database.ServerValue.TIMESTAMP,
+            info: text
         });
     }
 
