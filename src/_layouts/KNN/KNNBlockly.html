@@ -37,57 +37,9 @@
     <script src="/static/js/shared/ToolBox.js"></script>
     <script>
         let TB = new ToolBox("toolBox");
-
-        TB.addButtonNew("LanguageCode.discard()");
-        TB.addButtonDownload("downloadProject()");
-        TB.addButtonUpload();
-        TB.addExportButton([
-            ["SVG", "fas fa-shapes", "downloadSvg()"],
-            ["PNG" , "fas fa-image", "convertSvgToPng()"]
-        ]);
-
+        TB.setToolBarForExercice("KNN");
         TB.draw();
     </script>
-
-    <nav class="nav navbar-expand-lg navbar-light bg-light">
-        <ul class="nav">
-            <li class="nav-item dropdown" data-toggle="tooltip" data-tooltip="export">
-                <button class="btn btn-outline-secondary dropdown-toggle" id="navbarDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-file-export"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                    <a class="dropdown-item" href="#" onclick="downloadSvg()"><i class="fas fa-shapes"></i> SVG</a>
-                    <a class="dropdown-item" href="#" onclick="convertSvgToPng()"><i class="fas fa-image"></i> PNG</a>
-                </div>
-            </li>
-
-
-            <!-- Testings button -->
-            <li class="nav-item button">
-                <button id="showCodeButton" type="button" class="btn btn-info" onclick="showCode()" data-toggle="tooltip" data-tooltip="showCode"><i class="far fa-eye"></i></button>
-            </li>
-            <li class="nav-item button">
-                <button id="runCodeButton" type="button" class="btn btn-primary" onclick="runBlocklyCode()" data-toggle="tooltip" data-tooltip="executeCode"><i class="fas fa-play"></i> <i class="fas fa-vial"></i></button>
-            </li>
-
-            <!-- Run prediction -->
-            <li class="nav-item button">
-                <button id="runPredictionCodeButton" type="button" class="btn btn-primary" onclick="runPredictionCode()" data-toggle="tooltip" data-tooltip="executeCode"><i class="fas fa-play"></i> <i class="fas fa-dice"></i></button>
-            </li>
-        </ul>
-
-        <!-- Help -->
-        <a target="_blank" href="blockly-aide.html" role="button" id="helpButton" class="btn btn-warning ml-auto" data-toggle="tooltip" data-tooltip="help"><i class="fas fa-question-circle"></i></a>
-
-
-        <!-- Language -->
-        <form class="form-inline" >
-            <div class="form-group">
-                <label for="languageMenu" class="control-label" style="padding-right: 4px; padding-left: 14px;"><i class="fas fa-globe"></i>  </label>
-                <select class="form-control" id="languageMenu" data-toggle="tooltip" data-tooltip="langage"></select>
-            </div>
-        </form>
-    </nav>
 
     <!-- Progress bar of prediction -->
     <div class="mt-2 col-md-12">
