@@ -37,6 +37,7 @@ function checkAnswer(elem) {
 
     let feedbackSpan = elem.parentNode.getElementsByClassName("exFeedback")[0];
     let feedbackSpanText = '';
+    let showCorrection = true;
     for (let i = 0; i < feedbacks.length; i++) {
         switch(feedbacks[i]) {
             case "unknown":
@@ -47,6 +48,7 @@ function checkAnswer(elem) {
                 break;
             case "wrong":
                 feedbackSpanText += '<i class="fas fa-times"></i> ';
+                showCorrection = false;
                 break;
             case "warning":
                 feedbackSpanText += '<i class="fas fa-exclamation"></i> ';
@@ -54,4 +56,12 @@ function checkAnswer(elem) {
         }
     }
     feedbackSpan.innerHTML = feedbackSpanText;
+
+    if (showCorrection) {
+        let potentialCorrection = elem.parentNode.parentNode.nextElementSibling;
+        if (potentialCorrection.className.includes("onlyTeacher")) {
+            potentialCorrection.style.display = "block";
+            // TODO : ajouter une transitions
+        }
+    }
 }
