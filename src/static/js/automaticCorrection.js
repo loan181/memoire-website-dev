@@ -19,6 +19,7 @@ function checkAnswer(elem) {
                     feedbacks[i] = "wrong";
                 }
                 break;
+                // Textarea are harder to check, we simply search for some keywords
             case "TEXTAREA":
                 let correctKeyWords = curElementAnswer.split(',');
                 let answerReply = curElement.value;
@@ -64,4 +65,5 @@ function checkAnswer(elem) {
             // TODO : ajouter une transitions
         }
     }
+
 }
