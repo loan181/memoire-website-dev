@@ -1,0 +1,45 @@
+
+{% if include.ex.title %}
+    <h3>{{ include.ex.title }}</h3>
+{% endif %}
+
+<div>{{ include.ex.introduction }}</div>
+
+<div>{{ include.ex.question }}</div>
+
+<div class="card border-primary mb-3">
+    <div class="card-header">Réponse</div>
+    <div class="card-body text-primary">
+        {{ include.ex.answer }}
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary" onclick="checkAnswer(this)">Vérifier réponse</button>
+        <span class="exFeedback"></span>
+    </div>
+</div>
+
+<div class="card border-success mb-3 onlyTeacher">
+    <div class="card-header">Correction</div>
+    <div class="card-body text-success">
+        <p class="card-text">
+            {{ include.ex.correction }}
+        </p>
+    </div>
+</div>
+
+{%  if include.ex.help  %}
+    <div class="card border-warning mb-3">
+        <div class="card-header">
+            <button class="btn btn-link" type="button" onclick="toggleNext(this)">
+                Aide
+            </button>
+        </div>
+        <div class="collapse hide">
+            <div class="card-body">
+                <p class="card-text">
+                    {{ include.ex.help }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endif %}

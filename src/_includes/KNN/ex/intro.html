@@ -1,0 +1,60 @@
+<p>
+    Il existe plusieurs variations de la fleur d’Iris,
+    parmi celles-ci trois sont particulièrement difficile à identifier et demande des tests biologiques
+    très couteux et qui prennent longtemps afin d’affirmer avec certitude l’origine de la fleur.
+    Ces trois fleurs sont l’Iris-setosa, l’Iris-versicolor et l’Iris-viginica
+</p>
+
+<div class="card-deck">
+    {% for flower in page.flowers %}
+        <div class="card">
+
+            <img class="rounded center-thumb" src="{{ flower.picture }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ flower.name }}</h5>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<p>
+    Une récente recherche scientifique suggère que l’on peut discerner les trois fleurs en mesurant
+    certains éléments de la fleur, plus particulièrement la longueur et largeur du
+    <a href="https://fr.wikipedia.org/wiki/S%C3%A9pale">sépale</a> et du pétale.
+    <br>Après avoir prélevé et analysé les échantillons au labo voici les résultats obtenus :
+</p>
+
+<table class="table table-hover" id="table1">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Classe</th>
+        <th scope="col">Longueur Sépale</th>
+        <th scope="col">Largeur Sépale</th>
+        <th scope="col">Longueur Pétale</th>
+        <th scope="col">Largeur Pétale</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% assign nbrIris = site.data.iris_dataEx1.size | minus : 1 %}
+    {% for i in (0 .. nbrIris) %}
+
+        {% if site.data.iris_dataEx1[i].Class == "Iris-setosa" %}
+            {% assign rowClass = "table-primary" %}
+            {% elsif site.data.iris_dataEx1[i].Class == "Iris-versicolor" %}
+            {% assign rowClass = "table-danger" %}
+        {% else %}
+            {% assign rowClass = "table-success" %}
+        {% endif %}
+        <tr class="{{ rowClass }}">
+            <th scope="row"> {{ i | plus : 1}}</th>
+            <td>{{site.data.iris_dataEx1[i].Class}}</td>
+            <td>{{site.data.iris_dataEx1[i].Sepal_Length}}</td>
+            <td>{{site.data.iris_dataEx1[i].Sepal_Width}}</td>
+            <td>{{site.data.iris_dataEx1[i].Petal_Length}}</td>
+            <td>{{site.data.iris_dataEx1[i].Petal_Width}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <caption>Tableau 1 : Différentes mesures (en cm) pour quatre fleurs de chaque variété</caption>
+</table>
