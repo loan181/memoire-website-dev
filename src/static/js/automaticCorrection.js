@@ -3,6 +3,7 @@ function checkAnswer(elem) {
     let all = parent.querySelectorAll('[data-answer]');
 
     let feedbacks = [];
+    let answers = [];
     for (let i = 0; i < all.length; i++) {
         feedbacks.push("unknown");
         let curElement = all[i];
@@ -12,6 +13,7 @@ function checkAnswer(elem) {
         switch(tagName) {
             case "SELECT":
                 let selectText = curElement.options[curElement.selectedIndex].text;
+                answers.push(selectText);
                 if (selectText === curElementAnswer) {
                     feedbacks[i] = "correct";
                 }
@@ -23,6 +25,7 @@ function checkAnswer(elem) {
             case "TEXTAREA":
                 let correctKeyWords = curElementAnswer.split(',');
                 let answerReply = curElement.value;
+                answers.push(answerReply);
                 for (let j = 0; j < correctKeyWords.length; j++) {
                     if (answerReply.includes(correctKeyWords[i])) {
                         feedbacks[i] = "correct";
@@ -65,5 +68,26 @@ function checkAnswer(elem) {
             // TODO : ajouter une transitions
         }
     }
+
+    // Update the db with the information
+    let exerciceElem = elem.parentNode.parentNode.parentNode.querySelectorAll('[data-ex]');
+    let question = "";
+    for (let i = 0; i < exerciceElem.length; i++) {
+        let curElement = exerciceElem[i];
+        let curElementCategory = curElement.getAttribute("data-ex");
+        if (curElementCategory === "question") {
+            console.log(curElement);
+            question = curElement.innerText || curElement.textContent;
+            break;
+        }
+    }
+
+    try {
+        logExercice(document.title, question, answers, feedbacks);
+    } catch (e) {
+        console.warn("Unable to log exerice information");
+        console.warn(e);
+    }
+
 
 }
