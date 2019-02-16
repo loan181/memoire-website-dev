@@ -92,28 +92,8 @@ function calculatePrediction(classifyFunction) {
         }
     }
     let predictionRatio = accuratePrediction/totalGuessNumber;
-    updateHTMLRatioText((predictionRatio*100).toFixed(2));
+    pb.value = predictionRatio*100;
     return predictionRatio;
-}
-
-function updateHTMLRatioText(text) {
-    try {
-        let progressPredictionBar = document.getElementById("predictionProgressBar");
-        let val = text+"%";
-        progressPredictionBar.style.width = val;
-        progressPredictionBar.textContent = val;
-        if (text >= 99.9) {
-            progressPredictionBar.className = "progress-bar progress-bar-striped progress-bar-animated bg-success";
-        } else if (text >= 49.9) {
-            progressPredictionBar.className = "progress-bar progress-bar-striped progress-bar-animated bg-warning";
-        } else {
-            progressPredictionBar.className = "progress-bar progress-bar-striped progress-bar-animated bg-danger";
-        }
-    }
-     catch (e) {
-        console.warn("Erreur pour l'update de la progress bar de prédiction ");
-        console.log(e);
-    }
 }
 
 function getK() {
