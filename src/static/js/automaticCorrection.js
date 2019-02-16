@@ -33,6 +33,16 @@ function checkAnswer(elem) {
                     }
                 }
                 break;
+            case "INPUT":
+                let inputValue = curElement.value;
+                answers.push(inputValue);
+                if (inputValue === curElementAnswer) {
+                    feedbacks[i] = "correct";
+                }
+                else {
+                    feedbacks[i] = "wrong";
+                }
+                break;
             default:
                 feedbacks[i] = "warning";
                 console.warn("Don't handle this kind of tag : " + tagName);

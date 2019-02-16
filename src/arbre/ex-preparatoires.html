@@ -1,3 +1,76 @@
 ---
-layout: arbre/ex-preparatoiresArbre
+layout: exercices
+title: Exercices préparatoires pour l'arbre de décisions
+introduction: arbre/ex/intro.html
+exercices:
+-   title: Construire un arbre de décision
+    introduction: >
+        <p>
+            En utilisant le <a href="#tableExample">tableau précédent</a> construit l’arbre et donne les résultats de chaque feuille en partant de gauche à droite pour les questions suivantes :
+        </p>
+    question: >
+        <ul>
+            <li>Couleur orange ?</li>
+            <ul>
+                <li>Forme Courbé ? (pour la branche "non")</li>
+            </ul>
+        </ul>
+    help: <img src="/static/img/arbre/ex1help1.png" class="img-fluid">
+    decisionTreeAnswer: true
+    leafNumber : 3
+    categories: [Banane, Pomme, Orange, Citron]
+    correctValues: [[0,0,100,0],[100,0,0,0],[0,50,0,50]]
+    correction: >
+        <img src="/static/img/arbre/ex1corr1.PNG" class="img-fluid">
+-   question: >
+        <ul>
+            <li>Couleur jaune ?</li>
+            <ul>
+                <li>Forme Courbé ? (pour la branche "oui")</li>
+                <li>Couleur orange ? (pour la branche "non")</li>
+            </ul>
+        </ul>
+    help: <img src="/static/img/arbre/ex1help2.png" class="img-fluid">
+    decisionTreeAnswer: true
+    leafNumber : 4
+    categories: [Banane, Pomme, Orange, Citron]
+    correctValues: [[100,0,0,0],[0,0,0,100],[0,0,100,0],[0,100,0,0]]
+    correction: >
+        <img src="/static/img/arbre/ex1corr2.PNG" class="img-fluid">
+-   question: >
+        <ul>
+            <li>Couleur rose ?</li>
+            <ul>
+                <li>Forme hélicoïdale ? (pour la branche "non")</li>
+                <ul>
+                    <li>Couleur bleue ? (pour la branche "non")</li>
+                </ul>
+            </ul>
+        </ul>
+    help: <img src="/static/img/arbre/ex1help3.png" class="img-fluid">
+    decisionTreeAnswer: true
+    leafNumber : 1
+    categories: [Banane, Pomme, Orange, Citron]
+    correctValues: [[25,25,25,25]]
+    correction: >
+        <img src="/static/img/arbre/ex1corr3.PNG" class="img-fluid">
+-   question: >
+        <p>
+            D'après les différents arbres de cet exercice, quel arbre serai le plus adapté pour différencier une pomme d’un citron ? Justifie ton choix :
+        </p>
+    answer: >
+        <div class="form-group">
+            <select class="form-control" data-answer="Arbre 2">
+                <option>Arbre 1</option>
+                <option>Arbre 2</option>
+                <option>Arbre 3</option>
+            </select>
+            <label for="repEx1-1"></label>
+            <textarea class="form-control" rows="4" id="repEx1-1" data-answer="2,distinguer,différencie"></textarea>
+        </div>
+    correction: >
+        Le 2eme arbre est plus adapté que les autres pour différencier une pomme d’un citron.<br>
+        Les questions/décisions du premier ne permettent pas de distinguer les 2 fruits (ils sont tout les 2 pas orange ni courbé).<br>
+        Le dernier arbre est encore pire, on ne peut y distinguer aucun fruit !
+
 ---

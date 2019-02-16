@@ -1,0 +1,75 @@
+<p>
+    Un arbre de décision est un outil d'aide à la décision représentant un ensemble de choix sous la forme graphique d'un arbre.
+    Les différentes décisions possibles sont situées aux extrémités des branches (les « feuilles » de l'arbre),
+    et sont atteints en fonction de décisions prises à chaque étape.<br>
+    On va simplifier ici sa représentation visuelle, chaque décision sera toujours répondu par « oui » ou « non ».
+</p>
+
+<h2>Exemple</h2>
+
+<p>
+    Prenons ce tableau avec ses quelques caractéristiques pour 4 fruits distincts :
+</p>
+<table class="table table-hover" id="tableExample">
+    <thead>
+    <tr>
+        <th scope="col">Classe</th>
+        <th scope="col">Forme</th>
+        <th scope="col">Couleur</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td scope="row">Banane</td>
+        <td>Courbé</td>
+        <td>Jaune</td>
+    </tr>
+    <tr >
+        <td scope="row">Pomme</td>
+        <td>Ronde</td>
+        <td>Rouge</td>
+    </tr>
+    <tr >
+        <td scope="row">Orange</td>
+        <td>Ronde</td>
+        <td>Orange</td>
+    </tr>
+    <tr>
+        <td scope="row">Citron</td>
+        <td>Ronde</td>
+        <td>Jaune</td>
+    </tr>
+    </tbody>
+    <caption>Tableau 1 : Exemple de fruits avec différentes caractéristiques (forme et couleur)</caption>
+</table>
+
+<p>
+    On peut à partir du tableau construire un arbre de décision comme celui-ci à partir des questions suivantes :
+</p>
+<ul>
+    <li>Forme ronde ?</li>
+    <ul>
+        <li>Couleur rouge ? (pour la branche "oui")</li>
+    </ul>
+</ul>
+<img src="/static/img/arbre/arbreExemple.PNG" class="img-fluid">
+<small class="text-muted">
+    La première question que je pose est de savoir si la forme est ronde ou pas.
+    Si c’est le cas, on sait d’office que ça n'est pas une banane
+    (car c’est le seul fruit qui n'est pas rond dans notre exemple).<br>
+    Sachant qu’il n’est pas rond on aimerait savoir s’il est rouge,
+    si c’est le cas on sait que c’est une pomme,
+    mais si ça n’est pas le cas c’est soit une orange soit un citron.
+</small>
+<p>
+    Pour le reste des exercices tu n'est pas obligé de le dessiner de manière aussi rigoureuse, respecte juste les conventions suivantes :
+</p>
+<ul>
+    <li>L'arbre "évolue" vers le bas</li>
+    <li>La branche de gauche représentera toujours la réponse « oui » et celle de droite la réponse « non »</li>
+    <li>Les questions sont formulés dans des cadre rectangulaire</li>
+    <li>Les feuilles de l'arbre sont dans des cadres ovale</li>
+    <li>Indiquer entre parenthèse les % pour toute les feuilles</li>
+</ul>
+<p>Avec cette convention l'exemple précédent peut être redessiné comme cela également : </p>
+<img src="/static/img/arbre/arbreExMain.png" class="img-fluid">
