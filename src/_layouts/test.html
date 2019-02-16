@@ -1,20 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyDbZnAznbgeP1_bxyn9XNGGL4C9z-ex46k",
-        authDomain: "site-memoire.firebaseapp.com",
-        databaseURL: "https://site-memoire.firebaseio.com",
-        projectId: "site-memoire",
-        storageBucket: "site-memoire.appspot.com",
-        messagingSenderId: "639582982387"
-    };
-    firebase.initializeApp(config);
-</script>
-
 <head>
     <meta charset="UTF-8">
     <title>TEST</title>
@@ -53,17 +38,5 @@
         </div>
     </form>
 
-<script>
-    var db = firebase.database();
-
-    function addLog(text) {
-        let logRef = db.ref('logs');
-        logRef.push({
-            TS: firebase.database.ServerValue.TIMESTAMP,
-            info: text
-        });
-    }
-
-</script>
 </body>
 </html>
