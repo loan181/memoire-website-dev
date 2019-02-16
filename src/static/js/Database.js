@@ -20,10 +20,6 @@ function forceWriteToDb(dicoInfo) {
 
 function logExercice(algo, exercice, answers, feedbacks) {
     if (!isLocalHost()) {
-        console.log(algo);
-        console.log(exercice);
-        console.log(answers);
-        console.log(feedbacks);
         let dicoInfo = {"algo":algo, "exercice":exercice, "answers":answers, "answers_feedbacks":feedbacks};
         let logRef = db.ref('exercices');
         dicoInfo["TS"] = firebase.database.ServerValue.TIMESTAMP; // Add the timestamp

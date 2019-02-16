@@ -76,7 +76,6 @@ function checkAnswer(elem) {
         let curElement = exerciceElem[i];
         let curElementCategory = curElement.getAttribute("data-ex");
         if (curElementCategory === "question") {
-            console.log(curElement);
             question = curElement.innerText || curElement.textContent;
             break;
         }

@@ -1,7 +1,343 @@
 ---
-layout: KNN/ex-preparatoiresKNN
+layout: exercices
 flowers:
- - {name: "Iris-setosa", picture: "https://www.plant-world-seeds.com/images/item_images/000/007/023/large_square/iris_baby_blue.jpg"}
- - {name: "Iris-versicolor", picture: "https://www.promessedefleurs.com/media/catalog/product/cache/1/image/615x/9df78eab33525d08d6e5fb8d27136e95/I/r/Iris-versicolor-9345-2.jpg"}
- - {name: "Iris-virginica", picture: "https://www.fs.fed.us/wildflowers/beauty/iris/Blue_Flag/images/iris_virginica_virginica_lg.jpg"}
+- {name: "Iris-setosa", picture: "https://www.plant-world-seeds.com/images/item_images/000/007/023/large_square/iris_baby_blue.jpg"}
+- {name: "Iris-versicolor", picture: "https://www.promessedefleurs.com/media/catalog/product/cache/1/image/615x/9df78eab33525d08d6e5fb8d27136e95/I/r/Iris-versicolor-9345-2.jpg"}
+- {name: "Iris-virginica", picture: "https://www.fs.fed.us/wildflowers/beauty/iris/Blue_Flag/images/iris_virginica_virginica_lg.jpg"}
+
+title: Exercices KNN
+introduction: KNN/ex/intro.html
+exercices:
+-   title: Identification de 2 facteurs importants
+    introduction: >
+        <p>
+            Regarde attentivement les résultats obtenus dans le <a href="#table1">Tableau 1</a>.
+        </p>
+    question: >
+        Choisi parmi les quatre mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale) <strong>deux</strong> mesures qui, te permettent de discerner au mieux les fleurs.
+    answer: >
+        <select class="form-control" data-answer="largeur pétale & longueur pétale">
+            <option>largeur sépale & longueur sépale</option>
+            <option>largeur sépale & largeur pétale</option>
+            <option>largeur sépale & longueur pétale</option>
+
+            <option>longueur sépale & largeur pétale</option>
+            <option>longueur sépale & longueur pétale</option>
+
+            <option>largeur pétale & longueur pétale</option>
+        </select>
+    correction: >
+        Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
+        Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
+        Le graphique correspondant est le suivant :<br>
+        <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
+
+-   title: Identifier une nouvelle fleur
+    introduction: >
+        <p>
+            En te fiant au <a href="#table1">Tableau 1</a> et la nouvelle fleur suivante :
+        </p>
+        <table class="table table-hover" id="unknownIrisPar">
+            <thead>
+            <tr>
+                <th scope="col">Longueur Sépale</th>
+                <th scope="col">Largeur Sépale</th>
+                <th scope="col">Longueur Pétale</th>
+                <th scope="col">Largeur Pétale</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-secondary">
+                <td>5.1</td>
+                <td>2.6</td>
+                <td>4.7</td>
+                <td>1.9</td>
+            </tr>
+            </tbody>
+        </table>
+    question : >
+        Quelle est la fleur, qui correspond à ses mesures ?
+    answer: >
+        <select class="form-control" data-answer="Iris-virginica">
+            <option>Iris-setosa</option>
+            <option>Iris-versicolor</option>
+            <option>Iris-virginica</option>
+        </select>
+    correction: >
+        C'est (probalement) une <i>Iris-virginica</i>.<br>
+        La longueur et la largeur de la sépale ne nous permettent pas de pouvoir donner des informations fiables sur la fleur.<br>
+        Cepandant la longueur et la largeur de la sépale sont très proche des <i>Iris-virginica</i> existantes.
+
+-   introduction: >
+        <p>
+            La personne ayant cueilli la fleur qui prétend être un grand biologiste propose que la fleur en question est une <i>Iris-setosa</i>.
+        </p>
+    question : >
+        Es-tu d’accord avec lui ? Pourquoi penses-tu cela ?
+    answer: >
+        <div class="form-group">
+            <label for="repEx2-1"></label>
+            <textarea class="form-control" rows="4" id="repEx2-1" data-answer="non,trompe,proche"></textarea>
+        </div>
+    correction: >
+        Il se trompe probablement, d'après les données qu'on a dans le tableau 1, cette fleur n'a aucune de ses mesures proches des autres <i>Iris-setosa</i>.
+
+-   title: Vérification graphique
+    introduction: >
+        <p>
+            Voici le graphique correspondant aux données du <a href="#table1">Tableau 1</a> en utilisant la sépale comme mesure pour les axes :
+            <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid"><br>
+            Visualise les coordonnées où cette nouvelle fleur dans le graphique serait.
+        </p>
+    question : >
+        Que remarques-tu par rapport à la distance aux fleurs déjà présentes ?
+    answer: >
+        <div class="form-group">
+            <label for="repEx2-2"></label>
+            <textarea class="form-control" rows="2" id="repEx2-2" data-answer="proche,groupe,vert,virginica"></textarea>
+        </div>
+    correction: >
+        La fleur ajouté se trouve dans le "regroupement" formé par toutes les autres <i>Iris-virginica</i>
+
+-   title: K-plus proche voisins
+    introduction: >
+        <p>
+            Sur le graphique suivant, visualise un marqueur au coordonnée (5.1, 2.6)
+        </p>
+        <img src="/static/img/KNN/exKNNGraphique.png">
+    question : >
+        Quelle est la couleur du point le plus proche ?
+    answer: >
+        <select class="form-control" data-answer="Jaune">
+            <option>Jaune</option>
+            <option>Vert</option>
+        </select>
+    correction: >
+        Jaune (il est juste un peu plus bas)
+-   question : >
+        Quelle est la couleur des trois points les plus proches ?
+    answer: >
+        <label for="repEx3-Nearest" class="col-form-label">Plus proche:</label>
+        <select class="form-control col-sm-9" id="repEx3-Nearest" data-answer="Jaune">
+            <option>Jaune</option>
+            <option>Vert</option>
+        </select>
+        <label for="repEx3-Nearest2" class="col-form-label">2eme plus proche:</label>
+        <select class="form-control col-sm-9" id="repEx3-Nearest2" data-answer="Vert">
+            <option>Jaune</option>
+            <option>Vert</option>
+        </select>
+        <label for="repEx3-Nearest3" class="col-form-label">3eme plus proche:</label>
+        <select class="form-control col-sm-9" id="repEx3-Nearest3" data-answer="Vert">
+            <option>Jaune</option>
+            <option>Vert</option>
+        </select>
+    correction: >
+        Jaune, puis vert et encore vert
+-   question : >
+        Quelle est la couleur majoritaire parmi les trois plus proches ?
+    answer: >
+        <select class="form-control" data-answer="Verte">
+            <option>Jaune</option>
+            <option>Verte</option>
+        </select>
+    correction: >
+        Verte (2 vert pour 1 jaune)
+-   question : >
+        Quelle aurai-était la couleur majoritaire si on avait pris seulement les deux plus proches ?
+    answer: >
+        <select class="form-control">
+            <option>Jaune</option>
+            <option>Verte</option>
+        </select>
+        <div class="form-group" data-answer="égalité,pas,égale">
+            <label for="repEx3-Majority"></label>
+            <textarea class="form-control" rows="2" id="repEx3-Majority"></textarea>
+        </div>
+    correction: >
+        Pas de majorité car on à une égalité (1 jaune et 1 vert)
+-   introduction : Supposons maintenant que les points jaunes représente des <i>Iris-versicolor</i> et les verts des <i>Iris-virginica</i>.
+    question : >
+        Quel serait, la ca classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
+    answer: >
+        <div class="form-group">
+            <label for="repEx3-justification"></label>
+            <textarea class="form-control" rows="3" id="repEx3-justification" data-answer="proche,versicolor,éloigné,viriginica,nombre"></textarea>
+        </div>
+    correction: >
+        Si on se fie uniquement à la fleur la plus proche on peut penser que c’est une versicolor. Mais si l’on regarde les fleurs plus éloigné, il est plus probable que ça soit une iris-virginica.<br>
+        Cette exercice n’a pas de réponse absolue, l’important c’est que tu comprenne la notion de majorité et que selon les paramètres qu’on pose (ici le nombre de voisins) la réponse peut changer.
+
+-   title: Prédiction
+    introduction: >
+        <p>
+            Voici trois nouvelles iris dont la variété est connue (mais pas donné) :
+        </p>
+
+        <table class="table table-hover" id="table2">
+            <thead>
+            <tr>
+                <th scope="col">Iris</th>
+                <th scope="col">Longueur Sépale</th>
+                <th scope="col">Largeur Sépale</th>
+                <th scope="col">Longueur Pétale</th>
+                <th scope="col">Largeur Pétale</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-secondary">
+                <th scope="row">1</th>
+                <td>6.1</td>
+                <td>2.5</td>
+                <td>1.2</td>
+                <td>0.3</td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="row">2</th>
+                <td>4.6</td>
+                <td>3.5</td>
+                <td>2.9</td>
+                <td>1.1</td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="row">3</th>
+                <td>4.7</td>
+                <td>2.4</td>
+                <td>4.3</td>
+                <td>1.6</td>
+            </tr>
+            </tbody>
+            <caption>Tableau 2 : Iris inconnus</caption>
+        </table>
+
+        <p>
+            Notre but dans cette partie va être de <b>prédire</b> les fleurs à partir des données et <b>ensuite</b> on va vérifier si nos prédictions sont exactes.<br>
+            Nous ne pouvons pas prédire sans modèle d’entrainement ("training set" en anglais) ni métrique,
+            pour cela on va utiliser le <a href="#table1">Tableau 1</a> comme modèle et on va prédire selon deux modèles de métrique différente.
+        </p>
+-   title: Prédiction pour différente métriques
+    introduction: >
+        <p>
+            Soit les trois fleurs données dans <a href="#table2">Tableau 2</a>, avec le <a href="#table1">Tableau 1</a>
+            comme modèle d’entrainement en regardant la majorité parmi les trois voisins les plus proches (avec une distance euclidienne).<br>
+            Pour cela tu peux t'aider des graphiques que je te donne :
+            <img src="/static/img/KNN/exKNNGraphiqueMetriqueSepale.png" class="img-fluid">
+            <img src="/static/img/KNN/exKNNGraphiqueMetriquePetale.png" class="img-fluid">
+        </p>
+    question : >
+        Détermine les fleurs avec les métriques suivantes.
+    answer: >
+        Prédicateur 1 ; Métrique sépale (longueur et largeur) :<br>
+        <label for="repEx4.1-P1F1" class="col-sm-2 col-form-label">Iris 1</label>
+        <select class="form-control col-sm-9" id="repEx4.1-P1F1" data-answer="Iris-virginica">
+            <option>Iris-setosa</option>
+            <option>Iris-versicolor</option>
+            <option>Iris-virginica</option>
+        </select>
+        <label for="repEx4.1-P1F2" class="col-sm-2 col-form-label">Iris 2</label>
+        <select class="form-control col-sm-9" id="repEx4.1-P1F2" data-answer="Iris-setosa">
+            <option>Iris-setosa</option>
+            <option>Iris-versicolor</option>
+            <option>Iris-virginica</option>
+        </select>
+        <label for="repEx4.1-P1F3" class="col-sm-2 col-form-label">Iris 3</label>
+        <select class="form-control col-sm-9" id="repEx4.1-P1F3" data-answer="Iris-versicolor">
+            <option>Iris-setosa</option>
+            <option>Iris-versicolor</option>
+            <option>Iris-virginica</option>
+        </select>
+        <br>
+        Prédicateur 2 ; Métrique pétale (longueur et largeur) :<br>
+        <label for="repEx4.1-P2F1" class="col-sm-2 col-form-label">Iris 1</label>
+        <select class="form-control col-sm-9" id="repEx4.1-P2F1" data-answer="Iris-setosa">
+            <option>Iris-setosa</option>
+            <option>Iris-versicolor</option>
+            <option>Iris-virginica</option>
+        </select>
+        <label for="repEx4.1-P2F2" class="col-sm-2 col-form-label">Iris 2</label>
+        <select class="form-control col-sm-9" id="repEx4.1-P2F2" data-answer="Iris-versicolor">
+            <option>Iris-setosa</option>
+            <option>Iris-versicolor</option>
+            <option>Iris-virginica</option>
+        </select>
+        <label for="repEx4.1-P2F3" class="col-sm-2 col-form-label">Iris 3</label>
+        <select class="form-control col-sm-9" id="repEx4.1-P2F3" data-answer="Iris-virginica">
+            <option>Iris-setosa</option>
+            <option>Iris-versicolor</option>
+            <option>Iris-virginica</option>
+        </select>
+    correction: >
+        Les données sont choisis de sortes qu’il n’y ait pas d’ambiguïtés dans les votes pour la majorité.<br>
+        Normalement, les résultats devraient êtres les suivants.<br>
+        Prédicateur 1 : 1:Virginica 2:Setosa 3: Versicolor <br>
+        Prédicateur 2 : 1:Setosa 2:Versicolor 3: Virginica <br>
+
+-   title: Précision de notre prédiction
+    introduction: >
+        <p>
+            Une fois l’étape précédente terminée, nous allons analyser l’exactitude de nos prédictions.<br>
+        </p>
+        <p>
+            Pendant que nous étions occupés avec nos passionnantes prédictions,
+            les fleurs ont été envoyées au labo et elles ont été annoncées comme étant :
+        </p>
+        <table class="table table-hover" id="table3">
+            <thead>
+            <tr>
+                <th scope="col">Iris</th>
+                <th scope="col">Classe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-secondary">
+                <th scope="row">1</th>
+                <td>Iris-setosa</td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="row">2</th>
+                <td>Iris-versicolor</td>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="row">3</th>
+                <td>Iris-setosa</td>
+            </tr>
+            </tbody>
+            <caption>Tableau 3 : Variété des iris du <a href="#table2">Tableau 2</a></caption>
+        </table>
+        <p>
+            Calculons maintenant la précision de nos prédicateurs.
+        </p>
+    question: >
+        Sur les trois fleurs devinées, combien d’entre elles s’avère être correctes ?
+    answer: >
+        Prédicateur 1 ; Métrique sépale (longueur et largeur) :<br>
+        <select class="form-control col-sm-9" data-answer="0 (aucune)">
+            <option>0 (aucune)</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3 (toute)</option>
+        </select>
+
+        <br>
+        Prédicateur 2 ; Métrique pétale (longueur et largeur) :<br>
+        <select class="form-control col-sm-9" data-answer="2">
+            <option>0 (aucune)</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3 (toute)</option>
+        </select>
+    correction: >
+        0/3 pour le premier et 2/3 pour le second.
+-   question: >
+        A partir de tes résultats, quel prédicateur utiliserai tu pour deviner une fleur d'iris ?
+        Pourquoi ?
+    answer: >
+        <div class="form-group">
+            <label for="repEx4-2-justification"></label>
+            <textarea class="form-control" rows="6" id="repEx4-2-justification" data-answer="2,second"></textarea>
+        </div>
+    correction: >
+        Le second est du coup plus intéressant puisqu’il prédit mieux. Autrement dit, on peut deviner avec plus de certitudes une Iris en mesurant ses pétales plutôt que sa sépale.<br>
+        Intéressant de noter ici que notre prédicteur n’est pas parfait non plus (il n’a pas un score de  3/3), tout ça ne sont que des prédiction on ne peut pas utiliser un prédicteur et affirmer des informations avec certitude.<br>
+        Important de noter également que nos données sont très petites pour pouvoir affirmer avec conviction que le second est toujours meilleur que le premier.
 ---
