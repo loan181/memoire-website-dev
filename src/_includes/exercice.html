@@ -3,29 +3,38 @@
     <h3>{{ include.ex.title }}</h3>
 {% endif %}
 
-<div>{{ include.ex.introduction }}</div>
+{%  if include.ex.introduction  %}
+    <div>{{ include.ex.introduction }}</div>
+{% endif %}
 
-<div>{{ include.ex.question }}</div>
+{%  if include.ex.question  %}
+    <div>{{ include.ex.question }}</div>
+{% endif %}
 
-<div class="card border-primary mb-3">
-    <div class="card-header">Réponse</div>
-    <div class="card-body text-primary">
-        {{ include.ex.answer }}
+{%  if include.ex.answer  %}
+    <div class="card border-primary mb-3">
+        <div class="card-header">Réponse</div>
+        <div class="card-body text-primary">
+            {{ include.ex.answer }}
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary" onclick="checkAnswer(this)">Vérifier réponse</button>
+            <span class="exFeedback"></span>
+        </div>
     </div>
-    <div class="card-footer">
-        <button type="button" class="btn btn-primary" onclick="checkAnswer(this)">Vérifier réponse</button>
-        <span class="exFeedback"></span>
-    </div>
-</div>
+{% endif %}
 
-<div class="card border-success mb-3 onlyTeacher">
-    <div class="card-header">Correction</div>
-    <div class="card-body text-success">
-        <p class="card-text">
-            {{ include.ex.correction }}
-        </p>
+
+{%  if include.ex.correction  %}
+    <div class="card border-success mb-3 onlyTeacher">
+        <div class="card-header">Correction</div>
+        <div class="card-body text-success">
+            <p class="card-text">
+                {{ include.ex.correction }}
+            </p>
+        </div>
     </div>
-</div>
+{% endif %}
 
 {%  if include.ex.help  %}
     <div class="card border-warning mb-3">
