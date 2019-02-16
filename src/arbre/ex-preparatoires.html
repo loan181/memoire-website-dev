@@ -149,4 +149,67 @@ exercices:
         </div>
     correction: >
         4 fruits sont jaune et rond. 3 sont des pommes et 1 est un citron. Cela nous fait donc 1/4 de chance soit 25% pour le citron et 3/4 soit 75% pour la pomme.
+-   question: >
+        <ul>
+            <li>Forme ronde ?</li>
+            <ul>
+                <li>Couleur jaune ? (pour la branche "oui")</li>
+            </ul>
+        </ul>
+    help: <img src="/static/img/arbre/ex2help.PNG" class="img-fluid">
+    decisionTreeAnswer: true
+    leafNumber : 3
+    categories: [Banane, Pomme, Orange, Citron]
+    correctValues: [[0,75,0,25],[0,50,50,0],[100,0,0,0]]
+    correction: >
+        <img src="/static/img/arbre/ex2corr.PNG" class="img-fluid">
+-   title: Classe majoritaire
+    introduction: >
+        <p>
+            Afin de déterminer la classe d'un fruit inconnu, on choisi la classe majoritaire dans la feuille de l'arbre de décision.
+        </p>
+        <p>
+            Pour cet exercice sers toi de l'arbre de décision suivant :
+        </p>
+        <img src="/static/img/arbre/ex3Tree.png" class="img-fluid">
+    question: >
+        Quel est la classe majoritaire des fruits suivants ?
+    answer: >
+        Fruit rond et jaune :<br>
+        <select class="form-control col-sm-9" data-answer="Citron">
+            <option>Citron</option>
+            <option>Pomme</option>
+            <option>Cerise</option>
+            <option>Orange</option>
+            <option>Poire</option>
+            <option>Banane</option>
+            <option>Melon</option>
+            <option>Noix de coco</option>
+        </select>
+
+        Fruit rond et rouge :<br>
+        <select class="form-control col-sm-9" data-answer="Pomme">
+            <option>Citron</option>
+            <option>Pomme</option>
+            <option>Cerise</option>
+            <option>Orange</option>
+            <option>Poire</option>
+            <option>Banane</option>
+            <option>Melon</option>
+            <option>Noix de coco</option>
+        </select>
+
+        Fruit ovale :<br>
+        <select class="form-control col-sm-9" data-answer="Melon">
+            <option>Citron</option>
+            <option>Pomme</option>
+            <option>Cerise</option>
+            <option>Orange</option>
+            <option>Poire</option>
+            <option>Banane</option>
+            <option>Melon</option>
+            <option>Noix de coco</option>
+        </select>
+    correction: >
+        <img src="/static/img/arbre/ex1corr1.PNG" class="img-fluid">
 ---
