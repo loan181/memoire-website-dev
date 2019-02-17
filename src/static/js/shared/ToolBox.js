@@ -35,6 +35,8 @@ class ToolBox{
     }
 
     // TODO : gérer l'action de par lui-même, mais là j'en ai trop marre de tenter :(
+    // Piste : input.onclick = new Function('event', onclick); permet déxecuter une fonction à partir d'un string
+    // Mais j'arrive pas à éxécuter de script depuis la toolbox pour l'instant
     createButtonUpload() {
         let elem = `
         <li class="nav-item button" data-toggle="tooltip" data-tooltip="upload">
@@ -44,7 +46,11 @@ class ToolBox{
             <input id="upload_project" type="file" hidden>
         </li>
         `;
+
+        // document.getElementById("upload_project").addEventListener('change', handleFileSelect, false);
+        // Marche pas car l'object n'existe pas encore :(
         return elem;
+
     }
 
     createButtonExport(matrixNameIconAction) {
@@ -91,16 +97,12 @@ class ToolBox{
     }
 
     addButton(id, extraClass, onclickAction, icon, dataTooltip) {
-        let buttonHtml = '<li class="nav-item button">\n';
-        buttonHtml += `<button id="${id}" type="button" class="btn ${extraClass}" onclick="${onclickAction}" data-toggle="tooltip" data-tooltip="${dataTooltip}"><i class="${icon}"></i></button>\n`;
-        buttonHtml += '</li>';
+        let buttonHtml = `<button id="${id}" type="button" class="btn ${extraClass}" onclick="${onclickAction}" data-toggle="tooltip" data-tooltip="${dataTooltip}"><i class="${icon}"></i></button>\n`;
         return buttonHtml;
     }
 
     addButtonLink(id, href, extraClass, icon, dataTooltip) {
-        let linkHtml = '<li class="nav-item button">\n';
-        linkHtml += `<a target="_blank" href="${href}" role="button" id="${id}" class="btn ${extraClass}" data-toggle="tooltip" data-tooltip="${dataTooltip}"><i class="${icon}"></i></a>`;
-        linkHtml += '</li>';
+        let linkHtml = `<a target="_blank" href="${href}" role="button" id="${id}" class="btn ${extraClass}" data-toggle="tooltip" data-tooltip="${dataTooltip}"><i class="${icon}"></i></a>`;
         return linkHtml;
     }
 
@@ -113,14 +115,18 @@ class ToolBox{
         `;
 
         for (let i = 0; i < this.leftObjects.length; i++) {
+            html += '<li class="nav-item button">\n';
             html += this.leftObjects[i];
+            html += '</li>\n';
         }
 
         html += `</ul>
              <ul class="nav">`;
 
         for (let i = 0; i < this.rightObjects.length; i++) {
+            html += '<li class="nav-item button">\n';
             html += this.rightObjects[i];
+            html += '</li>\n';
         }
 
         html += `
@@ -129,6 +135,7 @@ class ToolBox{
         `;
 
         this.toolBox.innerHTML = html;
+
     }
     
     setToolBarForExercice(exerciceName) {
@@ -147,5 +154,16 @@ class ToolBox{
             this.addElementToRightBar(this.createButtonHelp("blockly-aide.html"));
             this.addElementToRightBar(this.createButtonLanguage());
         }
+    }
+
+    get size() {
+        return this.leftObjects.length + this.rightObjects.length
+    }
+
+    getElement(index) {
+        if (index >= this.leftObjects.length) {
+            return this.rightObjects[index-this.leftObjects.length];
+        }
+        return this.leftObjects[index];
     }
 }
