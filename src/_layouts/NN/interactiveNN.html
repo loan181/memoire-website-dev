@@ -26,7 +26,7 @@
         </div>
         <br><br>
         <div>
-            <canvas id="network" width="784" height="40" style="top:10%;left:10%;border:2px solid;"></canvas>
+            <canvas id="network" width="784" height="30" style="top:10%;left:10%;border:2px solid;"></canvas>
         </div>
 
         <script>
@@ -34,6 +34,8 @@
             var ctxNetwork = canvas.getContext("2d");
 
             var w = 784;
+
+            // TODO : refactor ! (seulement la hauteur et la facon de calculer la lightness change)
             function drawFirstLayer(data) {
                 let size = 1;
                 for (let i = 0; i < data.length; i++) {
@@ -42,7 +44,6 @@
                     let lightVal = 100 - 50*(curData +1);
                     ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
                     ctxNetwork.fillRect(i,0,size,10);
-                    console.log(i*size);
                 }
             }
 
@@ -54,21 +55,9 @@
                     let lightVal = 100 - 100*(curData);
                     ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
                     ctxNetwork.fillRect(i*size,10,size,10);
-                    console.log(i*size);
                 }
             }
 
-            function drawThirdLayer(data) {
-                let size = w/data.length;
-                for (let i = 0; i < data.length; i++) {
-                    let curData = data[i];
-                    // [0, 1] = [blanc, noir]
-                    let lightVal = 100 - 100*(curData);
-                    ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                    ctxNetwork.fillRect(i*size,20,size,10);
-                    console.log(i*size);
-                }
-            }
 
             function drawOutput(data) {
                 let size = w/data.length;
@@ -77,8 +66,7 @@
                     // [0, 1] = [blanc, noir]
                     let lightVal = 100 - 100*(curData);
                     ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                    ctxNetwork.fillRect(i*size,30,size,10);
-                    console.log(i*size);
+                    ctxNetwork.fillRect(i*size,20,size,10);
                 }
             }
         </script>
