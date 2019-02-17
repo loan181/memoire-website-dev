@@ -150,6 +150,11 @@ class ToolBox{
 
             this.addElementToRightBar(this.createButtonHelp("blockly-aide.html"));
             this.addElementToRightBar(this.createButtonLanguage());
+        } else if (exerciceName === "decision-tree") {
+            this.addElementToLeftBar(this.createButtonNew("BT.reset()"));
+            this.addElementToLeftBar(this.createButtonDownload()); // TODO
+            this.addElementToLeftBar(this.createButtonUpload()); // TODO
+            this.addElementToLeftBar(this.createButtonRun("testClassify()", "executeCode"));
         }
     }
 

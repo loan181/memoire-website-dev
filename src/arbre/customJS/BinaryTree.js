@@ -483,7 +483,9 @@ function testClassify() {
         if (BT.classify(currentFlower.get(currentXCat), currentFlower.get(currentYCat)) === currentFlower.get("name"))
             correctGuess += 1;
     }
-    return correctGuess / predictionSet.length;
+    let ratio = correctGuess / predictionSet.length;
+    pb.value = ratio*100;
+    return ratio;
 }
 
 function canvaSizeChange(newW, newH) {
