@@ -88,6 +88,24 @@
                     </tbody>
                 </table>
 
+                <div id="toolboxExplanation"></div>
+
+                <script src="/static/js/shared/ToolBox.js"></script>
+                <script>
+                    let TB = new ToolBox();
+                    TB.drawExplanation("KNN", "toolboxExplanation", [
+                        "Commencer un nouveau projet, cela effacera tous les blocs.",
+                        "Sauvegarder/télécharger ton projet sur ton ordinateur (uniquement les blocs de Blockly).<br>Les paramètres ne sont pas enregistrés",
+                        "Ouvrir un projet précédemment sauvegardé",
+                        "Exporte le projet (blocs) sous forme d’images (SVG (vectoriel) ou PNG ).<br>Attention que si tu exportes en image tu ne peux pas l’ouvrir comme projet",
+                        "Voir le code JavaScript généré par Blockly dans une fenêtre pop-up",
+                        "Tester le code. Se contentera d’exécutera le code du projet tel quel.",
+                        "Tester le prédicateur. Lance le programme en évaluant si les prédictions sont correctes.<br>Cela te permettra de réussir ton objectif !",
+                        "Renvoie vers la page d'aide (celle-çi)",
+                        "Te permet de choisir la langue.<br>Seulement le français et l’anglais sont pleinement compatible. Les autres changeront uniquement le texte des blocs de Blockly."
+                    ]);
+                </script>
+
                 <h3>Données et Paramètres</h3>
                 <p>
                     La partie de gauche te permet d'observer les données ainsi que de modifier les paramètres de l'algorithme.

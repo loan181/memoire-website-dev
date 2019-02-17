@@ -156,6 +156,39 @@ class ToolBox{
         }
     }
 
+    drawExplanation(exerciceName, id, explanations) {
+        this.setToolBarForExercice(exerciceName);
+
+        let html = "";
+        html += `
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Boutton</th>
+                <th scope="col">Explication</th>
+            </tr>
+            </thead>
+            <tbody>
+        `;
+
+        for (let i = 0; i < this.size; i++) {
+            html += `
+                <tr>
+                    <th style="pointer-events: none;">${this.getElement(i)}</th>
+                    <td>${explanations[i]}</td>
+                </tr>
+            `
+        }
+
+        html += `
+            </tbody>
+        </table>
+        `;
+
+        let toolbarElement = document.getElementById(id);
+        toolbarElement.innerHTML = html;
+    }
+
     get size() {
         return this.leftObjects.length + this.rightObjects.length
     }
