@@ -34,62 +34,8 @@
                 <p>
                     Dans la partie supérieure de l’écran tu as différents boutons te permettant de réaliser certaines actions que nous allons détailler ici.
                 </p>
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Boutton</th>
-                        <th scope="col">Explication</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th><button class="btn btn-outline-secondary"><i class="far fa-file"></i></button></th>
-                        <td>Commencer un nouveau projet, cela effacera tous les blocs.</td>
-                    </tr>
-                    <tr>
-                        <td><button class="btn btn-outline-secondary"><i class="fas fa-save"></i></button></td>
-                        <td>Sauvegarder/télécharger ton projet sur ton ordinateur (uniquement les blocs de Blockly).<br>Les paramètres ne sont pas enregistrés</td>
-                    </tr>
-                    <tr>
-                        <th><button class="btn btn-outline-secondary"><i class="fas fa-folder-open"></i></button></th>
-                        <td>Ouvrir un projet précédemment sauvegardé</td>
-                    </tr>
-                    <tr>
-                        <th><button class="btn btn-outline-secondary dropdown-toggle"><i class="fas fa-file-export"></i></button></th>
-                        <td>Exporte le projet (blocs) sous forme d’images (SVG (vectoriel) ou PNG ).<br>Attention que si tu exportes en image tu ne peux pas l’ouvrir comme projet</td>
-                    </tr>
-                    <tr>
-                        <th><button class="btn btn-info"><i class="far fa-eye"></i></button></th>
-                        <td>Voir le code JavaScript généré par Blockly dans une fenêtre pop-up</td>
-                    </tr>
-                    <tr id="testCode">
-                        <th><button class="btn btn-primary"><i class="fas fa-play"></i> <i class="fas fa-vial"></i></button></th>
-                        <td>Tester le code. Se contentera d’exécutera le code du projet tel quel.</td>
-                    </tr>
-                    <tr id="testPredicateur">
-                        <th><button class="btn btn-primary"><i class="fas fa-play"></i> <i class="fas fa-dice"></i></button></th>
-                        <td>Tester le prédicateur. Lance le programme en évaluant si les prédictions sont correctes.<br>Cela te permettra de réussir ton objectif !</td>
-                    </tr>
-                    <tr>
-                        <th><button class="btn btn-warning"><i class="fas fa-question-circle"></i></button></th>
-                        <td>Renvoie vers la page d'aide (celle-çi) </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <form class="form-inline" >
-                                <div class="form-group">
-                                    <label for="languageMenu" class="control-label" style="padding-right: 4px; padding-left: 14px;"><i class="fas fa-globe"></i>  </label>
-                                    <select class="form-control" id="languageMenu"></select>
-                                </div>
-                            </form>
-                        </th>
-                        <td>Te permet de choisir la langue.<br>Seulement le français et l’anglais sont pleinement compatible. Les autres changeront uniquement le texte des blocs de Blockly. </td>
-                    </tr>
-                    </tbody>
-                </table>
 
                 <div id="toolboxExplanation"></div>
-
                 <script src="/static/js/shared/ToolBox.js"></script>
                 <script>
                     let TB = new ToolBox();
