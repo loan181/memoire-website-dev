@@ -276,6 +276,11 @@ function nn(data, w12, bias2, w23, bias3) {
 
     // timing measurement
     var dt = new Date() - t1; console.log('NN time: '+dt+'ms');
+
+    drawFirstLayer(data);
+    drawSecondLayer(out2);
+    drawThirdLayer(out3);
+    drawOutput(output);
     return output;
 }
 
