@@ -21,51 +21,6 @@ class Node {
         this.reset();
     }
 
-    refreshLeafDraw() {
-        if (this.drawShape != null) {
-            this.draw.remove();
-        }
-
-        let pieCcolors = ["#4f81bc", "#c0504e", "#9bbb58"];
-        let circleR = 20;
-
-        this.draw.clear();
-        paper.setStart();
-
-        this.drawShape = paper.circle(0, 0, circleR).attr({
-            fill: "#FFF",
-            stroke: "#000",
-            "stroke-width": 1
-        });
-
-        let accumulatedAngle = 0;
-        let counter = 0;
-        for (let flower in this.proportionOfEachFlower) {
-            let currentProportion = this.proportionOfEachFlower[flower];
-            let angleEnd = accumulatedAngle + (360*currentProportion/100);
-
-            sector(0, 0, circleR, accumulatedAngle, angleEnd,{fill: pieCcolors[counter]});
-
-            accumulatedAngle = angleEnd;
-            counter++;
-        }
-
-        this.drawText = paper.text(0, 0, "+");
-
-        this.draw = paper.setFinish();
-
-        this.draw.hover(
-            this.hover,
-            this.unHover,
-            this,
-            this
-        );
-
-        this.draw.mouseup(
-            (e) =>{this.leafClicked();}
-        );
-    }
-
     reset() {
         if (this.drawShape != null) {
             this.draw.remove();
@@ -93,6 +48,51 @@ class Node {
         this.parameterAxis = null;
         this.operator = operationType.NONE;
         this.valueToCompare = null;
+    }
+
+    refreshLeafDraw() {
+        if (this.drawShape != null) {
+            this.draw.remove();
+        }
+
+        let pieCcolors = ["#4f81bc", "#c0504e", "#9bbb58"];
+        let circleR = 20;
+
+        this.draw.clear();
+        paper.setStart();
+
+        this.drawShape = paper.circle(0, 0, circleR).attr({
+            fill: "#FFF",
+            stroke: "#000",
+            "stroke-width": 1
+        });
+
+        let accumulatedAngle = 0;
+        let counter = 0;
+        for (let flower in this.proportionOfEachFlower) {
+            let currentProportion = this.proportionOfEachFlower[flower];
+            let angleEnd = accumulatedAngle + (360*currentProportion/100);
+
+            sector(0, 0, circleR, accumulatedAngle, angleEnd,{"fill": pieCcolors[counter], "fill-opacity":0.4, "stroke-opacity":0.2});
+
+            accumulatedAngle = angleEnd;
+            counter++;
+        }
+
+        this.drawText = paper.text(0, 0, "+");
+
+        this.draw = paper.setFinish();
+
+        this.draw.hover(
+            this.hover,
+            this.unHover,
+            this,
+            this
+        );
+
+        this.draw.mouseup(
+            (e) =>{this.leafClicked();}
+        );
     }
 
     isLeaf() {
