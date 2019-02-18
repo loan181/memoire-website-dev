@@ -524,12 +524,21 @@ function getCurrentDatasetName() {
     return "Iris";
 }
 
-function createFile() {
+function downloadExerciceFile() {
     let dictData = {};
     dictData["dataset"] = getCurrentDatasetName();
     dictData["x_axis"] = currentXCat;
     dictData["y_axis"] = currentYCat;
     dictData["tree"] = BT.getTreeJson();
+    let filename = "DecisionTree";
+    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dictData));
+    let downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", filename + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+
 }
 
 let lastClickedLeaf = null;
