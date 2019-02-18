@@ -67,6 +67,7 @@ class Node {
         this.rightBranch = null;
 
         this.parameter = null;
+        this.parameterAxis = null;
         this.operator = operationType.NONE;
         this.valueToCompare = null;
     }
@@ -85,17 +86,7 @@ class Node {
             highlightAllMarkers();
             drawPointsIndex(this.associatedFlower);
         } else {
-            let axis = null;
-            if (this.parameter === currentXCat) {
-                axis = "x";
-            }
-            else if (this.parameter === currentYCat) {
-                axis = "y";
-            }
-            else {
-                console.error("Unkwnon parameter as axis : " + this.parameter);
-            }
-            highlightCondition(axis, this.operator, this.valueToCompare);
+            highlightCondition(this.parameterAxis, this.operator, this.valueToCompare);
             highlightMarkerCondition(this.left.associatedFlower, this.right.associatedFlower);
         }
 
@@ -282,6 +273,15 @@ class Node {
      */
     modify(axis, operation, value) {
         this.parameter = axis;
+        if (this.parameter === currentXCat) {
+            this.parameterAxis = "x";
+        }
+        else if (this.parameter === currentYCat) {
+            this.parameterAxis = "y";
+        }
+        else {
+            console.error("Unkwnon parameter as axis : " + this.parameter);
+        }
         this.operator = parseInt(operation);
         this.valueToCompare = value;
 
@@ -474,6 +474,32 @@ class BinaryTree {
         }
         return currentNode.majorityClass;
     }
+
+    getTreeJson() {
+        let ret = {};
+        this.extendTree(this.root, ret);
+        return ret;
+    }
+
+    extendTree(currentNode, dictionary) {
+        if (!currentNode.isLeaf() && currentNode !== null) {
+            dictionary["parameter"] = currentNode.parameterAxis;
+            dictionary["operator"] = currentNode.operator;
+            dictionary["value"] = currentNode.valueToCompare;
+
+            dictionary["child"] = [];
+            if (currentNode.left != null) {
+                let leftDict = {};
+                this.extendTree(currentNode.left, leftDict);
+                dictionary["child"][0] = leftDict;
+            }
+            if (currentNode.right != null) {
+                let rightDict = {};
+                this.extendTree(currentNode.right, rightDict);
+                dictionary["child"][1] = rightDict;
+            }
+        }
+    }
 }
 
 function testClassify() {
@@ -492,6 +518,18 @@ function canvaSizeChange(newW, newH) {
     paper.setSize(newW, newH);
 
     BT.refreshTreeDraw();
+}
+
+function getCurrentDatasetName() {
+    return "Iris";
+}
+
+function createFile() {
+    let dictData = {};
+    dictData["dataset"] = getCurrentDatasetName();
+    dictData["x_axis"] = currentXCat;
+    dictData["y_axis"] = currentYCat;
+    dictData["tree"] = BT.getTreeJson();
 }
 
 let lastClickedLeaf = null;
