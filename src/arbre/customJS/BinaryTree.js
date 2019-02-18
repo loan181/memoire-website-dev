@@ -27,6 +27,8 @@ class Node {
             this.drawText.remove();
         }
 
+        this.proportionOfEachFlower = this.refreshProportionOfEachFlower();
+
         this.drawShape = paper.circle(0, 0, 20).attr({
             fill: "#FFF",
             stroke: "#000",
@@ -78,6 +80,7 @@ class Node {
 
     setFlowersIndex(flowersIndexList) {
         this.associatedFlower = flowersIndexList;
+        this.proportionOfEachFlower = this.refreshProportionOfEachFlower();
     }
 
     hover() {
@@ -113,15 +116,22 @@ class Node {
         return flowerCounter
     }
 
-    displayProportionOfEachFlower() {
+    refreshProportionOfEachFlower() {
         // Count the proportion of the flower of the leaf
         let flowerProportions = this.flowerCounter;
 
-        // TODO : trouver le maximum (qui déterminera la fleur)
         for (var key in flowerProportions){
             flowerProportions[key] /= this.associatedFlower.length;
             flowerProportions[key] *= 100;
         }
+        this.proportionOfEachFlower = flowerProportions;
+        return flowerProportions;
+    }
+
+    displayProportionOfEachFlower() {
+        // Count the proportion of the flower of the leaf
+        let flowerProportions = this.proportionOfEachFlower;
+        // TODO : trouver le maximum (qui déterminera la fleur)
         // console.log(flowerProportions);
         var text = "";
         for (var key in flowerProportions){
@@ -539,6 +549,17 @@ function testClassify() {
     let ratio = correctGuess / predictionSet.length;
     pb.value = ratio*100;
     return ratio;
+}
+
+// Source : https://stackoverflow.com/a/7711684
+// Allow to draw pie chart into nodes circle
+function sector(cx, cy, r, startAngle, endAngle, params) {
+    let rad = Math.PI / 180;
+    let x1 = cx + r * Math.cos(-startAngle * rad),
+        x2 = cx + r * Math.cos(-endAngle * rad),
+        y1 = cy + r * Math.sin(-startAngle * rad),
+        y2 = cy + r * Math.sin(-endAngle * rad);
+    return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
 }
 
 function canvaSizeChange(newW, newH) {
