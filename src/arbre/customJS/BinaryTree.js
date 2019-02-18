@@ -21,13 +21,10 @@ class Node {
         this.reset();
     }
 
-    reset() {
+    refreshLeafDraw() {
         if (this.drawShape != null) {
-            this.drawShape.remove();
-            this.drawText.remove();
+            this.draw.remove();
         }
-
-        this.proportionOfEachFlower = this.refreshProportionOfEachFlower();
 
         let pieCcolors = ["#4f81bc", "#c0504e", "#9bbb58"];
         let circleR = 20;
@@ -47,7 +44,7 @@ class Node {
             let currentProportion = this.proportionOfEachFlower[flower];
             let angleEnd = accumulatedAngle + (360*currentProportion/100);
 
-            sector(32, 32, circleR, accumulatedAngle, angleEnd,{fill: pieCcolors[counter]});
+            sector(0, 0, circleR, accumulatedAngle, angleEnd,{fill: pieCcolors[counter]});
 
             accumulatedAngle = angleEnd;
             counter++;
@@ -67,6 +64,15 @@ class Node {
         this.draw.mouseup(
             (e) =>{this.leafClicked();}
         );
+    }
+
+    reset() {
+        if (this.drawShape != null) {
+            this.draw.remove();
+        }
+
+        this.proportionOfEachFlower = this.refreshProportionOfEachFlower();
+        this.refreshLeafDraw();
 
         // Leaf have no left and right child
         if (this.left != null) {
@@ -140,6 +146,7 @@ class Node {
             flowerProportions[key] *= 100;
         }
         this.proportionOfEachFlower = flowerProportions;
+        this.refreshLeafDraw();
         return flowerProportions;
     }
 
@@ -186,8 +193,7 @@ class Node {
 
     delete() {
         if (this.drawShape != null) {
-            this.drawShape.remove();
-            this.drawText.remove();
+            this.draw.remove();
         }
 
         // Recursively delete all downward child
@@ -215,8 +221,9 @@ class Node {
     }
 
     move(x, y) {
-        this.drawText.translate(x-this.x, y-this.y);
-        this.drawShape.translate(x-this.x, y-this.y);
+        this.draw.translate(x-this.x, y-this.y);
+        //this.drawText.translate(x-this.x, y-this.y);
+        //this.drawShape.translate(x-this.x, y-this.y);
     }
 
     evaluate(parameter, operation, value) {
@@ -324,8 +331,7 @@ class Node {
         }
         this.updateChildCorrespondingFlower();
 
-        this.drawShape.remove();
-        this.drawText.remove();
+        this.draw.remove();
         this.drawShape = paper.rect(-100, -20, 200, 40, 2).attr({
             fill: "#FFF",
             stroke: "#000",
