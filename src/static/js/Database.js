@@ -7,7 +7,14 @@ function isLocalHost() {
 }
 
 function getGoogleAnalyticsClientID() {
-    return ga.getAll()[0].get('clientId');
+    try {
+        return ga.getAll()[0].get('clientId');
+    }
+    catch (e) {
+        // May happen when the browser block cookies for instance
+        console.warn("Error while retrieving Client ID");
+        return -1;
+    }
 }
 
 function writeToDb(dicoInfo) {
