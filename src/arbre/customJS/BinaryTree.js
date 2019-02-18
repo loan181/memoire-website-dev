@@ -29,18 +29,33 @@ class Node {
 
         this.proportionOfEachFlower = this.refreshProportionOfEachFlower();
 
-        this.drawShape = paper.circle(0, 0, 20).attr({
+        let pieCcolors = ["#4f81bc", "#c0504e", "#9bbb58"];
+        let circleR = 20;
+
+        this.draw.clear();
+        paper.setStart();
+
+        this.drawShape = paper.circle(0, 0, circleR).attr({
             fill: "#FFF",
             stroke: "#000",
             "stroke-width": 1
         });
+
+        let accumulatedAngle = 0;
+        let counter = 0;
+        for (let flower in this.proportionOfEachFlower) {
+            let currentProportion = this.proportionOfEachFlower[flower];
+            let angleEnd = accumulatedAngle + (360*currentProportion/100);
+
+            sector(32, 32, circleR, accumulatedAngle, angleEnd,{fill: pieCcolors[counter]});
+
+            accumulatedAngle = angleEnd;
+            counter++;
+        }
+
         this.drawText = paper.text(0, 0, "+");
 
-        this.draw.clear();
-        this.draw.push(
-            this.drawShape,
-            this.drawText
-        );
+        this.draw = paper.setFinish();
 
         this.draw.hover(
             this.hover,
