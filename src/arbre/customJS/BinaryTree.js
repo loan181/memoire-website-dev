@@ -500,6 +500,33 @@ class BinaryTree {
             }
         }
     }
+
+    loadTree(jsonTree) {
+        this.reset();
+        console.log("JSON tree : ", jsonTree);
+
+        this.refreshNode(this.root, jsonTree);
+
+    }
+
+    refreshNode(node, dict) {
+        if (Object.keys(dict).length !== 0) { // Empty dictionary = leaf -> no computation needed
+            let axis = currentXCat;
+            if (dict["parameter"] === "x") {
+                axis = currentXCat;
+            }
+            else if (dict["parameter"] === "y") {
+                axis = currentYCat;
+            }
+            else {
+                console.warn("Unknown axis given while parsing json for tree : ", dict["parameter"]);
+            }
+            node.modify(axis, dict["operator"], dict["value"]);
+            let child = dict["child"];
+            this.refreshNode(node.left, child[0]);
+            this.refreshNode(node.right, child[1]);
+        }
+    }
 }
 
 function testClassify() {
@@ -530,6 +557,7 @@ function downloadExerciceFile() {
     dictData["x_axis"] = currentXCat;
     dictData["y_axis"] = currentYCat;
     dictData["tree"] = BT.getTreeJson();
+
     let filename = "DecisionTree";
     let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dictData));
     let downloadAnchorNode = document.createElement('a');
@@ -538,7 +566,21 @@ function downloadExerciceFile() {
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
+}
 
+function uploadExerciceFile(fileContent) {
+    let dictData = JSON.parse(fileContent);
+
+    // dataset saved value have no impact by now
+    // TODO : check si les valeurs sont dans le select avant de les asigner (si c'est pas le cas, le fichier de sauvegarde est corrompu ou incompatible)
+    currentXCat = dictData["x_axis"];
+    currentYCat = dictData["y_axis"];
+    document.getElementById('axisXChoice').value = currentXCat;
+    document.getElementById('axisYChoice').value = currentYCat;
+    BT.loadTree(dictData["tree"]);
+    BT.refreshTotalDepth();
+    redrawPlot();
+    BT.refreshTreeDraw();
 }
 
 let lastClickedLeaf = null;
@@ -548,3 +590,28 @@ paper.rect(-1, -1, 5000, 5000).attr({
     fill: "#b4b4b4"
 }).toBack();
 let BT = new BinaryTree();
+
+function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // use the 1st file from the list
+    var f = files[0];
+
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+        return function(e) {
+            try {
+                uploadExerciceFile(e.target.result);
+            }
+            catch (err) {
+                alert("Une erreur innatendu est survenue au chargement du projet :\n" + err.message);
+            }
+        };
+    })(f);
+
+    // Read in the file as a data URL.
+    reader.readAsText(f);
+}
+document.getElementById("upload_project").addEventListener('change', handleFileSelect, false);
