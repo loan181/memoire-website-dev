@@ -28,7 +28,7 @@ exercices:
         </select>
     correction: >
         Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
-        Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
+        Les mesures en utilisant les pétales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
         Le graphique correspondant est le suivant :<br>
         <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
 
@@ -227,7 +227,7 @@ exercices:
     question : >
         Détermine les fleurs avec les métriques suivantes.
     answer: >
-        Prédicateur 1 ; Métrique sépale (longueur et largeur) :<br>
+        Classifieur 1 ; Métrique sépale (longueur et largeur) :<br>
         <label for="repEx4.1-P1F1" class="col-sm-2 col-form-label">Iris 1</label>
         <select class="form-control col-sm-9" id="repEx4.1-P1F1" data-answer="Iris-virginica">
             <option>Iris-setosa</option>
@@ -247,7 +247,7 @@ exercices:
             <option>Iris-virginica</option>
         </select>
         <br>
-        Prédicateur 2 ; Métrique pétale (longueur et largeur) :<br>
+        Classifieur 2 ; Métrique pétale (longueur et largeur) :<br>
         <label for="repEx4.1-P2F1" class="col-sm-2 col-form-label">Iris 1</label>
         <select class="form-control col-sm-9" id="repEx4.1-P2F1" data-answer="Iris-setosa">
             <option>Iris-setosa</option>
@@ -269,8 +269,8 @@ exercices:
     correction: >
         Les données sont choisis de sortes qu’il n’y ait pas d’ambiguïtés dans les votes pour la majorité.<br>
         Normalement, les résultats devraient êtres les suivants.<br>
-        Prédicateur 1 : 1:Virginica 2:Setosa 3: Versicolor <br>
-        Prédicateur 2 : 1:Setosa 2:Versicolor 3: Virginica <br>
+        Classifieur 1 : 1:Virginica 2:Setosa 3: Versicolor <br>
+        Classifieur 2 : 1:Setosa 2:Versicolor 3: Virginica <br>
 
 -   title: Précision de notre prédiction
     introduction: >
@@ -305,12 +305,12 @@ exercices:
             <caption>Tableau 3 : Variété des iris du <a href="#table2">Tableau 2</a></caption>
         </table>
         <p>
-            Calculons maintenant la précision de nos prédicateurs.
+            Calculons maintenant la précision de nos classifieurs.
         </p>
     question: >
         Sur les trois fleurs devinées, combien d’entre elles s’avère être correctes ?
     answer: >
-        Prédicateur 1 ; Métrique sépale (longueur et largeur) :<br>
+        Classifieur 1 ; Métrique sépale (longueur et largeur) :<br>
         <select class="form-control col-sm-9" data-answer="0 (aucune)">
             <option>0 (aucune)</option>
             <option>1</option>
@@ -319,7 +319,7 @@ exercices:
         </select>
 
         <br>
-        Prédicateur 2 ; Métrique pétale (longueur et largeur) :<br>
+        Classifieur 2 ; Métrique pétale (longueur et largeur) :<br>
         <select class="form-control col-sm-9" data-answer="2">
             <option>0 (aucune)</option>
             <option>1</option>
@@ -329,7 +329,7 @@ exercices:
     correction: >
         0/3 pour le premier et 2/3 pour le second.
 -   question: >
-        A partir de tes résultats, quel prédicateur utiliserai tu pour deviner une fleur d'iris ?
+        A partir de tes résultats, quel classifieur utiliserai tu pour deviner une fleur d'iris ?
         Pourquoi ?
     answer: >
         <div class="form-group">
