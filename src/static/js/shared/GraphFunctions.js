@@ -21,10 +21,18 @@ window.onload = function() {
     refreshPlotInformation();
 };
 
+function translation(originalList, translationList, word) {
+    return translationList[originalList.indexOf(word)];
+}
+
+function frenchTranslationCat(word) {
+    return translation(categories, categoriesFR, word);
+}
+
 function refreshPlotInformation() {
-    modifyTitle(currentXCat + " vs " + currentYCat);
-    modifyXAxisName(currentXCat);
-    modifyYAxisName(currentYCat);
+    modifyTitle(frenchTranslationCat(currentXCat) + " vs " + frenchTranslationCat(currentYCat));
+    modifyXAxisName(frenchTranslationCat(currentXCat));
+    modifyYAxisName(frenchTranslationCat(currentYCat));
     resetPlotWithXYData(currentXCat, currentYCat);
     redrawPlot();
 }

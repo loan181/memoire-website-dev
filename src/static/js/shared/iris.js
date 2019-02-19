@@ -1,4 +1,6 @@
 const categories = ["sepal length", "sepal width", "petal length", "petal width"];
+const categoriesFR = ["largeur sépale", "longueur sépale", "largeur pétale", "longueur pétale"];
+
 const flowerName = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"];
 
 class Flower {

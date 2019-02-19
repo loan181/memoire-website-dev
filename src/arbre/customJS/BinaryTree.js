@@ -326,15 +326,15 @@ class Node {
      * @param value
      */
     modify(axis, operation, value) {
-        this.parameter = axis;
-        if (this.parameter === currentXCat) {
-            this.parameterAxis = "x";
+        this.parameterAxis = axis;
+        if (this.parameterAxis === "x") {
+            this.parameter = frenchTranslationCat(currentXCat);
         }
-        else if (this.parameter === currentYCat) {
-            this.parameterAxis = "y";
+        else if (this.parameterAxis === "y") {
+            this.parameter = frenchTranslationCat(currentYCat);
         }
         else {
-            console.error("Unkwnon parameter as axis : " + this.parameter);
+            console.error("Unkwnon parameter as axis : " + this.parameterAxis);
         }
         this.operator = parseInt(operation);
         this.valueToCompare = value;
@@ -359,7 +359,7 @@ class Node {
             stroke: "#000",
             "stroke-width": 1
         });
-        this.drawText = paper.text(0, 0, axis + " " + operationChar[operation] + " " + value).attr({
+        this.drawText = paper.text(0, 0, this.parameter + " " + operationChar[this.operator] + " " + this.valueToCompare).attr({
             "font-size": 14
         });
 
