@@ -55,7 +55,7 @@ class Node {
             this.draw.remove();
         }
 
-        let pieCcolors = ["#4f81bc", "#c0504e", "#9bbb58"];
+        let pieCcolors = {"Iris-setosa":"#4f81bc", "Iris-versicolor":"#c0504e", "Iris-virginica":"#9bbb58"};
         let circleR = 20;
 
         this.draw.clear();
@@ -68,23 +68,22 @@ class Node {
         });
 
         let accumulatedAngle = 0;
-        let counter = 0;
         for (let flower in this.proportionOfEachFlower) {
             let currentProportion = this.proportionOfEachFlower[flower];
             let angleEnd = accumulatedAngle + (360*currentProportion/100);
+            let pieColor = pieCcolors[flower];
 
             if (flower === this.maxProportionKey) {
                 this.drawShape.attr({
-                    stroke: pieCcolors[counter],
+                    stroke: pieColor,
                     "stroke-width": 3,
                     "stroke-opacity":1
                 });
             }
 
-            sector(0, 0, circleR, accumulatedAngle, angleEnd,{"fill": pieCcolors[counter], "fill-opacity":0.4, "stroke-opacity":0.2});
+            sector(0, 0, circleR, accumulatedAngle, angleEnd,{"fill": pieColor, "fill-opacity":0.4, "stroke-opacity":0.2});
 
             accumulatedAngle = angleEnd;
-            counter++;
         }
 
         this.drawText = paper.text(0, 0, "+").attr({"font-weight": "bold", "font-size":24});
