@@ -103,32 +103,32 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{% blockly_block getK %}</td>
+                        <td>{% include blockly_block.html name="getK" %}</td>
                         <td>Donne la valeur de K définie dans le <a href="#parameterPanel">Panneau Paramètres</a> </td>
                         <td>Nombre</td>
                     </tr>
                     <tr>
-                        <td>{% blockly_block countersReset %}</td>
+                        <td>{% include blockly_block.html name="countersReset" %}</td>
                         <td>Permet de réinitialiser le compteur de chaque fleur à zéro</td>
                         <td><i>Rien</i></td>
                     </tr>
                     <tr>
-                        <td>{% blockly_block countersIncrease %}</td>
+                        <td>{% include blockly_block.html name="countersIncrease" %}</td>
                         <td>Ajoute la valeur donné à la classe de la i-ème fleur la plus proche.</td>
                         <td><i>Rien</i></td>
                     </tr>
                     <tr>
-                        <td>{% blockly_block countersGetMinMax %}</td>
+                        <td>{% include blockly_block.html name="countersGetMinMax" %}</td>
                         <td>Récupère la fleur associée au compteur avec la valeur minimale/maximale</td>
                         <td>Texte (nom de fleur)</td>
                     </tr>
                     <tr>
-                        <td>{% blockly_block getCounters %}</td>
+                        <td>{% include blockly_block.html name="getCounters" %}</td>
                         <td>Permet de consulter la valeur des compteurs.<br>Ce bloc est utile seulement pour débugger afin de pouvoir voir les valeurs des compteurs</td>
                         <td>Texte</td>
                     </tr>
                     <tr>
-                        <td>{% blockly_block createFlower %}</td>
+                        <td>{% include blockly_block.html name="createFlower" %}</td>
                         <td>Permet de créer une fleur artificielle qui aura les valeurs données en <code>x</code> et <code>y</code> (dépend de ce que tu as fixer comme paramètres).<br>Voir <a href="#createArtificalFlower">ci-dessous</a></td>
                         <td>Fleur</td>
                     </tr>
@@ -145,7 +145,7 @@
                     Pour cela on va d'abord créer une fleur avec le bloc supplémentaire en spécifiant les coordonnées <code>x</code> et <code>y</code> désirés.
                 </p>
                 <div class="mx-auto" align="center">
-                    {% blockly_block createFlower %}
+                    {% include blockly_block.html name="createFlower" %}
                 </div>
                 <p>
                     Après cela il faut qu'on exécute le code pour mettre à jour le graphe via le bouton
@@ -291,22 +291,22 @@
                     <img src="/static/img/KNN/stepMainEx3.PNG" class="img-fluid">
                 </div>
 
-                {% recommendedBlocks countersReset countersIncrease countersGetMinMax getK forI %}
+                {% include recommendedBlocks.html blocks='countersReset countersIncrease countersGetMinMax getK forI' %}
 
-                {% help %}
-                    Une structure correcte du code est la suivante :
-                <ol>
-                    <li>Réinitialiser le compteur, chacune des trois fleurs à un compteur qui est mis à 0</li>
-                    <li>Pour chacune des K fleurs les plus proches, il faudra augmenter leur compteur individuel de 1</li>
-                    <li>Une fois les K fleurs parcouru, il suffit de choisir celle qui à la valeur de compteur la plus haute et mettre à jour le résultat renvoyé</li>
-                </ol>
-                {% endhelp %}
+                {% include help.html help='
+                        Une structure correcte du code est la suivante :
+                            <ol>
+                                <li>Réinitialiser le compteur, chacune des trois fleurs à un compteur qui est mis à 0</li>
+                                <li>Pour chacune des K fleurs les plus proches, il faudra augmenter leur compteur individuel de 1</li>
+                                <li>Une fois les K fleurs parcouru, il suffit de choisir celle qui à la valeur de compteur la plus haute et mettre à jour le résultat renvoyé</li>
+                            </ol>
+                ' %}
 
-                {% correction %}
-                <div class="mx-auto" align="center">
-                    <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
-                </div>
-                {% endcorrection %}
+                {% include correction.html correction='
+                    <div class="mx-auto" align="center">
+                        <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
+                    </div>'
+                %}
 
                 <h3>Etape finale : Obtenir 100%</h3>
                 <p>
@@ -315,15 +315,15 @@
                     choisis bien tes paramètres (<a href="#parameterPanel">K, Axe x et Axe y</a>) et croise les doigts pour atteindre les 100% !
                 </p>
 
-                {% correction %}
-                <div class="mx-auto" align="center">
-                    <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
-                </div>
-                Avec par exemple comme paramètres :
-                <div class="mx-auto" align="center">
-                    <img src="/static/img/KNN/solParametersKNN.png" class="img-fluid">
-                </div>
-                {% endcorrection %}
+                {% include correction.html correction='
+                    <div class="mx-auto" align="center">
+                        <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
+                    </div>
+                    Avec par exemple comme paramètres :
+                    <div class="mx-auto" align="center">
+                        <img src="/static/img/KNN/solParametersKNN.png" class="img-fluid">
+                    </div>'
+                %}
             </main>
         </div>
     </div>

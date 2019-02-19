@@ -1,0 +1,27 @@
+
+<div class="card border-info mb-3">
+    <div class="card-header">
+        <button class="btn btn-link" type="button" onclick="toggleNext(this)">
+            Blocs recommandés
+        </button>
+    </div>
+    <div class="hide collapse show" style="">
+        <div class="card-body">
+
+            <div class="container">
+                <div class="row">
+                    {% assign blocks = include.blocks | split: " " | sample: 10 %}
+                    {% assign blocksSize = blocks | size %}
+                    {% assign randomBlocks = blocks | sample: blocksSize %}
+                    {% for block in randomBlocks %}
+                        <div class="col-sm-4" style="padding-left: 2px;padding-right: 2px;">
+                            <div class="card">
+                                {% include blockly_block.html name=block %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

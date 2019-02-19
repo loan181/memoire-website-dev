@@ -62,30 +62,10 @@
 
 
     {%  if include.ex.correction  %}
-        <div class="card border-success mb-3 onlyTeacher">
-            <div class="card-header">Correction</div>
-            <div class="card-body text-success">
-                <p class="card-text">
-                    {{ include.ex.correction }}
-                </p>
-            </div>
-        </div>
+        {% include correction.html correction=include.ex.correction %}
     {% endif %}
 
     {%  if include.ex.help  %}
-        <div class="card border-warning mb-3">
-            <div class="card-header">
-                <button class="btn btn-link" type="button" onclick="toggleNext(this)">
-                    Aide
-                </button>
-            </div>
-            <div class="collapse hide">
-                <div class="card-body">
-                    <p class="card-text">
-                        {{ include.ex.help }}
-                    </p>
-                </div>
-            </div>
-        </div>
+        {% include correction.html help=include.ex.help %}
     {% endif %}
 </div>
