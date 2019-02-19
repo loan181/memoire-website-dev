@@ -73,6 +73,14 @@ class Node {
             let currentProportion = this.proportionOfEachFlower[flower];
             let angleEnd = accumulatedAngle + (360*currentProportion/100);
 
+            if (flower === this.maxProportionKey) {
+                this.drawShape.attr({
+                    stroke: pieCcolors[counter],
+                    "stroke-width": 3,
+                    "stroke-opacity":1
+                });
+            }
+
             sector(0, 0, circleR, accumulatedAngle, angleEnd,{"fill": pieCcolors[counter], "fill-opacity":0.4, "stroke-opacity":0.2});
 
             accumulatedAngle = angleEnd;
@@ -82,6 +90,10 @@ class Node {
         this.drawText = paper.text(0, 0, "+").attr({"font-weight": "bold", "font-size":24});
 
         this.draw = paper.setFinish();
+
+        this.draw.attr({
+            cursor:"pointer"
+        });
 
         this.draw.hover(
             this.hover,
@@ -179,7 +191,7 @@ class Node {
         this.infoText.push(
             paper.text(this.x, this.y+30, hightlightText).attr({"font-weight": "bold"}),
             paper.text(this.x, this.y+34, "\n"+text)
-        )
+        );
         this.infoText.attr({"font-size":12})
     }
 
@@ -298,19 +310,8 @@ class Node {
         }
     }
 
-    // TODO : peut être precompute
     get majorityClass() {
-        let ret = null;
-        let countClassesDictionary = this.flowerCounter;
-
-        let curMaxValue = -1;
-        for (var className in countClassesDictionary) {
-            if (countClassesDictionary[className] > curMaxValue) {
-                ret = className;
-                curMaxValue = countClassesDictionary[className];
-            }
-        }
-        return ret;
+        return this.maxProportionKey;
     }
 
     /**
@@ -364,6 +365,11 @@ class Node {
             this.drawShape,
             this.drawText
         );
+
+        this.draw.attr({
+            cursor:"pointer"
+        });
+
         this.draw.hover(
             this.hover,
             this.unHover,
