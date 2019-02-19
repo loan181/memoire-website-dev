@@ -574,17 +574,7 @@ class BinaryTree {
 
     refreshNode(node, dict) {
         if (Object.keys(dict).length !== 0) { // Empty dictionary = leaf -> no computation needed
-            let axis = currentXCat;
-            if (dict["parameter"] === "x") {
-                axis = currentXCat;
-            }
-            else if (dict["parameter"] === "y") {
-                axis = currentYCat;
-            }
-            else {
-                console.warn("Unknown axis given while parsing json for tree : ", dict["parameter"]);
-            }
-            node.modify(axis, dict["operator"], dict["value"]);
+            node.modify(dict["parameter"], dict["operator"], dict["value"]);
             let child = dict["child"];
             this.refreshNode(node.left, child[0]);
             this.refreshNode(node.right, child[1]);
