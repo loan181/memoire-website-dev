@@ -121,9 +121,11 @@ class Node {
             this.displayProportionOfEachFlower();
             highlightAllMarkers();
             drawPointsIndex(this.associatedFlower);
+            redrawPlot();
         } else {
             highlightCondition(this.parameterAxis, this.operator, this.valueToCompare);
             highlightMarkerCondition(this.left.associatedFlower, this.right.associatedFlower);
+            redrawPlot();
         }
 
     }
@@ -137,6 +139,7 @@ class Node {
         }
         unHighlightAllMarkers(); // Yellow if leaf, and red/green if node
         resetPlotWithDefaultData();
+        redrawPlot();
     }
 
     get flowerCounter() {

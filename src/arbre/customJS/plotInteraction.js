@@ -8,7 +8,6 @@ function drawPointsIndex(listOfMarkersIndex) {
         figure.data[correspondingDataIdx].x.push(correspondingFlower.get(currentXCat));
         figure.data[correspondingDataIdx].y.push(correspondingFlower.get(currentYCat));
     }
-    redrawPlot();
 }
 
 function highlightCondition(axis, operation, value) {
@@ -34,6 +33,11 @@ function highlightCondition(axis, operation, value) {
         line["x0"] = figure.layout.xaxis.range[0];
         line["x1"] = figure.layout.xaxis.range[1];
     }
+
+    // On dessine une première fois la ligne pour que le canva s'ajuste correctement
+    // sinon les rectangles ne seront pas bien alignés/dessinés
+    figure.layout.shapes.push(line);
+    redrawPlot(); // TODO : regarder si on peut pas juste ajouter avec 'restyle'
 
     // Determine square coordinate
     // By default they both cover all the graph space
@@ -77,12 +81,10 @@ function highlightCondition(axis, operation, value) {
         figure.layout.shapes.push(rectangleOut);
     }
     figure.layout.shapes.push(line);
-    redrawPlot(); // TODO : regarder si on peut pas juste ajouter avec 'restyle'
 }
 
 function unhighlightCondition() {
     figure.layout.shapes = []; // TODO : enlever les figures ajoutés au lieu de tout supprimer
-    redrawPlot();
 }
 
 function highlightAllMarkers() {
@@ -132,8 +134,6 @@ function highlightMarkerCondition(indexesOut, indexesIn) {
         figure.data[correspondingDataIdx+3].x.push(correspondingFlower.get(currentXCat));
         figure.data[correspondingDataIdx+3].y.push(correspondingFlower.get(currentYCat));
     }
-
-    redrawPlot();
 }
 
 function unhighlightMarkerCondition() {

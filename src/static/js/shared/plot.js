@@ -36,3 +36,4 @@ Plotly.plot(graphContainer,  {
     }
 });
 resetPlotWithDefaultData();
+redrawPlot();
