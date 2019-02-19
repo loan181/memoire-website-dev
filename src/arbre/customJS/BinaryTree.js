@@ -279,8 +279,8 @@ class Node {
     }
 
     updateChildCorrespondingFlower() {
-        var trueFlowerIndex = [];
-        var falseFlowerIndex = [];
+        let trueFlowerIndex = [];
+        let falseFlowerIndex = [];
         for (let i = 0; i < this.associatedFlower.length; i++) {
             let flowerInd = this.associatedFlower[i];
             let correspondingFlower = trainingSet[flowerInd];
@@ -328,10 +328,10 @@ class Node {
     modify(axis, operation, value) {
         this.parameterAxis = axis;
         if (this.parameterAxis === "x") {
-            this.parameter = frenchTranslationCat(currentXCat);
+            this.parameter = currentXCat;
         }
         else if (this.parameterAxis === "y") {
-            this.parameter = frenchTranslationCat(currentYCat);
+            this.parameter = currentYCat;
         }
         else {
             console.error("Unkwnon parameter as axis : " + this.parameterAxis);
@@ -359,7 +359,7 @@ class Node {
             stroke: "#000",
             "stroke-width": 1
         });
-        this.drawText = paper.text(0, 0, this.parameter + " " + operationChar[this.operator] + " " + this.valueToCompare).attr({
+        this.drawText = paper.text(0, 0, frenchTranslationCat(this.parameter )+ " " + operationChar[this.operator] + " " + this.valueToCompare).attr({
             "font-size": 14
         });
 
