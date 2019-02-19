@@ -79,7 +79,7 @@ class Node {
             counter++;
         }
 
-        this.drawText = paper.text(0, 0, "+");
+        this.drawText = paper.text(0, 0, "+").attr({"font-weight": "bold", "font-size":24});
 
         this.draw = paper.setFinish();
 
@@ -139,9 +139,16 @@ class Node {
 
     refreshProportionOfEachFlower() {
         // Count the proportion of the flower of the leaf
-        let flowerProportions = this.flowerCounter;
+        let flowerCounter = this.flowerCounter
+        let flowerProportions = {};
 
-        for (var key in flowerProportions){
+        // Compute the maximum at the same time
+        this.maxProportionKey = null;
+        for (var key in flowerCounter){
+            if (this.maxProportionKey === null || flowerCounter[key] > flowerCounter[this.maxProportionKey]) {
+                this.maxProportionKey = key;
+            }
+            flowerProportions[key] = flowerCounter[key];
             flowerProportions[key] /= this.associatedFlower.length;
             flowerProportions[key] *= 100;
         }
@@ -153,16 +160,27 @@ class Node {
     displayProportionOfEachFlower() {
         // Count the proportion of the flower of the leaf
         let flowerProportions = this.proportionOfEachFlower;
-        // TODO : trouver le maximum (qui déterminera la fleur)
-        // console.log(flowerProportions);
+
         var text = "";
+        var hightlightText = "";
         for (var key in flowerProportions){
-            text += key + " : " + flowerProportions[key].toFixed(2) +"%\n"
+            if (key === this.maxProportionKey) {
+                hightlightText += key + " : " + flowerProportions[key].toFixed(2) +"%\n";
+            }
+            else {
+                text += key + " : " + flowerProportions[key].toFixed(2) + "%\n"
+            }
         }
-        if (text === "") {
-            text = "(vide)";
+
+        if (hightlightText === "") {
+            hightlightText = "(vide)";
         }
-        this.infoText = paper.text(this.x, this.y+45, text);
+        this.infoText = paper.set();
+        this.infoText.push(
+            paper.text(this.x, this.y+30, hightlightText).attr({"font-weight": "bold"}),
+            paper.text(this.x, this.y+34, "\n"+text)
+        )
+        this.infoText.attr({"font-size":12})
     }
 
     /**
