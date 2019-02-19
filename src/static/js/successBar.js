@@ -31,6 +31,7 @@ class ProgressBar {
     set value(newVal) {
         this._value = newVal;
         this.refreshDrawWidth();
+        logActivityProgression(document.title, Math.round(newVal));
     }
 
     get value() {
