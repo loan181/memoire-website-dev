@@ -402,13 +402,19 @@ class Branch {
         let node2X = this.nodeChild.x;
         let node2Y = this.nodeChild.y;
 
+        let yesBranch = node1X < node2X;
+        let branchColor = "#ff0400";
+        if (yesBranch) {
+            branchColor = "#25ff58"
+        }
+
         // See : http://dmitrybaranovskiy.github.io/raphael/reference.html#Paper.path
         let pathString = "M" + node1X + "," + node1Y + "L" + node2X + "," + node2Y;
 
         if (this.draw != null) {
             this.draw.remove();
         }
-        this.draw = paper.path(pathString);
+        this.draw = paper.path(pathString).attr({"stroke":branchColor});
     }
 
     delete() {
