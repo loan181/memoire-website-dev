@@ -277,9 +277,10 @@ function nn(data, w12, bias2, w23, bias3) {
     // timing measurement
     var dt = new Date() - t1; console.log('NN time: '+dt+'ms');
 
-    drawFirstLayer(data);
-    drawSecondLayer(out2);
-    drawOutput(output);
+    fillFirstLayer(data);
+    // drawFirstLayer(data);
+    // drawSecondLayer(out2);
+    // drawOutput(output);
     return output;
 }
 
@@ -502,6 +503,14 @@ function erase() {
     document.getElementById('nnOut').innerHTML = '';
 }
 
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
+}
+
 function findxy(res, e) {
     if (res == 'down') {
         if (clearBeforeDraw == true) {
@@ -512,17 +521,10 @@ function findxy(res, e) {
             clearBeforeDraw = false;
         }
 
-        if (e.pageX != undefined && e.pageY != undefined) {
-            currX = e.pageX-canvas.offsetLeft;
-            currY = e.pageY-canvas.offsetTop;
-        } else {
-            currX = e.clientX + document.body.scrollLeft
-                + document.documentElement.scrollLeft
-                - canvas.offsetLeft;
-            currY = e.clientY + document.body.scrollTop
-                + document.documentElement.scrollTop
-                - canvas.offsetTop;
-        }
+        let xyPos = getMousePos(canvas, e);
+        currX = xyPos["x"];
+        currY = xyPos["y"];
+
         //draw a circle
         ctx.beginPath();
         ctx.lineWidth = 1;
@@ -544,17 +546,9 @@ function findxy(res, e) {
             // draw a line to previous point
             prevX = currX;
             prevY = currY;
-            if (e.pageX != undefined && e.pageY != undefined) {
-                currX = e.pageX-canvas.offsetLeft;
-                currY = e.pageY-canvas.offsetTop;
-            } else {
-                currX = e.clientX + document.body.scrollLeft
-                    + document.documentElement.scrollLeft
-                    - canvas.offsetLeft;
-                currY = e.clientY + document.body.scrollTop
-                    + document.documentElement.scrollTop
-                    - canvas.offsetTop;
-            }
+            let xyPos = getMousePos(canvas, e);
+            currX = xyPos["x"];
+            currY = xyPos["y"];
             currPath = paths[paths.length-1];
             currPath[0].push(currX);
             currPath[1].push(currY);

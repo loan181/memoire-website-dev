@@ -2,91 +2,218 @@
 <html lang="en">
 <head>
     {% include head.html %}
+    {% include library_raphael.html %}
 
     <!-- My Scripts -->
     <script src="js/NN.js"></script>
-    <script src="../../NN/js/NN.js"></script> <!--TODO : to remove -->
 </head>
 
 <body>
 {% include nav.html %}
 <main role="main" class="container" style="max-width: 95%">
+
     <h1>Réseau neuronnal</h1>
-    <div class="container" style="float:left;">
-        <div>
-            <canvas id="can" width="280" height="280" style="top:10%;left:10%;border:2px solid; cursor:crosshair"></canvas>
-        </div>
 
-        <div class="container">
-            <div style="padding-bottom:5px;"><input type="checkbox" id="preprocessing"><span style="margin-left:5px;">Display Preprocessing</span></div>
-            <div style="padding-bottom:5px;"><input type="checkbox" id="scaleStrokeWidth" checked="true"><span style="margin-left:5px;">Scale Stroke Width</span></div>
-            <div style="float:left;padding-right:10px;"><input type="button" value="clear" id="clr" size="23" onclick="erase()"></div>
-            <div style="float:left;"><input type="button" value="recognize" id="recognize" size="23" onclick="recognize()"></div>
-            <div id="nnInput"></div>
-        </div>
-        <br><br>
-        <div>
-            <canvas id="network" width="784" height="30" style="top:10%;left:10%;border:2px solid;"></canvas>
-        </div>
-
-        <script>
-            var canvas = document.getElementById("network");
-            var ctxNetwork = canvas.getContext("2d");
-
-            var w = 784;
-
-            // TODO : refactor ! (seulement la hauteur et la facon de calculer la lightness change)
-            function drawFirstLayer(data) {
-                let size = 1;
-                for (let i = 0; i < data.length; i++) {
-                    let curData = data[i];
-                    // [-1, 1] = [blanc, noir]
-                    let lightVal = 100 - 50*(curData +1);
-                    ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                    ctxNetwork.fillRect(i,0,size,10);
-                }
-            }
-
-            function drawSecondLayer(data) {
-                let size = w/data.length;
-                for (let i = 0; i < data.length; i++) {
-                    let curData = data[i];
-                    // [0, 1] = [blanc, noir]
-                    let lightVal = 100 - 100*(curData);
-                    ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                    ctxNetwork.fillRect(i*size,10,size,10);
-                }
-            }
-
-
-            function drawOutput(data) {
-                let size = w/data.length;
-                for (let i = 0; i < data.length; i++) {
-                    let curData = data[i];
-                    // [0, 1] = [blanc, noir]
-                    let lightVal = 100 - 100*(curData);
-                    ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                    ctxNetwork.fillRect(i*size,20,size,10);
-                }
-            }
-        </script>
-
-        <div class="container">
-        <p>
-        <br><br>
-        {% for i in (0 .. 9) %}
-            <h5 style="float: left; margin-right: 1em;">{{ i }} :</h5>
-            <div class="progress">
-                <div id="percentBar{{ i }}" class="progress-bar" role="progressbar" style="width: 0%"></div>
+    <div class="row mt-2 col-md-12">
+        <div class="col-sm-4">
+            <div>
+                <canvas id="can" width="280" height="280" style="top:10%;left:10%;border:2px solid; cursor:crosshair"></canvas>
             </div>
-            <br>
-        {% endfor %}
-        </p>
 
-        <p class="lead">
-        Reconnu comme : <span id="nnOut"></span>
-        </p>
+            <div class="container">
+                <div style="padding-bottom:5px;"><input type="checkbox" id="preprocessing"><span style="margin-left:5px;">Display Preprocessing</span></div>
+                <div style="padding-bottom:5px;"><input type="checkbox" id="scaleStrokeWidth" checked="true"><span style="margin-left:5px;">Scale Stroke Width</span></div>
+                <div style="float:left;padding-right:10px;"><input type="button" value="clear" id="clr" size="23" onclick="erase()"></div>
+                <div style="float:left;"><input type="button" value="recognize" id="recognize" size="23" onclick="recognize()"></div>
+                <div id="nnInput"></div>
+            </div>
+            <br><br>
+            <!--
+            <div>
+                <canvas id="network" width="784" height="30" style="top:10%;left:10%;border:2px solid;"></canvas>
+            </div>
+            -->
+
+            <script>
+                /*
+                var canvas = document.getElementById("network");
+                var ctxNetwork = canvas.getContext("2d");
+
+                var w = 784;
+
+                // TODO : refactor ! (seulement la hauteur et la facon de calculer la lightness change)
+                function drawFirstLayer(data) {
+                    let size = 1;
+                    for (let i = 0; i < data.length; i++) {
+                        let curData = data[i];
+                        // [-1, 1] = [blanc, noir]
+                        let lightVal = 100 - 50*(curData +1);
+                        ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
+                        ctxNetwork.fillRect(i,0,size,10);
+                    }
+                }
+
+                function drawSecondLayer(data) {
+                    let size = w/data.length;
+                    for (let i = 0; i < data.length; i++) {
+                        let curData = data[i];
+                        // [0, 1] = [blanc, noir]
+                        let lightVal = 100 - 100*(curData);
+                        ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
+                        ctxNetwork.fillRect(i*size,10,size,10);
+                    }
+                }
+
+
+                function drawOutput(data) {
+                    let size = w/data.length;
+                    for (let i = 0; i < data.length; i++) {
+                        let curData = data[i];
+                        // [0, 1] = [blanc, noir]
+                        let lightVal = 100 - 100*(curData);
+                        ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
+                        ctxNetwork.fillRect(i*size,20,size,10);
+                    }
+                }
+                */
+            </script>
+
+            <div class="container">
+                <p>
+                    <br><br>
+                    {% for i in (0 .. 9) %}
+                <h5 style="float: left; margin-right: 1em;">{{ i }} :</h5>
+                <div class="progress">
+                    <div id="percentBar{{ i }}" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                </div>
+                <br>
+                {% endfor %}
+                </p>
+
+                <p class="lead">
+                    Reconnu comme : <span id="nnOut"></span>
+                </p>
+            </div>
         </div>
+
+
+        <div class="col-sm-8">
+            <div id="neuralNetworkContainer">
+            </div>
+
+            <script type="application/javascript">
+                let w = 1000;
+                let h = 1000;
+                let paper = Raphael("neuralNetworkContainer", w, h);
+                // Big background (not need to resize it as it is huge)
+                paper.rect(-1, -1, w+1, h+1).attr({
+                    fill: "#b4b4b4"
+                }).toBack();
+
+
+                let fakePic = [];
+                for (let i = 0; i < 28; i++) {
+                    for (let j = 0; j < 28; j++) {
+                        if (i < 4 || j < 4 || i>24 || j>24) {
+                            fakePic[i*28+j] = -1;
+                        } else {
+                            fakePic[i*28+j] = 1;
+                        }
+                    }
+                }
+
+                // Parse the picture, 4 pixels on each sides are ignored (28x28 -> 20x20)
+                // Then we get the mean value for each x chunck of pixels
+                function fillFirstLayer(pictureData) {
+                    // -1 = white, 1 = black
+                    // Transform it into a 20x20 array (ignoring 4 pixels on each side)
+                    function getPixelXY(x, y) {
+                        let pixelOffset = y + 4 + (x+4)*28;
+                        return pictureData[pixelOffset];
+                    }
+
+                    let pixelChunkSize = 5;
+                    let pictureSizeReduction = 4;
+                    // 20 x 20 -> 4 x 4 (each pixel is the mean of the 5 neighbours pixels
+                    for (let i = 0; i < pictureSizeReduction; i++) {
+                        for (let j = 0; j < pictureSizeReduction; j++) {
+                            let sumValue = 0;
+                            for (let k = 0; k < pixelChunkSize; k++) {
+                                for (let l = 0; l < pixelChunkSize; l++) {
+                                    sumValue += getPixelXY((i*pixelChunkSize)+k, (j*pixelChunkSize)+l);
+                                }
+                            }
+
+                            let mean = sumValue/(pixelChunkSize*pixelChunkSize);
+                            console.log(i,j,mean);
+                            let lightVal = 100 - 50*(mean+1);
+                            let color = "hsl(0,0%," + lightVal + "%)";
+                            firstLayerNeuron[i*pictureSizeReduction + j].attr("fill", color);
+                        }
+                    }
+
+                }
+
+
+                let neuronSize = 16;
+                let horizontalOffset = 450;
+
+                // First layer
+                let firstLayerSize = 16;
+                let firstLayerNeuron = new Array(firstLayerSize);
+                let offset1 = h/firstLayerSize;
+                for (let i = 0; i < firstLayerSize; i++) {
+                    firstLayerNeuron[i] = paper.circle(32, neuronSize +  i*offset1, neuronSize);
+                }
+
+                // Second layer
+                let secondLayerSize = 10;
+                let secondLayerNeuron = new Array(secondLayerSize);
+                let offset2 = h/secondLayerSize;
+                for (let i = 0; i < secondLayerSize; i++) {
+                    secondLayerNeuron[i] = paper.circle(32+horizontalOffset, neuronSize +  i*offset2, neuronSize);
+                }
+
+                // Third layer
+                let thirdLayerSize = 10;
+                let thirdLayerNeuron = new Array(thirdLayerSize);
+                let offset3 = h/thirdLayerSize;
+                for (let i = 0; i < thirdLayerSize; i++) {
+                    thirdLayerNeuron[i] = paper.circle(32+2*horizontalOffset, neuronSize +  i*offset3, neuronSize);
+                }
+
+                // Link between layers
+                let linkLayer12 = [];
+                for (let i = 0; i < firstLayerNeuron.length; i++) {
+                    let currFirstLayerNeuron = firstLayerNeuron[i];
+                    let x1 = currFirstLayerNeuron.attrs.cx;
+                    let y1 = currFirstLayerNeuron.attrs.cy;
+                    linkLayer12[i] = [];
+                    for (let j = 0; j < secondLayerNeuron.length; j++) {
+                        let currSecondLayerNeuron = secondLayerNeuron[j];
+                        let x2 = currSecondLayerNeuron.attrs.cx;
+                        let y2 = currSecondLayerNeuron.attrs.cy;
+                        linkLayer12[i][j] = paper.path(`M${x1} ${y1}L${x2} ${y2}`);
+                    }
+                }
+
+                let linkLayer23 = [];
+                for (let i = 0; i < secondLayerNeuron.length; i++) {
+                    let currFirstLayerNeuron = secondLayerNeuron[i];
+                    let x1 = currFirstLayerNeuron.attrs.cx;
+                    let y1 = currFirstLayerNeuron.attrs.cy;
+                    linkLayer23[i] = [];
+                    for (let j = 0; j < thirdLayerNeuron.length; j++) {
+                        let currSecondLayerNeuron = thirdLayerNeuron[j];
+                        let x2 = currSecondLayerNeuron.attrs.cx;
+                        let y2 = currSecondLayerNeuron.attrs.cy;
+                        linkLayer23[i][j] = paper.path(`M${x1} ${y1}L${x2} ${y2}`);
+                    }
+                }
+
+            </script>
+        </div>
+
     </div>
 
 
