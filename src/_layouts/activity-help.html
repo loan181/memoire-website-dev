@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>{{ page.title }}</title>
+    {% include head.html %}
+    {% include table_content.html %}
+    <script src="/static/js/contentForTeacher.js"></script>
+</head>
+<body data-spy="scroll" data-target="#toc">
+{% include nav.html %}
+<main role="main" class="container" style="max-width: 95%">
+    <div class="row">
+        <!-- sidebar, which will move to the top on a small screen -->
+        <div class="col-sm-3">
+            <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+        </div>
+        <!-- main content area -->
+        <div class="col-sm-9">
+            <h1>{{ page.title }}</h1>
+
+            {{ page.introduction }}
+            {% if page.previewPicture %}
+                <img src="{{ page.previewPicture }}" class="img-fluid center">
+            {% endif %}
+
+            <h2>Structure de la page</h2>
+            {% if page.toolbarActivityName %}
+                <h3>Barre d'outil</h3>
+                <p>
+                    Dans la partie supérieure de l’écran tu as différents boutons te permettant de réaliser certaines actions que nous allons détailler ici.
+                </p>
+                <div id="toolboxExplanation"></div>
+                <script src="/static/js/shared/ToolBox.js"></script>
+                <script>
+                    let TB = new ToolBox();
+                    let explanations = [];
+                    {% for elem in page.toolboxButtonDescription %}
+                        explanations.push("{{ elem }}");
+                    {% endfor %}
+                    TB.drawExplanation("{{ page.toolbarActivityName }}", "toolboxExplanation", explanations);
+                </script>
+            {% endif %}
+
+        </div>
+    </div>
+</main>
+
+{% include enlargeImage.html %}
+
+</body>
+</html>
