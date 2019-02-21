@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <title>{{ page.title }}</title>
     {% include head.html %}
     {% include table_content.html %}
     <script src="/static/js/contentForTeacher.js"></script>
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 {% include nav.html %}
 <main role="main" class="container" style="max-width: 95%">
@@ -40,6 +42,61 @@
                     TB.drawExplanation("{{ page.toolbarActivityName }}", "toolboxExplanation", explanations);
                 </script>
             {% endif %}
+
+            {% if page.leftPartName %}
+                <h3>{{ page.leftPartName }}</h3>
+                {{ page.leftPartDesc }}
+
+                    <ul class="list-unstyled">
+                        {% for section in page.leftPartSections %}
+                        <li class="media">
+                            <img src="{{ section.picture }}" class="mr-3 img-fluid" >
+                            <div class="media-body">
+                                <h4 class="mt-0 mb-1">{{ section.title }}</h4>
+                                {{ section.description }}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+            {% endif %}
+
+            {% if page.rightPartName %}
+                <h3>{{ page.rightPartName }}</h3>
+                <p>
+                    {{ page.rightPartDesc }}
+                </p>
+
+                {% if page.rightPartContent %}
+                    {{ page.rightPartContent }}
+                {% else if page.rightPartContentBlockly %}
+                    <h4>Blocs supplémentaires</h4>
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Bloc</th>
+                            <th scope="col">Explication</th>
+                            <th scope="col">Type de retour</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for block in page.rightPartContentBlockly %}
+                            <tr>
+                                <td>{% include blockly_block.html name=block.blockName %}</td>
+                                <td>{{ block.desc }}</td>
+                                {% if block.returnType %}
+                                    <td>{{ block.returnType }}</td>
+                                {% else %}
+                                    <td><i>Rien</i></td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            {% endif %}
+
+            <h2>Exemples</h2>
 
         </div>
     </div>

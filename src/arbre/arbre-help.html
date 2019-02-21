@@ -7,10 +7,34 @@ introduction : >
         Maintenant que vous avons une bonne idée du fonctionnement d'un arbre de décision, nous allons en créer de manière dynamique !
     </p>
 previewPicture : /static/img/arbre/pagePreview.PNG
+
 toolbarActivityName : decision-tree
 toolboxButtonDescription :
     - Réinitialiser l'arbre à zéro en effacant tout les noeuds existant.
     - Sauvegarder/télécharger ton projet sur ton ordinateur
     - Ouvrir un projet précédemment sauvegardé.<br>L'arbre ainsi que tes pramètres d'axes seront rétablis
     - Tester le classifieur sur l'arbre de décision courant.<br>Cela te permettra de réussir ton objectif !
+
+leftPartName : Données et Paramètres
+leftPartDesc : La partie de gauche te permet d'observer les données ainsi que de modifier les paramètres de l'arbre.
+leftPartSections:
+-   title: Panneau Graphe et Données
+    picture: /static/img/arbre/graph.PNG
+    description: >
+        Te permet de consulter et visualiser les données du training set.
+        Chaque point du graphe correspond à une fleur du training set.
+        Sa forme et couleur définit sa classe comme légendé en dessous du graphe.<br>
+        Tu peux survoler avec ta souris un point pour obtenir des informations le concernant.<br>
+        Tu pourra également ajouter des fleurs "artificielle" dans le graphe via Blockly.
+        Pour effacer ses derniers tu pourra utiliser le bouton jaune avec la gomme<br>
+-   title: Panneau paramètres
+    picture: /static/img/arbre/axisParameters.PNG
+    description: >
+        Te permet de modifier le choix des axes <code>x</code> et <code>y</code> parmi les différentes métriques.
+
+rightPartName : Arbre intéractif
+rightPartDesc : La partie de droite est l'emplacement ou tu pourra créer et modifier ton arbre de décision.
+rightPartContent : >
+    Hey
+
 ---
