@@ -96,7 +96,32 @@
                 {% endif %}
             {% endif %}
 
+            {% if page.examples %}
             <h2>Exemples</h2>
+                {% for example in page.examples %}
+                    <h3>{{ example.title }}</h3>
+                    {{ example.content }}
+                {% endfor %}
+            {% endif %}
+
+            {% if page.goalDescription %}
+                <h2>Objectif</h2>
+                {{ page.goalDescription }}
+
+                {% for step in page.goalSteps %}
+                    <h3>Etape {{ forloop.index }} : {{ step.title }}</h3>
+                    {{ step.content }}
+                    {% if step.recommandedBlocks %}
+                        {% include recommendedBlocks.html blocks=step.recommandedBlocks %}
+                    {% endif %}
+                    {% if step.help %}
+                        {% include help.html help=step.help %}
+                    {% endif %}
+                    {% if step.correction %}
+                        {% include correction.html correction=step.correction %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
 
         </div>
     </div>
