@@ -4,39 +4,175 @@
     <meta charset="UTF-8">
     <title>TEST</title>
     {% include head.html %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Sigmar+One);
+
+        body {
+            background: #3da1d1;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        #congrats {
+            position: absolute;
+            top: calc(~"50% - 50px");
+            width: 550px;
+            height: 100px;
+            line-height: 1;
+            text-align: center;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+
+        #title {
+            transform-origin: 50% 50%;
+            font-size: 50px;
+            font-family: 'Sigmar One', cursive;
+            cursor: pointer;
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            text-align: center;
+            width: 100%;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .particle {
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            z-index: 1;
+            font-size: 30px;
+        // display: none;
+        }
+
+        .star {
+            color: #ffcc00;
+        }
+
+        .blob {
+            background: #d5f2ff;
+            background: rgba(red(#ffcc00), green(#ffcc00), blue(#ffcc00), 0.25);
+            border-radius: 50%;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-    <form>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Example select</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect2">Example multiple select</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-    </form>
 
+<!--
+<div id="congrats">
+    <h1 id="title">Bravo !</h1>
+</div>
+-->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div id="congrats">
+            <h1 id="title">Bravo !</h1>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Click "Congratulations!" to play animation
+    var particles = ['.blob', '.star'],
+        $congratsSection = $('#congrats'),
+        $title = $('#title');
+
+    $(function() {
+        init({
+            numberOfStars: 20,
+            numberOfBlobs: 10
+        });
+
+        fancyPopIn();
+    });
+
+    $congratsSection.click(fancyPopIn);
+
+    function fancyPopIn() {
+        reset();
+        animateText();
+
+        for (var i = 0, l = particles.length; i < l; i++) {
+            animateParticles(particles[i]);
+        }
+    }
+
+    function animateText() {
+        TweenMax.from($title, 0.65, {
+            scale: 0.4,
+            opacity: 0,
+            rotation: 15,
+            ease: Back.easeOut.config(5),
+        });
+    }
+
+    function animateParticles(selector) {
+        var xSeed = _.random(350, 380);
+        var ySeed = _.random(120, 170);
+
+        $.each($(selector), function(i) {
+            var $particle = $(this);
+            var speed = _.random(1, 4);
+            var rotation = _.random(20, 100);
+            var scale = _.random(0.8, 1.5);
+            var x = _.random(-xSeed, xSeed);
+            var y = _.random(-ySeed, ySeed);
+
+            TweenMax.to($particle, speed, {
+                x: x,
+                y: y,
+                ease: Power1.easeOut,
+                opacity: 0,
+                rotation: rotation,
+                scale: scale,
+                onStartParams: [$particle],
+                onStart: function($element) {
+                    $element.css('display', 'block');
+                },
+                onCompleteParams: [$particle],
+                onComplete: function($element) {
+                    $element.css('display', 'none');
+                }
+            });
+        });
+    }
+
+    function reset() {
+        for (var i = 0, l = particles.length; i < l; i++) {
+            $.each($(particles[i]), function() {
+                TweenMax.set($(this), { x: 0, y: 0, opacity: 1 });
+            });
+        }
+
+        TweenMax.set($title, { scale: 1, opacity: 1, rotation: 0 });
+    }
+
+    function init(properties) {
+        for (var i = 0; i < properties.numberOfStars; i++) {
+            $congratsSection.append('<div class="particle star fa fa-star ' + i + '"></div>');
+        }
+
+        for (var i = 0; i < properties.numberOfBlobs; i++) {
+            $congratsSection.append('<div class="particle blob ' + i + '"></div>');
+        }
+    }
+</script>
 </body>
 </html>
