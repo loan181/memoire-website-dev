@@ -1,6 +1,7 @@
 
 class ProgressBar {
     constructor(id) {
+        this.alreadySucceed = false;
         this.elem = document.getElementById(id);
         this.resetValue() ;
         this.draw();
@@ -47,6 +48,13 @@ class ProgressBar {
             return "progress-bar"
         }
         if (this.value >= 99.9) {
+            try {
+                if (!this.alreadySucceed) // TODO : refactor, rien à faire ici
+                    exerciceSuccess();
+                this.alreadySucceed = true;
+            } catch (e) {
+                // Do notring special if function does not exists
+            }
             return "progress-bar progress-bar-striped progress-bar-animated bg-success";
         } else if (this.value >= 49.9) {
             return "progress-bar progress-bar-striped progress-bar-animated bg-warning";

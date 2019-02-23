@@ -16,6 +16,10 @@
     <!-- Custom -->
     <script src="/static/js/shared/iris.js"></script>
     <script src="/static/js/shared/GraphFunctions.js"></script>
+
+    <link rel="stylesheet" href="/static/css/animationSuccess.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 </head>
 
 <body>
@@ -39,6 +43,10 @@
     <script src="/static/js/successBar.js"></script>
     <script>
         let pb = new ProgressBar("progressBar");
+        function exerciceSuccess() {
+            $('#exerciceSuccess').modal('toggle');
+            fancyPopIn();
+        }
     </script>
 
     <div class="row mt-2 col-md-12">
@@ -122,6 +130,17 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="exerciceSuccess" tabindex="-1" role="dialog" aria-labelledby="exerciceSuccessLabel" aria-hidden="true" style="background-color: rgba(0,250,255,0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div id="congrats">
+            <h1 id="sucessMessage">Bravo !</h1>
+        </div>
+    </div>
+</div>
+<script src="/static/js/animationSuccess.js"></script>
+
+
 <script src="customJS/BinaryTree.js"></script>
 <script src="/static/js/shared/plot.js"></script>
 <script>
