@@ -25,8 +25,54 @@
                 <div style="padding-bottom:5px;"><input type="checkbox" id="scaleStrokeWidth" checked="true"><span style="margin-left:5px;">Scale Stroke Width</span></div>
                 <div style="float:left;padding-right:10px;"><input type="button" value="clear" id="clr" size="23" onclick="erase()"></div>
                 <div style="float:left;"><input type="button" value="recognize" id="recognize" size="23" onclick="recognize()"></div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modifyWeights">Modifier les poids</button>
                 <div id="nnInput"></div>
             </div>
+
+            <!-- Choose arc -->
+            <div class="modal fade" id="modifyWeights" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col" align="center">
+                                    Couche 1<br>
+                                    <div>
+                                        <i class="far fa-circle"></i>
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="col" align="center">
+                                    Couche 2
+                                    <div>
+                                        <i class="fas fa-sign-in-alt"></i>
+                                        <i class="far fa-circle"></i>
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="col" align="center">
+                                    Couche 3<br>
+                                    <div>
+                                        <i class="fas fa-sign-in-alt"></i>
+                                        <i class="far fa-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <br><br>
             <!--
             <div>
@@ -98,8 +144,10 @@
 
 
         <div class="col-sm-8">
+            <!--
             <div id="neuralNetworkContainer">
             </div>
+            -->
 
             <script type="application/javascript">
 
