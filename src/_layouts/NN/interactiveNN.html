@@ -155,7 +155,7 @@
 
                     let informationForSpecialNeuron = $('#neuronModalInformationForSpecificLayers');
                     if (neuronIndexToDisplayLayer === 1) {
-                        let correspondingPixelX = Math.floor(neuronIndexNumber-1);
+                        let correspondingPixelX = Math.floor((neuronIndexNumber-1)/28);
                         let correspondingPixelY = (neuronIndexNumber-1)%28;
                         informationForSpecialNeuron.text(`Pixel de l'image de coordonnée : (${correspondingPixelX}, ${correspondingPixelY})`);
 
