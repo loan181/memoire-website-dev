@@ -27,7 +27,7 @@
                 <div style="padding-bottom:5px;"><input type="checkbox" id="scaleStrokeWidth" checked="true"><span style="margin-left:5px;">Scale Stroke Width</span></div>
                 <div style="float:left;padding-right:10px;"><input type="button" value="clear" id="clr" size="23" onclick="erase()"></div>
                 <div style="float:left;"><input type="button" value="recognize" id="recognize" size="23" onclick="recognize()"></div>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modifyWeights">Modifier les poids</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modifyWeights">Modifier le réseau</button>
                 <div id="nnInput"></div>
             </div>
 
@@ -36,7 +36,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modification des poids du réseau de neuronne</h5>
+                            <h5 class="modal-title">Modifier le réseau de neuronne</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -46,8 +46,8 @@
                                 <div class="col" align="center">
                                     Couche 1<br>
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-outline-secondary" onclick="setneuronIndexToDisplayLayer(1);setNeuronIndexToDisplay($(layer1spinner).val());$(neuronModal).modal('toggle');"><i class="far fa-circle"></i></button>
-                                        <button type="button" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(1, $(layer1spinner).val(), 'neuron')"><i class="far fa-circle"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(1, $(layer1spinner).val(), 'wOut')"><i class="fas fa-sign-out-alt"></i></button>
                                     </div>
                                     <div>
                                         <div style="padding-top: 20px; padding-bottom: 15px">
@@ -105,7 +105,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Neurone n°<span id="currentNeuronNumber"></span></h5>
+                            <h5 class="modal-title">Neurone n°<span class="currentNeuronNumber"></span></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -122,42 +122,69 @@
                 </div>
             </div>
 
+            <!-- Outgoing neurons weights modal -->
+            <div class="modal fade" id="outWeightModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Poids de sorties du neurone n°<span class="currentNeuronNumber"></span></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <script>
                 // Store current information for modals
                 let neuronIndexToDisplay = null;
                 let neuronIndexToDisplayLayer = null;
 
+                function buttonPressed(layer, neuron, action) {
+                    setneuronIndexToDisplayLayer(layer);
+                    setNeuronIndexToDisplay(neuron);
+
+                    if (action === "neuron") {
+                        refreshNeuronWindowInfo();
+                        $('#neuronModal').modal('toggle');
+                    }
+                    else if (action === "wOut") {
+                        $('#outWeightModal').modal('toggle');
+                    }
+                }
+
                 function setneuronIndexToDisplayLayer(newValue) {
                     neuronIndexToDisplayLayer = newValue;
-
-                    $('#neuronLayerInfo').text(neuronIndexToDisplayLayer);
-
-                    let layerSize = null;
-                    if (newValue === 1) {
-                        layerSize = w12[0].length;
-                    }
-                    else if (newValue === 2) {
-                        layerSize = w23[0].length;
-                    } else if (newValue === 3) {
-                        layerSize = w23.length;
-                    }
-
-                    $('#maximumValueNeuronLabel').text(layerSize);
-                    $('#neuronIndexSelector').attr({"max":layerSize});
                 }
+
                 function setNeuronIndexToDisplay(newValue) {
                     neuronIndexToDisplay = newValue;
-                    let neuronIndexNumber = Number(neuronIndexToDisplay);
 
-                    $('#currentNeuronNumber').text(neuronIndexToDisplay);
+                    $('.currentNeuronNumber').text(neuronIndexToDisplay);
+                }
+
+                function refreshNeuronWindowInfo() {
+                    $('#neuronLayerInfo').text(neuronIndexToDisplayLayer);
 
                     let informationForSpecialNeuron = $('#neuronModalInformationForSpecificLayers');
                     if (neuronIndexToDisplayLayer === 1) {
                         let correspondingPixelX = Math.floor((neuronIndexNumber-1)/28);
-                        let correspondingPixelY = (neuronIndexNumber-1)%28;
+                        let correspondingPixelY = (newValue-1)%28;
                         informationForSpecialNeuron.text(`Pixel de l'image de coordonnée : (${correspondingPixelX}, ${correspondingPixelY})`);
 
-                        $('#neuronValueInfo').text(data[neuronIndexNumber-1]);
+                        try {
+                            $('#neuronValueInfo').text(data[newValue-1]);
+                        } catch (e) {
+                            $('#neuronValueInfo').text("Vide");
+                        }
+
                     }
                 }
             </script>
