@@ -6,6 +6,8 @@
 
     <!-- My Scripts -->
     <script src="js/NN.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css">
 </head>
 
 <body>
@@ -46,6 +48,32 @@
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-outline-secondary" onclick="setneuronIndexToDisplayLayer(1);$(neuronChoose).modal('toggle');"><i class="far fa-circle"></i></button>
                                         <button type="button" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></button>
+                                    </div>
+                                    <div>
+                                        <input id="layer1slider" type="text" style="padding-top: 10px; padding-bottom: 5px">
+                                        <div class="input-group">
+                                            <input id="layer1spinner" type="number" class="form-control" value="1" min="1" max="784" step="1">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">/784</span>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $("#layer1slider").slider({
+                                                min: 1,
+                                                max: 784,
+                                                value: 1,
+                                                orientation: 'vertical'
+                                            });
+
+                                            $("#layer1slider").on("slide", function(slideEvt) {
+                                                $("#layer1spinner").val(slideEvt.value);
+                                            });
+
+                                            $("#layer1spinner").on("input", function(spinEvent) {
+                                                console.log(spinEvent);
+                                                $("#layer1slider").slider('setValue', $("#layer1spinner").val());
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                                 <div class="col" align="center">
