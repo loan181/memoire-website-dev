@@ -46,11 +46,13 @@
                                 <div class="col" align="center">
                                     Couche 1<br>
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-outline-secondary" onclick="setneuronIndexToDisplayLayer(1);$(neuronChoose).modal('toggle');"><i class="far fa-circle"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="setneuronIndexToDisplayLayer(1);setNeuronIndexToDisplay($(layer1spinner).val());$(neuronModal).modal('toggle');"><i class="far fa-circle"></i></button>
                                         <button type="button" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></button>
                                     </div>
                                     <div>
-                                        <input id="layer1slider" type="text" style="padding-top: 10px; padding-bottom: 5px">
+                                        <div style="padding-top: 20px; padding-bottom: 15px">
+                                            <input id="layer1slider" type="text" data-slider-min="0" data-slider-max="784" data-slider-step="1" data-slider-value="1">
+                                        </div>
                                         <div class="input-group">
                                             <input id="layer1spinner" type="number" class="form-control" value="1" min="1" max="784" step="1">
                                             <div class="input-group-append">
@@ -59,12 +61,10 @@
                                         </div>
                                         <script>
                                             $("#layer1slider").slider({
-                                                min: 1,
-                                                max: 784,
-                                                value: 1,
                                                 orientation: 'vertical'
                                             });
 
+                                            // Synchronize the value of the spinner and the one of the slider
                                             $("#layer1slider").on("slide", function(slideEvt) {
                                                 $("#layer1spinner").val(slideEvt.value);
                                             });
@@ -100,37 +100,7 @@
                 </div>
             </div>
 
-            <!-- Choose neuron number modal -->
-            <div class="modal fade" id="neuronChoose" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Choix du neurone</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01">Neurone n°</label>
-                                </div>
-                                <input id="neuronIndexSelector" type="number" class="form-control" value="1" min="1" max="9999" step="1">
-                                <div class="input-group-append">
-                                    <span class="input-group-text">/</span>
-                                    <span class="input-group-text" id="maximumValueNeuronLabel">100</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="setNeuronIndexToDisplay($(neuronIndexSelector).val());$(neuronModal).modal('toggle');">Valider</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Neuron information -->
+            <!-- Neuron information modal -->
             <div class="modal fade" id="neuronModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
