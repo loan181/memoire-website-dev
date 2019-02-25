@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    {% include head.html %}
+
+    {% if page.plotly %}
+        <!-- Plotlyjs -->
+        <script type="text/javascript" src="/static/js/shared/plotlyjs-bundle.js"></script>
+        <script type="text/javascript" src="/static/js/shared/figure.js"></script>
+        <script type="text/javascript" src="/static/js/shared/plotInteraction.js"></script>
+        <script type="text/javascript" src="customJS/plotInteraction.js"></script>
+        <script src="https://cdn.plot.ly/plotly-locale-fr-latest.js"></script>
+    {% endif %}
+
+    {% if page.raphael %}
+        {% include library_raphael.html %}
+    {% endif %}
+
+    <!-- Custom Extra scripts -->
+    {% for script in page.extraScripts %}
+        <script type="text/javascript" src="{{ script }}"></script>
+    {% endfor %}
+
+    <!-- Success Message -->
+    <link rel="stylesheet" href="/static/css/animationSuccess.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+</head>
+
+<body>
+{% include nav.html %}
+<main role="main" class="container" style="max-width: 95%">
+    <h1>{{ page.title }}</h1>
+
+    <!-- Toolbox -->
+    <div id="toolBox"></div>
+    <script src="/static/js/shared/ToolBox.js"></script>
+    <script>
+        let TB = new ToolBox("toolBox");
+        TB.setToolBarForExercice("{{ page.activityName }}");
+        TB.draw();
+    </script>
+
+    <!-- Progress bar of prediction -->
+    <div class="mt-2 col-md-12" >
+        <h6 style="float: left; margin-right: 1em;"> Précision actuelle : </h6>
+        <div id="progressBar"></div>
+    </div>
+    <script src="/static/js/successBar.js"></script>
+    <script>
+        let pb = new ProgressBar("progressBar");
+        function exerciceSuccess() {
+            $('#exerciceSuccess').modal('toggle');
+            fancyPopIn();
+        }
+    </script>
+
+    <!-- Main content of the activity -->
+    {{ content }}
+</main>
+
+<!-- Success Animation when activity is succeded -->
+<div class="modal" id="exerciceSuccess" tabindex="-1" role="dialog" aria-labelledby="exerciceSuccessLabel" aria-hidden="true" style="background-color: rgba(0,250,255,0.5);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div id="congrats">
+            <h1 id="sucessMessage">Bravo !</h1>
+        </div>
+    </div>
+</div>
+<script src="/static/js/animationSuccess.js"></script>
+
+</body>
+</html>
