@@ -34,12 +34,17 @@ function forceWriteToDb(dicoInfo) {
     logRef.push(dicoInfo);
 }
 
-function logExercice(algo, exercice, answers, feedbacks) {
+function logExercice(algo, exercice, answers, feedbacks, value) {
     if (!isLocalHost()) {
         let dicoInfo = {"algo":algo, "exercice":exercice, "answers":answers, "answers_feedbacks":feedbacks};
         let logRef = db.ref('exercices');
         addExtraInformation(dicoInfo);
         logRef.push(dicoInfo);
+
+        gtag('event', 'attempt exercice', {
+            'event_category': algo,
+            'event_label': exercice,
+            'value': value});
     }
 }
 
@@ -49,5 +54,10 @@ function logActivityProgression(activity, value) {
         let logRef = db.ref('activity');
         addExtraInformation(dicoInfo);
         logRef.push(dicoInfo);
+
+        gtag('event', 'attempt', {
+            'event_category': "Activity",
+            'event_label': activity,
+            'value': value});
     }
 }

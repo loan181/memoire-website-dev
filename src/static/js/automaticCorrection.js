@@ -52,13 +52,16 @@ function checkAnswer(elem) {
     let feedbackSpan = elem.parentNode.getElementsByClassName("exFeedback")[0];
     let feedbackSpanText = '';
     let showCorrection = true;
+    let value = 0;
     for (let i = 0; i < feedbacks.length; i++) {
         switch(feedbacks[i]) {
             case "unknown":
                 feedbackSpanText += '<i class="fas fa-question"></i> ';
+                value += 1;
                 break;
             case "correct":
                 feedbackSpanText += '<i class="fas fa-check"></i> ';
+                value += 1;
                 break;
             case "wrong":
                 feedbackSpanText += '<i class="fas fa-times"></i> ';
@@ -66,9 +69,12 @@ function checkAnswer(elem) {
                 break;
             case "warning":
                 feedbackSpanText += '<i class="fas fa-exclamation"></i> ';
+                value += 1;
                 break;
         }
     }
+    value /= feedbacks.length;
+    value *= 100;
     feedbackSpan.innerHTML = feedbackSpanText;
 
     if (showCorrection) {
@@ -92,7 +98,7 @@ function checkAnswer(elem) {
     }
 
     try {
-        logExercice(document.title, question, answers, feedbacks);
+        logExercice(document.title, question, answers, feedbacks, value);
     } catch (e) {
         console.warn("Unable to log exerice information");
         console.warn(e);
