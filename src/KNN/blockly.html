@@ -1,3 +1,173 @@
 ---
-layout: KNN/KNNBlockly
+layout: activity
+title : Méthode des K plus proches voisins intéractif
+plotly: true
+activityName: KNN
+extraScripts:
+ - /static/js/shared/iris.js
+ - /static/js/shared/GraphFunctions.js
+ - customJS/KNNFunctions.js
+ - blocklySrc/blockly_compressed.js
+ - blocklySrc/blocks_compressed.js
+ - blocklySrc/javascript_compressed.js
 ---
+
+
+<!-- 2 Rows -->
+<div class="row h-100 mt-2 col-md-12">
+    <div class="col-sm-4" >
+
+        <div class="accordion" id="accordionControlPanel">
+            <!-- Graph panel -->
+            <div class="card">
+                <div class="card-header" style="padding: 0;" id="headingGraph">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseGraph" aria-expanded="true" aria-controls="collapseGraph">
+                            <i class="fas fa-chart-area"></i> <span class="B_graphAndDatas"></span>
+                        </button>
+                    </h5>
+
+                    <div id="collapseGraph" class="collapse show" aria-labelledby="headingGraph">
+                        <div class="card-body">
+                            <!-- Graph -->
+                            <!--<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>-->
+                            <div id="graphContainer" class="container plotly-graph-div" style="padding-left: 0px"></div>
+
+                            <!-- Boutton pour afficher une fenêtre modal avec le tableau utilisé -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#irisDataModal">
+                                <i class="fas fa-table"></i> <span class="B_trainingSet"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning" onclick="deleteAddedMarkers()">
+                                <i class="fas fa-eraser"></i> <span class="B_erasedMarkers"></span>
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="irisDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Training set :</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table-sm table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Iris</th>
+                                                    <th scope="col">Sepal Length</th>
+                                                    <th scope="col">Sepal Width</th>
+                                                    <th scope="col">Petal Length</th>
+                                                    <th scope="col">Petal Width</th>
+                                                    <th scope="col">Class</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% assign nbrIris = site.data.iris_data.size | minus : 1 %}
+                                                {% for i in (0 .. nbrIris) %}
+
+                                                    {% if site.data.iris_data[i].Class == "Iris-setosa" %}
+                                                        {% assign rowClass = "table-primary" %}
+                                                        {% elsif site.data.iris_data[i].Class == "Iris-versicolor" %}
+                                                        {% assign rowClass = "table-danger" %}
+                                                    {% else %}
+                                                        {% assign rowClass = "table-success" %}
+                                                    {% endif %}
+                                                    <tr class="{{ rowClass }}">
+                                                        <th scope="row"> {{ i | plus : 1}}</th>
+                                                        <td>{{site.data.iris_data[i].Sepal_Length}}</td>
+                                                        <td>{{site.data.iris_data[i].Sepal_Width}}</td>
+                                                        <td>{{site.data.iris_data[i].Petal_Length}}</td>
+                                                        <td>{{site.data.iris_data[i].Petal_Width}}</td>
+                                                        <td>{{site.data.iris_data[i].Class}}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Axis dropdowns & K -->
+                <div class="card">
+                    <div class="card-header" style="padding: 0;" id="headingParam">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseParam" aria-expanded="true" aria-controls="collapseParam">
+                                <i class="fas fa-sliders-h"></i> <span class="B_parameters"></span>
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseParam" class="collapse show" aria-labelledby="headingParam">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="axisXChoice" class="col-sm-3 col-form-label"><span class="B_axisX"></span> :</label>
+                                <select class="form-control col-sm-9" id="axisXChoice">
+                                    <script>
+                                        for (let i = 0; i < categories.length; i++) {
+                                            var newOpt = document.createElement("option");
+                                            if (i === 0) {
+                                                newOpt.selected="selected";
+                                            }
+                                            newOpt.value = categories[i];
+                                            newOpt.innerHTML = categoriesFR[i];
+                                            $('#axisXChoice').append(newOpt); // TODO : refactor
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="axisYChoice" class="col-sm-3 col-form-label"><span class="B_axisY"></span> :</label>
+                                <select class="form-control col-sm-9" id="axisYChoice">
+                                    <script>
+                                        for (let i = 0; i < categories.length; i++) {
+                                            var newOpt = document.createElement("option");
+                                            if (i === 1) {
+                                                newOpt.selected="selected";
+                                            }
+                                            newOpt.value = categories[i];
+                                            newOpt.innerHTML = categoriesFR[i];
+                                            $('#axisYChoice').append(newOpt); // TODO : refactor
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="KChoice" class="col-sm-3 col-form-label">K :</label>
+                                <input type="number" class="form-control col-sm-9" id="KChoice" value="3" min="1" max="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="blocklyArea" class="col-sm-8">
+        <!-- Blockly here -->
+        <div id="blocklyDiv" style="position: static"></div>
+    </div>
+</div>
+
+
+
+</main>
+<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+    {% include KNN/toolbox.xml %}
+</xml>
+
+<script src="customJS/languageCode.js"></script>
+<script src="customJS/BlocklyScripts.js"></script>
+<script src="/static/js/shared/plot.js"></script>
