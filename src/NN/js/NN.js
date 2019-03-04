@@ -240,9 +240,9 @@ var bias3 = [-0.0972961, 0.0300511, -0.0173903, -0.00445253, 0.0983954, -0.21149
 
 var w12;
 var w23;
+var data;
 var out2;
 var out3;
-var data;
 
 function resetW12() {
     w12 = JSON.parse(JSON.stringify(w12Orig));
