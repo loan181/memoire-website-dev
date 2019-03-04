@@ -5,8 +5,8 @@
     {% include library_raphael.html %}
 
     <!-- My Scripts -->
+    <script src="js/NNDatas.js"></script>
     <script src="js/NN.js"></script>
-    <script src="js/NN_representation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css">
 </head>
@@ -306,16 +306,11 @@
             <div id="neuralNetworkContainer">
             </div>
 
+            <script src="js/NN_representation.js"></script>
 
             <script type="application/javascript">
 
-                let w = 1000;
-                let h = 1000;
-                let paper = Raphael("neuralNetworkContainer", w, h);
-                // Big background (not need to resize it as it is huge)
-                paper.rect(-1, -1, w+1, h+1).attr({
-                    fill: "#b4b4b4"
-                }).toBack();
+
 
 
                 let fakePic = [];
@@ -554,64 +549,8 @@
                 }
 
 
-                let neuronSize = 16;
-                let horizontalOffset = 450;
+                //let neuronSize = 16;
 
-                // First layer
-                let firstLayerSize = 16;
-                let firstLayerNeuron = new Array(firstLayerSize);
-                let offset1 = h/firstLayerSize;
-                for (let i = 0; i < firstLayerSize; i++) {
-                    firstLayerNeuron[i] = paper.circle(32, neuronSize +  i*offset1, neuronSize);
-                }
-
-                // Second layer
-                let secondLayerSize = 20;
-                let secondLayerNeuron = new Array(secondLayerSize);
-                let offset2 = h/secondLayerSize;
-                for (let i = 0; i < secondLayerSize; i++) {
-                    secondLayerNeuron[i] = paper.circle(32+horizontalOffset, neuronSize +  i*offset2, neuronSize);
-                }
-
-                // Third layer
-                let thirdLayerSize = 10;
-                let thirdLayerNeuron = new Array(thirdLayerSize);
-                let offset3 = h/thirdLayerSize;
-                for (let i = 0; i < thirdLayerSize; i++) {
-                    thirdLayerNeuron[i] = paper.circle(32+2*horizontalOffset, neuronSize +  i*offset3, neuronSize);
-                }
-
-                // Link between layers
-                let linkLayer12 = [];
-                for (let i = 0; i < firstLayerNeuron.length; i++) {
-                    let currFirstLayerNeuron = firstLayerNeuron[i];
-                    let x1 = currFirstLayerNeuron.attrs.cx;
-                    let y1 = currFirstLayerNeuron.attrs.cy;
-                    linkLayer12[i] = [];
-                    for (let j = 0; j < secondLayerNeuron.length; j++) {
-                        let currSecondLayerNeuron = secondLayerNeuron[j];
-                        let x2 = currSecondLayerNeuron.attrs.cx;
-                        let y2 = currSecondLayerNeuron.attrs.cy;
-                        linkLayer12[i][j] = paper.path(`M${x1} ${y1}L${x2} ${y2}`);
-                    }
-                }
-
-                let linkLayer23 = [];
-                for (let i = 0; i < secondLayerNeuron.length; i++) {
-                    let currFirstLayerNeuron = secondLayerNeuron[i];
-                    let x1 = currFirstLayerNeuron.attrs.cx;
-                    let y1 = currFirstLayerNeuron.attrs.cy;
-                    linkLayer23[i] = [];
-                    for (let j = 0; j < thirdLayerNeuron.length; j++) {
-                        let currSecondLayerNeuron = thirdLayerNeuron[j];
-                        let x2 = currSecondLayerNeuron.attrs.cx;
-                        let y2 = currSecondLayerNeuron.attrs.cy;
-                        linkLayer23[i][j] = paper.path(`M${x1} ${y1}L${x2} ${y2}`);
-                    }
-                }
-
-                fillFirstSecondLayerLinks();
-                fillSecondThirdLayerLinks();
 
             </script>
         </div>
