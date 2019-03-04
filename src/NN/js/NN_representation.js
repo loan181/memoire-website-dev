@@ -40,7 +40,7 @@ class Neuron {
     get lightVal() {
         if (this.value === null)
             return null;
-        return Math.round(this.value*100);
+        return Math.round(Math.abs(this.value-1)*100);
     }
 
     clear() {
@@ -67,10 +67,11 @@ class Neuron {
     redrawColors() {
         let lightVal = this.lightVal;
         if (lightVal !== null) {
+            // 0% = black, 100% = white
             let color = "hsl(0,0%," + lightVal + "%)";
             this.shapeCircle.attr("fill", color);
 
-            if (lightVal <= 5) {
+            if (lightVal <= 0) {
                 this.shapeText.attr("fill", "#fff");
             } else {
                 this.shapeText.attr("fill", "#000");
