@@ -22,6 +22,7 @@ var w23;
 var data;
 var out2;
 var out3;
+var output;
 
 function resetW12() {
     w12 = JSON.parse(JSON.stringify(w12Orig));
@@ -68,17 +69,10 @@ function nn(dataPic, w12, bias2, w23, bias3) {
     var max3 = out3.reduce(function(p,c) { return p>c ? p : c; });
     var nominators = out3.map(function(e) { return Math.exp(e - max3); });
     var denominator = nominators.reduce(function (p, c) { return p + c; });
-    var output = nominators.map(function(e) { return e / denominator; });
+    output = nominators.map(function(e) { return e / denominator; });
 
     // timing measurement
     var dt = new Date() - t1; console.log('NN time: '+dt+'ms');
-
-    // fillFirstLayerS(data);
-    // fillSecondLayerS(out2);
-    // fillThirdLayer(output);
-    // drawFirstLayer(data);
-    // drawSecondLayer(out2);
-    // drawOutput(output);
 
     return output;
 }

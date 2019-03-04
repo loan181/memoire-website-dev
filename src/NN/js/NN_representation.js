@@ -15,7 +15,7 @@ class Neuron {
         } else if (this.layer === 2) {
             return out2;
         } else if (this.layer === 3) {
-            return out3;
+            return output;
         }
     }
 
@@ -40,7 +40,7 @@ class Neuron {
     get lightVal() {
         if (this.value === null)
             return null;
-        return this.value*100;
+        return Math.round(this.value*100);
     }
 
     clear() {
@@ -70,7 +70,7 @@ class Neuron {
             let color = "hsl(0,0%," + lightVal + "%)";
             this.shapeCircle.attr("fill", color);
 
-            if (lightVal <= 50) {
+            if (lightVal <= 5) {
                 this.shapeText.attr("fill", "#fff");
             } else {
                 this.shapeText.attr("fill", "#000");
@@ -232,17 +232,45 @@ function refreshNetworkRepresentation(guessedNumber) {
     let bestWArrayLayer2 = w23[guessedNumber];
     let bestIndices = sortWithIndeces(bestWArrayLayer2);
 
+    let maxValueLayer2 = bestWArrayLayer2[bestIndices[0]];
+    let minValueLayer2 = bestWArrayLayer2[bestIndices[secondLayerSize-1]];
+
+    // Refresh neurons on layer 2
     for (let i = 0; i < secondLayerSize; i++) {
         secondLayerNeuron[i].number = bestIndices[i];
         secondLayerNeuron[i].redraw();
     }
-    let maxValueLayer = bestWArrayLayer2[bestIndices[0]];
-    let minValueLayer = bestWArrayLayer2[bestIndices[secondLayerSize-1]];
 
+    // Draw all connections between layer 2 and 3
     for (let i = 0; i < secondLayerNeuron.length; i++) {
         for (let j = 0; j < thirdLayerNeuron.length; j++) {
-            linkLayer23[i][j].setShapeTransparency(minValueLayer, maxValueLayer);
+            linkLayer23[i][j].setShapeTransparency(minValueLayer2, maxValueLayer2);
         }
     }
+
+    let bestWArrayLayer1 = w12[bestIndices[0]];
+    let bestIndicesLayer1 = sortWithIndeces(bestWArrayLayer1);
+
+    let maxValueLayer1 = bestWArrayLayer1[bestIndicesLayer1[0]];
+    let minValueLayer1 = bestWArrayLayer1[bestIndicesLayer1[firstLayerSize-1]];
+
+    // Refresh neurons on layer 2
+    for (let i = 0; i < firstLayerSize; i++) {
+        firstLayerNeuron[i].number = bestIndicesLayer1[i];
+        firstLayerNeuron[i].redraw();
+    }
+
+    // Draw all connections between layer 1 and 2
+    for (let i = 0; i < linkLayer12.length; i++) {
+        for (let j = 0; j < linkLayer12[i].length; j++) {
+            linkLayer12[i][j].setShapeTransparency(minValueLayer1, maxValueLayer1);
+        }
+    }
+
+    // Refresh last layer
+    for (let i = 0; i < thirdLayerSize; i++) {
+        thirdLayerNeuron[i].redraw();
+    }
 }
+
 
