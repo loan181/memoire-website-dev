@@ -40,7 +40,8 @@ class Neuron {
     get lightVal() {
         if (this.value === null)
             return null;
-        return Math.round(Math.abs(this.value-1)*100);
+        // value i between [0, 1], we convert into a [100, 0] scale (100 is white, 0 is black)
+        return 100 - this.value*100;
     }
 
     clear() {
