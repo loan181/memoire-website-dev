@@ -187,6 +187,9 @@
                         let correspondingPixelY = (neuronIndexToDisplay-1)%28;
                         informationForSpecialNeuron.text(`Pixel de l'image de coordonnée : (${correspondingPixelX}, ${correspondingPixelY})`);
                     }
+                    else if (neuronIndexToDisplayLayer === 3) {
+                        informationForSpecialNeuron.text(`Probabilité du chiffre ${correspondingNeuron.number} : ${correspondingNeuron.value*100} %`);
+                    }
                 }
 
                 function refreshWeightOutWindowInfo() {
