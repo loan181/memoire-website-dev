@@ -77,7 +77,6 @@
                                             });
 
                                             $("#layer1spinner").on("input", function(spinEvent) {
-                                                console.log(spinEvent);
                                                 $("#layer1slider").slider('setValue', $("#layer1spinner").val());
                                             });
                                         </script>
@@ -85,17 +84,67 @@
                                 </div>
                                 <div class="col" align="center">
                                     Couche 2<br>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(2, $(layer1spinner2).val(), 'wIn')"><i class="fas fa-sign-in-alt"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(2, $(layer1spinner2).val(), 'neuron')"><i class="far fa-circle"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(2, $(layer1spinner2).val(), 'wOut')"><i class="fas fa-sign-out-alt"></i></button>
+                                    </div>
                                     <div>
-                                        <i class="fas fa-sign-in-alt"></i>
-                                        <i class="far fa-circle" onclick="setneuronIndexToDisplayLayer(2);$(neuronChoose).modal('toggle');"></i>
-                                        <i class="fas fa-sign-out-alt"></i>
+                                        <div style="padding-top: 20px; padding-bottom: 15px">
+                                            <input id="layer1slider2" type="text" data-slider-min="0" data-slider-max="500" data-slider-step="1" data-slider-value="1">
+                                        </div>
+                                        <div class="input-group">
+                                            <input id="layer1spinner2" type="number" class="form-control" value="1" min="1" max="500" step="1">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">/500</span>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $("#layer1slider2").slider({
+                                                orientation: 'vertical'
+                                            });
+
+                                            // Synchronize the value of the spinner and the one of the slider
+                                            $("#layer1slider2").on("slide", function(slideEvt) {
+                                                $("#layer1spinner2").val(slideEvt.value);
+                                            });
+
+                                            $("#layer1spinner2").on("input", function(spinEvent) {
+                                                $("#layer1slider2").slider('setValue', $("#layer1spinner").val());
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                                 <div class="col" align="center">
                                     Couche 3<br>
                                     <div class="btn-group" role="group">
-                                        <i class="fas fa-sign-in-alt"></i>
-                                        <i class="far fa-circle"></i>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(3, $(layer1spinner3).val(), 'wIn')"><i class="fas fa-sign-in-alt"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(3, $(layer1spinner3).val(), 'neuron')"><i class="far fa-circle"></i></button>
+                                    </div>
+                                    <div>
+                                        <div style="padding-top: 20px; padding-bottom: 15px">
+                                            <input id="layer1slider3" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="1">
+                                        </div>
+                                        <div class="input-group">
+                                            <input id="layer1spinner3" type="number" class="form-control" value="1" min="1" max="10" step="1">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">/10</span>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $("#layer1slider3").slider({
+                                                orientation: 'vertical'
+                                            });
+
+                                            // Synchronize the value of the spinner and the one of the slider
+                                            $("#layer1slider3").on("slide", function(slideEvt) {
+                                                $("#layer1spinner3").val(slideEvt.value);
+                                            });
+
+                                            $("#layer1spinner3").on("input", function(spinEvent) {
+                                                $("#layer1slider3").slider('setValue', $("#layer1spinner").val());
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -199,47 +248,54 @@
                 }
 
                 function refreshWeightOutWindowInfo() {
+
                     let modalDiv = $('#weightsTable');
                     let tableId = "tableOutWeight";
-                    modalDiv.empty();
-                    if (neuronIndexToDisplayLayer === 1) {
-                        var table = $('<table>').addClass('table');
-                        table.attr("id", tableId);
+                    modalDiv.empty(); // Free up what was inside
 
-                        let head = $('<thead>');
-                        let headTr= $('<tr>');
-                        let headNames = ["Poids n°", "Valeur actuelle", "Valeur par défaut"];
-                        for (let i = 0; i < headNames.length; i++) {
-                            headTr.append($('<th>').html(headNames[i]));
-                        }
-                        head.append(headTr);
-                        table.append(head);
+                    let neuronOut = new Neuron(neuronIndexToDisplay, neuronIndexToDisplayLayer);
+                    let currentWeight = new Weight(neuronOut, null, neuronIndexToDisplayLayer);
 
-                        let tableBody = $('<tbody>');
-                        for(let i=0; i < w12.length; i++){
-                            let curValue = w12[i][neuronIndexToDisplay-1];
-                            let defaultValue = w12Orig[i][neuronIndexToDisplay-1];
-                            let row = $('<tr>');
-                            for (let j = 0; j < headNames.length; j++) {
-                                let rowCol = $('<td>');
-                                if (j === 0) {
-                                    rowCol.html(`${i+1}`)
-                                } else if (j === 1) {
-                                    // We hide a span with the value because the sorting won't happen on the input directly
-                                    // There is no need to change the span text with the inut one as the sorting does not refresh when resorting
-                                    rowCol.html(
-                                        `<span  class="d-none">${curValue}</span>
-                                        <input type="number" step="0.1" class="form-control" value=${curValue}>`);
-                                } else if (j === 2) {
-                                    rowCol.html(`${defaultValue}`);
-                                }
-                                row.append(rowCol);
-                            }
-                            tableBody.append(row);
-                        }
-                        table.append(tableBody);
-                        modalDiv.append(table);
+                    // Fill up the table
+                    var table = $('<table>').addClass('table');
+                    table.attr("id", tableId);
+
+                    let head = $('<thead>');
+                    let headTr= $('<tr>');
+                    let headNames = ["Poids n°", "Valeur actuelle", "Valeur par défaut"];
+                    for (let i = 0; i < headNames.length; i++) {
+                        headTr.append($('<th>').html(headNames[i]));
                     }
+                    head.append(headTr);
+                    table.append(head);
+
+                    let tableBody = $('<tbody>');
+                    let layerArray = currentWeight.layerArray;
+                    for(let i=0; i < layerArray.length; i++) {
+                        currentWeight.n2 = new Neuron(i, neuronIndexToDisplayLayer+1); // He is one layer further
+                        let curValue = currentWeight.weight;
+                        let defaultValue = currentWeight.defaultWeight;
+                        let row = $('<tr>');
+                        for (let j = 0; j < headNames.length; j++) {
+                            let rowCol = $('<td>');
+                            if (j === 0) {
+                                rowCol.html(`${i+1}`)
+                            } else if (j === 1) {
+                                // We hide a span with the value because the sorting won't happen on the input directly
+                                // There is no need to change the span text with the inut one as the sorting does not refresh when resorting
+                                rowCol.html(
+                                    `<span  class="d-none">${curValue}</span>
+                                    <input type="number" step="0.1" class="form-control" value=${curValue}>`);
+                            } else if (j === 2) {
+                                rowCol.html(`${defaultValue}`);
+                            }
+                            row.append(rowCol);
+                        }
+                        tableBody.append(row);
+                    }
+                    table.append(tableBody);
+                    modalDiv.append(table);
+
                     $(`#${tableId}`).DataTable(
                         {
                             "language": {

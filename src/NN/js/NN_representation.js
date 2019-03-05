@@ -96,8 +96,6 @@ class Weight {
         this.paper = paper;
         this.shape = null;
         this.shapeOpacity = 1;
-
-        this.redraw();
     }
 
     get layerArray() {
@@ -108,9 +106,22 @@ class Weight {
         }
     }
 
+    get layerArrayDefault() {
+        if (this.layer === 1) {
+            return w12Orig;
+        } else if (this.layer === 2) {
+            return w23Orig;
+        }
+    }
+
     get weight() {
         return this.layerArray[this.n2.number][this.n1.number];
     }
+
+    get defaultWeight() {
+        return this.layerArrayDefault[this.n2.number][this.n1.number];
+    }
+
 
     set weight(newWeight) {
         this.layerArray[this.n2.number][this.n1.number] = newWeight;
