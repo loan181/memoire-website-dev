@@ -61,7 +61,13 @@ class Neuron {
         this.shapeText = this.paper.text(this.x, this.y, this.number);
         this.shape = this.paper.setFinish();
 
+        this.shape.click(() => {this.shapeClicked()});
+
         this.redrawColors();
+    }
+
+    shapeClicked() {
+        buttonPressed(this.layer, this.number, "neuron");
     }
 
     redrawColors() {
@@ -71,7 +77,7 @@ class Neuron {
             let color = "hsl(0,0%," + lightVal + "%)";
             this.shapeCircle.attr("fill", color);
 
-            if (lightVal <= 0) {
+            if (lightVal <= 50) {
                 this.shapeText.attr("fill", "#fff");
             } else {
                 this.shapeText.attr("fill", "#000");

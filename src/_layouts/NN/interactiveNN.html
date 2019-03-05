@@ -177,18 +177,15 @@
                 function refreshNeuronWindowInfo() {
                     $('#neuronLayerInfo').text(neuronIndexToDisplayLayer);
 
+
+                    let correspondingNeuron = new Neuron(neuronIndexToDisplay, neuronIndexToDisplayLayer, null);
+                    $('#neuronValueInfo').text(correspondingNeuron.value);
                     let informationForSpecialNeuron = $('#neuronModalInformationForSpecificLayers');
+                    informationForSpecialNeuron.text("");
                     if (neuronIndexToDisplayLayer === 1) {
                         let correspondingPixelX = Math.floor((neuronIndexToDisplay-1)/28);
                         let correspondingPixelY = (neuronIndexToDisplay-1)%28;
                         informationForSpecialNeuron.text(`Pixel de l'image de coordonnée : (${correspondingPixelX}, ${correspondingPixelY})`);
-
-                        try {
-                            $('#neuronValueInfo').text(data[neuronIndexToDisplay-1]);
-                        } catch (e) {
-                            $('#neuronValueInfo').text("Vide");
-                        }
-
                     }
                 }
 
