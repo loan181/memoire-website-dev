@@ -40,7 +40,7 @@
 
             <!-- Choose arc modal -->
             <div class="modal fade" id="modifyWeights" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Modifier le réseau de neuronne</h5>
@@ -83,6 +83,10 @@
                                     </div>
                                 </div>
                                 <div class="col" align="center">
+                                    <br>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonWeightPressed(1,  $(layer1spinner).val(), $(layer1spinner2).val())"><i class="fas fa-arrows-alt-h"></i></button>
+                                </div>
+                                <div class="col" align="center">
                                     Couche 2<br>
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-outline-secondary" onclick="buttonPressed(2, $(layer1spinner2).val(), 'wIn')"><i class="fas fa-sign-in-alt"></i></button>
@@ -114,6 +118,10 @@
                                             });
                                         </script>
                                     </div>
+                                </div>
+                                <div class="col" align="center">
+                                    <br>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonWeightPressed(2,  $(layer1spinner2).val(), $(layer1spinner3).val())"><i class="fas fa-arrows-alt-h"></i></button>
                                 </div>
                                 <div class="col" align="center">
                                     Couche 3<br>
@@ -178,6 +186,28 @@
                 </div>
             </div>
 
+            <!-- Weight information modal -->
+            <div class="modal fade" id="weightModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Poids reliant le neuronne <span class="weightN1"></span> et <span class="weightN2"></span></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Couche : <span id="weightLayer"></span></p>
+                            <p>Valeur Originale : <span id="weightOrigValue"></span></p>
+                            <p>Valeur : <input id="weightValue" type="number" step="0.1" class="form-control"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Outgoing neurons weights modal -->
             <div class="modal fade" id="outWeightModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
@@ -203,7 +233,8 @@
             <script>
                 // Store current information for modals
                 let neuronIndexToDisplay = null;
-                let neuronIndexToDisplayLayer = null;
+                let layerIndexToDisplay = null;
+                let weightIndexToDisplay = null;
 
                 function buttonPressed(layer, neuron, action) {
                     setneuronIndexToDisplayLayer(layer);
@@ -219,8 +250,23 @@
                     }
                 }
 
+                function buttonWeightPressed(originLayer, neuron1, neuron2) {
+
+                    let n1 = new Neuron(neuron1, originLayer);
+                    let n2 = new Neuron(neuron2, originLayer+1);
+                    weightIndexToDisplay = new Weight(n1, n2, originLayer);
+
+                    $('.weightN1').text(n1.number);
+                    $('.weightN2').text(n2.number);
+                    $('#weightLayer').text(originLayer);
+                    $('#weightOrigValue').text(weightIndexToDisplay.defaultWeight);
+                    $('#weightValue').val(weightIndexToDisplay.weight);
+
+                    $('#weightModal').modal('toggle');
+                }
+
                 function setneuronIndexToDisplayLayer(newValue) {
-                    neuronIndexToDisplayLayer = newValue;
+                    layerIndexToDisplay = newValue;
                 }
 
                 function setNeuronIndexToDisplay(newValue) {
@@ -230,19 +276,19 @@
                 }
 
                 function refreshNeuronWindowInfo() {
-                    $('#neuronLayerInfo').text(neuronIndexToDisplayLayer);
+                    $('#neuronLayerInfo').text(layerIndexToDisplay);
 
 
-                    let correspondingNeuron = new Neuron(neuronIndexToDisplay, neuronIndexToDisplayLayer, null);
+                    let correspondingNeuron = new Neuron(neuronIndexToDisplay, layerIndexToDisplay, null);
                     $('#neuronValueInfo').text(correspondingNeuron.value);
                     let informationForSpecialNeuron = $('#neuronModalInformationForSpecificLayers');
                     informationForSpecialNeuron.text("");
-                    if (neuronIndexToDisplayLayer === 1) {
+                    if (layerIndexToDisplay === 1) {
                         let correspondingPixelX = Math.floor((neuronIndexToDisplay-1)/28);
                         let correspondingPixelY = (neuronIndexToDisplay-1)%28;
                         informationForSpecialNeuron.text(`Pixel de l'image de coordonnée : (${correspondingPixelX}, ${correspondingPixelY})`);
                     }
-                    else if (neuronIndexToDisplayLayer === 3) {
+                    else if (layerIndexToDisplay === 3) {
                         informationForSpecialNeuron.text(`Probabilité du chiffre ${correspondingNeuron.number} : ${correspondingNeuron.value*100} %`);
                     }
                 }
@@ -259,15 +305,15 @@
                         $('.inOrOut').text("de sortie");
                     }
 
-                    let correspondingNeuron = new Neuron(Number(neuronIndexToDisplay), neuronIndexToDisplayLayer);
+                    let correspondingNeuron = new Neuron(Number(neuronIndexToDisplay), layerIndexToDisplay);
                     let otherNeuron;
                     let currentWeight;
                     if (inOrOut === "wOut") {
-                        otherNeuron = new Neuron(0, neuronIndexToDisplayLayer+1);
-                        currentWeight = new Weight(correspondingNeuron, otherNeuron, neuronIndexToDisplayLayer);
+                        otherNeuron = new Neuron(0, layerIndexToDisplay+1);
+                        currentWeight = new Weight(correspondingNeuron, otherNeuron, layerIndexToDisplay);
                     } else if (inOrOut === "wIn") {
-                        otherNeuron = new Neuron(0, neuronIndexToDisplayLayer-1);
-                        currentWeight = new Weight(otherNeuron, correspondingNeuron, neuronIndexToDisplayLayer-1);
+                        otherNeuron = new Neuron(0, layerIndexToDisplay-1);
+                        currentWeight = new Weight(otherNeuron, correspondingNeuron, layerIndexToDisplay-1);
                     }
 
                     // Fill up the table
