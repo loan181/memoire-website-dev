@@ -85,6 +85,17 @@ class Neuron {
             }
         }
     }
+
+    get layerSize() {
+        //return this.layerArray.length;
+        if (this.layer === 1) {
+            return w12Orig[0].length;
+        } else if (this.layer === 2) {
+            return w12Orig.length;
+        } else if (this.layer === 3) {
+            return w23Orig.length;
+        }
+    }
 }
 
 class Weight {
@@ -163,6 +174,7 @@ class Weight {
         this.shapeLine = this.paper.path(`M${this.x1} ${this.y1}L${this.x2} ${this.y2}`);
         this.shape = this.paper.setFinish();
     }
+
 }
 
 

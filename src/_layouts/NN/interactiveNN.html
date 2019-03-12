@@ -91,12 +91,12 @@
                                     </div>
                                     <div>
                                         <div style="padding-top: 20px; padding-bottom: 15px">
-                                            <input id="layer1slider2" type="text" data-slider-min="0" data-slider-max="500" data-slider-step="1" data-slider-value="1">
+                                            <input id="layer1slider2" type="text" data-slider-min="0" data-slider-max="200" data-slider-step="1" data-slider-value="1">
                                         </div>
                                         <div class="input-group">
-                                            <input id="layer1spinner2" type="number" class="form-control" value="1" min="1" max="500" step="1">
+                                            <input id="layer1spinner2" type="number" class="form-control" value="1" min="1" max="200" step="1">
                                             <div class="input-group-append">
-                                                <span class="input-group-text">/500</span>
+                                                <span class="input-group-text">/200</span>
                                             </div>
                                         </div>
                                         <script>
@@ -183,7 +183,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Poids de sorties du neurone n°<span class="currentNeuronNumber"></span></h5>
+                            <h5 class="modal-title">Poids <span class="inOrOut">de sorties</span> du neurone n°<span class="currentNeuronNumber"></span></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -213,11 +213,10 @@
                         refreshNeuronWindowInfo();
                         $('#neuronModal').modal('toggle');
                     }
-                    else if (action === "wOut") {
-                        refreshWeightOutWindowInfo();
+                    else if (action === "wOut" || action === "wIn") {
+                        refreshWeightOutWindowInfo(action);
                         $('#outWeightModal').modal('toggle');
                     }
-                    // TODO : gérer le cas de wIn (on peut récupérer la table de wOut à priori) avec un bon refactoring des familles
                 }
 
                 function setneuronIndexToDisplayLayer(newValue) {
@@ -248,14 +247,28 @@
                     }
                 }
 
-                function refreshWeightOutWindowInfo() {
+                function refreshWeightOutWindowInfo(inOrOut) {
 
                     let modalDiv = $('#weightsTable');
                     let tableId = "tableOutWeight";
                     modalDiv.empty(); // Free up what was inside
 
-                    let neuronOut = new Neuron(neuronIndexToDisplay, neuronIndexToDisplayLayer);
-                    let currentWeight = new Weight(neuronOut, null, neuronIndexToDisplayLayer);
+                    if (inOrOut === "wIn") {
+                        $('.inOrOut').text("d'entrée");
+                    } else if (inOrOut === "wOut") {
+                        $('.inOrOut').text("de sortie");
+                    }
+
+                    let correspondingNeuron = new Neuron(Number(neuronIndexToDisplay), neuronIndexToDisplayLayer);
+                    let otherNeuron;
+                    let currentWeight;
+                    if (inOrOut === "wOut") {
+                        otherNeuron = new Neuron(0, neuronIndexToDisplayLayer+1);
+                        currentWeight = new Weight(correspondingNeuron, otherNeuron, neuronIndexToDisplayLayer);
+                    } else if (inOrOut === "wIn") {
+                        otherNeuron = new Neuron(0, neuronIndexToDisplayLayer-1);
+                        currentWeight = new Weight(otherNeuron, correspondingNeuron, neuronIndexToDisplayLayer-1);
+                    }
 
                     // Fill up the table
                     var table = $('<table>').addClass('table');
@@ -271,9 +284,9 @@
                     table.append(head);
 
                     let tableBody = $('<tbody>');
-                    let layerArray = currentWeight.layerArray;
-                    for(let i=0; i < layerArray.length; i++) {
-                        currentWeight.n2 = new Neuron(i, neuronIndexToDisplayLayer+1); // He is one layer further
+                    for(let i=0; i < otherNeuron.layerSize; i++) {
+                        otherNeuron.number = i;
+
                         let curValue = currentWeight.weight;
                         let defaultValue = currentWeight.defaultWeight;
                         let row = $('<tr>');
