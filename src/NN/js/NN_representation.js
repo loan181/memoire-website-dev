@@ -63,6 +63,10 @@ class Neuron {
         this.shape = this.paper.setFinish();
 
         this.shape.click(() => {this.shapeClicked()});
+        this.shape.hover(
+            () => {this.shapeCircle.attr({"stroke": "red"})},
+            () => {this.shapeCircle.attr({"stroke": "black"})}
+        );
 
         this.redrawColors();
     }
@@ -159,7 +163,13 @@ class Weight {
         } else {
             this.shapeOpacity = (this.weight - minValueLayer)/(maxValueLayer-minValueLayer);
         }
-        this.shape.attr("opacity", this.shapeOpacity);
+
+        // Delete unseen link to avoid clicking on ghost link
+        if (this.shapeOpacity  <= 0.1) {
+            this.clear();
+        } else {
+            this.shape.attr("opacity", this.shapeOpacity);
+        }
     }
 
     clear() {
@@ -172,7 +182,18 @@ class Weight {
 
         this.paper.setStart();
         this.shapeLine = this.paper.path(`M${this.x1} ${this.y1}L${this.x2} ${this.y2}`);
+        this.shapeLine.attr({"stroke-width":3});
         this.shape = this.paper.setFinish();
+
+        this.shape.hover(
+            () => {this.shapeLine.attr({"stroke": "red", "stroke-width":5})},
+            () => {this.shapeLine.attr({"stroke": "black", "stroke-width":3})}
+            );
+        this.shape.click(() => {this.shapeClicked()});
+    }
+
+    shapeClicked() {
+        buttonWeightPressed(this.layer, this.n1.number, this.n2.number);
     }
 
 }
