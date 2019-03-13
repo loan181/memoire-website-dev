@@ -25,8 +25,7 @@ leftPartSections:
         Chaque point du graphe correspond à une fleur du training set.
         Sa forme et couleur définit sa classe comme légendé en dessous du graphe.<br>
         Tu peux survoler avec ta souris un point pour obtenir des informations le concernant.<br>
-        Tu pourra également ajouter des fleurs "artificielle" dans le graphe via Blockly.
-        Pour effacer ses derniers tu pourra utiliser le bouton jaune avec la gomme<br>
+        Les informations montrer peuvent varier en fonction des actions que tu effectus avec l'arbre intéractif.<br>
 -   title: Panneau paramètres
     picture: /static/img/arbre/axisParameters.PNG
     description: >
@@ -35,6 +34,40 @@ leftPartSections:
 rightPartName : Arbre intéractif
 rightPartDesc : La partie de droite est l'emplacement ou tu pourra créer et modifier ton arbre de décision.
 rightPartContent : >
-    TODO
+    L'ensemble des fonctionnalités disponibles se feront majoritairement à l'aide de cette interface. Ainsi tu sera capable de faire diverses actions tels qu'ajouter, modifier les noeuds de ton arbre,
+    consulter l'arbre et modifier la visualisation du graphique.<br>
+    Le schéma représente l'arbre de décision correspondant au données d'un modèle d'entrainement d'Iris.<br>
+    <br>
+    Les cercles représente les <b>feuilles</b> de l'arbre de décision.
+    La coloration symbolise le pourcentage de chaque classe du modèle, c'est comme un diagramme en camembert. Tu peux survoler de ta souris la feuille pour qu'une version textuelle t'indique la même information
+    La couleur du contour détermine la classe majoritaire de cette feuille (texte mis en gras lors du survol de la souris)   
+    <br>
+    Les rectangles arrondis représente les <b>noeuds interne</b> de l'arbre de décision. Ce sont l'ensemble des décisions qui crééront dynamiquement les feuilles de notre arbre de décision.
+    Chaque décision est composé de 3 paramètres : un axe, l'opérateur et la valeur (par exemple <code>x = 12</code> ou <code>y > 42</code>).
+    Pour chaque donnée du modèle d'entrainement, si l'évaluation avec cet axe, opérateur et valeur est vrai, alors cette donnée sera dans la branche de droite, sinon elle sera dans cette de gauche. 
+    
 
+examples:
+ -  title: Ajouter un nouveau noeud interne / Créer deux nouvelles feuilles
+    content : >
+        <p>
+            Pour ajouter un nouveau noeud interne à l'arbre, il suffit de cliquer sur une des feuilles existantes de l'arbre.
+            Elles sont indiquées par un cercle avec un "+" noir à l'intérieur.<br>
+            Une fois cliquée, une boite de dialogue vous demandera de choisir une métrique (l'axe <code>x</code> ou l'axe <code>y</code>), un opérateur et la valeur avec laquelle comparé.
+            Après confirmation la feuille deviendra un noeud interne et triera automatiquement les données du modèle d'entrainement selon l'axe, opérateur et valeur choisie.
+            Ainsi, deux branches seront créés, celle de gauche contenant l'ensemble des données du modèle d'entrainement répondant à l'évaluation, et celle de droite n'y répondant pas.
+        </p>
+ -  title: Modifier un noeud interne
+    content : >
+        <p>
+            Pour cela in suffit de cliquer sur un noeud interne existant.
+            Une boite de dialogue identique à celle d'ajout de noeud apparaitra permettant de modifier les données
+        </p>
+ -  title: Supprimer un noeud interne / Transformer un noeud interne en feuille
+    content : >
+        <p>
+            Pour cela in suffit de cliquer sur un noeud interne existant.
+            Dans la boite de dialogue apparaissant un boutton te permet de supprimer le noeud.<br>
+            La supression du noeud interne crééra automatiquement une feuille et détruira tout les enfants du noeud.
+        </p>
 ---
