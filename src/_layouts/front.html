@@ -6,10 +6,41 @@
 </head>
 
 <body>
-  {% include nav.html %}
-  <main role="main" class="container">
-    {% include home.html %}
-  </main>
+{% include nav.html %}
+  <div id="particles-js" style=" position:absolute; width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; background-color: #3371bd;">
+    <div class="container" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+      <h1 class="display-4" style="color: white">Exercices intéractif de Machine Learning</h1>
+      <!--<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>-->
+
+      <div class="card-deck">
+        {% for card in page.cards %}
+
+          {% assign cardClass = "card custom-card" %}
+          {% unless card.available %} <!-- equivalent à if not -->
+          {% assign cardClass = cardClass | append : " isDisabled" %}
+          {% endunless %}
+
+          <a href= "{{ card.href }}" class= "{{ cardClass }}">
+            <img class="card-img-top" src={{ "static/img/" | append : card.picture }} style="height:220px; padding: 8px" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ card.title }}</h5>
+              <p class="card-text">
+                {{ card.text }}
+              </p>
+            </div>
+            <div class="card-footer">
+              <p class="text-muted"><small class="text-muted">{{ card.version }}</small></p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
+  <script>
+    particlesJS.load('particles-js', '/static/other/particlesjs-config.json');
+  </script>
+
 </body>
 
 </html>
