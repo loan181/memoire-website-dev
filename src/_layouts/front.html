@@ -2,6 +2,7 @@
 <html lang="fr">
 
 <head>
+  <title>Introduction au Machine Learning - Accueil</title>
   {% include head.html %}
   <style>
     canvas {
@@ -39,9 +40,9 @@
           {% endunless %}
 
           <a href= "{{ card.href }}" class= "{{ cardClass }} text-white bg-primary border-light mb-3">
+            <div class="card-header"><h5 class="card-title">{{ card.title }}</h5></div>
             <img class="card-img-top" style="height:220px; padding: 8px" src={{ "static/img/" | append : card.picture }} >
             <div class="card-body">
-              <h5 class="card-title">{{ card.title }}</h5>
               <p class="card-text">
                 {{ card.text }}
               </p>
