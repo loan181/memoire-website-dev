@@ -6,11 +6,15 @@
 </head>
 
 <body>
-{% include nav.html %}
+
   <div id="particles-js" style=" position:absolute; width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; background-color: #3371bd;">
     <div class="container" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
       <h1 class="display-4" style="color: white">Exercices intéractif de Machine Learning</h1>
       <!--<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>-->
+
+      <div style="padding-bottom: 20px">
+        <iframe style="display: block;margin: 0 auto;" width="560" height="315" src="https://www.youtube.com/embed/C_GENXH6tGQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
 
       <div class="card-deck">
         {% for card in page.cards %}
@@ -21,7 +25,7 @@
           {% endunless %}
 
           <a href= "{{ card.href }}" class= "{{ cardClass }}">
-            <img class="card-img-top" src={{ "static/img/" | append : card.picture }} style="height:220px; padding: 8px" alt="Card image cap">
+            <img class="card-img-top" style="height:220px; padding: 8px" src={{ "static/img/" | append : card.picture }} >
             <div class="card-body">
               <h5 class="card-title">{{ card.title }}</h5>
               <p class="card-text">
