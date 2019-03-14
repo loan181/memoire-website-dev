@@ -19,11 +19,11 @@
   </style>
 </head>
 
-<body style="background-color: #3371BD; margin:0">
+<body style="background-color: #477beb; margin:0">
 
   <div id="particles-js">
     <div class="container" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-      <h1 class="display-4" style="color: white">Exercices intéractif de Machine Learning</h1>
+      <h1 class="display-4" style="color: white">Introduction au Machine Learning</h1>
       <!--<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>-->
 
       <div style="padding-bottom: 20px">
@@ -38,7 +38,7 @@
           {% assign cardClass = cardClass | append : " isDisabled" %}
           {% endunless %}
 
-          <a href= "{{ card.href }}" class= "{{ cardClass }}">
+          <a href= "{{ card.href }}" class= "{{ cardClass }} text-white bg-primary border-light mb-3">
             <img class="card-img-top" style="height:220px; padding: 8px" src={{ "static/img/" | append : card.picture }} >
             <div class="card-body">
               <h5 class="card-title">{{ card.title }}</h5>
@@ -47,7 +47,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <p class="text-muted"><small class="text-muted">{{ card.version }}</small></p>
+              <p class="text-muted"><small style="color: aliceblue">{{ card.version }}</small></p>
             </div>
           </a>
         {% endfor %}
