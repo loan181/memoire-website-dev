@@ -34,6 +34,16 @@ leftPartSections:
 rightPartName : Arbre intéractif
 rightPartDesc : La partie de droite est l'emplacement ou tu pourra créer et modifier ton arbre de décision.
 rightPartContent : >
+    <div class="text-center">
+        <img src="/static/img/arbre/exempleInteractifSchema.png" class="img-fluid rounded">
+        <img src="/static/img/arbre/arbreInreactifEx.png" class="img-fluid rounded">
+        <small class="text-muted"><br>
+            Deux représentation du même arbre de décision.
+            A gauche la version utilisée dans les exercices préparatoires.
+            A droite celle utilisée dans l'outil intéractif.
+        </small>
+    </div>
+    <br>
     L'ensemble des fonctionnalités disponibles se feront majoritairement à l'aide de cette interface. Ainsi tu sera capable de faire diverses actions tels qu'ajouter, modifier les noeuds de ton arbre,
     consulter l'arbre et modifier la visualisation du graphique.<br>
     Le schéma représente l'arbre de décision correspondant au données d'un modèle d'entrainement d'Iris.<br>
@@ -45,7 +55,8 @@ rightPartContent : >
     Les rectangles arrondis représente les <b>noeuds interne</b> de l'arbre de décision. Ce sont l'ensemble des décisions qui crééront dynamiquement les feuilles de notre arbre de décision.
     Chaque décision est composé de 3 paramètres : un axe, l'opérateur et la valeur (par exemple <code>x = 12</code> ou <code>y > 42</code>).
     Pour chaque donnée du modèle d'entrainement, si l'évaluation avec cet axe, opérateur et valeur est vrai, alors cette donnée sera dans la branche de droite, sinon elle sera dans cette de gauche. 
-    
+    <br>
+    <img class="img-fluid mx-auto d-block" src="/static/img/arbre/arbreInteractifLegende.png">
 
 examples:
  -  title: Ajouter un nouveau noeud interne / Créer deux nouvelles feuilles
@@ -57,12 +68,14 @@ examples:
             Après confirmation la feuille deviendra un noeud interne et triera automatiquement les données du modèle d'entrainement selon l'axe, opérateur et valeur choisie.
             Ainsi, deux branches seront créés, celle de gauche contenant l'ensemble des données du modèle d'entrainement répondant à l'évaluation, et celle de droite n'y répondant pas.
         </p>
+        <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animCreation.gif">
  -  title: Modifier un noeud interne
     content : >
         <p>
             Pour cela in suffit de cliquer sur un noeud interne existant.
             Une boite de dialogue identique à celle d'ajout de noeud apparaitra permettant de modifier les données
         </p>
+        <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animModification.gif">
  -  title: Supprimer un noeud interne / Transformer un noeud interne en feuille
     content : >
         <p>
@@ -70,4 +83,5 @@ examples:
             Dans la boite de dialogue apparaissant un boutton te permet de supprimer le noeud.<br>
             La supression du noeud interne crééra automatiquement une feuille et détruira tout les enfants du noeud.
         </p>
+        <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animSupression.gif">
 ---
