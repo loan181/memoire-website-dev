@@ -1,3 +1,10 @@
+body {
+    margin:0;
+    background-color: #3d87e1;
+    background-image:url('/static/img/pattern.jpg');
+    background-blend-mode: screen;
+}
+
 a.custom-card,
 a.custom-card:hover {
     color: inherit;
