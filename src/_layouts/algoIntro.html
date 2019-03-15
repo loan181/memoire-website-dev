@@ -9,7 +9,7 @@
 <body>
 {% include nav.html %}
 
-<div class="jumbotron" style="
+<div class="jumbotron jumbotron-fluid" style="
     background: url({{ page.jumbotronPicture }});
          /*position: fixed;*/
     width: 100%;
@@ -24,6 +24,11 @@
     background-blend-mode: soft-light;
     -webkit-background-blend-mode: soft-lightsoft-light;
     ">
+    {% if page.youtubeVideo %}
+    <div class="text-center">
+        <iframe width="888" height="500" src="https://www.youtube.com/embed/{{ page.youtubeVideo }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    {% endif %}
 </div>
 
 <main role="main" class="container">
