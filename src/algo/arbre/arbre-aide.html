@@ -84,4 +84,33 @@ examples:
             La supression du noeud interne crééra automatiquement une feuille et détruira tout les enfants du noeud.
         </p>
         <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animSupression.gif">
+ -  title: Visualiser les données
+    content : >
+        <p>
+            Afin d'éviter de surcharger l'interface, les données n'apparaissent que lorsque tu survole de la souris des éléments spécifiques.
+        </p>
+        <p>
+            Lors du survol d'une feuille, un texte apparait en dessous avec les proportions de chaque classe ainsi que la classe majoritaire indiquée en gras.<br>
+            <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverLeaf.PNG">
+            Si la feuille ne contient aucune fleur, le texte <i>(vide)</i> sera indiqué.<br>
+            <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverLeafEmpty.PNG">
+
+            Tu remarquera que le graphique se met également à jour en focalisant en jaune les fleurs concernées.<br>
+        </p>
+
+        <p>
+            Les noeuds internes modifies également le graphique lors du survol de la souris, indiquant les fleurs concernées par l'évaluation du noeud.<br>
+            Toutes les fleurs qui sont sur fond rouge sont les fleurs qui ne répondent pas à l'évaluation, au contraire, celles sur fond vert sont celles qui y répondent.
+            Il y aura également une ligne qui sera déssiné qui délimite la frontière avec la valeur du noeud, le code couleur est le même que celui des zones.
+        </p>
+
+        <div>
+            Voici le graphique pour l'évaluation du noeud interne <code>largeur sépale &ge; 6</code>
+            <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverEvaluation.PNG">
+            <small class="text-muted"><br>
+                Toutes les fleurs qui ont une largeur se sépale <code> < 6 </code>(ne répondant pas à l'évaluation) sont dans la zone rouge à gauche de la ligne.<br>
+                Les fleurs répondant à l'évaluation (donc qui ont une <code>largeur sépale &ge; 6 </code>) sont bien dans la zone verte à droite de la ligne.<br>
+                Comme l'opération est inclusif (&ge; et non >) la ligne est verte)
+            </small>
+        </div>
 ---
