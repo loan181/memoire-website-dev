@@ -72,7 +72,7 @@ class Neuron {
     }
 
     shapeClicked() {
-        buttonPressed(this.layer, this.number, "neuron");
+        buttonNeuronLevelPressed(this.layer, this.number, "neuron");
     }
 
     redrawColors() {
@@ -155,6 +155,7 @@ class Weight {
         return this.n2.y;
     }
 
+
     setShapeTransparency(minValueLayer, maxValueLayer) {
         if (this.weight <= minValueLayer) {
             this.shapeOpacity = 0;
@@ -166,10 +167,11 @@ class Weight {
 
         // Delete unseen link to avoid clicking on ghost link
         if (this.shapeOpacity  <= 0.1) {
-            this.clear();
+            this.shape.hide();
         } else {
-            this.shape.attr("opacity", this.shapeOpacity);
+            this.shape.show();
         }
+        this.shape.attr("opacity", this.shapeOpacity);
     }
 
     clear() {
@@ -193,7 +195,7 @@ class Weight {
     }
 
     shapeClicked() {
-        buttonWeightPressed(this.layer, this.n1.number, this.n2.number);
+        buttonWeightLevelPressed(this.layer, this.n1.number, this.n2.number);
     }
 
 }
