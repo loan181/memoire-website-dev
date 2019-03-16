@@ -50,6 +50,8 @@ function getWorkspace() {
 function getPredictionCode() {
     var code = "";
     code += getCode();
+    // Delete all "print()" call in prediction code
+    code = code.replace(/window.alert(.*);/g, "");
     code += "calculatePrediction(classify);\n";
     return code;
 }
