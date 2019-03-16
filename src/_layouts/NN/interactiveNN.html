@@ -232,7 +232,7 @@
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selectedWeight.weight = Number($('#weightValue').val());"><i class="fas fa-save"></i> Appliquer</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selectedWeight.weight = Number($('#weightValue').val()); $('.weightValueModified').html(selectedWeight.weight);"><i class="fas fa-save"></i> Appliquer</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Fermer</button>
                         </div>
                     </div>
@@ -440,6 +440,7 @@
                     } else if (j === 1) {
                         // We hide a span with the value because the sorting won't happen on the input directly
                         // There is no need to change the span text with the inut one as the sorting does not refresh when resorting
+                        rowCol.addClass("weightValue");
                         rowCol.html(`${curValue}`);
                     } else if (j === 2) {
                         rowCol.html(`${defaultValue}`);
@@ -450,6 +451,11 @@
                     otherNeuron.number = i;
                     selectedWeight = currentWeight;
                     refreshWeightWindowInfo();
+                    // Add a special class to knows which cell have to change
+                    let classWeightToModifiedName = "weightValueModified";
+                    $(`.${classWeightToModifiedName}`).removeClass(classWeightToModifiedName); // Delete previous one
+                    $(row).find(".weightValue").addClass(classWeightToModifiedName);
+
                     $('#weightModal').modal('toggle');
                 });
                 tableBody.append(row);
