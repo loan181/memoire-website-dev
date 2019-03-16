@@ -418,7 +418,7 @@
 
             let head = $('<thead>');
             let headTr= $('<tr>');
-            let headNames = ["Poids n°", "Valeur actuelle", "Valeur par défaut"];
+            let headNames = ["Poids n°", "Valeur actuelle", "Valeur par défaut", "Différence"];
             for (let i = 0; i < headNames.length; i++) {
                 headTr.append($('<th>').html(headNames[i]));
             }
@@ -444,6 +444,8 @@
                         rowCol.html(`${curValue}`);
                     } else if (j === 2) {
                         rowCol.html(`${defaultValue}`);
+                    } else if (j === 3) {
+                        rowCol.html(`${defaultValue - curValue}`);
                     }
                     row.append(rowCol);
                 }
@@ -456,7 +458,9 @@
                     weightModal.modal('toggle');
                     weightModal.one('hide.bs.modal', function() { // Use one to avoid bugs
                         // $(row).find(".weightValue").html(selectedWeight.weight); // No need, next line to it automatically
-                        dataTable.cell(i, 1).data(selectedWeight.weight).draw();
+                        dataTable.cell(i, 1).data(selectedWeight.weight);
+                        dataTable.cell(i, 3).data(selectedWeight.defaultWeight - selectedWeight.weight);
+                        dataTable.draw();
                     })
                 });
                 tableBody.append(row);
