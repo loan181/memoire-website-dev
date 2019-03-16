@@ -199,10 +199,19 @@
                         <div class="modal-body">
                             <p>Couche : <span id="weightLayer"></span></p>
                             <p>Valeur Originale : <span id="weightOrigValue"></span></p>
-                            <p>Valeur : <input id="weightValue" type="number" step="0.1" class="form-control"></p>
+                            <p>Valeur :
+                            <div class="input-group mb-3">
+                                <input id="weightValue" type="number" step="0.1" class="form-control">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="$('#weightValue').val(selectedWeight.weight)"><i class="fas fa-undo"></i> Valeur actuelle</button>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="$('#weightValue').val(selectedWeight.defaultWeight)"><i class="fas fa-redo-alt"></i> Restaurer</button>
+                                </div>
+                            </div>
+                            </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selectedWeight.weight = Number($('#weightValue').val());"><i class="fas fa-save"></i> Appliquer</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Fermer</button>
                         </div>
                     </div>
                 </div>
