@@ -413,7 +413,7 @@
             }
 
             // Fill up the table
-            let table = $('<table>').addClass('table');
+            let table = $('<table>').addClass('table table-striped table-hover');
             table.attr("id", tableId);
 
             let head = $('<thead>');
@@ -434,7 +434,7 @@
                 let row = $('<tr>');
 
                 for (let j = 0; j < headNames.length; j++) {
-                    let rowCol = $('<td>');
+                    let rowCol = $('<td style="cursor:pointer;">');
                     if (j === 0) {
                         rowCol.html(`${i+1}`)
                     } else if (j === 1) {
