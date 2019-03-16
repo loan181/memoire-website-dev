@@ -259,19 +259,21 @@ class Node {
     }
 
     evaluate(parameter, operation, value) {
+        let numberParameter = Number(parameter);
+        let numberValue = Number(value);
         switch (operation) {
             case operationType.EQUAL:
-                return parameter === value;
+                return numberParameter === numberValue;
             case operationType.NOT_EQUAL:
-                return parameter !== value;
+                return numberParameter !== numberValue;
             case operationType.GRATER:
-                return parameter > value;
+                return numberParameter > numberValue;
             case operationType.GRATER_EQ:
-                return parameter >= value;
+                return numberParameter >= numberValue;
             case operationType.LOWER:
-                return parameter < value;
+                return numberParameter < numberValue;
             case operationType.LOWER_EQ:
-                return parameter <= value;
+                return numberParameter <= numberValue;
             default:
                 console.warn("Unknown operation selected : " + operation);
         }
