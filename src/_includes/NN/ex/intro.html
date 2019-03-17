@@ -1,1 +1,45 @@
-TODO
+<p>
+Un réseau neuronal est un système inspiré par le fonctionnement des neurones biologiques.
+</p>
+<p>
+    Un tel réseau est capable d'apprendre par l'expérience. Ils sont donc ainsi capable de faire de la classification et de la généralisation.
+</p>
+<p>
+    Il existe de nombreux modèles de réseau neuronal, l'idée générale est : une sucession de couche composés de <b>neurones</b> dont chacune prends ses entrées sur les sorties de la précédente.<br>
+    On appellera <b>poids</b> ces connections entre chaque couche.<br>
+    La première couche est appellée la <i>couche d'entrée</i> et la dernière la <i>couche de sortie</i>, les autres sont des <i>couches cachées</i>.
+    <img class="img-fluid mx-auto d-block" src="https://www.researchgate.net/profile/Larbi_Houichi/publication/262451664/figure/fig2/AS:296678314790914@1447745030713/Diagramme-schematique-du-reseau-de-neurone-MLP.png">
+</p>
+<p>
+    Un réseau neuronal est aussi un modèle mathématique/statistique, chaque neuronne et poids ont une certaine valeur.<br>
+    Dans notre cas, la valeur des poids est toujours connue et te sera donnée.
+    Celle des neurones devra être calculée en fonction des neuronnes et poids de la couche précédentes, excepté celles en entrées qui te seront donnés.<br>
+    La valeur obtenu par les neurones de la couche de sortie nous permettront de tirer des conclusions de notre entrée.
+</p>
+<p>
+    Par exemple : en entrée on reçoit une image de chien, cette image sera décomposé pour être traité par le neuronne, les calculs des neuronnes se font couche après couche pour enfin terminer dans la sortie.
+    A partir de la valeur de sortie on peut en tirer des conclusions.
+</p>
+<img class="img-fluid mx-auto d-block" src="https://cdn-images-1.medium.com/max/2560/1*36MELEhgZsPFuzlZvObnxA.gif">
+<hr class="my-4">
+<p>
+    Tout au long des exercices qui vont suivre, on va utiliser le même réseau neuronal.<br>
+    Ce réseau a été entrainé pour reconnaitre une ligne verticale d'une ligne horizontale dans une image en noir et blanc de 3x3 pixels.
+</p>
+    Le réseau est composé de 3 couches :
+    <ol>
+        <li>
+            La première couche est composé de 9 neuronnes (les 9 pixels de notre image)
+        </li>
+        <li>
+            Nous n'avons qu'une seule couche cachée composé de 3 neuronnes
+        </li>
+        <li>
+            Enfin une couche de sortie composé de 2 neuronne, le premier indique si la ligne est reconnu comme vertical, le second comme horizontal
+        </li>
+    </ol>
+    <img class="img-fluid mx-auto d-block" src="/static/img/NN/ex/schema.svg">
+    <small class="text-muted">Les couleurs dans la grille de gauche sont juste pour que tu comprennes mieux la composition de la première couche. Chaque pixel sera toujours soit blanc, soit noir.</small>
+<p>
+    Ainsi, si notre réseau à été bien entrainé, si les pixels 1, 3, 4, 6, 7 et 9 sont blanc et 2, 5 et 8 sont noir, notre réseau devrait reconnaitre une ligne verticale par exemple.
+</p>
