@@ -116,6 +116,116 @@ exercices:
         (0 * 1 + 1 * 2 + 0 * 3 + 1 * 4 + 1 * 5,<br>
         0 * (-1) + 1 * 2 + 0 * 4 + 1 * 5 + 1 * 3,<br>
         0 * 51 + 1 * 2 + 0 * (-42) + 1 * 4 + 1 * 5) = (11, 10, 11)
+-   title: Calcul de la valeur d'un neurone d'une couche autre que la première
+    introduction: >
+        <p>
+            Le calcul de la valeur d'un neurone de la couche en dehors de la première est plus délicat.<br>
+            Pour cela tu vas devoir appliquer un produit matriciel entre la valeur de tout les neuronnes de la couche précédente avec la valeur des poids associé au neurone que tu souhaite calculer.
+        </p>
+        <p>
+            On va commencer doucement en calculant la valeur du premier neurone de la seconde couche.
+            Pour cela je te donne les 2 vecteurs que tu as besoin :
+        </p>
+        <ul>
+            <li>Vecteur des valeurs des neuronnes de la couche précédente (0, 0, 0, 1, 1, 1, 0, 0, 0) <small class="text-muted">ça correspond à l'image d'une ligne horizontale</small></li>
+            <li>Vecteur des poids associé au premier neurone de la couche 2 (6, -4, 6, 8, -5, 8, 6, -4, 7)</li>
+        </ul>
+    question: >
+        <p>
+        </p>
+    answer: >
+        <input type="number" value="0" class="form-control" data-answer="11">
+    help : >
+        Il suffit de calculer le produit matriciel de (0, 0, 0, 1, 1, 1, 0, 0, 0) * (6, -4, 6, 8, -5, 8, 6, -4, 7) = 0*6 + 0*(-4) + ...
+    correction: >
+        (0, 0, 0, 1, 1, 1, 0, 0, 0) * (6, -4, 6, 8, -5, 8, 6, -4, 7) =<br>
+        0*6 + 0*(-4) + 0*6 + 1*8 + 1*(-5) + 1*8 + 0*6 + 0*(-4) + 0*7 =<br>
+        8 - 5 + 8 = 11
+-   introduction: >
+        <p>
+            Il ne nous reste plus qu'à faire de même pour les deux autres neurones de la même couche.
+            Je t'ai precemment donné le vecteur des poids uniquement pour la premier neuronne, je te donne maintenant la matrice entière pour cette couche.
+            <table class="table table-sm table-dark table-bordered">
+                <!--
+                <thead>
+                <tr>
+                    <th scope="col">Numéro de neurone de la couche 2</th>
+                    <th scope="col">Neurone 1 couche 1</th>
+                    <th scope="col">Neurone 2 couche 1</th>
+                    <th scope="col">Neurone 3 couche 1</th>
+                    <th scope="col">Neurone 4 couche 1</th>
+                    <th scope="col">Neurone 5 couche 1</th>
+                    <th scope="col">Neurone 6 couche 1</th>
+                    <th scope="col">Neurone 7 couche 1</th>
+                    <th scope="col">Neurone 8 couche 1</th>
+                    <th scope="col">Neurone 9 couche 1</th>
+                </tr>
+                </thead>-->
+                <tbody>
+                <tr>
+                    <td>6</td>
+                    <td>-4</td>
+                    <td>6</td>
+                    <td>8</td>
+                    <td>-5</td>
+                    <td>8</td>
+                    <td>6</td>
+                    <td>-4</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>8</td>
+                    <td>7</td>
+                    <td>-4</td>
+                    <td>-5</td>
+                    <td>-4</td>
+                    <td>4</td>
+                    <td>9</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>-1</td>
+                    <td>9</td>
+                    <td>-3</td>
+                    <td>-1</td>
+                    <td>7</td>
+                    <td>-1</td>
+                    <td>-1</td>
+                    <td>8</td>
+                </tr>
+                </tbody>
+            </table>
+        </p>
+        <p>
+           Chaque ligne de la matrice correspond à un vecteur de poids.
+            Par exemple, la première ligne correspond au vecteur de poids associé au premier neurone de la couche 2, c'est celle que je t'ai donné dans l'exercice précédent.
+        </p>
+    question: >
+        <p>
+            En gardant le vecteur des valeurs de la couche précédente de l'exercice précédent et la matrice de la couche 2,  calcul la valeur des 2 neurone restant de la couche 2.
+        </p>
+    answer: >
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 2 couche 2</span>
+            </div>
+            <input type="number" value="0" class="form-control" data-answer="-13">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 3 couche 2</span>
+            </div>
+            <input type="number" value="0" class="form-control" data-answer="3">
+        </div>
+    help : >
+        Il suffit de calculer 2 produits matriciels.<br>
+        Le premier : (0, 0, 0, 1, 1, 1, 0, 0, 0) * (6, 8, 7, -4, -5, -4, 7, 9, 7)<br>
+        Le second : (0, 0, 0, 1, 1, 1, 0, 0, 0) * (0, -1, 9, -3, -1, 7, -1, -1, 8)
+    correction: >
+        Le premier : (0, 0, 0, 1, 1, 1, 0, 0, 0) * (6, 8, 7, -4, -5, -4, 7, 9, 7) = -4 - 5 - 4 = -13<br>
+        Le second : (0, 0, 0, 1, 1, 1, 0, 0, 0) * (0, -1, 9, -3, -1, 7, -1, -1, 8) = -3 - 1 + 7 = 3
 ---
 <!--
 -   title:
