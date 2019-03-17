@@ -226,6 +226,51 @@ exercices:
     correction: >
         Le premier : (0, 0, 0, 1, 1, 1, 0, 0, 0) * (6, 8, 7, -4, -5, -4, 7, 9, 7) = -4 - 5 - 4 = -13<br>
         Le second : (0, 0, 0, 1, 1, 1, 0, 0, 0) * (0, -1, 9, -3, -1, 7, -1, -1, 8) = -3 - 1 + 7 = 3
+-   introduction: >
+        <p>
+            On peut faire de même avec les neurones de la dernière couche avec leur matrice de poids.
+            <table class="table table-sm table-dark table-bordered">
+                <tbody>
+                <tr>
+                    <td>-5</td>
+                    <td>7</td>
+                    <td>-4</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>-7</td>
+                    <td>4</td>
+                </tr>
+
+                </tbody>
+            </table>
+            Encore un dernier effort ! Plus que 2 produits matriciels à calculer et on pourra enfin tirer des conclusions interessantes de tout ces calculs.
+        </p>
+    question: >
+        <p>
+            Calcul les valeurs des 2 neurones de la couche de sortie en utilisant la matrice de poids de la couche 3 et les valeurs des neurones de la couche précédents (donc celles que tu as calculé juste avant).
+        </p>
+    help : >
+        Si tu n'as pas réussi l'exercice précédent, je te donne les valeurs des 3 neurones : 11, -13 et 3.<br>
+        Il suffit de calculer 2 produits matriciels.<br>
+        Le premier : (11, -13, 3) * (-5, 7, -4)<br>
+        Le second : (11, -13, 3) * (5, -7, 4)
+    answer: >
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 1 couche 3</span>
+            </div>
+            <input type="number" value="0" class="form-control" data-answer="-158">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 2 couche 3</span>
+            </div>
+            <input type="number" value="0" class="form-control" data-answer="158">
+        </div>
+    correction: >
+        Le premier : (11, -13, 3) * (-5, 7, -4) = 11*(-5) + (-13)*7 + 3*(-4) = -55 - 91 - 12 = -158<br>
+        Le second : le résultat est l'opposé de celui au dessus vu que le sedonc vecteur est l'opposé du premier = 158
 ---
 <!--
 -   title:
