@@ -333,15 +333,88 @@ exercices:
             Pour cela on va utiliser une <b>fonction d'activation</b>, l'idée étant de restreindre les données sur un certain domaine (par exemple entre 0 et 1).
         </p>
         <p>
-            Il existe diverses fonctions d'activation que l'on peut utiliser, la plus utilisé est la <i>sigmoid</i>.<br>
+            Il existe diverses fonctions d'activation que l'on peut utiliser, la plus utilisé est la <i>sigmoide</i>.<br>
             Son équation est la suivante : <img src="https://cdn-images-1.medium.com/max/1600/1*DHN75JRJ_EQgGc0spfqLtQ.png"><br>
             Son graphique est le suivant : <br>
             <img class="img-fluid mx-auto d-block" src="https://cdn-images-1.medium.com/max/1600/0*5euYS7InCmDP08ir."><br>
+        <p id="sigmoidCalculator">
+            <input id="sigmoidX" type="number" value="0" class="form-control" step="0.1">
+            <button type="button" class="btn btn-secondary" onclick="let val = 1/(1+Math.exp(-$('#sigmoidX').val()));$('#sigmoidRes').text(Number(val.toFixed(8)));">Calculer</button>
+            Résultat : <b><span id="sigmoidRes"></span></b>
+        </p>
 
-            Elle comporte de nombreux avantages, mais ici ce qui va nous intéresser c'est qu'elle permet de transformer nos valeurs pour les mettre entre 0 et 1.<br>
+        <p>
+            Cette fonction comporte de nombreux avantages, mais ici ce qui va nous intéresser c'est qu'elle permet de transformer nos valeurs pour les mettre entre 0 et 1.<br>
             En l'appliquant successivement sur tout les neurones calculés tu verras qu'à la fin on n'aura les probabilités pour chaque conclusion au lieu d'avoir une valeur arbitraire.<br>
             Par exemple en l'appliquant sur l'exemple de l'exercice précédent qui avait comme valeur de neurones de sorties (56, -56), on obtient maintenant (92%, 8%) qui signifie que le réseau pense à 92% que c'est une ligne verticale.
         </p>
+    question: >
+        <p>
+            Dans cette première partie je vais te donner les valeurs des neurones de la seconde couche d'une image précédente : (18, -6, 11).<br>
+            Commence par calculer la fonction sigmoide pour chacune des valeurs données avec <a href="#sigmoidCalculator">l'outil au-dessus</a>.
+        </p>
+    answer: >
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 1 couche 2 après fonction d'activation</span>
+            </div>
+            <input type="number" value="0" step="0.1" class="form-control" data-answer="0.99999998">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 2 couche 2 après fonction d'activation</span>
+            </div>
+            <input type="number" value="0" step="0.1" class="form-control" data-answer="0.00247262">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 3 couche 2 après fonction d'activation</span>
+            </div>
+            <input type="number" value="0" step="0.1" class="form-control" data-answer="0.9999833">
+        </div>
+    correction: >
+        Il suffit de rentrer une par une les valeurs de la couche précédente dans l'outil et de copier-coller la valeur.<br>
+        Les valeurs sont : 0.99999998, 0.00247262 et 0.9999833.
+-   introduction : >
+        <p>
+            Pour passer à la couche 3 il faudra de nouveau appliquer un produit matriciel avec la matrice de poids.<br>
+            Je t'épargne cette étape de calcul, les résultats sont : (-8.98262476, 8.98262476)
+        </p>
+    question: >
+        <p>
+            Cacule la fonction sigmoide pour chacune des valeurs des neurones de sorties.
+        </p>
+    answer: >
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 1 couche 3 après fonction d'activation</span>
+            </div>
+            <input type="number" value="0" step="0.1" class="form-control" data-answer="0.00012556">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Valeur neurone 2 couche 3 après fonction d'activation</span>
+            </div>
+            <input type="number" value="0" step="0.1" class="form-control" data-answer="0.99987444">
+        </div>
+    correction: >
+        De nouveau il faut utiliser l'outil et copier-coller la valeur.<br>
+        Les valeurs sont : 0.00012556, 0.99987444
+-   question: >
+        <p>
+            Quelle est le pourcentage de conclusion du réseau (arrondi 2 chiffres après la virgule), que la ligne est horizontale ?
+        </p>
+    answer: >
+        <div class="input-group">
+            <input type="number" value="0" step="0.01" class="form-control" data-answer="99.98">
+            <div class="input-group-append">
+                <span class="input-group-text">%</span>
+            </div>
+        </div>
+    correction: >
+        La valeur du neurone de sortie après application de la sigmoide de la conclusion que la ligne est horizontale est de 0.99987444.<br>
+        Ce qui est équivalent à 99.98%
+
 
 ---
 <!--
