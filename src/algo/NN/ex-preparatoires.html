@@ -116,6 +116,7 @@ exercices:
         (0 * 1 + 1 * 2 + 0 * 3 + 1 * 4 + 1 * 5,<br>
         0 * (-1) + 1 * 2 + 0 * 4 + 1 * 5 + 1 * 3,<br>
         0 * 51 + 1 * 2 + 0 * (-42) + 1 * 4 + 1 * 5) = (11, 10, 11)
+
 -   title: Calcul de la valeur d'un neurone d'une couche autre que la première
     introduction: >
         <p>
@@ -271,6 +272,61 @@ exercices:
     correction: >
         Le premier : (11, -13, 3) * (-5, 7, -4) = 11*(-5) + (-13)*7 + 3*(-4) = -55 - 91 - 12 = -158<br>
         Le second : le résultat est l'opposé de celui au dessus vu que le sedonc vecteur est l'opposé du premier = 158
+
+-   title: Tirer des conclusions de nos résultats
+    introduction: >
+        <p>
+            Une fois les valeurs des neurones de la dernière couche connues, on peut en tirer des conclusions.<br>
+            Dans notre cas, les poids que je t'es donné ont été choisi de manière à pouvoir différencier une ligne verticale d'une ligne horizontale.<br>
+            J'ai également choisi que le premier neurone de la couche de sortie représente une ligne verticale, et l'autre la ligne horizontale.
+            Ainsi, plus la valeur du premier neurone de la couche de sortie est grande, plus le réseau pense que c'est une ligne verticale et inversément pour l'autre neurone.
+            Autrement dit, il te suffit de prendre le maximum des deux pour obtenir la conclusion obtenu par le réseau.
+        </p>
+        <p>
+            Etant donné que l'exercice précédent était un peu épuisant, je vais te donner les images ainsi que les valeurs des neurones de sorties pour l'image (donc tu n'aura pas à les calculer).
+            Tu devras pour chaque image et valeur des neurones de sorties, tirer la conclusion que le réseau donnerait (ligne horizontale ou ligne verticale ?).
+        </p>
+    question: >
+        <div style="text-align: center">
+            <img src="/static/img/NN/ex/GrilleEx2.PNG">
+            Valeur des neuronnes de sorties : (56, -56)
+        </div>
+    answer: >
+        <select class="form-control" data-answer="Ligne verticale">
+            <option>Ligne verticale</option>
+            <option>Ligne horizontale</option>
+        </select>
+    correction: >
+        Le réseau pense que c'est une ligne verticale, en effet 56 > -56 et le premier neuronne correspond à celui à conclure que c'est une ligne verticale.
+-   question: >
+        <div style="text-align: center">
+            <img src="/static/img/NN/ex/GrilleEx3.PNG">
+            Valeur des neuronnes de sorties : (-176, 176)
+        </div>
+    answer: >
+        <select class="form-control" data-answer="Ligne horizontale">
+            <option>Ligne verticale</option>
+            <option>Ligne horizontale</option>
+        </select>
+    correction: >
+        Le réseau pense que c'est une ligne horizontale, en effet -176 > 176 et le second neuronne correspond à celui à conclure que c'est une ligne horizontale.
+-   question: >
+        <div style="text-align: center">
+            <img src="/static/img/NN/ex/GrilleEx4.PNG">
+            Valeur des neuronnes de sorties : (-131, 131)
+        </div>
+    answer: >
+        <select class="form-control" data-answer="Ligne horizontale">
+            <option>Ligne verticale</option>
+            <option>Ligne horizontale</option>
+        </select>
+    correction: >
+        Le réseau pense que c'est une ligne horizontale, en effet -131 > 131 et le second neuronne correspond à celui à conclure que c'est une ligne horizontale.<br>
+        Ca peut paraitre bizarre, mais oui, le réseau détecte cette image comme une ligne horizontale et non une verticale !<br>
+        La raison est que je ne l'ai pas entrainé à reconnaitre ce types de lignes verticales, du coup les poids ne sont pas paramétré pour cela.
+
+
+
 ---
 <!--
 -   title:
