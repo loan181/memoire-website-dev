@@ -3,6 +3,83 @@ layout: exercices
 title: Exercices Réseau neuronnal
 introduction: NN/ex/intro.html
 exercices:
+-   title: Valeur des neurones de la première couche
+    introduction: >
+        <p>
+            En entrée nous avons une image de 3x3 pixels, notre but va être d'utiliser cette image pour donner les valeurs de nos 9 neuronnes de la couche d'entrée.<br>
+            L'image est en noir et blanc, la valeur du neurone associé vaudra <code>1</code> si le pixel correspondant est noir et <code>0</code> s'il est blanc.<br>
+            Tu peux regarder le <a href="#NNSchema">schéma du réseau</a> si tu as un doute sur le lien entre les coordonnées des pixels et son neuronne associé.
+            Par exemple le pixel en x = 2 et y = 0 correspond au neuronne n°3 de la couche d'entrée.
+        </p>
+    question: >
+        <p>
+            Quelle est la valeur de chaque neurone d'entrée pour la grille suivante ?
+            <img class="img-fluid mx-auto d-block" src="/static/img/NN/ex/grilleEx.PNG">
+        </p>
+    answer: >
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°1</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°2</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°3</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°4</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°5</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°6</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°7</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°8</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Neuronne n°9</span>
+            </div>
+            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
+        </div>
+    help : >
+        Cette grille devrait t'aider :
+        <img class="img-fluid mx-auto d-block" src="/static/img/NN/ex/grilleExHelp.PNG">
+        Le pixel 1 est blanc, donc la valeur du neurone d'entrée n°1 est 0.<br>
+        Le pixel 2 est noir, donc la valeur du neurone d'entrée n°2 est 1 ...
+    correction: >
+        La grille de l'aide permet de comprendre facilement.
+        On peut aussi utilise l'astuce de lire dans le sens de lecture en sautant les lignes.
+        La réponse est : (0, 1, 1, 1, 0, 0, 0, 0, 1).
 -   title: Produit matriciel
     introduction: >
         <p>
@@ -14,9 +91,21 @@ exercices:
         </p>
     answer: >
         <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">(</span>
+            </div>
             <input type="number" value="0" class="form-control" data-answer="11">
+            <div class="input-group-prepend">
+                <span class="input-group-text">,</span>
+            </div>
             <input type="number" value="0" class="form-control" data-answer="10">
+            <div class="input-group-prepend">
+                <span class="input-group-text">,</span>
+            </div>
             <input type="number" value="0" class="form-control" data-answer="11">
+            <div class="input-group-append">
+                <span class="input-group-text">)</span>
+            </div>
         </div>
     help : >
         Si tu as oublié le calcul, jette un oeil à la <a target="_blank" href="https://fr.wikipedia.org/wiki/Produit_matriciel#Produit_matriciel_ordinaire"> page wikipedia</a>.<br>
