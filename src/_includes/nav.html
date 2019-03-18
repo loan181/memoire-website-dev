@@ -60,6 +60,7 @@
         var curLink = allLinks[i];
         if (curLink.href === window.location.href) {
             curLink.className += " active";
+            curLink.parentNode.parentNode.querySelector('a').querySelector("i").className += " text-white lead";
             break;
         }
     }
