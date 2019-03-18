@@ -53,7 +53,7 @@ function checkAnswer(elem) {
 
     let feedbackSpan = elem.parentNode.getElementsByClassName("exFeedback")[0];
     let feedbackSpanText = '';
-    let showCorrection = true;
+    let exerciceSuccess = true;
     let value = 0;
     for (let i = 0; i < feedbacks.length; i++) {
         switch(feedbacks[i]) {
@@ -67,7 +67,7 @@ function checkAnswer(elem) {
                 break;
             case "wrong":
                 feedbackSpanText += '<i class="fas fa-times"></i> ';
-                showCorrection = false;
+                exerciceSuccess = false;
                 break;
             case "warning":
                 feedbackSpanText += '<i class="fas fa-exclamation"></i> ';
@@ -79,13 +79,14 @@ function checkAnswer(elem) {
     value *= 100;
     feedbackSpan.innerHTML = feedbackSpanText;
 
-    if (showCorrection) {
-        let potentialCorrection = elem.parentNode.parentNode.nextElementSibling;
-        if (potentialCorrection.className.includes("onlyTeacher")) {
-            potentialCorrection.style.display = "block";
-            $(potentialCorrection).collapse({
-                toggle: true
-            })
+    if (exerciceSuccess) {
+        showCorrection(elem);
+    } else {
+        let attemptsNumber = $(elem).data('attempts');
+        $(elem).data('attempts', attemptsNumber+1); // Update it
+        if (attemptsNumber+1 >= 3) {
+            let correctionButton = elem.parentNode.querySelector('.correctionButton');
+            correctionButton.classList.remove("d-none");
         }
     }
 
@@ -107,6 +108,14 @@ function checkAnswer(elem) {
         console.warn("Unable to log exerice information");
         console.warn(e);
     }
+}
 
-
+function showCorrection(elem) {
+    let potentialCorrection = elem.parentNode.parentNode.nextElementSibling;
+    if (potentialCorrection.className.includes("onlyTeacher")) {
+        potentialCorrection.style.display = "block";
+        $(potentialCorrection).collapse({
+            toggle: true
+        })
+    }
 }
