@@ -148,7 +148,7 @@ class ToolBox{
             this.addElementToLeftBar(this.createButtonRunDebug("runBlocklyCode()", "executeCode"));
             this.addElementToLeftBar(this.createButtonRun("runPredictionCode()", "executeCode"));
 
-            this.addElementToRightBar(this.createButtonHelp("blockly-aide.html"));
+            this.addElementToRightBar(this.createButtonHelp("activite-aide.html"));
             this.addElementToRightBar(this.createButtonLanguage());
         } else if (exerciceName === "decision-tree") {
             this.addElementToLeftBar(this.createButtonNew("BT.reset()"));

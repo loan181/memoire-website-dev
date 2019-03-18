@@ -5,46 +5,11 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul id="mainNavbarUl" class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/"><i class="fas fa-home"></i></a>
             </li>
-            <li class="nav-item dropdown bg-primary">
-                <a class="nav-link" href="/algo/KNN/" role="button" aria-haspopup="true" aria-expanded="false">
-                    K plus proches voisins <i class="fas fa-caret-down"></i>
-                </a>
-                <div class="dropdown-menu showOnHover" aria-labelledby="navbarDropdown" style="z-index: 10001">
-                    <a class="dropdown-item" href="/algo/KNN/ex-preparatoires">Exercices préparatoires</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/algo/KNN/blockly-aide">Consignes et utilisation pour la phase pratique</a>
-                    <a class="dropdown-item" href="/algo/KNN/blockly">Phase pratique (Blockly)</a>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="/algo/arbre/" role="button" aria-haspopup="true" aria-expanded="false">
-                    Arbre de décisions <i class="fas fa-caret-down"></i>
-                </a>
-                <div class="dropdown-menu showOnHover" aria-labelledby="navbarDropdown" style="z-index: 10001">
-                    <a class="dropdown-item" href="/algo/arbre/ex-preparatoires">Exercices préparatoires</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/algo/arbre/arbre-aide">Consignes et utilisation pour la phase pratique</a>
-                    <a class="dropdown-item" href="/algo/arbre/arbre-interactif">Phase pratique (arbre intéractif)</a>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="/algo/NN/" role="button" aria-haspopup="true" aria-expanded="false">
-                    Réseau de neurones <i class="fas fa-caret-down"></i>
-                </a>
-                <div class="dropdown-menu showOnHover" aria-labelledby="navbarDropdown" style="z-index: 10001">
-
-                    <a class="dropdown-item" href="/algo/NN/ex-preparatoires">Exercices préparatoires</a>
-                    <div class="dropdown-divider"></div> <!--
-                    <a class="dropdown-item" href="/arbre/arbre-aide">Consignes et utilisation pour la phase pratique</a>-->
-                    <a class="dropdown-item" href="/algo/NN/reseau">Phase pratique (réseau intéractif)</a>
-                </div>
-            </li>
+            <!-- Rest is filled automatically -->
         </ul>
         <!--<form class="form-inline my-2 my-lg-0">-->
             <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
@@ -63,5 +28,87 @@
             curLink.parentNode.parentNode.querySelector('a').querySelector("i").className += " text-white lead";
             break;
         }
+    }
+
+    let algoPrefix = "/algo/";
+    let algoActivityDesc = [
+        "Série de petits exercices de préparation pour t'introduire l'idée derrière l'algorithme<br>Leurs corrections est automatisée et te sera proposé si tu te trompe troup souvent sur un même exercice.",
+        "Phase expliquant le fonctionement et objectifs de l'activité.<br>Cette phase est nécessaire pour comprendre la suivante",
+        "Activité intéractive de l'algorithme. Les activités dépendent des algorithmes eux-mêmes."
+    ];
+    let algoActivityIcon = [
+        "<i class=\"fas fa-dumbbell\"></i>",
+        "<i class=\"far fa-question-circle\"></i>",
+        "<i class=\"fas fa-flag-checkered\"></i>"
+    ];
+    // We can't use javascript variable into jekyll, so we precompute the values here
+    let algoName = [{% for algo in site.algorithms %} "{{ algo.name }}", {% endfor %}];
+    let algoHRef = [{% for algo in site.algorithms %} "{{ algo.href }}", {% endfor %}];
+    let algoActivityName = [{% for algo in site.algorithms %} "{{ algo.sections.activityName }}", {% endfor %}];
+    let algoIcon = [{% for algo in site.algorithms %} '{{ algo.icon }}', {% endfor %}];
+
+    function populateNavBar() {
+        for (let i = 0; i < algoHRef.length; i++) {
+            let listItem = $('<li>');
+            listItem.addClass("nav-item dropdown bg-primary");
+
+            let algoIndexLink = $('<a>');
+            algoIndexLink.addClass("nav-link");
+            algoIndexLink.attr('href', algoPrefix + algoHRef[i] + "/");
+            algoIndexLink.html(algoIcon[i] + " " + algoName[i] + ' <i class="fas fa-caret-down"></i>');
+            listItem.append(algoIndexLink);
+
+            let dropdown = $('<div>');
+            dropdown.addClass("dropdown-menu showOnHover");
+
+            let sections = getAllHrefForAlgo(i);
+            for (let j = 0; j < sections.length; j++) {
+                if (j === 1) {
+                    dropdown.append($('<div>').addClass("dropdown-divider"));
+                }
+                sections[j].addClass("dropdown-item");
+                dropdown.append(sections[j]);
+            }
+
+            listItem.append(dropdown);
+
+            $("#mainNavbarUl").append(listItem);
+        }
+
+
+        /*
+        <li class="nav-item dropdown bg-primary">
+            <a class="nav-link" href="/algo/KNN/" role="button" aria-haspopup="true" aria-expanded="false">
+                K plus proches voisins <i class="fas fa-caret-down"></i>
+            </a>
+            <div class="dropdown-menu showOnHover" aria-labelledby="navbarDropdown" style="z-index: 10001">
+                <a class="dropdown-item" href="/algo/KNN/ex-preparatoires">Exercices préparatoires</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/algo/KNN/blockly-aide">Consignes et utilisation pour la phase pratique</a>
+                <a class="dropdown-item" href="/algo/KNN/blockly">Phase pratique (Blockly)</a>
+            </div>
+        </li>
+         */
+    }
+    populateNavBar();
+
+    function getAllHrefForAlgo(algoConfingIndex) {
+        let ret = [];
+        let pagesDefaultName = ["Exercices préparatoires", "Consignes et utilisation pour l'activité", "Activité"];
+        let pagesDefaultHref = ["exercice", "activite-aide", "activite"];
+
+        for (let i = 0; i < pagesDefaultName.length; i++) {
+            let link = $('<a>');
+            link.attr('href', algoPrefix + algoHRef[algoConfingIndex] + "/" + pagesDefaultHref[i]);
+
+            let linkText = pagesDefaultName[i];
+            if (i === 2) {
+                linkText += ` (${algoActivityName[algoConfingIndex]})`;
+            }
+            link.html(algoActivityIcon[i] + " " + linkText);
+
+            ret.push(link);
+        }
+        return ret;
     }
 </script>
