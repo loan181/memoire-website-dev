@@ -1,0 +1,23 @@
+<nav>
+    <ul id="buttonsPagination" class="pagination justify-content-center">
+    </ul>
+</nav>
+<script>
+    let splitedPathName = window.location.pathname.split("/");
+    let hrefs = getAllHrefForAlgo(algoHRef.indexOf(splitedPathName[splitedPathName.length-2]));
+    let target = $('#buttonsPagination');
+    for (let i = 0; i < hrefs.length; i++) {
+        let paginationButton = $("<li>").addClass("page-item");
+        let link = hrefs[i];
+        link.addClass("page-link");
+
+        if (link.attr('href') === window.location.pathname) {
+            paginationButton.addClass("active");
+            link.addClass("isDisabled");
+            link.css("opacity", 1);
+        }
+
+        paginationButton.append(link);
+        target.append(paginationButton);
+    }
+</script>
