@@ -19,17 +19,6 @@
 </nav>
 
 <script>
-    // Automatically highlight in the dropdown if the link match
-    var allLinks = document.getElementsByTagName("a");
-    for(var i = 0; i < allLinks.length; i++){
-        var curLink = allLinks[i];
-        if (curLink.href === window.location.href) {
-            curLink.className += " active";
-            curLink.parentNode.parentNode.querySelector('a').querySelector("i").className += " text-white lead";
-            break;
-        }
-    }
-
     let algoPrefix = "/algo/";
     let algoActivityDesc = [
         "Série de petits exercices de préparation pour t'introduire l'idée derrière l'algorithme<br>Leurs corrections est automatisée et te sera proposé si tu te trompe troup souvent sur un même exercice.",
@@ -111,4 +100,19 @@
         }
         return ret;
     }
+
+    // Automatically highlight in the dropdown if the link match
+    function highlightCorrectNavItem() {
+        var allLinks = document.getElementsByTagName("a");
+        for(var i = 0; i < allLinks.length; i++){
+            var curLink = allLinks[i];
+            if (curLink.href === window.location.href) {
+                curLink.className += " active";
+                curLink.parentNode.parentNode.querySelector('a').getElementsByClassName("fa-caret-down")[0].className += " text-white lead";
+                break;
+            }
+        }
+    }
+    highlightCorrectNavItem();
+
 </script>
