@@ -6,54 +6,32 @@ exercices:
 -   title: Construire un arbre de décision
     introduction: >
         <p>
-            En utilisant le <a href="#tableExample">tableau précédent</a> construit l’arbre et donne les résultats de chaque feuille en partant de gauche à droite pour les questions suivantes :
+            En utilisant le <a href="#tableExample">tableau précédent</a> quel sont les pourcentages de chaque fruit pour les arbres suivants ?
         </p>
     question: >
-        <ul>
-            <li>Couleur orange ?</li>
-            <ul>
-                <li>Forme Courbé ? (pour la branche "non")</li>
-            </ul>
-        </ul>
-    help: <img src="/static/img/arbre/ex1help1.png" class="img-fluid">
+        <img src="/static/img/arbre/ex1help1.png" class="img-fluid mx-auto d-block">
     decisionTreeAnswer: true
     leafNumber : 3
     categories: [Banane, Pomme, Orange, Citron]
     correctValues: [[0,0,100,0],[100,0,0,0],[0,50,0,50]]
     correction: >
-        <img src="/static/img/arbre/ex1corr1.PNG" class="img-fluid">
+        <img src="/static/img/arbre/ex1corr1.PNG" class="img-fluid mx-auto d-block">
 -   question: >
-        <ul>
-            <li>Couleur jaune ?</li>
-            <ul>
-                <li>Forme Courbé ? (pour la branche "oui")</li>
-                <li>Couleur orange ? (pour la branche "non")</li>
-            </ul>
-        </ul>
-    help: <img src="/static/img/arbre/ex1help2.png" class="img-fluid">
+        <img src="/static/img/arbre/ex1help2.png" class="img-fluid mx-auto d-block">
     decisionTreeAnswer: true
     leafNumber : 4
     categories: [Banane, Pomme, Orange, Citron]
     correctValues: [[100,0,0,0],[0,0,0,100],[0,0,100,0],[0,100,0,0]]
     correction: >
-        <img src="/static/img/arbre/ex1corr2.PNG" class="img-fluid">
+        <img src="/static/img/arbre/ex1corr2.PNG" class="img-fluid mx-auto d-block">
 -   question: >
-        <ul>
-            <li>Couleur rose ?</li>
-            <ul>
-                <li>Forme hélicoïdale ? (pour la branche "non")</li>
-                <ul>
-                    <li>Couleur bleue ? (pour la branche "non")</li>
-                </ul>
-            </ul>
-        </ul>
-    help: <img src="/static/img/arbre/ex1help3.png" class="img-fluid">
+        <img src="/static/img/arbre/ex1help3.png" class="img-fluid mx-auto d-block">
     decisionTreeAnswer: true
     leafNumber : 1
     categories: [Banane, Pomme, Orange, Citron]
     correctValues: [[25,25,25,25]]
     correction: >
-        <img src="/static/img/arbre/ex1corr3.PNG" class="img-fluid">
+        <img src="/static/img/arbre/ex1corr3.PNG" class="img-fluid mx-auto d-block">
 -   question: >
         <p>
             D'après les différents arbres de cet exercice, quel arbre serai le plus adapté pour différencier une pomme d’un citron ? Justifie ton choix :
@@ -80,7 +58,7 @@ exercices:
             Tu remarquera qu'avec ses nouvelles pommes, il nous est impossible de les distinguer des citrons maintenant !
         </p>
 
-        <table class="table table-hover" id="tableExample2">
+        <table class="table table-light table-striped table-bordered table-hover" id="tableExample2">
             <thead>
             <tr>
                 <th scope="col">Classe</th>
@@ -150,13 +128,7 @@ exercices:
     correction: >
         4 fruits sont jaune et rond. 3 sont des pommes et 1 est un citron. Cela nous fait donc 1/4 de chance soit 25% pour le citron et 3/4 soit 75% pour la pomme.
 -   question: >
-        <ul>
-            <li>Forme ronde ?</li>
-            <ul>
-                <li>Couleur jaune ? (pour la branche "oui")</li>
-            </ul>
-        </ul>
-    help: <img src="/static/img/arbre/ex2help.PNG" class="img-fluid">
+        <img src="/static/img/arbre/ex2help.PNG" class="img-fluid mx-auto d-block">
     decisionTreeAnswer: true
     leafNumber : 3
     categories: [Banane, Pomme, Orange, Citron]
@@ -171,7 +143,7 @@ exercices:
         <p>
             Pour cet exercice sers toi de l'arbre de décision suivant :
         </p>
-        <img src="/static/img/arbre/ex3Tree.png" class="img-fluid">
+        <img src="/static/img/arbre/ex3Tree.png" class="img-fluid mx-auto d-block">
     question: >
         Quel est la classe majoritaire des fruits suivants ?
     answer: >

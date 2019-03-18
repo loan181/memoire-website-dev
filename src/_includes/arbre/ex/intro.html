@@ -4,13 +4,23 @@
     et sont atteints en fonction de décisions prises à chaque étape.<br>
     On va simplifier ici sa représentation visuelle, chaque décision sera toujours répondu par « oui » ou « non ».
 </p>
+<p>
+    Nous admettrons les propositions suivantes:
+</p>
+<ul>
+    <li>L'arbre "évolue" vers le bas</li>
+    <li>La branche de gauche représentera toujours la réponse « oui » et celle de droite la réponse « non »</li>
+    <li>Les questions sont formulés dans des cadre rectangulaire</li>
+    <li>Les feuilles de l'arbre sont dans des cadres ovale</li>
+    <li>Indiquer entre parenthèse les % pour toute les feuilles</li>
+</ul>
 
 <h2>Exemple</h2>
 
 <p>
     Prenons ce tableau avec ses quelques caractéristiques pour 4 fruits distincts :
 </p>
-<table class="table table-hover" id="tableExample">
+<table class="table table-light table-striped table-bordered table-hover" id="tableExample">
     <thead>
     <tr>
         <th scope="col">Classe</th>
@@ -44,32 +54,33 @@
 </table>
 
 <p>
-    On peut à partir du tableau construire un arbre de décision comme celui-ci à partir des questions suivantes :
+    Découvrons ensemble comment construire un arbre de décition à partir d'un <a href="#tableExample"> ensemble de donnée</a>.
 </p>
-<ul>
-    <li>Forme ronde ?</li>
-    <ul>
-        <li>Couleur rouge ? (pour la branche "oui")</li>
-    </ul>
-</ul>
-<img src="/static/img/arbre/arbreExemple.PNG" class="img-fluid">
-<small class="text-muted">
-    La première question que je pose est de savoir si la forme est ronde ou pas.
-    Si c’est le cas, on sait d’office que ça n'est pas une banane
-    (car c’est le seul fruit qui n'est pas rond dans notre exemple).<br>
-    Sachant qu’il n’est pas rond on aimerait savoir s’il est rouge,
-    si c’est le cas on sait que c’est une pomme,
-    mais si ça n’est pas le cas c’est soit une orange soit un citron.
-</small>
 <p>
-    Pour le reste des exercices tu n'est pas obligé de le dessiner de manière aussi rigoureuse, respecte juste les conventions suivantes :
+    Au début on à une seule feuille composé de tout les éléments de notre ensemble de donnée.<br>
+    Dans notre cas on aurait la banane, la pomme l'orange et le citron.
+    Chacun représente 1/4 (soit 25%) du total.
 </p>
-<ul>
-    <li>L'arbre "évolue" vers le bas</li>
-    <li>La branche de gauche représentera toujours la réponse « oui » et celle de droite la réponse « non »</li>
-    <li>Les questions sont formulés dans des cadre rectangulaire</li>
-    <li>Les feuilles de l'arbre sont dans des cadres ovale</li>
-    <li>Indiquer entre parenthèse les % pour toute les feuilles</li>
-</ul>
-<p>Avec cette convention l'exemple précédent peut être redessiné comme cela également : </p>
-<img src="/static/img/arbre/arbreExMain.png" class="img-fluid">
+<img src="/static/img/arbre/arbreExempleS1.png" class="img-fluid mx-auto d-block">
+<p>
+    On va maintenant poser une question, le choix de la question est arbitraire.
+    Cepandant il reste important, si la questions n'est pas pertinente, l'arbre final nous donnera des résultats moins intéressant.<br>
+    Par exemple ici je vais me demander si <i>le fruit est rond</i>.<br>
+    Dans mon cas uniquement la banane n'est pas ronde, elle se retrouvera donc dans la branche "non", les autres fruits sont tous ronds.
+    Comme la banane est seule dans sa feuille son pourcentage est de 100%. Les autres sont à 1/3 (soit 33.33 %).
+</p>
+<img src="/static/img/arbre/arbreExempleS2.png" class="img-fluid mx-auto d-block">
+<p>
+    On peut encore rafinner un peu l'arbre en posant une nouvelle question.<br>
+    Il n'est pas utile de poser des questions dans la partie droite de l'arbre vu que la banane est déjà à 100%.
+    Cepandant on peut être un peu plus précis dans la partie de gauche.<br>
+    On va poser une nouvelle question dans cette partie, <i>est-ce que le fruit est rouge ?</i><br>
+    Seulement la pomme est rouge, elle se retrouvera dont toute seule dans la branche de gauche, le citron et l'orange se retrouveront dans l'autre branche.
+</p>
+<img src="/static/img/arbre/arbreExemple.PNG" class="img-fluid mx-auto d-block">
+<p>
+    On pourrait aller plus loin (par exemple en séparant l'orange et le citron), mais je pense que tu as compris l'idée générale ;)
+</p>
+
+
+
