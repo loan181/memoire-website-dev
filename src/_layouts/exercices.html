@@ -17,7 +17,18 @@
     <div class="row">
         <!-- sidebar, which will move to the top on a small screen -->
         <div class="col-sm-3" >
-            <nav id="toc" data-toggle="toc" class="sticky-top" style="padding-top:20px"></nav>
+            <nav id="toc" data-toggle="toc" class="sticky-top" style="padding-top:20px">
+
+            </nav>
+            <nav class="d-flex flex-column mt-auto">
+                <ul id="paginationButtons" class="list-group">
+                </ul>
+            </nav>
+
+
+
+
+
         </div>
         <!-- main content area -->
         <div class="col-sm-9">
@@ -31,9 +42,35 @@
                 {% for exercice in page.exercices %}
                     {% include exercice.html ex=exercice %}
                 {% endfor %}
+
+                <nav>
+                    <ul id="buttonsPagination" class="pagination justify-content-center">
+                    </ul>
+                </nav>
             </main>
         </div>
     </div>
+
+    <script>
+        let splitedPathName = window.location.pathname.split("/");
+        let hrefs = getAllHrefForAlgo(algoHRef.indexOf(splitedPathName[splitedPathName.length-2]));
+        let target = $('#buttonsPagination');
+        for (let i = 0; i < hrefs.length; i++) {
+            let paginationButton = $("<li>").addClass("page-item");
+            let link = hrefs[i];
+            link.addClass("page-link");
+
+            if (link.attr('href') === window.location.pathname) {
+                paginationButton.addClass("active");
+                link.addClass("isDisabled");
+                link.css("opacity", 1);
+            }
+
+            paginationButton.append(link);
+            target.append(paginationButton);
+        }
+
+    </script>
 </div>
 
 {% include enlargeImage.html %}
