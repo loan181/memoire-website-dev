@@ -111,7 +111,8 @@
         var allLinks = document.getElementsByTagName("a");
         for(var i = 0; i < allLinks.length; i++){
             var curLink = allLinks[i];
-            if (curLink.href === window.location.href) {
+            // We use concatenation of this 2 windows parameters to avoid # id inclusion when href to id
+            if (curLink.href === window.location.origin + window.location.pathname) {
                 curLink.className += " active";
                 curLink.parentNode.parentNode.querySelector('a').getElementsByClassName("fa-caret-down")[0].className += " text-white lead";
                 break;
