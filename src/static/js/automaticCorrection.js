@@ -86,7 +86,10 @@ function checkAnswer(elem) {
         $(elem).data('attempts', attemptsNumber+1); // Update it
         if (attemptsNumber+1 >= 3) {
             let correctionButton = elem.parentNode.querySelector('.correctionButton');
-            correctionButton.classList.remove("d-none");
+            // Animation on button appearance
+            $(correctionButton).collapse({
+                toggle: true
+            });
         }
     }
 
