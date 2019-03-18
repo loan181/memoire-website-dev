@@ -23,15 +23,17 @@
 
 <body style="background-color: #477beb; background-blend-mode: soft-light;">
 
-  <div id="particles-js"> <!-- Animation in background-->
-  </div>
-    <div class="container" style="padding-top: 16px;">
+  <div id="particles-js"> </div> <!-- Animation in background-->
+
+    <div class="container" style="padding-top: 8px;">
       <h1 class="display-4" style="color: white">Introduction au Machine Learning</h1>
       <!--<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>-->
 
-      <div style="padding-bottom: 20px">
-        <iframe style="display: block;margin: 0 auto;" width="560" height="315" src="https://www.youtube.com/embed/C_GENXH6tGQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+            <div style="padding-bottom: 20px; text-align: center; max-width: 690px; margin: auto; ">
+                <div class="embed-responsive embed-responsive-16by9" >
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/C_GENXH6tGQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
 
       <div class="card-deck">
         {% for card in site.algorithms %}
