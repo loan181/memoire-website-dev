@@ -13,7 +13,7 @@
 <body data-spy="scroll" data-target="#toc">
 {% include nav.html %}
 
-<div class="container">
+<main role="main" class="container" style="max-width: 95%">
     <div class="row">
         <!-- sidebar, which will move to the top on a small screen -->
         <div class="col-sm-3" >
@@ -38,18 +38,40 @@
                 <h2>Introduction</h2>
                 {% include {{ page.introduction }} %}
 
+                {% if page.practicalCase %}
+                    <h3>Cas pratique</h3>
+                    <div class="card-deck">
+                        {% for case in page.practicalCase %}
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ case.title }}</h5>
+                                    <p class="card-text">{{ case.description }}</p>
+                                    <p class="text-muted">Examples : {{ case.example }}</p>
+                                    {% if case.link %}
+                                        <a href="{{ case.link }}" class="btn btn-info" target="_blank"><i class="fas fa-link"></i></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 <h2>Exercices</h2>
                 {% for exercice in page.exercices %}
                     {% include exercice.html ex=exercice %}
                 {% endfor %}
 
                 {% include automaticAlgoPagination.html %}
+
+                <h2>Bilan</h2>
+
+                <h2>Pour aller plus loin</h2>
             </main>
         </div>
     </div>
 
 
-</div>
+</main>
 
 {% include enlargeImage.html %}
 <script src="/static/js/enlargeImageModal.js"></script>
