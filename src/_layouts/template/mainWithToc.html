@@ -1,0 +1,33 @@
+<html lang="fr">
+<head>
+    <title>Introduction</title>
+    {% include head.html %}
+    {% include table_content.html %}
+    <script src="/static/js/contentForTeacher.js"></script>
+    <script src="/static/js/automaticCorrection.js"></script>
+
+</head>
+
+
+<body data-spy="scroll" data-target="#toc">
+{% include nav.html %}
+
+<main role="main" class="container" style="max-width: 95%">
+    <div class="row">
+        <!-- sidebar, which will move to the top on a small screen -->
+        <div class="col-sm-3" >
+            <nav id="toc" data-toggle="toc" class="sticky-top" style="padding-top:20px"></nav>
+        </div>
+        <!-- main content area -->
+        <div class="col-sm-9">
+            <main role="main" class="container">
+                {{ content }}
+            </main>
+        </div>
+    </div>
+</main>
+
+{% include enlargeImage.html %}
+<script src="/static/js/enlargeImageModal.js"></script>
+</body>
+</html>
