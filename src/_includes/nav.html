@@ -26,11 +26,13 @@
 <script>
     let algoPrefix = "/algo/";
     let algoActivityDesc = [
-        "Série de petits exercices de préparation pour t'introduire l'idée derrière l'algorithme<br>Leurs corrections est automatisée et te sera proposé si tu te trompe troup souvent sur un même exercice.",
+        "Introduction au concept général de l'algorithme",
+        "Série de petits exercices de préparation pour t'introduire l'idée derrière l'algorithme<br>Leurs corrections est automatisée.",
         "Phase expliquant le fonctionement et objectifs de l'activité.<br>Cette phase est nécessaire pour comprendre la suivante",
         "Activité intéractive de l'algorithme. Les activités dépendent des algorithmes eux-mêmes."
     ];
     let algoActivityIcon = [
+        "<i class=\"far fa-lightbulb\"></i>",
         "<i class=\"fas fa-dumbbell\"></i>",
         "<i class=\"far fa-question-circle\"></i>",
         "<i class=\"fas fa-flag-checkered\"></i>"
@@ -57,7 +59,7 @@
 
             let sections = getAllHrefForAlgo(i);
             for (let j = 0; j < sections.length; j++) {
-                if (j === 1) {
+                if (j === 2) {
                     dropdown.append($('<div>').addClass("dropdown-divider"));
                 }
                 sections[j].addClass("dropdown-item");
@@ -88,15 +90,15 @@
 
     function getAllHrefForAlgo(algoConfingIndex) {
         let ret = [];
-        let pagesDefaultName = ["Exercices préparatoires", "Consignes et utilisation pour l'activité", "Activité"];
-        let pagesDefaultHref = ["exercice", "activite-aide", "activite"];
+        let pagesDefaultName = ["Introduction", "Exercices préparatoires", "Consignes et utilisation pour l'activité", "Activité"];
+        let pagesDefaultHref = ["intro", "exercice", "activite-aide", "activite"];
 
         for (let i = 0; i < pagesDefaultName.length; i++) {
             let link = $('<a>');
             link.attr('href', algoPrefix + algoHRef[algoConfingIndex] + "/" + pagesDefaultHref[i]);
 
             let linkText = pagesDefaultName[i];
-            if (i === 2) {
+            if (i === 3) {
                 linkText += ` (${algoActivityName[algoConfingIndex]})`;
             }
             link.html(algoActivityIcon[i] + " " + linkText);

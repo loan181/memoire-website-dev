@@ -1,84 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-{% assign algo = site.algorithms[page.configAlgoIndex] %}
-
 <head>
+    <title>{{ page.title }}</title>
     {% include head.html %}
-    <title>{{ algo.name }}</title>
+    {% include table_content.html %}
+    <script src="/static/js/contentForTeacher.js"></script>
+    <script src="/static/js/automaticCorrection.js"></script>
+
 </head>
 
-<body>
+
+<body data-spy="scroll" data-target="#toc">
 {% include nav.html %}
-<div class="jumbotron jumbotron-fluid" style="
-    background: url({{ algo.picture }});
-         /*position: fixed;*/
-    width: 100%;
-    height: 550px; /*same height as jumbotron */
-    top: 0;
-    left: 0;
-    z-index: -999;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-blend-mode: soft-light;
-    -webkit-background-blend-mode: soft-lightsoft-light;
-    ">
-    {% if page.youtubeVideo %}
-        {% include youtubeVideo.html videoLink=page.youtubeVideo %}
-    {% endif %}
-</div>
 
-<main role="main" class="container">
-    <h1> {{ algo.name }}</h1>
-    <hr class="my-4">
-    <p class="lead">{{ algo.kindOfMethod }}</p>
-    <p>
-        {{ algo.shortDescription }}
-    </p>
-    <div align="center" >
-        <!--
-        {% for link in page.algoLinksToPages %}#}
-            {#<a class="btn btn-primary" href={{ link.href }} role="button">{{ link.text }}</a>#}
-        {#{% endfor %}#}-->
-        <div id="algoSelectionCards" class="card-deck">
+<main role="main" class="container" style="max-width: 95%">
+    <div class="row">
+        <!-- sidebar, which will move to the top on a small screen -->
+        <div class="col-sm-3" >
+            <nav id="toc" data-toggle="toc" class="sticky-top" style="padding-top:20px"></nav>
+        </div>
+        <!-- main content area -->
+        <div class="col-sm-9">
+            <main role="main" class="container">
+                <h1>{{ page.title }}</h1>
 
+                <h2>Introduction</h2>
+
+            </main>
         </div>
     </div>
+
+
 </main>
 
-    <script>
-        var jumboHeight = $('.jumbotron').outerHeight();
-        function parallax(){
-            var scrolled = $(window).scrollTop();
-            $('.jumbotron-bg').css('height', (jumboHeight-scrolled) + 'px');
-        }
-        $(window).scroll(function(e){
-            parallax();
-        });
-
-        let algoIndex = {{ page.configAlgoIndex }};
-        function populateAlgoSelectionCards() {
-            let links = getAllHrefForAlgo(algoIndex);
-            let target = $("#algoSelectionCards");
-            for (let i = 0; i < links.length; i++) {
-                let card = links[i].addClass("card custom-card text-white bg-primary border-light mb-3");
-                let saveText = card.html();
-                card.html(""); // Clear the text
-
-                let cardBody = $("<div>").addClass("card-body");
-                let cardBodyTitle = $("<h5>").addClass("card-title").html(saveText);
-                let cardBodyText = $("<p>").addClass("card-text").html(algoActivityDesc[i]);
-
-                cardBody.append(cardBodyTitle);
-                cardBody.append(cardBodyText);
-                card.append(cardBody);
-                target.append(card);
-            }
-        }
-        populateAlgoSelectionCards();
-    </script>
+{% include enlargeImage.html %}
+<script src="/static/js/enlargeImageModal.js"></script>
 </body>
-
 </html>
