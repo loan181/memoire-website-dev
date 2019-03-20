@@ -24,26 +24,8 @@
             <main role="main" class="container">
                 <h1>{{ page.title }}</h1>
 
-                <h2>Introduction</h2>
+                <h2>Contexte</h2>
                 {% include {{ page.introduction }} %}
-
-                {% if page.practicalCase %}
-                    <h3>Cas pratique</h3>
-                    <div class="card-deck">
-                        {% for case in page.practicalCase %}
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ case.title }}</h5>
-                                    <p class="card-text">{{ case.description }}</p>
-                                    <p class="text-muted">Examples : {{ case.example }}</p>
-                                    {% if case.link %}
-                                        <a href="{{ case.link }}" class="btn btn-info" target="_blank"><i class="fas fa-link"></i></a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
 
                 <h2>Exercices</h2>
                 {% for exercice in page.exercices %}
@@ -53,8 +35,6 @@
                 {% include automaticAlgoPagination.html %}
 
                 <h2>Bilan</h2>
-                    TODO
-                <h2>Pour aller plus loin</h2>
                     TODO
             </main>
         </div>

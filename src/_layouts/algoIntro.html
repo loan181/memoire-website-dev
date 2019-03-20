@@ -1,4 +1,54 @@
 ---
 layout: template/mainWithToc
+title: Introduction
 ---
-Salut
+<h1>Introduction</h1>
+
+    <h2>Catégorie d'algorithme</h2>
+        <p>
+            <b>{{ page.kind }} : </b><span id="kindExplanation"></span><br>
+        </p>
+
+
+    <h2>Principe</h2>
+        {{ content }}
+
+    {% if page.practicalCase %}
+        <h2>Cas pratique</h2>
+        <div id="useCases" class="card-deck">
+            {% for case in page.practicalCase %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ case.title }}</h5>
+                        <p class="card-text">{{ case.description }}</p>
+                        <p class="text-muted">Exemples : {{ case.example }}</p>
+                        {% if case.link %}
+                            <a href="{{ case.link }}" class="btn btn-info" target="_blank"><i class="fas fa-link"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+<script>
+    let categoryKind = "{{ page.kind }}";
+    let defaultText = "(Aucune information concernant cette catégorie)";
+    let categoryText = defaultText;
+    switch (categoryKind) {
+        case "Classification":
+            categoryText = "Consiste à identifier dans quelle classe/catégorie une donnée appartient.";
+            // RecurrentCards
+            $("#useCases").prepend(`
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Simplement faire des prédiction en général</h5>
+                        <p class="card-text">Il suffit d'avoir un ensemble de donnée avec certaines caractéristiques pour appliquer l'algorithme. Ainsi on peut l'utiliser dans divers domaines de prédiction</p>
+                        <p class="text-muted">Exemples : météo, médecine, évolution économique, pari sportif, ...</p>
+                    </div>
+                </div>
+            `);
+            break;
+    }
+    $("#kindExplanation").text(categoryText);
+</script>

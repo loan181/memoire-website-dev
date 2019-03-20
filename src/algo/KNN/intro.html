@@ -1,4 +1,31 @@
 ---
 layout: algoIntro
+kind: Classification
+practicalCase:
+ -  title: Système de recommandation (concept informatique)
+    description: >
+        Si on connait les objets qu'aime bien un utilisateur, on peut lui en conseiller d'autre en se basant sur les plus similaires
+    example: Recommandation de produits, vidéos conseillé, publicités ciblé, ...
+    link: https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_recommandation
+ -  title: Recherche de concept (concept informatique)
+    description: >
+        Si tu recherche des documents qui sont similaires sémantiquement
+    example: différents documents qui contiennent des sujets similaire, trouver des mails sur un certain thème, ...
+    link: https://en.wikipedia.org/wiki/Concept_search
+ -  title: Vision par ordinateur (concept informatique)
+    description: >
+        Le but est de permettre à une machine d'analyser, traiter et comprendre une ou plusieurs images.
+    example: reconnaissance de visages, ...
+    link: https://fr.wikipedia.org/wiki/Vision_par_ordinateur
 ---
-kikou le monde
+<p>
+    L'idée de la {{ site.algorithms[0].name }} est de classifier la donnée en se fiant aux classes connus les plus proches.<br><br>
+    Pour estimer la classe de la sortie, il prendra la classe la plus présente parmi les K données les plus proches graphiquement.
+</p>
+<div class="text-center">
+    <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/KnnClassification.svg"><br>
+    <small class="text-muted">
+        La donné de classe inconnu (cercle vert) pourrait être classé soit dans la première classe de carré bleu ou la seconde classe de triangles rouges.<br>
+        Si K = 3 (cercle en ligne pleine) il est affecté à la seconde classe car il y a deux triangles et seulement un carré dans le cercle considéré.<br>
+        Si K = 5 (cercle en ligne pointillée) il est assigné à la première classe (3 carrés face à deux triangles dans le cercle externe).</small>
+</div>
