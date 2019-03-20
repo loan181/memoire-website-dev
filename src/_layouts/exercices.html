@@ -15,9 +15,14 @@
 
 <main role="main" class="container" style="max-width: 95%">
     <div class="row">
-        <!-- sidebar, which will move to the top on a small screen -->
+        <!-- sidebar, which will move to the top on a small screen
         <div class="col-sm-3" >
             <nav id="toc" data-toggle="toc" class="sticky-top" style="padding-top:20px"></nav>
+        </div>-->
+        <div class="col-sm-3">
+            <div class="sticky-top" style="padding-top:64px">
+                <nav id="toc" data-toggle="toc" ></nav>
+            </div>
         </div>
         <!-- main content area -->
         <div class="col-sm-9">
@@ -32,10 +37,10 @@
                     {% include exercice.html ex=exercice %}
                 {% endfor %}
 
-                {% include automaticAlgoPagination.html %}
-
                 <h2>Bilan</h2>
                     TODO
+
+                {% include automaticAlgoPagination.html %}
             </main>
         </div>
     </div>

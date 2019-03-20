@@ -6,15 +6,18 @@
     let splitedPathName = window.location.pathname.split("/");
     let hrefs = getAllHrefForAlgo(algoHRef.indexOf(splitedPathName[splitedPathName.length-2]));
     let target = $('#buttonsPagination');
+    let nextShouldBeHighlight = false;
     for (let i = 0; i < hrefs.length; i++) {
         let paginationButton = $("<li>").addClass("page-item");
         let link = hrefs[i];
         link.addClass("page-link");
 
         if (link.attr('href') === window.location.pathname) {
+            nextShouldBeHighlight = true;
+            paginationButton.addClass("disabled");
+        } else if (nextShouldBeHighlight) {
+            nextShouldBeHighlight = false;
             paginationButton.addClass("active");
-            link.addClass("isDisabled");
-            link.css("opacity", 1);
         }
 
         paginationButton.append(link);
