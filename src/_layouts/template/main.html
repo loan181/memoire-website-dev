@@ -1,0 +1,18 @@
+<html lang="fr">
+<head>
+    {% if page.title %}<title>{{ page.title }}</title>{% endif %}
+    {% include head.html %}
+</head>
+
+
+<body>
+{% include nav.html %}
+
+<main role="main" class="container" style="max-width: 95%">
+    {{ content }}
+</main>
+
+{% include enlargeImage.html %}
+<script src="/static/js/enlargeImageModal.js"></script>
+</body>
+</html>
