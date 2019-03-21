@@ -10,75 +10,57 @@
 
 <body>
 {% include nav.html %}
-<div class="jumbotron jumbotron-fluid" style="
-    background: url({{ algo.picture }});
-         /*position: fixed;*/
-    width: 100%;
-    height: 550px; /*same height as jumbotron */
-    top: 0;
-    left: 0;
-    z-index: -999;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-blend-mode: soft-light;
-    -webkit-background-blend-mode: soft-lightsoft-light;
-    ">
-    {% if page.youtubeVideo %}
-        {% include youtubeVideo.html videoLink=page.youtubeVideo %}
-    {% endif %}
-</div>
 
-<main role="main" class="container">
-    <h1> {{ algo.name }}</h1>
-    <hr class="my-4">
-    <p class="lead">{{ algo.kindOfMethod }}</p>
-    <p>
-        {{ algo.shortDescription }}
-    </p>
-    <div align="center" >
-        <!--
+<div class="mx-auto" style="display: table;position: absolute;top: 56px;height: calc(100% - 56px);width: 100%;background: url({{ algo.picture }}); background-size: 100% 100%;">
+    <div style="display: table-cell;vertical-align: middle;">
+        <div style="width: 80%; margin: auto;">
+            <h1> {{ algo.name }}</h1>
+            <div class="card-body">
+                <div align="center" >
+                    <!--
         {% for link in page.algoLinksToPages %}#}
             {#<a class="btn btn-primary" href={{ link.href }} role="button">{{ link.text }}</a>#}
         {#{% endfor %}#}-->
-        <div id="algoSelectionCards" class="card-deck">
 
+                    <div id="algoSelectionMainCard"></div>
+                    <div id="algoSelectionCards" class="card-deck">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</main>
+</div>
 
-    <script>
-        var jumboHeight = $('.jumbotron').outerHeight();
-        function parallax(){
-            var scrolled = $(window).scrollTop();
-            $('.jumbotron-bg').css('height', (jumboHeight-scrolled) + 'px');
-        }
-        $(window).scroll(function(e){
-            parallax();
-        });
+<script>
+    let algoIndex = {{ page.configAlgoIndex }};
+    function populateAlgoSelectionCards() {
+        let links = getAllHrefForAlgo(algoIndex);
+        let target = $("#algoSelectionCards");
+        let targetMainCard = $("#algoSelectionMainCard");
+        for (let i = 0; i < links.length; i++) {
+            let card = links[i].addClass("card custom-card text-white bg-primary border-light mb-3");
+            let saveText = card.html();
+            card.html(""); // Clear the text
 
-        let algoIndex = {{ page.configAlgoIndex }};
-        function populateAlgoSelectionCards() {
-            let links = getAllHrefForAlgo(algoIndex);
-            let target = $("#algoSelectionCards");
-            for (let i = 0; i < links.length; i++) {
-                let card = links[i].addClass("card custom-card text-white bg-primary border-light mb-3");
-                let saveText = card.html();
-                card.html(""); // Clear the text
+            let cardBody = $("<div>").addClass("card-body");
+            let cardBodyTitle = $("<h5>").addClass("card-title").html(saveText);
+            let cardBodyText = $("<p>").addClass("card-text").html(algoActivityDesc[i]);
 
-                let cardBody = $("<div>").addClass("card-body");
-                let cardBodyTitle = $("<h5>").addClass("card-title").html(saveText);
-                let cardBodyText = $("<p>").addClass("card-text").html(algoActivityDesc[i]);
-
-                cardBody.append(cardBodyTitle);
-                cardBody.append(cardBodyText);
-                card.append(cardBody);
+            cardBody.append(cardBodyTitle);
+            cardBody.append(cardBodyText);
+            card.append(cardBody);
+            if (i === 0) {
+                targetMainCard.append(card);
+            }
+            else {
                 target.append(card);
             }
+
         }
-        populateAlgoSelectionCards();
-    </script>
+    }
+    populateAlgoSelectionCards();
+</script>
 </body>
 
 </html>
