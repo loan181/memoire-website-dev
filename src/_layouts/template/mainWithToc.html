@@ -18,8 +18,12 @@
         <div class="col-sm-3">
             <div class="sticky-top" style="padding-top:64px">
                 <nav id="toc" data-toggle="toc" style="padding-bottom: 32px" ></nav>
-                <div id="pinnableArea" class="card">
-                    hello
+                <div id="pinnableArea" class="card" style="overflow: auto;height: 400px">
+                    <div class="text-muted" style="text-align: center">
+                        Utilise le bouton avec l'icone <br>
+                        <i style="font-size: 18px" class="fas fa-thumbtack"></i> <br>
+                        pour épingler des éléments ici
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,6 +34,7 @@
                 target.empty();
 
                 let elementToCopy = elem.clone();
+                // TODO : delete all id into the clone to avoid duplicates (if href or whatever)
                 target.html(elementToCopy);
             }
         </script>
