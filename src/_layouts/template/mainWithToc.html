@@ -17,9 +17,22 @@
         <!-- sidebar, which will move to the top on a small screen -->
         <div class="col-sm-3">
             <div class="sticky-top" style="padding-top:64px">
-                <nav id="toc" data-toggle="toc" ></nav>
+                <nav id="toc" data-toggle="toc" style="padding-bottom: 32px" ></nav>
+                <div id="pinnableArea" class="card">
+                    hello
+                </div>
             </div>
         </div>
+
+        <script>
+            function pin(elem) {
+                let target = $('#pinnableArea');
+                target.empty();
+
+                let elementToCopy = elem.clone();
+                target.html(elementToCopy);
+            }
+        </script>
 
         <!-- main content area -->
         <div class="col-sm-9">
