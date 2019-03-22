@@ -24,37 +24,39 @@
     <br>Après avoir prélevé et analysé les échantillons au labo voici les résultats obtenus :
 </p>
 
-<table class="table table-hover" id="table1">
-    <thead>
-    <tr>
-        <th scope="col">Iris</th>
-        <th scope="col">Classe</th>
-        <th scope="col">Longueur Sépale</th>
-        <th scope="col">Largeur Sépale</th>
-        <th scope="col">Longueur Pétale</th>
-        <th scope="col">Largeur Pétale</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% assign nbrIris = site.data.iris_dataEx1.size | minus : 1 %}
-    {% for i in (0 .. nbrIris) %}
-
-        {% if site.data.iris_dataEx1[i].Class == "Iris-setosa" %}
-            {% assign rowClass = "table-primary" %}
-            {% elsif site.data.iris_dataEx1[i].Class == "Iris-versicolor" %}
-            {% assign rowClass = "table-danger" %}
-        {% else %}
-            {% assign rowClass = "table-success" %}
-        {% endif %}
-        <tr class="{{ rowClass }}">
-            <th scope="row"> {{ i | plus : 1}}</th>
-            <td>{{site.data.iris_dataEx1[i].Class}}</td>
-            <td>{{site.data.iris_dataEx1[i].Sepal_Length}}</td>
-            <td>{{site.data.iris_dataEx1[i].Sepal_Width}}</td>
-            <td>{{site.data.iris_dataEx1[i].Petal_Length}}</td>
-            <td>{{site.data.iris_dataEx1[i].Petal_Width}}</td>
+<div id="table1" style="overflow: auto">
+    <table class="table table-hover" >
+        <thead>
+        <tr>
+            <th scope="col">Iris</th>
+            <th scope="col">Classe</th>
+            <th scope="col">Longueur Sépale</th>
+            <th scope="col">Largeur Sépale</th>
+            <th scope="col">Longueur Pétale</th>
+            <th scope="col">Largeur Pétale</th>
         </tr>
-    {% endfor %}
-    </tbody>
-    <caption>Tableau 1 : Différentes mesures (en cm) pour quatre fleurs de chaque variété</caption>
-</table>
+        </thead>
+        <tbody>
+        {% assign nbrIris = site.data.iris_dataEx1.size | minus : 1 %}
+        {% for i in (0 .. nbrIris) %}
+
+            {% if site.data.iris_dataEx1[i].Class == "Iris-setosa" %}
+                {% assign rowClass = "table-primary" %}
+                {% elsif site.data.iris_dataEx1[i].Class == "Iris-versicolor" %}
+                {% assign rowClass = "table-danger" %}
+            {% else %}
+                {% assign rowClass = "table-success" %}
+            {% endif %}
+            <tr class="{{ rowClass }}">
+                <th scope="row"> {{ i | plus : 1}}</th>
+                <td>{{site.data.iris_dataEx1[i].Class}}</td>
+                <td>{{site.data.iris_dataEx1[i].Sepal_Length}}</td>
+                <td>{{site.data.iris_dataEx1[i].Sepal_Width}}</td>
+                <td>{{site.data.iris_dataEx1[i].Petal_Length}}</td>
+                <td>{{site.data.iris_dataEx1[i].Petal_Width}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <caption>Tableau 1 : Différentes mesures (en cm) pour quatre fleurs de chaque variété</caption>
+    </table>
+</div>
