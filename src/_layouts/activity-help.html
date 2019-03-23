@@ -29,6 +29,11 @@
                 <img src="{{ page.previewPicture }}" class="img-fluid center">
             {% endif %}
 
+            {% if page.goalDescription %}
+            <h2>Objectif</h2>
+                {{ page.goalDescription }}
+            {% endif %}
+
             <h2>Structure de la page</h2>
             {% if page.toolbarActivityName %}
                 <h3>Barre d'outil</h3>
@@ -108,10 +113,13 @@
                 {% endfor %}
             {% endif %}
 
-            {% if page.goalDescription %}
-                <h2>Objectif</h2>
-                {{ page.goalDescription }}
-
+            {% if page.goalSteps %}
+                <h2>Aide pour l'objectif</h2>
+                <p>
+                    L’algorithme peut être séparé en plusieurs étapes distinctes qui, petit à petit, te rapprocheront de la solution.
+                    Je vais t’aider dans cette partie à atteindre la bonne solution en te donnant les intuitions.<br>
+                    Libre à toi de faire autrement si tu le souhaites tant que la prédiction finale est bonne.
+                </p>
                 {% for step in page.goalSteps %}
                     <h3>Etape {{ forloop.index }} : {{ step.title }}</h3>
                     {{ step.content }}
