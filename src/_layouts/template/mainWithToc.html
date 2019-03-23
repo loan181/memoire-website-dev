@@ -44,7 +44,10 @@
 <script>
 
     function pinElementTransformation(elem) {
-        elem.find("table").addClass("table-sm"); // Reduce table size
+        elem.find("table").addBack('table').addClass("table-sm"); // Reduce table size
+        elem.find("img").addBack('img')
+            .click(imgOnClick) // Possible to enlarge the picture
+            .css("height", "100%");
         elem.each(function () {
             this.removeAttribute('id');
         })

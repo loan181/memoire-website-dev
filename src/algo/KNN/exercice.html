@@ -29,7 +29,7 @@ exercices:
         </select>
     correction: >
         Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
-        Les mesures en utilisant les pétales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
+        Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
         Le graphique correspondant est le suivant :<br>
         <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
 
@@ -67,7 +67,7 @@ exercices:
     correction: >
         C'est (probalement) une <i>Iris-virginica</i>.<br>
         La longueur et la largeur de la sépale ne nous permettent pas de pouvoir donner des informations fiables sur la fleur.<br>
-        Cepandant la longueur et la largeur de la sépale sont très proche des <i>Iris-virginica</i> existantes.
+        Cepandant la longueur et la largeur de la pétale sont très proche des <i>Iris-virginica</i> existantes.
 
 -   introduction: >
         <p>
@@ -105,7 +105,7 @@ exercices:
         <p>
             Sur le graphique suivant, visualise un marqueur au coordonnée (5.1, 2.6)
         </p>
-        <img src="/static/img/KNN/exKNNGraphique.png">
+        <img src="/static/img/KNN/exKNNGraphique.png" class="img-fluid pinnable">
     question : >
         Quelle est la couleur du point le plus proche ?
     answer: >
@@ -159,7 +159,7 @@ exercices:
         Pas de majorité car on à une égalité (1 jaune et 1 vert)
 -   introduction : Supposons maintenant que les points jaunes représente des <i>Iris-versicolor</i> et les verts des <i>Iris-virginica</i>.
     question : >
-        Quel serait, la ca classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
+        Quel serait, la classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
     answer: >
         <div class="form-group">
             <label for="repEx3-justification"></label>
@@ -175,7 +175,7 @@ exercices:
             Voici trois nouvelles iris dont la variété est connue (mais pas donné) :
         </p>
 
-        <table class="table table-hover" id="table2">
+        <table class="table table-hover pinnable" id="table2">
             <thead>
             <tr>
                 <th scope="col">Iris</th>
@@ -220,7 +220,7 @@ exercices:
     introduction: >
         <p>
             Soit les trois fleurs données dans <a href="#table2">Tableau 2</a>, avec le <a href="#table1">Tableau 1</a>
-            comme modèle d’entrainement en regardant la majorité parmi les trois voisins les plus proches (avec une distance euclidienne).<br>
+            comme modèle d’entrainement en regardant la majorité parmi les trois voisins les plus proches.<br>
             Pour cela tu peux t'aider des graphiques que je te donne : <br>
 
         </p>
@@ -342,6 +342,6 @@ exercices:
         </div>
     correction: >
         Le second est du coup plus intéressant puisqu’il prédit mieux. Autrement dit, on peut deviner avec plus de certitudes une Iris en mesurant ses pétales plutôt que sa sépale.<br>
-        Intéressant de noter ici que notre prédicteur n’est pas parfait non plus (il n’a pas un score de  3/3), tout ça ne sont que des prédiction on ne peut pas utiliser un prédicteur et affirmer des informations avec certitude.<br>
+        Intéressant de noter ici que notre prédicteur n’est pas parfait non plus (il n’a pas un score de  3/3), tout ça ne sont que des prédiction on ne peut pas utiliser un classifieur et affirmer des informations avec certitude.<br>
         Important de noter également que nos données sont très petites pour pouvoir affirmer avec conviction que le second est toujours meilleur que le premier.
 ---
