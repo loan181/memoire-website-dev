@@ -47,7 +47,7 @@
         elem.find("table").addBack('table').addClass("table-sm"); // Reduce table size
         elem.find("img").addBack('img')
             .click(imgOnClick) // Possible to enlarge the picture
-            .css("height", "100%");
+            .css("height", "100%"); // Scale the image (keeping aspect ratio)
         elem.each(function () {
             this.removeAttribute('id');
         })
