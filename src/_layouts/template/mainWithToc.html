@@ -43,13 +43,20 @@
 <script src="/static/js/enlargeImageModal.js"></script>
 <script>
 
+    function pinElementTransformation(elem) {
+        elem.find("table").addClass("table-sm"); // Reduce table size
+        elem.each(function () {
+            this.removeAttribute('id');
+        })
+    }
+
     function pin(elem) {
         let target = $('#pinnableArea');
         target.empty();
 
         let elementToCopy;
         elementToCopy = $(elem).clone(); // Convert to jQueryobject
-        // TODO : delete all id into the clone to avoid duplicates (if href or whatever)
+        pinElementTransformation(elementToCopy);
         target.html(elementToCopy);
     }
 
