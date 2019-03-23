@@ -11,14 +11,14 @@ youtubeVideo : Nybu_OiZHhQ
 
 toolbarActivityName : KNN
 toolboxButtonDescription :
-- Commencer un nouveau projet, cela effacera tous les blocs.
+- Commencer un nouveau projet. Cela effacera tous les blocs.
 - Sauvegarder/télécharger ton projet sur ton ordinateur (uniquement les blocs de Blockly).<br>Les paramètres ne sont pas enregistrés
 - Ouvrir un projet précédemment sauvegardé.<br>Uniquement les blocs Blockly sont chargés
-- Exporte le projet (blocs) sous forme d’images (SVG (vectoriel) ou PNG ).<br>Attention que si tu exportes en image tu ne peux pas l’ouvrir comme projet
+- Exporte le projet (blocs) sous forme d’image (SVG (vectoriel) ou PNG ).<br>Attention que si tu exportes en image tu ne peux pas l’ouvrir comme projet
 - Voir le code JavaScript généré par Blockly dans une fenêtre pop-up
-- Tester le code. Se contentera d’exécutera le code du projet tel quel.
-- Tester le classifieur. Lance le programme en évaluant si les prédictions sont correctes.<br>Cela te permettra de réussir ton objectif !
-- Renvoie vers la page d'aide (celle-çi)
+- Tester le code. Se contentera d’exécuter le code du projet tel quel.
+- <b>Tester le classifieur</b>. Lance le programme en évaluant si les prédictions sont correctes.<br>Cela te permettra de réussir ton objectif !
+- Renvoie vers la page d'aide (celle-ci)
 - Te permet de choisir la langue.<br>Seulement le français et l’anglais sont pleinement compatible. Les autres changeront uniquement le texte des blocs de Blockly.
 
 leftPartName : Données et Paramètres
@@ -27,26 +27,26 @@ leftPartSections:
 -   title: Panneau Graphe et Données
     picture: /static/img/KNN/site-graphAndDatas.png
     description: >
-        Te permet de consulter et visualiser les données du training set.
-        Chaque point du graphe correspond à une fleur du training set.
+        Te permet de consulter et visualiser les données du modèle d'entrainement.
+        Chaque point du graphe correspond à une fleur du modèle d'entrainement.
         Sa forme et couleur définit sa classe comme légendé en dessous du graphe.<br>
         Tu peux survoler avec ta souris un point pour obtenir des informations le concernant.<br>
-        Tu pourra également ajouter des fleurs "artificielle" dans le graphe via Blockly.
-        Pour effacer ses derniers tu pourra utiliser le bouton jaune avec la gomme<br>
+        Tu pourras également ajouter des fleurs "artificielle" dans le graphe via Blockly.
+        Pour effacer ces derniers tu pourras utiliser le bouton jaune avec la gomme<br>
 -   title: Panneau paramètres
     picture: /static/img/KNN/site-parameters.png
     description: >
-        Te permet de modifier le comportement de l'algorithme des K plus proches voisins.<br>
-        La modification des axes mettra également à jour le graphe du training set selon le choix.
+        Te permet de modifier certains paramètres de l'algorithme des K plus proches voisins.<br>
+        La modification des axes mettra également à jour le graphe du modèle d'entrainement selon le choix.
 
 rightPartName : Blockly
-rightPartDesc : La partie de droite est l'emplacement ou tu pourra modifier le code de l'algorithme afin de réussir l'objectif.
+rightPartDesc : La partie de droite est l'emplacement où tu pourras modifier le code de l'algorithme afin de réussir l'objectif.
 rightPartContentBlockly :
 -   blockName: getK
     desc: Donne la valeur de K définie dans le Panneau Paramètres
     returnType: Nombre
 -   blockName: countersReset
-    desc: Permet de réinitialiser le compteur de chaque fleur à zéro
+    desc: Permet de mettre le compteur de chaque fleur à zéro
 -   blockName: countersIncrease
     desc: Ajoute la valeur donné à la classe de la i-ème fleur la plus proche.
 -   blockName: countersGetMinMax
@@ -56,7 +56,7 @@ rightPartContentBlockly :
     desc: Permet de consulter la valeur des compteurs.<br>Ce bloc est utile seulement pour débugger afin de pouvoir voir les valeurs des compteurs
     returnType: Texte
 -   blockName: createFlower
-    desc: Permet de créer une fleur artificielle qui aura les valeurs données en <code>x</code> et <code>y</code> (dépend de ce que tu as fixer comme paramètres).<br>Voir exemples ci-dessous
+    desc: Permet de créer une fleur artificielle qui aura les valeurs données en <code>x</code> et <code>y</code> (dépend de ce que tu as fixé comme paramètres).<br>Voir exemples ci-dessous
     returnType: Fleur
 
 examples:
