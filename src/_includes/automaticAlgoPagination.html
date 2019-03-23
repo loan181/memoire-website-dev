@@ -1,26 +1,38 @@
 <nav>
-    <ul id="buttonsPagination" class="pagination justify-content-center" style="padding: 16px">
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" id="paginationDivPrevious"></div>
+            <div class="col-sm" style="text-align: right" id="paginationDivNext"></div>
+        </div>
+    </div>
+
 </nav>
 <script>
     let splitedPathName = window.location.pathname.split("/");
     let hrefs = getAllHrefForAlgo(algoHRef.indexOf(splitedPathName[splitedPathName.length-2]));
-    let target = $('#buttonsPagination');
-    let nextShouldBeHighlight = false;
+    let targetLast = $('#paginationDivPrevious');
+    let targetNext = $('#paginationDivNext');
+    let lastSave = null;
+    let isNext = false;
     for (let i = 0; i < hrefs.length; i++) {
-        let paginationButton = $("<li>").addClass("page-item");
+        let paginationButton = $("<a>").addClass("btn btn-link btn-lg").html("<<");
         let link = hrefs[i];
-        link.addClass("page-link");
+        paginationButton.attr("href", link.attr("href"));
+        paginationButton.html(link.html());
 
         if (link.attr('href') === window.location.pathname) {
-            nextShouldBeHighlight = true;
-            paginationButton.addClass("disabled");
-        } else if (nextShouldBeHighlight) {
-            nextShouldBeHighlight = false;
-            paginationButton.addClass("active");
+            if (lastSave !== null) {
+                lastSave.append("  <<");
+                targetLast.append(lastSave);
+            }
+            isNext = true;
+        } else if (isNext) {
+            isNext = false;
+            paginationButton.prepend(">>  ");
+            targetNext.append(paginationButton);
         }
 
-        paginationButton.append(link);
-        target.append(paginationButton);
+
+        lastSave = paginationButton.clone();
     }
 </script>
