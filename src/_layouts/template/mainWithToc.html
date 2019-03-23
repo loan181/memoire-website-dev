@@ -28,18 +28,6 @@
             </div>
         </div>
 
-        <script>
-            function pin(elem) {
-                let target = $('#pinnableArea');
-                target.empty();
-
-                let elementToCopy;
-                elementToCopy = $(elem).clone(); // Convert to jQueryobject
-                // TODO : delete all id into the clone to avoid duplicates (if href or whatever)
-                target.html(elementToCopy);
-            }
-        </script>
-
         <!-- main content area -->
         <div class="col-sm-9">
             <main role="main" class="container">
@@ -54,6 +42,17 @@
 {% include enlargeImage.html %}
 <script src="/static/js/enlargeImageModal.js"></script>
 <script>
+
+    function pin(elem) {
+        let target = $('#pinnableArea');
+        target.empty();
+
+        let elementToCopy;
+        elementToCopy = $(elem).clone(); // Convert to jQueryobject
+        // TODO : delete all id into the clone to avoid duplicates (if href or whatever)
+        target.html(elementToCopy);
+    }
+
     // Pinable area check
     let pinnableElements = $(".pinnable");
     if (pinnableElements.length === 0) { // If there is nothing to pin, delete the area
