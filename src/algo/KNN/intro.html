@@ -18,15 +18,12 @@ practicalCase:
     example: reconnaissance de visages, ...
     link: https://fr.wikipedia.org/wiki/Vision_par_ordinateur
 ---
-<p>
+<p class="pinnable">
     L'idée de la {{ site.algorithms[0].name }} est de classifier la donnée en se fiant aux classes connus les plus proches.<br><br>
     Pour estimer la classe de la sortie, il prendra la classe la plus présente parmi les K données les plus proches graphiquement.
 </p>
 <div class="text-center">
-    <div class="float-right">
-        <button type="button" onclick="pin(this.parentElement.nextElementSibling)" class="btn btn-info"><i class="fas fa-thumbtack"></i></button>
-    </div>
-    <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/KnnClassification.svg"><br>
+    <img class="img-fluid pinnable" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/KnnClassification.svg"><br>
     <small class="text-muted">
         La donné de classe inconnu (cercle vert) pourrait être classé soit dans la première classe de carré bleu ou la seconde classe de triangles rouges.<br>
         Si K = 3 (cercle en ligne pleine) il est affecté à la seconde classe car il y a deux triangles et seulement un carré dans le cercle considéré.<br>

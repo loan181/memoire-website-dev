@@ -53,5 +53,27 @@
 
 {% include enlargeImage.html %}
 <script src="/static/js/enlargeImageModal.js"></script>
+<script>
+    // Pinable area check
+    let pinnableElements = $(".pinnable");
+    if (pinnableElements.length === 0) { // If there is nothing to pin, delete the area
+        $("#pinnableArea").remove();
+    }
+    else {
+        /*
+        <div class="float-right">
+            <button type="button" onclick="pin(this.parentElement.nextElementSibling)" class="btn btn-info"><i class="fas fa-thumbtack"></i></button>
+        </div>
+        */
+        pinnableElements.each(function() {
+            let pinDiv = $("<div>").addClass("float-right");
+            let pinButton = $("<button><i class='fas fa-thumbtack'></i></button>")
+                .addClass("btn btn-info");
+            pinDiv.append(pinButton);
+            pinButton.click(() => {pin(this)}); // Pin the object itself, not the pin button
+            pinDiv.insertBefore(this);
+        });
+    }
+</script>
 </body>
 </html>
