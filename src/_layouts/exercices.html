@@ -13,7 +13,14 @@ title: Exercices
     {% include exercice.html ex=exercice %}
 {% endfor %}
 
+
+{% if page.conclusion %}
 <h2>Bilan</h2>
-    TODO
+    <ul>
+        {% for remarks in page.conclusion %}
+        <li>{{ remarks }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 {% include preventQuitPage.html %}
