@@ -18,7 +18,7 @@
         <div class="col-sm-3">
             <div class="sticky-top" style="padding-top:64px">
                 <nav id="toc" data-toggle="toc" style="padding-bottom: 32px" ></nav>
-                <div id="pinnableArea" class="card" style="overflow: auto;max-height: 400px">
+                <div id="pinnableArea" class="card d-none d-sm-block" style="overflow: auto;max-height: 400px">
                     <div class="text-muted" style="text-align: center">
                         Utilise le bouton avec l'icone <br>
                         <i style="font-size: 24px" class="fas fa-thumbtack"></i> <br>
@@ -75,7 +75,7 @@
         </div>
         */
         pinnableElements.each(function() {
-            let pinDiv = $("<div>").addClass("float-right");
+            let pinDiv = $("<div>").addClass("float-right d-none d-sm-block");
             let pinButton = $("<button><i class='fas fa-thumbtack'></i></button>")
                 .addClass("btn btn-info");
             pinDiv.append(pinButton);
