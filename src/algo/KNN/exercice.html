@@ -12,8 +12,10 @@ conclusion:
     - L'algorithme des K plus proches voisins repose sur un principe assez simple.
     - On se base sur des données connues (modèle d'entrainement) pour déduire la catégorie (classe) d'un nouvel élément en y trouvant celle qui est la plus présente parmis les données avec les valeurs les plus proches.
     - On peut choisir le nombre de données les plus proches (K). Généralement on choisit 3.
+    - Chaque classe a un compteur qui lui est associé. Il commence à 0 et augmente de 1 chaque fois qu'un voisin de sa classe est rencontré. <br>Après avoir fait cette opération K fois, la classe associé au compteur de classe maximal est celle prédite par le classifieur.
     - Le choix des mesures (métriques) pour lesquels on décide si l'élément est proche est important. On essaiera de trouver au mieux de choisir celles qui discerne le mieux les différentes classes.
     - Les résultats ne sont pas toujours fiables ! Il ne faut pas croire à 100% ce que nous dit le classifieur, même s'il est bien fait
+    - Un classifieur ne reconnait que ce pour quoi il a été entrainé pour. Ici si on lui donne une autre fleur, une marguerite par exemple, il va nous déduire l'iris qui s'en rapproche le plus.
 
 exercices:
 -   title: Identification de 2 facteurs importants
@@ -317,8 +319,8 @@ exercices:
             Pour cela tu peux t'aider des graphiques que je te donne : <br>
         </p>
         <div style="text-align: center">
-            <img src="/static/img/KNN/exKNNGraphiqueMetriqueSepale.png" class="img-fluid" style="padding-right: 32px">
-            <img src="/static/img/KNN/exKNNGraphiqueMetriquePetale.png" class="img-fluid">
+            <img src="/static/img/KNN/exKNNGraphiqueMetriqueSepale.png" class="img-fluid pinnable" style="padding-right: 16px">
+            <img src="/static/img/KNN/exKNNGraphiqueMetriquePetale.png" class="img-fluid pinnable">
         </div>
     question : >
         Détermine les fleurs avec les métriques suivantes:
