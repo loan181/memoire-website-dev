@@ -8,6 +8,30 @@ introduction : >
     </p>
 previewPicture : /static/img/arbre/pagePreview.PNG
 
+goalDescription : >
+    <p>
+        Ton but dans cette mission est de créer un arbre de décision qui classifiera correctement les données de prédictions (cachés).<br>
+        Autrement dit, j'ai des fleurs de classes connues que je vais les introduire dans ton arbre de décision, je vais ensuite vérifier si la classe prédite par ton arbre (classe majoritaire de la feuille) est bien celle de la fleur.
+    </p>
+    <p>
+        La qualité de ton classifieur est représentée par la barre de progression bleu en dessous de la barre d'outil.<br>
+        Cette barre se met à jour à chaque fois que tu teste ton classifieur en testant ton arbre de décision.<br>
+        Ton objectif final est d'atteindre la meilleure prédiction possible (100%)
+    </p>
+    <div class="mt-2 col-md-12">
+        <h6 style="float: left; margin-right: 1em;"> Prédiction courante : </h6>
+        <div class="progress" style="height: 32px;">
+            <div id="predictionProgressBar" class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%;">100.00%</div>
+        </div>
+    </div>
+    <p>
+        Pour cela tu peut intéragir avec l'arbre de décision qui se trouve dans la partie de droite de divers façon détaillées dans <a href="#exemples"></a>.<br>
+    </p>
+    <p>
+        Garde bien à l'esprit qu'il existe plusieurs arbre de décisions pour résoudre cette exercice. Ton but n'est <b>PAS</b> de faire un arbre dont chaque feuille est à 100% d'une fleur.<br>
+        Personellement j'ai réussis l'activité en créant 2 décisions (noeuds internes), réfléchis donc bien à tes différents choix de décisions.
+    </p>
+
 toolbarActivityName : decision-tree
 toolboxButtonDescription :
     - Réinitialiser l'arbre à zéro en effacant tout les noeuds existant.
