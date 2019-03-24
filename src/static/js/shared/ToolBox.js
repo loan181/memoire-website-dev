@@ -134,6 +134,10 @@ class ToolBox{
         this.toolBox.innerHTML = html;
 
     }
+
+    addHelp() {
+        this.addElementToRightBar(this.createButtonHelp("activite-aide"));
+    }
     
     setToolBarForExercice(exerciceName) {
         if (exerciceName === "KNN") {
@@ -148,13 +152,15 @@ class ToolBox{
             this.addElementToLeftBar(this.createButtonRunDebug("runBlocklyCode()", "executeCode"));
             this.addElementToLeftBar(this.createButtonRun("runPredictionCode()", "executeCode"));
 
-            this.addElementToRightBar(this.createButtonHelp("activite-aide.html"));
+            this.addHelp();
             this.addElementToRightBar(this.createButtonLanguage());
         } else if (exerciceName === "decision-tree") {
             this.addElementToLeftBar(this.createButtonNew("BT.reset()"));
             this.addElementToLeftBar(this.createButtonDownload("downloadExerciceFile()"));
             this.addElementToLeftBar(this.createButtonUpload()); // TODO
             this.addElementToLeftBar(this.createButtonRun("testClassify()", "executeCode"));
+
+            this.addHelp();
         }
     }
 

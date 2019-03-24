@@ -13,7 +13,7 @@ conclusion:
     - On se base sur des données connues (modèle d'entrainement) pour déduire la catégorie (classe) d'un nouvel élément en y trouvant celle qui est la plus présente parmis les données avec les valeurs les plus proches.
     - On peut choisir le nombre de données les plus proches (K). Généralement on choisit 3.
     - Le choix des mesures (métriques) pour lesquels on décide si l'élément est proche est important. On essaiera de trouver au mieux de choisir celles qui discerne le mieux les différentes classes.
-    - Les réultats ne sont pas toujours fiables ! Il ne faut pas croire à 100% ce que nous dit le classifieur, même s'il est bien fait
+    - Les résultats ne sont pas toujours fiables ! Il ne faut pas croire à 100% ce que nous dit le classifieur, même s'il est bien fait
 
 exercices:
 -   title: Identification de 2 facteurs importants
@@ -45,24 +45,26 @@ exercices:
         <p>
             En te fiant au <a href="#table1">Tableau 1</a> et à la nouvelle fleur suivante :
         </p>
-        <table class="table table-hover pinnable" id="unknownIrisPar">
-            <thead>
-            <tr>
-                <th scope="col">Longueur Sépale</th>
-                <th scope="col">Largeur Sépale</th>
-                <th scope="col">Longueur Pétale</th>
-                <th scope="col">Largeur Pétale</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="table-secondary">
-                <td>5.1</td>
-                <td>2.6</td>
-                <td>4.7</td>
-                <td>1.9</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="pinnable" style="overflow: auto">
+            <table class="table table-hover" id="unknownIrisPar">
+                <thead>
+                <tr>
+                    <th scope="col">Longueur Sépale</th>
+                    <th scope="col">Largeur Sépale</th>
+                    <th scope="col">Longueur Pétale</th>
+                    <th scope="col">Largeur Pétale</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-secondary">
+                    <td>5.1</td>
+                    <td>2.6</td>
+                    <td>4.7</td>
+                    <td>1.9</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     question : >
         Quelle est la fleurs, qui correspond à ses mesures ?
     answer: >
@@ -181,42 +183,43 @@ exercices:
         <p>
             Voici trois nouvelles iris dont la variété est connue (mais pas donnée) :
         </p>
-
-        <table class="table table-hover pinnable" id="table2">
-            <thead>
-            <tr>
-                <th scope="col">Iris</th>
-                <th scope="col">Longueur Sépale</th>
-                <th scope="col">Largeur Sépale</th>
-                <th scope="col">Longueur Pétale</th>
-                <th scope="col">Largeur Pétale</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="table-secondary">
-                <th scope="row">1</th>
-                <td>6.1</td>
-                <td>2.5</td>
-                <td>1.2</td>
-                <td>0.3</td>
-            </tr>
-            <tr class="table-secondary">
-                <th scope="row">2</th>
-                <td>4.6</td>
-                <td>3.5</td>
-                <td>2.9</td>
-                <td>1.1</td>
-            </tr>
-            <tr class="table-secondary">
-                <th scope="row">3</th>
-                <td>4.7</td>
-                <td>2.4</td>
-                <td>4.3</td>
-                <td>1.6</td>
-            </tr>
-            </tbody>
-            <caption>Tableau 2 : Iris inconnus</caption>
-        </table>
+        <div class="pinnable" style="overflow: auto">
+            <table class="table table-hover " id="table2">
+                <thead>
+                <tr>
+                    <th scope="col">Iris</th>
+                    <th scope="col">Longueur Sépale</th>
+                    <th scope="col">Largeur Sépale</th>
+                    <th scope="col">Longueur Pétale</th>
+                    <th scope="col">Largeur Pétale</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-secondary">
+                    <th scope="row">1</th>
+                    <td>6.1</td>
+                    <td>2.5</td>
+                    <td>1.2</td>
+                    <td>0.3</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">2</th>
+                    <td>4.6</td>
+                    <td>3.5</td>
+                    <td>2.9</td>
+                    <td>1.1</td>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">3</th>
+                    <td>4.7</td>
+                    <td>2.4</td>
+                    <td>4.3</td>
+                    <td>1.6</td>
+                </tr>
+                </tbody>
+                <caption>Tableau 2 : Iris inconnus</caption>
+            </table>
+        </div>
 
         <p>
             Notre but dans cette partie va être de <b>prédire</b> les fleurs à partir des données et <b>ensuite</b> on va vérifier si nos prédictions sont exactes.
