@@ -320,10 +320,10 @@ exercices:
             Son équation est la suivante : <span style="font-size: 180%">$f(x) = \frac{1}{1+e^{-x}}$</span><br>
             Son graphique est le suivant : <br>
             <img class="img-fluid mx-auto d-block" src="https://cdn-images-1.medium.com/max/1600/0*5euYS7InCmDP08ir."><br>
-        <p id="sigmoidCalculator">
-            <input id="sigmoidX" type="number" value="0" class="form-control" step="0.1">
-            <button type="button" class="btn btn-secondary" onclick="let val = 1/(1+Math.exp(-$('#sigmoidX').val()));$('#sigmoidRes').text(Number(val.toFixed(8)));">Calculer</button>
-            Résultat : <b><span id="sigmoidRes"></span></b>
+        <p id="sigmoidCalculator" class="pinnable">
+            <input type="number" value="0" class="sigmoidX form-control" step="0.1">
+            <button type="button" class="btn btn-secondary" onclick="let val = 1/(1+Math.exp(-$('.sigmoidX').val()));$('.sigmoidRes').text(Number(val.toFixed(8)));">Calculer</button>
+            Résultat : <b><span class="sigmoidRes"></span></b>
         </p>
 
         <p>
