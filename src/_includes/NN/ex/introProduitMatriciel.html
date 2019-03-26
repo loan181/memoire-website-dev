@@ -1,0 +1,36 @@
+<p>
+    Le produit matriciel désigne la mulitplication de matrices.<br>
+    Si tu n'as jamais entendu parler de matrices, dit toi que c'est juste un tableau remplie de nombre (comme dans excel).<br>
+    Il en existe de plusieurs formes, ici nous aurons juste besoin de la plus simple.
+</p>
+<p>
+    Soit :
+    <ul>
+        <li>Une matrice <code>A = (a<sub>i,j</sub>)</code> de taille <code>(m, n)</code></li>
+        <li>Une matrice <code>B = (b<sub>i,j</sub>)</code> de taille <code>(n, p)</code></li>
+    </ul>
+    Alors leur produit matriciel, noté <code>AB = (c<sub>i,j</sub>)</code> est une matrice de taille <code>(m, p)</code> donnée par :<br>
+    <img class="img-fluid" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/840716c2745c63bd10c38a0b5ecac966faf0b1ff">
+</p>
+<p>
+    C'est pas très facile à comprendre comme ça, mais tu verra que même si la formule et la notation est complèxe, en pratique c'est simple à faire.<br>
+    Il te suffit juste de faire de multuplier et additionner les bons éléments ensemble ;)
+</p>
+
+<h2>Exemple</h2>
+<p>
+    Prenons <code>A =</code>$\begin{pmatrix}a_{1,1} & a_{1,2}\\a_{2,1} & a_{2,2}\\a_{3,1} & a_{3,2}\\a_{4,1} & a_{4,2}\end{pmatrix}$ et <code>B =</code>$\begin{pmatrix}b_{1,1} & b_{1,2} & b_{1,3}\\b_{2,1} & b_{2,2} & b_{2,3}\end{pmatrix}$, on peut calculer le produit matriciel <code>AB</code> de la façon suivante :
+    <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Matrix_multiplication_diagram_2.svg"><br>
+    La valeur du cercle jaune à bordure rouge se calcul comme étant : $c_{1,2} = a_{1,1} \times b{1,2} + a_{1,2} \times b_{2,2}$<br>
+    La valeur du cercle vert à bordure bleue se calcul comme étant : $c_{3,3} = a_{3,1} \times b{1,3} + a_{3,2} \times b_{2,3}$<br>
+    Et ainsi de suite pour chaque autre case de la matrice...
+</p>
+<p>
+    Prenons <code>A =</code>$\begin{pmatrix}1 & 0\\2 & -1\end{pmatrix}$ et <code>B =</code>$\begin{pmatrix}3 & 4\\-2 & -3\end{pmatrix}$. <code>AB</code> est alors : <br>
+</p>
+<img class="img-fluid" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/61465d1f92b38023b8652ca8d428fd305a763e90">
+<img class="img-fluid" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f20f1ff340301145d1812d388fb748e802b02831">
+
+<p>
+    Je suis conscient que c'est pas facile au début, mais après quelques exercices tu devrais pouvoir y parvenir sans problèmes ;)
+</p>
