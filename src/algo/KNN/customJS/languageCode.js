@@ -361,14 +361,16 @@ LanguageCode.init = function() {
             rtl: rtl,
             toolbox: toolboxXml,
             zoom:
-                {controls: true,
-                    wheel: true}
+                {controls: true}
         });
 
 
     // Add to reserved word list: Local variables in execution environment (runJS)
     // and the infinite loop detection function.
     Blockly.JavaScript.addReservedWords('code,timeouts,checkTimeout');
+
+    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
+        LanguageCode.workspace);
 
     LanguageCode.loadBlocks('');
 

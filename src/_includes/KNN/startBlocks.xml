@@ -1,0 +1,20 @@
+<block type="procedures_defreturn">
+  <mutation>
+    <arg name="newIris" varid="xV,hWe[vth$ls//uA#nX"></arg>
+  </mutation>
+  <field name="NAME">classify</field>
+  <comment pinned="false" h="80" w="160">Describe this function...</comment>
+  <statement name="STACK">
+    <block type="variables_set">
+      <field name="VAR" id="tngGlX6ovf-o#M{QZvOB" variabletype="">fleurPredite</field>
+      <value name="VALUE">
+        <shadow type="randomflowername"></shadow>
+      </value>
+    </block>
+  </statement>
+  <value name="RETURN">
+    <block type="variables_get">
+      <field name="VAR" id="tngGlX6ovf-o#M{QZvOB" variabletype="">fleurPredite</field>
+    </block>
+  </value>
+</block>
