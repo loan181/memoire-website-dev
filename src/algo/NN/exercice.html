@@ -83,39 +83,38 @@ exercices:
 -   title: Produit matriciel
     introduction: >
         <p>
-            Pour faire le calcul de la valeur d'un neuronne, cela demandera que tu sache faire un produit matriciel.
+            Pour faire le calcul de la valeur d'un neuronne, cela demandera que tu sache faire un produit matriciel.<br>
+            Si tu ne sais pas ce que c'est, va d'abord faire les exercices de <a target="_blank" href="produitMatriciel"> cette page </a>.
         </p>
     question: >
         <p>
-            Quel est le résultat de : (0, 1, 0, 1, 1) * ((1, 2, 3, 4, 5), (-1, 2, 4, 5, 3), (51, 2, -42, 4, 5))
+            Calcul le produit matriciel <code>AB</code> avec
+            <code>A=</code>$\begin{pmatrix}0 & 1 & 0 & 1 & 1\end{pmatrix}$
+            <code>B=</code>$\begin{pmatrix}1 & -1 & 51 \\ 2 & 2 & 2 \\ 3 & 4 & -42 \\ 4 & 5 & 4 \\ 5 & 3 & 5  \end{pmatrix}$
         </p>
     answer: >
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">(</span>
-            </div>
-            <input type="number" value="0" class="form-control" data-answer="11">
-            <div class="input-group-prepend">
-                <span class="input-group-text">,</span>
-            </div>
-            <input type="number" value="0" class="form-control" data-answer="10">
-            <div class="input-group-prepend">
-                <span class="input-group-text">,</span>
-            </div>
-            <input type="number" value="0" class="form-control" data-answer="11">
-            <div class="input-group-append">
-                <span class="input-group-text">)</span>
-            </div>
-        </div>
+        <code>AB = </code>(
+        <table style="display:inline-table">
+            <tbody>
+            <tr>
+                <td><input type="number" value="0" class="form-control" data-answer="11"></td>
+                <td><input type="number" value="0" class="form-control" data-answer="10"></td>
+                <td><input type="number" value="0" class="form-control" data-answer="11"></td>
+            </tr>
+            </tbody>
+        </table>
+        )
     help : >
-        Si tu as oublié le calcul, jette un oeil à la <a target="_blank" href="https://fr.wikipedia.org/wiki/Produit_matriciel#Produit_matriciel_ordinaire"> page wikipedia</a>.<br>
+        Si tu as oublié le calcul, jette un oeil à la <a target="_blank" href="produitMatriciele"> page dédiée</a>.<br>
         Les détail de calcul pour la première valeur est par exemple :
         0 * 1 + 1 * 2 + 0 * 3 + 1 * 4 + 1 * 5 = 11
     correction: >
-        Le résultat est (11, 10, 11). Détail des calculs :<br>
+        Le résultat est $\begin{pmatrix}11 & 10 & 11\end{pmatrix}$. Détail des calculs :<br>
         (0 * 1 + 1 * 2 + 0 * 3 + 1 * 4 + 1 * 5,<br>
         0 * (-1) + 1 * 2 + 0 * 4 + 1 * 5 + 1 * 3,<br>
-        0 * 51 + 1 * 2 + 0 * (-42) + 1 * 4 + 1 * 5) = (11, 10, 11)
+        0 * 51 + 1 * 2 + 0 * (-42) + 1 * 4 + 1 * 5) = (11, 10, 11)<br>
+        Attention que le calcul de produit matriciel est super important pour la suite des exercices.
+        Soit sûr d'avoir bien compris la démarche ;)
 
 -   title: Calcul de la valeur d'un neurone d'une couche autre que la première
     introduction: >
@@ -125,11 +124,11 @@ exercices:
         </p>
         <p>
             On va commencer doucement en calculant la valeur du premier neurone de la seconde couche.
-            Pour cela je te donne les 2 vecteurs que tu as besoin :
+            Pour cela je te donne les 2 matrices dont tu as besoin :
         </p>
         <ul>
-            <li>Vecteur des valeurs des neuronnes de la couche précédente (0, 0, 0, 1, 1, 1, 0, 0, 0) <small class="text-muted">ça correspond à l'image d'une ligne horizontale</small></li>
-            <li>Vecteur des poids associé au premier neurone de la couche 2 (6, -4, 6, 8, -5, 8, 6, -4, 7)</li>
+            <li>Matrice des valeurs des neuronnes de la couche précédente $\begin{pmatrix}0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \end{pmatrix}$ <small class="text-muted">ça correspond à l'image d'une ligne horizontale</small></li>
+            <li>Matrice des poids associé au premier neurone de la couche 2 $\begin{pmatrix}6 \\ -4 \\ 6 \\ 8 \\ -5 \\ 8 \\ 6 \\ -4 \\ 7 \end{pmatrix}$</li>
         </ul>
     question: >
         <p>
@@ -146,66 +145,16 @@ exercices:
         <p>
             Il ne nous reste plus qu'à faire de même pour les deux autres neurones de la même couche.
             Je t'ai precemment donné le vecteur des poids uniquement pour la premier neuronne, je te donne maintenant la matrice entière pour cette couche.
-            <table class="table table-sm table-dark table-bordered">
-                <!--
-                <thead>
-                <tr>
-                    <th scope="col">Numéro de neurone de la couche 2</th>
-                    <th scope="col">Neurone 1 couche 1</th>
-                    <th scope="col">Neurone 2 couche 1</th>
-                    <th scope="col">Neurone 3 couche 1</th>
-                    <th scope="col">Neurone 4 couche 1</th>
-                    <th scope="col">Neurone 5 couche 1</th>
-                    <th scope="col">Neurone 6 couche 1</th>
-                    <th scope="col">Neurone 7 couche 1</th>
-                    <th scope="col">Neurone 8 couche 1</th>
-                    <th scope="col">Neurone 9 couche 1</th>
-                </tr>
-                </thead>-->
-                <tbody>
-                <tr>
-                    <td>6</td>
-                    <td>-4</td>
-                    <td>6</td>
-                    <td>8</td>
-                    <td>-5</td>
-                    <td>8</td>
-                    <td>6</td>
-                    <td>-4</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>8</td>
-                    <td>7</td>
-                    <td>-4</td>
-                    <td>-5</td>
-                    <td>-4</td>
-                    <td>4</td>
-                    <td>9</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>-1</td>
-                    <td>9</td>
-                    <td>-3</td>
-                    <td>-1</td>
-                    <td>7</td>
-                    <td>-1</td>
-                    <td>-1</td>
-                    <td>8</td>
-                </tr>
-                </tbody>
-            </table>
-        </p>
+            \[
+            \begin{pmatrix}6 & 6 & 0 \\ -4 & 8 & -1 \\ 6 & 7 & 9 \\ 8 & -4 & -3 \\ -5 & -5 & -1 \\ 8 & -4 & 7 \\ 6 & 4 & 1 \\ -4 & 9 & -1 \\ 7 & 7 & 8 \end{pmatrix}
+            \]
         <p>
-           Chaque ligne de la matrice correspond à un vecteur de poids.
-            Par exemple, la première ligne correspond au vecteur de poids associé au premier neurone de la couche 2, c'est celle que je t'ai donné dans l'exercice précédent.
+            Chaque colonne de cette matrice correspond à une matrice de poids.
+            Par exemple, la première colonne correspond à la matrice de poids associé au premier neurone de la couche 2, c'est celle que je t'ai donné dans l'exercice précédent.
         </p>
     question: >
         <p>
-            En gardant le vecteur des valeurs de la couche précédente de l'exercice précédent et la matrice de la couche 2,  calcul la valeur des 2 neurone restant de la couche 2.
+            En gardant la matrice des valeurs de la couche précédente de l'exercice précédent $\begin{pmatrix}0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \end{pmatrix}$ et la matrice de la couche 2,  calcul la valeur des 2 neurone restant de la couche 2.
         </p>
     answer: >
         <div class="input-group">
@@ -230,21 +179,9 @@ exercices:
 -   introduction: >
         <p>
             On peut faire de même avec les neurones de la dernière couche avec leur matrice de poids.
-            <table class="table table-sm table-dark table-bordered">
-                <tbody>
-                <tr>
-                    <td>-5</td>
-                    <td>7</td>
-                    <td>-4</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>-7</td>
-                    <td>4</td>
-                </tr>
-
-                </tbody>
-            </table>
+            \[
+            \begin{pmatrix}-5 & 5 \\ 7 & -7 \\ -4 & 4 \end{pmatrix}
+            \]
             Encore un dernier effort ! Plus que 2 produits matriciels à calculer et on pourra enfin tirer des conclusions interessantes de tout ces calculs.
         </p>
     question: >
@@ -334,7 +271,7 @@ exercices:
         </p>
         <p>
             Il existe diverses fonctions d'activation que l'on peut utiliser, la plus utilisé est la <i>sigmoide</i>.<br>
-            Son équation est la suivante : <img src="https://cdn-images-1.medium.com/max/1600/1*DHN75JRJ_EQgGc0spfqLtQ.png"><br>
+            Son équation est la suivante : <span style="font-size: 180%">$f(x) = \frac{1}{1+e^{-x}}$</span><br>
             Son graphique est le suivant : <br>
             <img class="img-fluid mx-auto d-block" src="https://cdn-images-1.medium.com/max/1600/0*5euYS7InCmDP08ir."><br>
         <p id="sigmoidCalculator">
