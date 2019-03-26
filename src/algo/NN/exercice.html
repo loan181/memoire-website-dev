@@ -86,6 +86,52 @@ exercices:
             Pour faire le calcul de la valeur d'un neuronne, cela demandera que tu sache faire un produit matriciel.<br>
             Si tu ne sais pas ce que c'est, va d'abord faire les exercices de <a target="_blank" href="produitMatriciel"> cette page </a>.
         </p>
+        <div class="container pinnable">
+            <div class="row">
+                <button type="button" class="btn btn-danger btn-calculator" onclick="calculatorClear()">C</button>
+                <input type="text" class="calculatorInput form-control text-right" style="height: 40px; width: 140px; margin-top: 4px">
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">7</button>
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">8</button>
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">9</button>
+                <button type="button" class="btn btn-secondary btn-calculator" onclick="calculatorBtnClicked(this)">-</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">4</button>
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">5</button>
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">6</button>
+                <button type="button" class="btn btn-secondary btn-calculator" onclick="calculatorBtnClicked(this)">+</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">1</button>
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">2</button>
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">3</button>
+                <button type="button" class="btn btn-secondary btn-calculator" onclick="calculatorBtnClicked(this)">*</button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-info btn-calculator" onclick="calculatorBtnClicked(this)">0</button>
+                <button type="button" class="btn btn-secondary btn-calculator" onclick="calculatorBtnClicked(this)">(</button>
+                <button type="button" class="btn btn-secondary btn-calculator" onclick="calculatorBtnClicked(this)">)</button>
+                <button type="button" class="btn btn-primary btn-calculator" onclick="calculatorEvaluate()"><b>=</b></button>
+            </div>
+        </div>
+        <script>
+            function getTarget() {
+                return $(".calculatorInput");
+            }
+            function calculatorBtnClicked(btn) {
+                let target = getTarget();
+                target.val(target.val()+$(btn).text());
+            }
+            function calculatorEvaluate() {
+                let target = getTarget();
+                target.val(eval(target.val()));
+            }
+            function calculatorClear() {
+                getTarget().val("");
+            }
+        </script>
     question: >
         <p>
             Calcul le produit matriciel <code>AB</code> avec

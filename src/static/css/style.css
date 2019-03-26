@@ -71,3 +71,10 @@ nav[data-toggle='toc'] {
     z-index: 10001; /* Le place devant la plupart des autres éléments (notamment la table of content) */
 }
 
+.btn-calculator {
+    height: 40px;
+    width: 40px;
+    margin: 4px 4px;
+    box-shadow: inset 1px 1px 40px rgba(255, 253, 248, 0.2);
+    border: none !important;
+}
