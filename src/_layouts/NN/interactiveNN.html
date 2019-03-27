@@ -244,55 +244,6 @@
 
 
             <br><br>
-            <!--
-            <div>
-                <canvas id="network" width="784" height="30" style="top:10%;left:10%;border:2px solid;"></canvas>
-            </div>
-            -->
-
-            <script>
-                /*
-                var canvas = document.getElementById("network");
-                var ctxNetwork = canvas.getContext("2d");
-
-                var w = 784;
-
-                // TODO : refactor ! (seulement la hauteur et la facon de calculer la lightness change)
-                function drawFirstLayer(data) {
-                    let size = 1;
-                    for (let i = 0; i < data.length; i++) {
-                        let curData = data[i];
-                        // [-1, 1] = [blanc, noir]
-                        let lightVal = 100 - 50*(curData +1);
-                        ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                        ctxNetwork.fillRect(i,0,size,10);
-                    }
-                }
-
-                function drawSecondLayer(data) {
-                    let size = w/data.length;
-                    for (let i = 0; i < data.length; i++) {
-                        let curData = data[i];
-                        // [0, 1] = [blanc, noir]
-                        let lightVal = 100 - 100*(curData);
-                        ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                        ctxNetwork.fillRect(i*size,10,size,10);
-                    }
-                }
-
-
-                function drawOutput(data) {
-                    let size = w/data.length;
-                    for (let i = 0; i < data.length; i++) {
-                        let curData = data[i];
-                        // [0, 1] = [blanc, noir]
-                        let lightVal = 100 - 100*(curData);
-                        ctxNetwork.fillStyle = "hsl(0,0%," + lightVal + "%)";
-                        ctxNetwork.fillRect(i*size,20,size,10);
-                    }
-                }
-                */
-            </script>
 
             <div class="container">
                 <p>
@@ -314,11 +265,27 @@
 
 
         <div class="col-sm-8">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#blockly" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-code"></i> Blockly</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#networkRepr" role="tab" aria-controls="profile" aria-selected="false">{{ site.algorithms[2].icon }} Réseau</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <!-- Blockly content here -->
+                <div class="tab-pane fade show active" id="blockly" role="tabpanel" aria-labelledby="blockly-tab">
 
-            <div id="neuralNetworkContainer">
+                </div>
+                <!-- Network representation here -->
+                <div class="tab-pane fade" id="networkRepr" role="tabpanel" aria-labelledby="network-tab">
+                    <div id="neuralNetworkContainer">
+                    </div>
+                    <script src="js/NN_representation.js"></script>
+                </div>
             </div>
 
-            <script src="js/NN_representation.js"></script>
         </div>
 
     </div>
