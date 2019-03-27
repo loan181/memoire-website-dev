@@ -24,6 +24,11 @@
         <script type="text/javascript" src="{{ script }}"></script>
     {% endfor %}
 
+    {% if page.arbitraryAdditions %}
+        <!-- Arbitrary additions -->
+        {{ page.arbitraryAdditions }}
+    {% endif %}
+
     <!-- Success Message -->
     <link rel="stylesheet" href="/static/css/animationSuccess.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"></script>

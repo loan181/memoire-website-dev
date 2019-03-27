@@ -7,9 +7,9 @@ extraScripts:
  - /static/js/shared/iris.js
  - /static/js/shared/GraphFunctions.js
  - customJS/KNNFunctions.js
- - blocklySrc/blockly_compressed.js
- - blocklySrc/blocks_compressed.js
- - blocklySrc/javascript_compressed.js
+ - /static/js/shared/Blockly/src/blockly_compressed.js
+ - /static/js/shared/Blockly/src/blocks_compressed.js
+ - /static/js/shared/Blockly/src/javascript_compressed.js
 ---
 
 
@@ -173,6 +173,6 @@ extraScripts:
     {% include KNN/startBlocks.xml %}
 </xml>
 
-<script src="customJS/languageCode.js"></script>
-<script src="customJS/BlocklyScripts.js"></script>
+<script src="/static/js/shared/Blockly/languageCode.js"></script>
+<script src="/static/js/shared/Blockly/BlocklyScripts.js"></script>
 <script src="/static/js/shared/plot.js"></script>

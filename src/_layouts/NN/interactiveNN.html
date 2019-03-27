@@ -276,9 +276,10 @@
             <div class="tab-content" id="myTabContent">
                 <!-- Blockly content here -->
                 <div class="tab-pane fade show active" id="blockly" role="tabpanel" aria-labelledby="blockly-tab">
-                    <div id="blocklyDiv" style="position: static">
+                    <div id="blocklyArea">
+                        <div id="blocklyDiv" style="position: static">
+                        </div>
                     </div>
-
                 </div>
                 <!-- Network representation here -->
                 <div class="tab-pane fade" id="networkRepr" role="tabpanel" aria-labelledby="network-tab">
@@ -296,5 +297,19 @@
 
 </main>
 
+<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+    {% include KNN/toolbox.xml %}
+</xml>
+
+<xml xmlns="http://www.w3.org/1999/xhtml" id="startBlocks" style="display: none;">
+    {% include KNN/startBlocks.xml %}
+</xml>
+
+<script src="/static/js/shared/Blockly/src/blockly_compressed.js"></script>
+<script src="/static/js/shared/Blockly/src/blocks_compressed.js"></script>
+<script src="/static/js/shared/Blockly/src/javascript_compressed.js"></script>
+
+<script src="/static/js/shared/Blockly/languageCode.js"></script>
+<script src="/static/js/shared/Blockly/BlocklyScripts.js"></script>
 </body>
 </html>

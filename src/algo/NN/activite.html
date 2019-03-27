@@ -1,3 +1,312 @@
 ---
-layout: NN/interactiveNN
+layout: activity
+title : Réseau neuronnal
+activityName: KNN
+raphael: true
+extraScripts:
+- /static/js/shared/Blockly/src/blockly_compressed.js
+- /static/js/shared/Blockly/src/blocks_compressed.js
+- /static/js/shared/Blockly/src/javascript_compressed.js
+arbitraryAdditions: >
+    <!-- MDBootstrap Datatables  -->
+    <link href="js/MDB/datatables.min.css" rel="stylesheet">
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="js/MDB/datatables.min.js"></script>
+
+    <!-- My Scripts -->
+    <script src="js/NNDatas.js"></script>
+    <script src="js/NN.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css">
 ---
+
+<div class="row mt-2 col-md-12">
+    <div class="col-sm-4">
+        <div>
+            <canvas id="can" width="280" height="280" style="top:10%;left:10%;border:2px solid; cursor:crosshair"></canvas>
+        </div>
+
+        <div class="container">
+            <input type="checkbox" style="transform: scale(1.5);" class="form-check-input" id="preprocessing">
+            <label class="form-check-label form-label-lg" for="preprocessing"><i class="fas fa-magic"></i> Afficher l'image transformée</label>
+            <div style="visibility: hidden"><input type="checkbox" id="scaleStrokeWidth" checked="true"><span style="margin-left:5px;">Scale Stroke Width</span></div>
+            <div style="text-align: center">
+                <button type="button" class="btn btn-primary btn-lg" id="recognize" onclick="recognize()"><i class="fas fa-search"></i> Reconnaitre</button><br><br>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modifyWeights"><i class="fas fa-edit"></i> Modifier le réseau</button>
+                <button type="button" class="btn btn-warning" onclick="erase()"><i class="fas fa-eraser"></i> Effacer</button>
+            </div>
+            <div id="nnInput"></div>
+        </div>
+
+        <!-- Choose arc modal -->
+        <div class="modal fade" id="modifyWeights" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modifier le réseau de neuronne</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col" align="center">
+                                Couche 1<br>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonNeuronLevelPressed(1, $(layer1spinner).val(), 'neuron')"><i class="far fa-circle"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonNeuronLevelPressed(1, $(layer1spinner).val(), 'wOut')"><i class="fas fa-sign-out-alt"></i></button>
+                                </div>
+                                <div>
+                                    <div style="padding-top: 20px; padding-bottom: 15px">
+                                        <input id="layer1slider" type="text" data-slider-min="0" data-slider-max="783" data-slider-step="1" data-slider-value="0">
+                                    </div>
+                                    <div class="input-group">
+                                        <input id="layer1spinner" type="number" class="form-control" value="0" min="0" max="783" step="1">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">/783</span>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $("#layer1slider").slider({
+                                            orientation: 'vertical'
+                                        });
+
+                                        // Synchronize the value of the spinner and the one of the slider
+                                        $("#layer1slider").on("slide", function(slideEvt) {
+                                            $("#layer1spinner").val(slideEvt.value);
+                                        });
+
+                                        $("#layer1spinner").on("input", function(spinEvent) {
+                                            $("#layer1slider").slider('setValue', $("#layer1spinner").val());
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="col" align="center">
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary" onclick="buttonWeightLevelPressed(1,  $(layer1spinner).val(), $(layer1spinner2).val())"><i class="fas fa-arrows-alt-h"></i></button>
+                            </div>
+                            <div class="col" align="center">
+                                Couche 2<br>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonNeuronLevelPressed(2, $(layer1spinner2).val(), 'wIn')"><i class="fas fa-sign-in-alt"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonNeuronLevelPressed(2, $(layer1spinner2).val(), 'neuron')"><i class="far fa-circle"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonNeuronLevelPressed(2, $(layer1spinner2).val(), 'wOut')"><i class="fas fa-sign-out-alt"></i></button>
+                                </div>
+                                <div>
+                                    <div style="padding-top: 20px; padding-bottom: 15px">
+                                        <input id="layer1slider2" type="text" data-slider-min="0" data-slider-max="199" data-slider-step="1" data-slider-value="0">
+                                    </div>
+                                    <div class="input-group">
+                                        <input id="layer1spinner2" type="number" class="form-control" value="0" min="0" max="199" step="1">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">/199</span>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $("#layer1slider2").slider({
+                                            orientation: 'vertical'
+                                        });
+
+                                        // Synchronize the value of the spinner and the one of the slider
+                                        $("#layer1slider2").on("slide", function(slideEvt) {
+                                            $("#layer1spinner2").val(slideEvt.value);
+                                        });
+
+                                        $("#layer1spinner2").on("input", function(spinEvent) {
+                                            $("#layer1slider2").slider('setValue', $("#layer1spinner").val());
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="col" align="center">
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary" onclick="buttonWeightLevelPressed(2,  $(layer1spinner2).val(), $(layer1spinner3).val())"><i class="fas fa-arrows-alt-h"></i></button>
+                            </div>
+                            <div class="col" align="center">
+                                Couche 3<br>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonNeuronLevelPressed(3, $(layer1spinner3).val(), 'wIn')"><i class="fas fa-sign-in-alt"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="buttonNeuronLevelPressed(3, $(layer1spinner3).val(), 'neuron')"><i class="far fa-circle"></i></button>
+                                </div>
+                                <div>
+                                    <div style="padding-top: 20px; padding-bottom: 15px">
+                                        <input id="layer1slider3" type="text" data-slider-min="0" data-slider-max="9" data-slider-step="1" data-slider-value="0">
+                                    </div>
+                                    <div class="input-group">
+                                        <input id="layer1spinner3" type="number" class="form-control" value="0" min="0" max="9" step="1">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">/9</span>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $("#layer1slider3").slider({
+                                            orientation: 'vertical'
+                                        });
+
+                                        // Synchronize the value of the spinner and the one of the slider
+                                        $("#layer1slider3").on("slide", function(slideEvt) {
+                                            $("#layer1spinner3").val(slideEvt.value);
+                                        });
+
+                                        $("#layer1spinner3").on("input", function(spinEvent) {
+                                            $("#layer1slider3").slider('setValue', $("#layer1spinner").val());
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Outgoing/Ingoing neurons weights modal -->
+        <div class="modal fade" id="outWeightModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Poids <span class="inOrOut">de sorties</span> du neurone n°<span class="currentNeuronNumber"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="weightsTable">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neuron information modal -->
+        <div class="modal fade" id="neuronModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Neurone n°<span class="currentNeuronNumber"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Couche : <span class="neuronLayerInfo"></span></p>
+                        <div id="neuronModalInformationForSpecificLayers"></div>
+                        Valeur : <span id="neuronValueInfo"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weight information modal -->
+        <div class="modal fade" id="weightModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Poids reliant le neuronne <span class="weightN1"></span> et <span class="weightN2"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Couche : <span id="weightLayer"></span></p>
+                        <p>Valeur Originale : <span id="weightOrigValue"></span></p>
+                        <p>Valeur :
+                        <div class="input-group mb-3">
+                            <input id="weightValue" type="number" step="0.1" class="form-control">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" onclick="$('#weightValue').val(selectedWeight.weight)"><i class="fas fa-undo"></i> Valeur actuelle</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="$('#weightValue').val(selectedWeight.defaultWeight)"><i class="fas fa-redo-alt"></i> Restaurer</button>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selectedWeight.weight = Number($('#weightValue').val());"><i class="fas fa-save"></i> Appliquer</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br><br>
+
+        <!--  -->
+        <div class="container">
+            <div class="row no-gutters">
+                {% for i in (0 .. 9) %}
+                    <div class="col">
+                        <h5 style="padding-left: 5px;">{{ i }}</h5>
+                        <div class="progress progress-bar-vertical">
+                            <div id="percentBar{{ i }}" class="progress-bar" role="progressbar" style="height: 0%;"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <p class="lead">
+            Reconnu comme : <span id="nnOut"></span>
+        </p>
+    </div>
+
+
+    <div class="col-sm-8">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#blockly" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-code"></i> Blockly</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#networkRepr" role="tab" aria-controls="profile" aria-selected="false">{{ site.algorithms[2].icon }} Réseau</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent" style="height: 100%">
+            <!-- Blockly content here -->
+            <div class="tab-pane fade show active" id="blockly" role="tabpanel" aria-labelledby="blockly-tab" style="height: 100%">
+                <div id="blocklyArea" style="height: 100%">
+                    <div id="blocklyDiv" style="position: static">
+                    </div>
+                </div>
+            </div>
+            <!-- Network representation here -->
+            <div class="tab-pane fade" id="networkRepr" role="tabpanel" aria-labelledby="network-tab">
+                <div id="neuralNetworkContainer">
+                </div>
+                <script src="js/NN_representation.js"></script>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/modalHandler.js"></script>
+
+</main>
+
+<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+    {% include KNN/toolbox.xml %}
+</xml>
+
+<xml xmlns="http://www.w3.org/1999/xhtml" id="startBlocks" style="display: none;">
+    {% include KNN/startBlocks.xml %}
+</xml>
+
+<script src="/static/js/shared/Blockly/src/blockly_compressed.js"></script>
+<script src="/static/js/shared/Blockly/src/blocks_compressed.js"></script>
+<script src="/static/js/shared/Blockly/src/javascript_compressed.js"></script>
+
+<script src="/static/js/shared/Blockly/languageCode.js"></script>
+<script src="/static/js/shared/Blockly/BlocklyScripts.js"></script>
