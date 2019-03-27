@@ -3,8 +3,8 @@
 
 // some of the code below was taken from a stackoverflow flag I cannot find anymore, and adapted to my needs.
 // Thanks a ton to the original author!
-var canvas;
-var ctx;
+var canvasDraw;
+var canvasDrawCtx;
 
 var prevX = 0;
 var currX = 0;
@@ -155,7 +155,7 @@ function recognize() {
     var t1 = new Date();
 
     // convert RGBA image to a grayscale array, then compute bounding rectangle and center of mass
-    var imgData = ctx.getImageData(0, 0, 280, 280);
+    var imgData = canvasDrawCtx.getImageData(0, 0, 280, 280);
     grayscaleImg = imageDataToGrayscale(imgData);
     var boundingRectangle = getBoundingRectangle(grayscaleImg, 0.01);
     var trans = centerImage(grayscaleImg); // [dX, dY] to center of mass
@@ -171,9 +171,9 @@ function recognize() {
     var brH = boundingRectangle.maxY+1-boundingRectangle.minY;
     var scaling = 190 / (brW>brH?brW:brH);
     // scale
-    copyCtx.translate(canvas.width/2, canvas.height/2);
+    copyCtx.translate(canvasDraw.width/2, canvasDraw.height/2);
     copyCtx.scale(scaling, scaling);
-    copyCtx.translate(-canvas.width/2, -canvas.height/2);
+    copyCtx.translate(-canvasDraw.width/2, -canvasDraw.height/2);
     // translate to center of mass
     copyCtx.translate(trans.transX, trans.transY);
 
@@ -193,7 +193,7 @@ function recognize() {
         }
     } else {
         // default take image from original canvas
-        copyCtx.drawImage(ctx.canvas, 0, 0);
+        copyCtx.drawImage(canvasDrawCtx.canvas, 0, 0);
     }
 
 
@@ -216,11 +216,11 @@ function recognize() {
 
     // for visualization/debugging: paint the input to the neural net.
     if (document.getElementById('preprocessing').checked == true) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(copyCtx.canvas, 0, 0);
+        canvasDrawCtx.clearRect(0, 0, canvasDraw.width, canvasDraw.height);
+        canvasDrawCtx.drawImage(copyCtx.canvas, 0, 0);
         for (var y = 0; y < 28; y++) {
             for (var x = 0; x < 28; x++) {
-                var block = ctx.getImageData(x * 10, y * 10, 10, 10);
+                var block = canvasDrawCtx.getImageData(x * 10, y * 10, 10, 10);
                 var newVal = 255 * (0.5 - nnInput[x*28+y]/2);
                 for (var i = 0; i < 4 * 10 * 10; i+=4) {
                     block.data[i] = newVal;
@@ -228,7 +228,7 @@ function recognize() {
                     block.data[i+2] = newVal;
                     block.data[i+3] = 255;
                 }
-                ctx.putImageData(block, x * 10, y * 10);
+                canvasDrawCtx.putImageData(block, x * 10, y * 10);
             }
         }
     }
@@ -261,20 +261,20 @@ function recognize() {
     console.log('recognize time: '+dt+'ms');
 }
 
-function init() {
-    canvas = document.getElementById('can');
-    ctx = canvas.getContext("2d");
+function initCanvaDraw() {
+    canvasDraw = document.getElementById('can');
+    canvasDrawCtx = canvasDraw.getContext("2d");
 
-    canvas.addEventListener("mousemove", function (e) {
+    canvasDraw.addEventListener("mousemove", function (e) {
         findxy('move', e)
     }, false);
-    canvas.addEventListener("mousedown", function (e) {
+    canvasDraw.addEventListener("mousedown", function (e) {
         findxy('down', e)
     }, false);
-    canvas.addEventListener("mouseup", function (e) {
+    canvasDraw.addEventListener("mouseup", function (e) {
         findxy('up', e)
     }, false);
-    canvas.addEventListener("mouseout", function (e) {
+    canvasDraw.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
 }
@@ -293,7 +293,7 @@ function draw(ctx, color, lineWidth, x1, y1, x2, y2) {
 }
 
 function erase() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvasDrawCtx.clearRect(0, 0, canvasDraw.width, canvasDraw.height);
     document.getElementById('nnOut').innerHTML = '';
 }
 
@@ -308,24 +308,24 @@ function getMousePos(canvas, evt) {
 function findxy(res, e) {
     if (res == 'down') {
         if (clearBeforeDraw == true) {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
+            canvasDrawCtx.clearRect(0,0,canvasDraw.width,canvasDraw.height);
             document.getElementById('nnInput').innerHTML='';
             document.getElementById('nnOut').innerHTML='';
             paths = [];
             clearBeforeDraw = false;
         }
 
-        let xyPos = getMousePos(canvas, e);
+        let xyPos = getMousePos(canvasDraw, e);
         currX = xyPos["x"];
         currY = xyPos["y"];
 
         //draw a circle
-        ctx.beginPath();
-        ctx.lineWidth = 1;
-        ctx.arc(currX,currY,lineWidth/2,0,2*Math.PI);
-        ctx.stroke();
-        ctx.closePath();
-        ctx.fill();
+        canvasDrawCtx.beginPath();
+        canvasDrawCtx.lineWidth = 1;
+        canvasDrawCtx.arc(currX,currY,lineWidth/2,0,2*Math.PI);
+        canvasDrawCtx.stroke();
+        canvasDrawCtx.closePath();
+        canvasDrawCtx.fill();
 
         paths.push([[currX], [currY]]);
         paintFlag = true;
@@ -340,18 +340,18 @@ function findxy(res, e) {
             // draw a line to previous point
             prevX = currX;
             prevY = currY;
-            let xyPos = getMousePos(canvas, e);
+            let xyPos = getMousePos(canvasDraw, e);
             currX = xyPos["x"];
             currY = xyPos["y"];
             currPath = paths[paths.length-1];
             currPath[0].push(currX);
             currPath[1].push(currY);
             paths[paths.length-1] = currPath;
-            draw(ctx, color, lineWidth, prevX, prevY, currX, currY);
+            draw(canvasDrawCtx, color, lineWidth, prevX, prevY, currX, currY);
         }
     }
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    init();
+    initCanvaDraw();
 });
