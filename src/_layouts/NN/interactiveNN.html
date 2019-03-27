@@ -246,21 +246,20 @@
             <br><br>
 
             <div class="container">
-                <p>
-                    <br><br>
+                <div class="row no-gutters">
                     {% for i in (0 .. 9) %}
-                <h5 style="float: left; margin-right: 1em;">{{ i }} :</h5>
-                <div class="progress">
-                    <div id="percentBar{{ i }}" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        <div class="col">
+                            <h5 style="padding-left: 5px;">{{ i }}</h5>
+                            <div class="progress progress-bar-vertical">
+                                <div id="percentBar{{ i }}" class="progress-bar" role="progressbar" style="height: 0%;"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                <br>
-                {% endfor %}
-                </p>
-
-                <p class="lead">
-                    Reconnu comme : <span id="nnOut"></span>
-                </p>
             </div>
+            <p class="lead">
+                Reconnu comme : <span id="nnOut"></span>
+            </p>
         </div>
 
 

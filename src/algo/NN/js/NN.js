@@ -246,7 +246,7 @@ function recognize() {
         let curBar = document.getElementById("percentBar"+i);
         let estimation = nnOutput[i]*100;
         let val = estimation.toFixed(2)+"%";
-        curBar.style.width = val;
+        curBar.style.height = val;
         curBar.textContent = val;
         if (i === maxIndex) {
             curBar.className = "progress-bar progress-bar-striped progress-bar-animated bg-success";
