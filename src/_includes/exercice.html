@@ -17,26 +17,37 @@
             <div class="card-header">Réponse</div>
             <div class="card-body text-primary">
                 {%  if include.ex.answer %}
-                    {% case include.ex.answer.kind %}
-                        {% when 'selection' %}
-                            <label>
-                                <select {% if include.ex.answer.id %}
-                                            id="{{ include.ex.answer.id }}"
-                                        {% endif %}
-                                        class="form-control" data-answer="{{ include.ex.answer.correct }}">
-                                    <option>---</option>
-                                    {% for option in include.ex.answer.options %}
-                                        <option>{{ option }}</option>
-                                    {% endfor %}
-                                </select>
-                            </label>
-                        {% else %}  {% comment %} Arbitrary answer {% endcomment %}
-                            {{ include.ex.answer }}
-                    {% endcase %}
+                    {% for answer in include.ex.answer  %}
+                        {% case answer.kind %}
+                            {% when 'selection' %}
+                                <label>
+                                    {% if answer.text %}{{ answer.text }}{% endif %}
+                                    <select {% if answer.id %}
+                                                id="{{ answer.id }}"
+                                            {% endif %}
+                                            class="form-control" data-answer="{{ answer.correct }}">
+                                        <option>---</option>
+                                        {% for option in answer.options %}
+                                            <option>{{ option }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label>
 
-                    {% if include.ex.answer.arbitraryAddOn %}
-                        {{ include.ex.answer.arbitraryAddOn }}
-                    {% endif %}
+                            {% when 'text' %}
+                                    <label style="width: 100%">
+                                        <textarea class="form-control" rows="2"
+                                        data-answer="{% for keyword in answer.correctWords %}{{ keyword }},{% endfor %}"></textarea>
+                                    </label>
+                            {% else %}  {% comment %} Arbitrary answer {% endcomment %}
+                                {{ include.ex.answer }}
+                        {% endcase %}
+                        {% if answer.arbitraryAddOn %}
+                            {{ answer.arbitraryAddOn }}
+                        {% endif %}
+                        <br>
+                    {% endfor %}
+
+
                 {% else if include.ex.decisionTreeAnswer %} <!-- TODO : correct !! -->
                     <table class="table table-hover" >
                         <thead>

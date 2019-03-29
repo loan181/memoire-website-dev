@@ -26,34 +26,34 @@ exercices:
     question: >
         Choisis parmi les quatre mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale) <strong>deux</strong> mesures qui te permettent de discerner au mieux les classes de fleurs (setosa, versicolor et virginica).
     answer:
-        kind : selection
-        id : metricChooseGraphSelect
-        options :
-            - longueur sépale & largeur sépale
-            - longueur sépale & longueur pétale
-            - longueur sépale & largeur pétale
-            - largeur sépale & longueur pétale
-            - largeur sépale & largeur pétale
-            - longueur sépale & largeur pétale
-        correct : longueur pétale & largeur pétale
-        arbitraryAddOn : >
-            <img id="previewMetricGraph" class="img-fluid" src="" style="display: none;">
-            <script>
-                let picturePath = "/static/img/KNN/graphs/";
-                let correspondingPicture = ["SWSH", "SWPW", "SWPH", "SHPW", "SHPH", "PWPH"];
-                let target = $("#previewMetricGraph");
-                $("#metricChooseGraphSelect").change(function () {
-                        let selectedIndex = $(this).prop('selectedIndex');
-                        if (selectedIndex === 0) {
-                            $(target).hide();
-                        } else {
-                            $(target).show();
-                            target.attr("src",picturePath+correspondingPicture[selectedIndex-1]+".jpg")
-                        }
+        -   kind : selection
+            id : metricChooseGraphSelect
+            options :
+                - longueur sépale & largeur sépale
+                - longueur sépale & longueur pétale
+                - longueur sépale & largeur pétale
+                - largeur sépale & longueur pétale
+                - largeur sépale & largeur pétale
+                - longueur pétale & largeur pétale
+            correct : longueur pétale & largeur pétale
+            arbitraryAddOn : >
+                <img id="previewMetricGraph" class="img-fluid" src="" style="display: none;">
+                <script>
+                    let picturePath = "/static/img/KNN/graphs/";
+                    let correspondingPicture = ["SWSH", "SWPW", "SWPH", "SHPW", "SHPH", "PWPH"];
+                    let target = $("#previewMetricGraph");
+                    $("#metricChooseGraphSelect").change(function () {
+                            let selectedIndex = $(this).prop('selectedIndex');
+                            if (selectedIndex === 0) {
+                                $(target).hide();
+                            } else {
+                                $(target).show();
+                                target.attr("src",picturePath+correspondingPicture[selectedIndex-1]+".jpg")
+                            }
 
-                    }
-                );
-            </script>
+                        }
+                    );
+                </script>
     correction: >
         Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
         Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
@@ -88,12 +88,12 @@ exercices:
     question : >
         Quelle est la fleur qui correspond à ces mesures ?
     answer:
-        kind : selection
-        options :
-            - Iris setosa
-            - Iris versicolor
-            - Iris viriginica
-        correct : Iris viriginica
+        -   kind : selection
+            options :
+                - Iris setosa
+                - Iris versicolor
+                - Iris viriginica
+            correct : Iris viriginica
     correction: >
         C'est (probalement) un <i>Iris virginica</i>.<br>
         La longueur et la largeur du sépale ne nous permettent pas de donner des informations fiables sur la fleur.<br>
@@ -108,11 +108,13 @@ exercices:
         </p>
     question : >
         Que remarques-tu par rapport à la distance aux fleurs déjà présentes ?
-    answer: >
-        <div class="form-group">
-            <label for="repEx2-2"></label>
-            <textarea class="form-control" rows="2" id="repEx2-2" data-answer="proche,groupe,vert,virginica"></textarea>
-        </div>
+    answer:
+        -   kind : text
+            correctWords :
+            -   proche
+            -   groupe
+            -   vert
+            -   virginica
     correction: >
         La fleur ajoutée se trouve proche du groupe formé par toutes les autres <i>Iris virginica</i>
 
@@ -124,31 +126,35 @@ exercices:
         <img src="/static/img/KNN/exKNNGraphique.png" class="img-fluid pinnable">
     question : >
         Quelle est la couleur du point le plus proche de celui ajouté ?
-    answer: >
-        <select class="form-control" data-answer="Jaune">
-            <option>Jaune</option>
-            <option>Vert</option>
-        </select>
+    answer:
+        -   kind : selection
+            options :
+                - Jaune
+                - Vert
+            correct : Jaune
     correction: >
         Jaune (il est juste un peu plus bas)
 -   question : >
         Quelle est la couleur des trois points les plus proches ?
-    answer: >
-        <label for="repEx3-Nearest" class="col-form-label">Plus proche:</label>
-        <select class="form-control col-sm-9" id="repEx3-Nearest" data-answer="Jaune">
-            <option>Jaune</option>
-            <option>Vert</option>
-        </select>
-        <label for="repEx3-Nearest2" class="col-form-label">2eme plus proche:</label>
-        <select class="form-control col-sm-9" id="repEx3-Nearest2" data-answer="Vert">
-            <option>Jaune</option>
-            <option>Vert</option>
-        </select>
-        <label for="repEx3-Nearest3" class="col-form-label">3eme plus proche:</label>
-        <select class="form-control col-sm-9" id="repEx3-Nearest3" data-answer="Vert">
-            <option>Jaune</option>
-            <option>Vert</option>
-        </select>
+    answer:
+        -   kind : selection
+            text: Plus proche
+            options :
+                - Jaune
+                - Vert
+            correct : Jaune
+        -   kind : selection
+            text: 2eme plus proche
+            options :
+                - Jaune
+                - Vert
+            correct : Vert
+        -   kind : selection
+            text: 3eme plus proche
+            options :
+                - Jaune
+                - Vert
+            correct : Vert
     correction: >
         Jaune, puis vert et encore vert
 -   question : >
