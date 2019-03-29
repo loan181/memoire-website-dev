@@ -159,24 +159,26 @@ exercices:
         Jaune, puis vert et encore vert
 -   question : >
         Quelle est la couleur majoritaire parmi les trois points les plus proches ?
-    answer: >
-        <select class="form-control" data-answer="Verte">
-            <option>Jaune</option>
-            <option>Verte</option>
-        </select>
+    answer:
+        -   kind : selection
+            options :
+                - Jaune
+                - Vert
+            correct : Vert
     correction: >
         Verte (2 vert pour 1 jaune)
 -   question : >
         Quelle serait la couleur majoritaire si on avait pris seulement les deux points les plus proches ?
-    answer: >
-        <select class="form-control">
-            <option>Jaune</option>
-            <option>Verte</option>
-        </select>
-        <div class="form-group">
-            <label for="repEx3-Majority"></label>
-            <textarea class="form-control" rows="2" id="repEx3-Majority" data-answer="égalité,pas,égale"></textarea>
-        </div>
+    answer:
+        -   kind : selection
+            options :
+                - Jaune
+                - Vert
+        -   kind : text
+            correctWords :
+            -   égalité
+            -   pas
+            -   égale
     correction: >
         Pas de majorité car on a une égalité (1 jaune et 1 vert)
 -   introduction : Supposons maintenant que les points jaunes représentent des <i>Iris versicolor</i> et les verts des <i>Iris virginica</i>.

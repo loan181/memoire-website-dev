@@ -25,7 +25,7 @@
                                     <select {% if answer.id %}
                                                 id="{{ answer.id }}"
                                             {% endif %}
-                                            class="form-control" data-answer="{{ answer.correct }}">
+                                            class="form-control"{% if answer.correct %} data-answer="{{ answer.correct }}{% endif %}">
                                         <option>---</option>
                                         {% for option in answer.options %}
                                             <option>{{ option }}</option>
