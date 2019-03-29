@@ -1,8 +1,8 @@
 <p>
-    Il existe plusieurs variations de la fleur d’Iris,
-    parmi celles-ci trois sont particulièrement difficiles à identifier et demandent des tests biologiques
-    très couteux et qui prennent longtemps afin d’affirmer avec certitude l’origine de la fleur.
-    Ces trois fleurs sont l’Iris-setosa, l’Iris-versicolor et l’Iris-viginica
+    Il existe plusieurs variations de la fleur d’Iris.
+    Parmi celles-ci trois sont particulièrement difficiles à différencier et demandent des tests biologiques
+    longs et couteux afin d’identifier l'espèce avec certitude.
+    Ces trois fleurs sont l’<i>Iris setosa</i>, l’<i>Iris versicolor</i> et l’<i>Iris viginica</i>
 </p>
 
 <div class="card-deck">
@@ -40,16 +40,16 @@
         {% assign nbrIris = site.data.iris_dataEx1.size | minus : 1 %}
         {% for i in (0 .. nbrIris) %}
 
-            {% if site.data.iris_dataEx1[i].Class == "Iris-setosa" %}
+            {% if site.data.iris_dataEx1[i].Class == "Iris setosa" %}
                 {% assign rowClass = "table-primary" %}
-                {% elsif site.data.iris_dataEx1[i].Class == "Iris-versicolor" %}
+                {% elsif site.data.iris_dataEx1[i].Class == "Iris versicolor" %}
                 {% assign rowClass = "table-danger" %}
             {% else %}
                 {% assign rowClass = "table-success" %}
             {% endif %}
             <tr class="{{ rowClass }}">
                 <th scope="row"> {{ i | plus : 1}}</th>
-                <td>{{site.data.iris_dataEx1[i].Class}}</td>
+                <td><i>{{site.data.iris_dataEx1[i].Class}}</i></td>
                 <td>{{site.data.iris_dataEx1[i].Sepal_Length}}</td>
                 <td>{{site.data.iris_dataEx1[i].Sepal_Width}}</td>
                 <td>{{site.data.iris_dataEx1[i].Petal_Length}}</td>

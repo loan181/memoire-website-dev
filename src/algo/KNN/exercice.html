@@ -1,21 +1,21 @@
 ---
 layout: exercices
 flowers:
-- {name: "Iris-setosa", picture: "https://www.plant-world-seeds.com/images/item_images/000/007/023/large_square/iris_baby_blue.jpg"}
-- {name: "Iris-versicolor", picture: "https://www.promessedefleurs.com/media/catalog/product/cache/1/image/615x/9df78eab33525d08d6e5fb8d27136e95/I/r/Iris-versicolor-9345-2.jpg"}
-- {name: "Iris-virginica", picture: "https://www.fs.fed.us/wildflowers/beauty/iris/Blue_Flag/images/iris_virginica_virginica_lg.jpg"}
+- {name: "Iris setosa", picture: "https://www.plant-world-seeds.com/images/item_images/000/007/023/large_square/iris_baby_blue.jpg"}
+- {name: "Iris versicolor", picture: "https://www.promessedefleurs.com/media/catalog/product/cache/1/image/615x/9df78eab33525d08d6e5fb8d27136e95/I/r/Iris versicolor-9345-2.jpg"}
+- {name: "Iris virginica", picture: "https://www.fs.fed.us/wildflowers/beauty/iris/Blue_Flag/images/iris_virginica_virginica_lg.jpg"}
 
 title: Exercices KNN
 introduction: KNN/ex/intro.html
 
 conclusion:
     - L'algorithme des K plus proches voisins repose sur un principe assez simple.
-    - On se base sur des données connues (modèle d'entrainement) pour déduire la catégorie (classe) d'un nouvel élément en y trouvant celle qui est la plus présente parmis les données avec les valeurs les plus proches.
+    - On se base sur des données connues (modèle d'entrainement) pour déduire la catégorie (classe) d'un nouvel élément en y trouvant celle qui est la plus présente parmi les données avec les valeurs les plus proches.
     - On peut choisir le nombre de données les plus proches (K). Généralement on choisit 3.
     - Chaque classe a un compteur qui lui est associé. Il commence à 0 et augmente de 1 chaque fois qu'un voisin de sa classe est rencontré. <br>Après avoir fait cette opération K fois, la classe associé au compteur de classe maximal est celle prédite par le classifieur.
-    - Le choix des mesures (métriques) pour lesquels on décide si l'élément est proche est important. On essaiera de trouver au mieux de choisir celles qui discerne le mieux les différentes classes.
-    - Les résultats ne sont pas toujours fiables ! Il ne faut pas croire à 100% ce que nous dit le classifieur, même s'il est bien fait
-    - Un classifieur ne reconnait que ce pour quoi il a été entrainé pour. Ici si on lui donne une autre fleur, une marguerite par exemple, il va nous déduire l'iris qui s'en rapproche le plus.
+    - Le choix des mesures (métriques) pour lesquels on décide si l'élément est proche est important. On essaiera de choisir au mieux celles qui permettent de différencier les classes (critère discriminant).
+    - Les résultats ne sont pas toujours fiables ! Il ne faut pas croire à 100% ce que nous dit le classifieur, même s'il est bien fait.
+    - Un classifieur ne reconnait que ce pour quoi il a été entrainé. Ici si on lui donne une autre fleur, une marguerite par exemple, il va nous déduire l'iris qui s'en rapproche le plus.
 
 exercices:
 -   title: Identification de 2 facteurs importants
@@ -24,7 +24,7 @@ exercices:
             Regarde attentivement les résultats obtenus dans le <a href="#table1">Tableau 1</a>.
         </p>
     question: >
-        Choisi parmi les quatre mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale) <strong>deux</strong> mesures qui te permettent de discerner au mieux les classes de fleurs (setosa, versicolor et virginica).
+        Choisis parmi les quatre mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale) <strong>deux</strong> mesures qui te permettent de discerner au mieux les classes de fleurs (setosa, versicolor et virginica).
     answer: >
         <select class="form-control" data-answer="largeur pétale & longueur pétale">
             <option>largeur sépale & longueur sépale</option>
@@ -68,17 +68,17 @@ exercices:
             </table>
         </div>
     question : >
-        Quelle est la fleurs, qui correspond à ses mesures ?
+        Quelle est la fleur qui correspond à ces mesures ?
     answer: >
-        <select class="form-control" data-answer="Iris-virginica">
-            <option>Iris-setosa</option>
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control" data-answer="Iris virginica">
+            <option>Iris setosa</option>
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
     correction: >
-        C'est (probalement) une <i>Iris-virginica</i>.<br>
-        La longueur et la largeur de la sépale ne nous permettent pas de donner des informations fiables sur la fleur.<br>
-        Cepandant la longueur et la largeur de la pétale sont très proche des <i>Iris-virginica</i> existantes.
+        C'est (probalement) un <i>Iris virginica</i>.<br>
+        La longueur et la largeur du sépale ne nous permettent pas de donner des informations fiables sur la fleur.<br>
+        Cependant la longueur et la largeur du pétale sont très proches des <i>Iris virginica</i>déjà présents.
 
 -   title: Vérification graphique
     introduction: >
@@ -95,9 +95,9 @@ exercices:
             <textarea class="form-control" rows="2" id="repEx2-2" data-answer="proche,groupe,vert,virginica"></textarea>
         </div>
     correction: >
-        La fleur ajoutée se trouve dans le "regroupement" formé par toutes les autres <i>Iris-virginica</i>
+        La fleur ajoutée se trouve proche du groupe formé par toutes les autres <i>Iris virginica</i>
 
--   title: K-plus proche voisins
+-   title: K-plus proches voisins
     introduction: >
         <p>
             Sur le graphique suivant, visualise un marqueur au coordonnée (5.1, 2.6)
@@ -153,8 +153,8 @@ exercices:
             <textarea class="form-control" rows="2" id="repEx3-Majority" data-answer="égalité,pas,égale"></textarea>
         </div>
     correction: >
-        Pas de majorité car on à une égalité (1 jaune et 1 vert)
--   introduction : Supposons maintenant que les points jaunes représentent des <i>Iris-versicolor</i> et les verts des <i>Iris-virginica</i>.
+        Pas de majorité car on a une égalité (1 jaune et 1 vert)
+-   introduction : Supposons maintenant que les points jaunes représentent des <i>Iris versicolor</i> et les verts des <i>Iris virginica</i>.
     question : >
         Quel serait la classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
     answer: >
@@ -163,14 +163,14 @@ exercices:
             <textarea class="form-control" rows="3" id="repEx3-justification" data-answer="proche,versicolor,éloigné,viriginica,nombre"></textarea>
         </div>
     correction: >
-        Si on se fie uniquement à la fleur la plus proche on peut penser que c’est une versicolor. Mais si l’on regarde les fleurs plus éloigné, il est plus probable que ça soit une iris-virginica.<br>
+        Si on se fie uniquement à la fleur la plus proche on peut penser que c’est une versicolor. Mais si l’on regarde les fleurs plus éloigné, il est plus probable que ça soit une Iris virginica.<br>
         Cette exercice n’a pas de réponse absolue, l’important c’est que tu comprennes la notion de majorité et que selon les paramètres qu’on pose (ici le nombre de voisins) la réponse peut changer.
 
 -   title: Utilisation de compteur
     introduction: >
         <p>
             Dans l'activité qui va suivre, on utilise la notion de <b>compteur</b>.<br>
-            Un compteur est associé à chaque classe de fleur, dans notre cas on à un compteur pour l'iris setosa, un pour l'iris versicolor et un pour l'iris virginica.<br>
+            Un compteur est associé à chaque classe de fleur, dans notre cas on a un compteur pour l'<i>Iris setosa</i>, un pour l'<i>Iris versicolor</i> et un pour l'<i>Iris virginica</i>.<br>
             Chaque compteur <b>commence à 0 et augmente de 1</b> chaque fois qu'un voisin de la classe du compteur est rencontré.<br>
         </p>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -221,37 +221,37 @@ exercices:
         </div>
         <p>
             Réutilisons le graphique précédent dans cet exercice.<br>
-            Pour rappel, les points jaunes représentent des <i>Iris-versicolor</i> et les verts des <i>Iris-virginica</i>.
-            Le marqueur gris en forme de croix est une iris inconnue.
+            Pour rappel, les points jaunes représentent des <i>Iris versicolor</i> et les verts des <i>Iris virginica</i>.
+            Le marqueur gris en forme de croix est un iris inconnu.
         </p>
         <img src="/static/img/KNN/exKNNGraphiqueCorr.png" class="img-fluid pinnable">
     question : >
         Détermine la valeur des compteurs pour les 4 voisins les plus proches :
     answer: >
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Compteur d'iris-versicolor</label>
+            <label for="staticEmail" class="col-sm-4 col-form-label">Compteur d'<i>Iris versicolor</i></label>
             <div class="col-sm-8">
               <input type="number" class="form-control" id="staticEmail" value="0" min="0" max="4" data-answer="1">
             </div>
         </div>
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Compteur d'iris-virginica</label>
+            <label for="staticEmail" class="col-sm-4 col-form-label">Compteur d'<i>Iris virginica</i></label>
             <div class="col-sm-8">
                 <input type="number" class="form-control" id="staticEmail" value="0" min="0" max="4" data-answer="3">
             </div>
         </div>
     correction: >
         <p>
-            La plus proche est une iris-versicolor, son compteur passe à 1.<br>
-            Les 3 plus proches suivantes sont 3 iris-virginica, leur compteur passe donc à 3.<br>
-            On se retrouve donc au final avec un compteur de 1 pour les iris-versicolor et de un pour les iris-viriginica.
+            La plus proche est un <i>Iris versicolor</i>, son compteur passe à 1.<br>
+            Les 3 plus proches suivantes sont 3 <i>Iris virginica</i>, leur compteur passe donc à 3.<br>
+            On se retrouve donc au final avec un compteur de 1 pour les <i>Iris versicolor</i> et de un pour les <i>Iris virginica</i>.
         </p>
 -   question : >
         <b>Juste à partir de la valeur des compteurs</b>, pourrai-tu déduire la fleur qui serai prédite par l'algorithme ?
     answer: >
-        <select class="form-control" data-answer="Iris-virginica">
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control" data-answer="Iris virginica">
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
         Justification : <br>
         <textarea class="form-control" rows="3" data-answer="oui,maximum,grand,grande"></textarea>
@@ -260,14 +260,14 @@ exercices:
             Oui, la valeur des compteurs nous donne beaucoup d'information sur les voisins les plus proches.<br>
             Pour déduire la fleur prédite par l'algorithme, il suffit de prendre la fleur associée au compteur qui a la valeur <b>maximale</b>
             (exactement comme les votes de l'exercice précédent).<br>
-            Dans notre cas, l'iris-viriginica a le compteur de valeur maximum (3 vs 1 pour l'iris-versicolor )
+            Dans notre cas, l'Iris viriginica a le compteur de valeur maximum (3 vs 1 pour l'Iris versicolor )
         </p>
 
 
 -   title: Prédiction
     introduction: >
         <p>
-            Voici trois nouvelles iris dont la variété est connue (mais pas donnée) :
+            Voici trois nouveaux iris dont la variété est connue (mais pas donnée) :
         </p>
         <div class="pinnable" style="overflow: auto">
             <table class="table table-hover " id="table2">
@@ -308,14 +308,14 @@ exercices:
         </div>
 
         <p>
-            Notre but dans cette partie va être de <b>prédire</b> les fleurs à partir des données et <b>ensuite</b> on va vérifier si nos prédictions sont exactes.
+            Notre but dans cette partie va être de <b>prédire</b> la variété des fleurs à partir des données et <b>ensuite</b> on va vérifier si nos prédictions sont exactes.
         </p>
 -   title: Prédiction pour différentes métriques
     introduction: >
         <p>
             Soit les trois fleurs données dans le <a href="#table2">Tableau 2</a>, avec le <a href="#table1">Tableau 1</a>
             comme modèle d’entrainement.
-            Tu déterminera la classe de la fleur en regardant la majorité parmi <b>les trois voisins les plus proches</b>.<br>
+            Tu détermineras la classe de la fleur en regardant la majorité parmi <b>les trois voisins les plus proches</b>.<br>
             Pour cela tu peux t'aider des graphiques que je te donne : <br>
         </p>
         <div style="text-align: center">
@@ -327,46 +327,45 @@ exercices:
     answer: >
         Classifieur 1 ; Métrique sépale (longueur et largeur) :<br>
         <label for="repEx4.1-P1F1" class="col-sm-2 col-form-label">Iris 1</label>
-        <select class="form-control col-sm-9" id="repEx4.1-P1F1" data-answer="Iris-virginica">
-            <option>Iris-setosa</option>
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control col-sm-9" id="repEx4.1-P1F1" data-answer="Iris virginica">
+            <option>Iris setosa</option>
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
         <label for="repEx4.1-P1F2" class="col-sm-2 col-form-label">Iris 2</label>
-        <select class="form-control col-sm-9" id="repEx4.1-P1F2" data-answer="Iris-setosa">
-            <option>Iris-setosa</option>
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control col-sm-9" id="repEx4.1-P1F2" data-answer="Iris setosa">
+            <option>Iris setosa</option>
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
         <label for="repEx4.1-P1F3" class="col-sm-2 col-form-label">Iris 3</label>
-        <select class="form-control col-sm-9" id="repEx4.1-P1F3" data-answer="Iris-versicolor">
-            <option>Iris-setosa</option>
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control col-sm-9" id="repEx4.1-P1F3" data-answer="Iris versicolor">
+            <option>Iris setosa</option>
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
         <br>
         Classifieur 2 ; Métrique pétale (longueur et largeur) :<br>
         <label for="repEx4.1-P2F1" class="col-sm-2 col-form-label">Iris 1</label>
-        <select class="form-control col-sm-9" id="repEx4.1-P2F1" data-answer="Iris-setosa">
-            <option>Iris-setosa</option>
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control col-sm-9" id="repEx4.1-P2F1" data-answer="Iris setosa">
+            <option>Iris setosa</option>
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
         <label for="repEx4.1-P2F2" class="col-sm-2 col-form-label">Iris 2</label>
-        <select class="form-control col-sm-9" id="repEx4.1-P2F2" data-answer="Iris-versicolor">
-            <option>Iris-setosa</option>
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control col-sm-9" id="repEx4.1-P2F2" data-answer="Iris versicolor">
+            <option>Iris setosa</option>
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
         <label for="repEx4.1-P2F3" class="col-sm-2 col-form-label">Iris 3</label>
-        <select class="form-control col-sm-9" id="repEx4.1-P2F3" data-answer="Iris-virginica">
-            <option>Iris-setosa</option>
-            <option>Iris-versicolor</option>
-            <option>Iris-virginica</option>
+        <select class="form-control col-sm-9" id="repEx4.1-P2F3" data-answer="Iris virginica">
+            <option>Iris setosa</option>
+            <option>Iris versicolor</option>
+            <option>Iris virginica</option>
         </select>
     correction: >
         Les données sont choisies de sorte qu’il n’y ait pas d’ambiguïtés pour déterminer la majorité.<br>
-        Normalement, les résultats devraient êtres les suivants.<br>
         Classifieur 1 : Virginica, Setosa et Versicolor <br>
         Classifieur 2 : Setosa, Versicolor et Virginica <br>
 
@@ -389,15 +388,15 @@ exercices:
             <tbody>
             <tr class="table-secondary">
                 <th scope="row">1</th>
-                <td>Iris-setosa</td>
+                <td>Iris setosa</td>
             </tr>
             <tr class="table-secondary">
                 <th scope="row">2</th>
-                <td>Iris-versicolor</td>
+                <td>Iris versicolor</td>
             </tr>
             <tr class="table-secondary">
                 <th scope="row">3</th>
-                <td>Iris-setosa</td>
+                <td>Iris setosa</td>
             </tr>
             </tbody>
             <caption>Tableau 3 : Variété des iris du <a href="#table2">Tableau 2</a></caption>
@@ -436,7 +435,7 @@ exercices:
             <textarea class="form-control" rows="6" id="repEx4-2-justification" data-answer="2,second"></textarea>
         </div>
     correction: >
-        Le second est du coup plus intéressant puisqu’il prédit mieux. Autrement dit, on peut deviner avec plus de certitudes une Iris en mesurant sa pétale plutôt que sa sépale.<br>
+        Le second est du coup plus intéressant puisqu’il prédit mieux. Autrement dit, on peut deviner avec plus de certitude un Iris en mesurant son pétale plutôt que son sépale.<br>
         Intéressant de noter ici que notre classifieur n’est pas parfait non plus (il n’a pas un score de  3/3).<br>
-        A noter également que nos données sont très petites pour pouvoir affirmer avec conviction que le second est toujours meilleur que le premier.
+        A noter également que le nombre de données est trop petit pour pouvoir affirmer avec conviction que le second est toujours meilleur que le premier.
 ---

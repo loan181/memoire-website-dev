@@ -22,13 +22,13 @@ algorithms:
     picture: /static/img/ArbreDecision.svg
     icon: <i class="fas fa-tree"></i>
     currentVersion: 1.0
-    missionDescription: Cette mission intéractive consiste à déterminer un certain objet en créant manuellement un arbre de décision pertinent.
+    missionDescription: Cette mission interactive consiste à déterminer un certain objet en créant manuellement un arbre de décision pertinent.
     kindOfMethod: Méthode de classification
     shortDescription: >
       Outil d'aide à la décision représentant un ensemble de choix sous la forme graphique d'un arbre.
       Les différentes décisions possibles sont situées aux extrémités des branches (les « feuilles » de l'arbre), et sont atteints en fonction de décisions prises à chaque étape.
     sections:
-      activityName: Arbre intéractif
+      activityName: Arbre interactif
  - name: Réseau neuronal
    href: NN
    picture: /static/img/NN.svg
@@ -39,4 +39,4 @@ algorithms:
    shortDescription: >
      TODO
    sections:
-     activityName: Réseau de neurone intéractif
+     activityName: Réseau de neurone interactif
