@@ -26,21 +26,41 @@ exercices:
     question: >
         Choisis parmi les quatre mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale) <strong>deux</strong> mesures qui te permettent de discerner au mieux les classes de fleurs (setosa, versicolor et virginica).
     answer: >
-        <select class="form-control" data-answer="largeur pétale & longueur pétale">
-            <option>largeur sépale & longueur sépale</option>
-            <option>largeur sépale & largeur pétale</option>
-            <option>largeur sépale & longueur pétale</option>
+        <label>
+            <select id="metricChooseGraphSelect" class="form-control" data-answer="longueur pétale & largeur pétale">
+                <option>---</option>
+                <option>longueur sépale & largeur sépale</option>
+                <option>longueur sépale & longueur pétale</option>
+                <option>longueur sépale & largeur pétale</option>
 
-            <option>longueur sépale & largeur pétale</option>
-            <option>longueur sépale & longueur pétale</option>
+                <option>largeur sépale & longueur pétale</option>
+                <option>largeur sépale & largeur pétale</option>
 
-            <option>largeur pétale & longueur pétale</option>
-        </select>
+                <option>longueur pétale & largeur pétale</option>
+            </select>
+        </label>
+        <img id="previewMetricGraph" class="img-fluid" src="" style="display: none;">
+        <script>
+            let picturePath = "/static/img/KNN/graphs/";
+            let correspondingPicture = ["SWSH", "SWPW", "SWPH", "SHPW", "SHPH", "PWPH"];
+            let target = $("#previewMetricGraph");
+            $("#metricChooseGraphSelect").change(function () {
+                    let selectedIndex = $(this).prop('selectedIndex');
+                    if (selectedIndex === 0) {
+                        $(target).hide();
+                    } else {
+                        $(target).show();
+                        target.attr("src",picturePath+correspondingPicture[selectedIndex-1]+".jpg")
+                    }
+
+                }
+            );
+        </script>
     correction: >
         Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
         Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
         Le graphique correspondant est le suivant :<br>
-        <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid">
+        <img src="/static/img/KNN/graphs/PWPH.jpg" class="img-fluid">
 
 -   title: Identifier une nouvelle fleur
     introduction: >
