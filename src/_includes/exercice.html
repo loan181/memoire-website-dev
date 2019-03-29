@@ -17,8 +17,27 @@
             <div class="card-header">Réponse</div>
             <div class="card-body text-primary">
                 {%  if include.ex.answer %}
-                    {{ include.ex.answer }}
-                {% else if include.ex.decisionTreeAnswer %}
+                    {% case include.ex.answer.kind %}
+                        {% when 'selection' %}
+                            <label>
+                                <select {% if include.ex.answer.id %}
+                                            id="{{ include.ex.answer.id }}"
+                                        {% endif %}
+                                        class="form-control" data-answer="{{ include.ex.answer.correct }}">
+                                    <option>---</option>
+                                    {% for option in include.ex.answer.options %}
+                                        <option>{{ option }}</option>
+                                    {% endfor %}
+                                </select>
+                            </label>
+                        {% else %}  {% comment %} Arbitrary answer {% endcomment %}
+                            {{ include.ex.answer }}
+                    {% endcase %}
+
+                    {% if include.ex.answer.arbitraryAddOn %}
+                        {{ include.ex.answer.arbitraryAddOn }}
+                    {% endif %}
+                {% else if include.ex.decisionTreeAnswer %} <!-- TODO : correct !! -->
                     <table class="table table-hover" >
                         <thead>
                         <tr>

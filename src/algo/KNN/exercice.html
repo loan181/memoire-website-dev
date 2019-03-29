@@ -25,37 +25,35 @@ exercices:
         </p>
     question: >
         Choisis parmi les quatre mesures (longueur sépale, largeur sépale, longueur pétale et largeur pétale) <strong>deux</strong> mesures qui te permettent de discerner au mieux les classes de fleurs (setosa, versicolor et virginica).
-    answer: >
-        <label>
-            <select id="metricChooseGraphSelect" class="form-control" data-answer="longueur pétale & largeur pétale">
-                <option>---</option>
-                <option>longueur sépale & largeur sépale</option>
-                <option>longueur sépale & longueur pétale</option>
-                <option>longueur sépale & largeur pétale</option>
+    answer:
+        kind : selection
+        id : metricChooseGraphSelect
+        options :
+            - longueur sépale & largeur sépale
+            - longueur sépale & longueur pétale
+            - longueur sépale & largeur pétale
+            - largeur sépale & longueur pétale
+            - largeur sépale & largeur pétale
+            - longueur sépale & largeur pétale
+        correct : longueur pétale & largeur pétale
+        arbitraryAddOn : >
+            <img id="previewMetricGraph" class="img-fluid" src="" style="display: none;">
+            <script>
+                let picturePath = "/static/img/KNN/graphs/";
+                let correspondingPicture = ["SWSH", "SWPW", "SWPH", "SHPW", "SHPH", "PWPH"];
+                let target = $("#previewMetricGraph");
+                $("#metricChooseGraphSelect").change(function () {
+                        let selectedIndex = $(this).prop('selectedIndex');
+                        if (selectedIndex === 0) {
+                            $(target).hide();
+                        } else {
+                            $(target).show();
+                            target.attr("src",picturePath+correspondingPicture[selectedIndex-1]+".jpg")
+                        }
 
-                <option>largeur sépale & longueur pétale</option>
-                <option>largeur sépale & largeur pétale</option>
-
-                <option>longueur pétale & largeur pétale</option>
-            </select>
-        </label>
-        <img id="previewMetricGraph" class="img-fluid" src="" style="display: none;">
-        <script>
-            let picturePath = "/static/img/KNN/graphs/";
-            let correspondingPicture = ["SWSH", "SWPW", "SWPH", "SHPW", "SHPH", "PWPH"];
-            let target = $("#previewMetricGraph");
-            $("#metricChooseGraphSelect").change(function () {
-                    let selectedIndex = $(this).prop('selectedIndex');
-                    if (selectedIndex === 0) {
-                        $(target).hide();
-                    } else {
-                        $(target).show();
-                        target.attr("src",picturePath+correspondingPicture[selectedIndex-1]+".jpg")
                     }
-
-                }
-            );
-        </script>
+                );
+            </script>
     correction: >
         Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
         Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
@@ -89,12 +87,13 @@ exercices:
         </div>
     question : >
         Quelle est la fleur qui correspond à ces mesures ?
-    answer: >
-        <select class="form-control" data-answer="Iris virginica">
-            <option>Iris setosa</option>
-            <option>Iris versicolor</option>
-            <option>Iris virginica</option>
-        </select>
+    answer:
+        kind : selection
+        options :
+            - Iris setosa
+            - Iris versicolor
+            - Iris viriginica
+        correct : Iris viriginica
     correction: >
         C'est (probalement) un <i>Iris virginica</i>.<br>
         La longueur et la largeur du sépale ne nous permettent pas de donner des informations fiables sur la fleur.<br>
