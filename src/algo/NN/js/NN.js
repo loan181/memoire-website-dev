@@ -17,6 +17,7 @@ var lineWidth = 20;
 
 var clearBeforeDraw = false; // controls whether canvas will be cleared on next mousedown event. Set to true after digit recognition
 
+var nnInput;
 var w12;
 var w23;
 var data;
@@ -198,21 +199,24 @@ function recognize() {
 
 
     // now bin image into 10x10 blocks (giving a 28x28 image)
-    imgData = copyCtx.getImageData(0, 0, 280, 280);
-    grayscaleImg = imageDataToGrayscale(imgData);
-    var nnInput = new Array(784);
-    for (var y = 0; y < 28; y++) {
-        for (var x = 0; x < 28; x++) {
-            var mean = 0;
-            for (var v = 0; v < 10; v++) {
-                for (var h = 0; h < 10; h++) {
-                    mean += grayscaleImg[y*10 + v][x*10 + h];
-                }
-            }
-            mean = (1 - mean / 100); // average and invert
-            nnInput[x*28+y] = (mean - .5) / .5;
-        }
-    }
+
+    nnInput = processPicture(copyCtx).flat();
+    // imgData = copyCtx.getImageData(0, 0, 280, 280);
+    // grayscaleImg = imageDataToGrayscale(imgData);
+    // var nnInput = new Array(784);
+    // for (var y = 0; y < 28; y++) {
+    //     for (var x = 0; x < 28; x++) {
+    //         var mean = 0;
+    //         for (var v = 0; v < 10; v++) {
+    //             for (var h = 0; h < 10; h++) {
+    //                 mean += grayscaleImg[y*10 + v][x*10 + h];
+    //             }
+    //         }
+    //         mean = (1 - mean / 100); // average and invert
+    //         nnInput[x*28+y] = (mean - .5) / .5;
+    //     }
+    // }
+    // console.log(nnInput2)
 
     // for visualization/debugging: paint the input to the neural net.
     if (document.getElementById('preprocessing').checked == true) {
@@ -259,6 +263,28 @@ function recognize() {
     clearBeforeDraw = true;
     var dt = new Date() - t1;
     console.log('recognize time: '+dt+'ms');
+}
+
+function processPicture(imgcontext) {
+    let imgData = imgcontext.getImageData(0, 0, 280, 280);
+    let grayscaleImg = imageDataToGrayscale(imgData);
+    let imgArray = new Array(28); // 2D array of 28*28
+    for (let y = 0; y < 28; y++) {
+        imgArray[y] = new Array(28);
+    }
+    for (let y = 0; y < 28; y++) {
+        for (let x = 0; x < 28; x++) {
+            let mean = 0;
+            for (let v = 0; v < 10; v++) {
+                for (let h = 0; h < 10; h++) {
+                    mean += grayscaleImg[y*10 + v][x*10 + h];
+                }
+            }
+            mean = (1 - mean / 100); // average and invert
+            imgArray[x][y] = (mean - .5) / .5;
+        }
+    }
+    return imgArray;
 }
 
 function initCanvaDraw() {

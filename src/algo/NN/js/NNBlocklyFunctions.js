@@ -7,8 +7,22 @@
  * @param nnOutputNeurons
  */
 function nnSelectOutputLayer(minOrMax, nnOutputNeurons) {
-    // TODO
-    return;
+    let minIndex = 0;
+    let maxIndex = 0;
+    for (let i = 1; i < nnOutputNeurons.length; i++) {
+        let value = nnOutputNeurons[i];
+        if (value < nnOutputNeurons[minIndex]) {
+            minIndex = i;
+        }
+        if (value > nnOutputNeurons[minIndex]) {
+            maxIndex = i;
+        }
+    }
+
+    if (minOrMax === 'min')
+        return minIndex;
+    else
+        return maxIndex;
 }
 
 
@@ -19,18 +33,20 @@ function nnSelectOutputLayer(minOrMax, nnOutputNeurons) {
  * @param picture the picture to return the width for
  */
 function getPictureW(picture) {
-    //TODO
-    return;
+    if (typeof picture[0][0] != 'undefined') {// if it is a 2D array
+        return picture[0].length;
+    } else { // 1 D array
+        return picture.length;
+    }
 }
 
 /**
  * Will flatten a picture.
  * 2D picture is flatten into a 1D one
- * @param pictureToFlatten
+ * @param pictureToFlatten 2D array
  */
 function flattenPicture(pictureToFlatten) {
-    //TODO
-    return;
+    return pictureToFlatten.flat();
 }
 
 /**
@@ -39,7 +55,7 @@ function flattenPicture(pictureToFlatten) {
  * @param value_picture_pixel
  */
 function setValueOfNeuron(value_neuron_ind, value_picture_pixel) {
-    //TODO
+    nnInput[value_neuron_ind] = value_picture_pixel;
 }
 
 /**
@@ -48,6 +64,5 @@ function setValueOfNeuron(value_neuron_ind, value_picture_pixel) {
  * @param picture a 1D picture (array)
  */
 function getValueOfImgPixel(pixelNumber, picture) {
-    //TODO
-    return;
+    return picture[pixelNumber];
 }

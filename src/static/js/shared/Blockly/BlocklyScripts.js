@@ -57,7 +57,11 @@ function getPredictionCode() {
 }
 
 function getCode() {
-    deleteAddedMarkers();
+    try {
+        deleteAddedMarkers();
+    } catch (e) {
+        // TODO : mieux gérer ça, il n'a sa place que dans KNN
+    }
     return Blockly.JavaScript.workspaceToCode(getWorkspace());
 }
 
