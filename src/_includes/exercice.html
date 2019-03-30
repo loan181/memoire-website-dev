@@ -25,7 +25,7 @@
                                     <select {% if answer.id %}
                                                 id="{{ answer.id }}"
                                             {% endif %}
-                                            class="form-control"{% if answer.correct %} data-answer="{{ answer.correct }}{% endif %}">
+                                            class="form-control"{% if answer.correct %} data-answer="{{ answer.correct }}"{% endif %}>
                                         <option>---</option>
                                         {% for option in answer.options %}
                                             <option>{{ option }}</option>
@@ -34,10 +34,19 @@
                                 </label>
 
                             {% when 'text' %}
-                                    <label style="width: 100%">
-                                        <textarea class="form-control" rows="2"
-                                        data-answer="{% for keyword in answer.correctWords %}{{ keyword }},{% endfor %}"></textarea>
-                                    </label>
+                                <label style="width: 100%">
+                                    <textarea class="form-control" rows="2"
+                                    data-answer="{% for keyword in answer.correctWords %}{{ keyword }},{% endfor %}"></textarea>
+                                </label>
+                            {% when 'number' %}
+                            <label>
+                                {% if answer.label %}{{ answer.label }}{% endif %}
+                                <input type="number" class="form-control"
+                                        value="{% if answer.val %}{{ answer.val }}{% else %}0{% endif %}"
+                                        {% if answer.min %}min="{{ answer.min }}"{% endif %}
+                                        {% if answer.max %}max="{{ answer.max }}"{% endif %}
+                                        {% if answer.correct %} data-answer="{{ answer.correct }}"{% endif %}>
+                            </label>
                             {% else %}  {% comment %} Arbitrary answer {% endcomment %}
                                 {{ include.ex.answer }}
                         {% endcase %}
