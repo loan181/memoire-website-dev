@@ -71,7 +71,13 @@
 <div class="modal" id="exerciceSuccess" tabindex="-1" role="dialog" aria-labelledby="exerciceSuccessLabel" aria-hidden="true" style="background-color: rgba(0,250,255,0.5);">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div id="congrats">
-            <h1 id="sucessMessage">Bravo !</h1>
+            <h1 id="sucessMessage">Bravo !
+            {% if page.secret %}
+                <br>
+                Le secret de cet exercice est : {{ page.secret.name }}<br>
+                {{ page.secret.icon }}
+            {% endif %}
+            </h1>
         </div>
     </div>
 </div>
