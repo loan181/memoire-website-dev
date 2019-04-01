@@ -29,6 +29,8 @@
         {{ page.arbitraryAdditions }}
     {% endif %}
 
+    <script src="/static/js/contentForTeacher.js"></script>
+
     <!-- Success Message -->
     <link rel="stylesheet" href="/static/css/animationSuccess.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"></script>
@@ -42,7 +44,9 @@
         <div class="nav nav-tabs" id="nav-tab-activity" role="tablist">
             <a class="nav-item nav-link" data-toggle="tab" href="#nav-objective" role="tab" aria-controls="nav-objective" aria-selected="true"><i class="fas fa-flag-checkered"></i> Objectif</a>
             <a class="nav-item nav-link active" data-toggle="tab" href="#nav-activity" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-gamepad"></i> Activité</a>
+            {% if page.examples %}
             <a class="nav-item nav-link" data-toggle="tab" href="#nav-example" role="tab" aria-controls="nav-example" aria-selected="false"><i class="fas fa-drafting-compass"></i> Exemples</a>
+            {% endif %}
             {% if page.goalSteps %}
             <a class="nav-item nav-link" data-toggle="tab" href="#nav-hints" role="tab" aria-controls="nav-hints" aria-selected="false"><i class="fas fa-puzzle-piece"></i> Aide pour résoudre l'activité</a>
             {% endif %}
@@ -98,10 +102,16 @@
             {{ content }}
         </div>
 
+        {% if page.examples %}
         <!-- Example Tab -->
         <div class="tab-pane fade" id="nav-example" role="tabpanel" aria-labelledby="nav-example-tab">
             <h1>Exemple</h1>
+            {% for example in page.examples %}
+                <h3>{{ example.title }}</h3>
+                {{ example.content }}
+            {% endfor %}
         </div>
+        {% endif %}
         {% if page.goalSteps %}
             <!-- Hints/Help for solving the activity Tab -->
             <div class="tab-pane fade" id="nav-hints" role="tabpanel" aria-labelledby="nav-hints-tab">
@@ -130,6 +140,75 @@
         <!-- Details/documentation Tab -->
         <div class="tab-pane fade" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
             <h1>Détails sur l'interface</h1>
+            <h2>Structure de la page</h2>
+            {% if page.toolbarActivityName %}
+                <h3>Barre d'outil</h3>
+                <p>
+                    Dans la partie supérieure de l’écran tu as différents boutons te permettant de réaliser certaines actions que nous allons détailler ici.
+                </p>
+                <div id="toolboxExplanation"></div>
+                <script>
+                    let TBEXplanation = new ToolBox();
+                    let explanations = [];
+                    {% for elem in page.toolboxButtonDescription %}
+                    explanations.push("{{ elem }}");
+                    {% endfor %}
+                    TBEXplanation.drawExplanation("{{ page.toolbarActivityName }}", "toolboxExplanation", explanations);
+                </script>
+            {% endif %}
+
+            {% if page.leftPartName %}
+                <h3>{{ page.leftPartName }}</h3>
+                {{ page.leftPartDesc }}
+
+                <ul class="list-unstyled">
+                    {% for section in page.leftPartSections %}
+                        <li class="media">
+                            <img src="{{ section.picture }}" class="mr-3 img-fluid" >
+                            <div class="media-body">
+                                <h4 class="mt-0 mb-1">{{ section.title }}</h4>
+                                {{ section.description }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if page.rightPartName %}
+                <h3>{{ page.rightPartName }}</h3>
+                <p>
+                    {{ page.rightPartDesc }}
+                </p>
+
+                {% if page.rightPartContent %}
+                    {{ page.rightPartContent }}
+                {% else if page.rightPartContentBlockly %}
+                    <h4>Blocs supplémentaires</h4>
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Bloc</th>
+                            <th scope="col">Explication</th>
+                            <th scope="col">Type de retour</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for block in page.rightPartContentBlockly %}
+                            <tr>
+                                <td>{% include blockly_block.html name=block.blockName %}</td>
+                                <td>{{ block.desc }}</td>
+                                {% if block.returnType %}
+                                    <td>{{ block.returnType }}</td>
+                                {% else %}
+                                    <td><i>Rien</i></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 
@@ -150,6 +229,8 @@
     </div>
 </div>
 <script src="/static/js/animationSuccess.js"></script>
+
+{% include enlargeImage.html %}
 
 </body>
 </html>
