@@ -164,8 +164,8 @@ class ToolBox{
         }
     }
 
-    drawExplanation(exerciceName, id, explanations) {
-        this.setToolBarForExercice(exerciceName);
+    drawExplanation(id, explanations) {
+        //this.setToolBarForExercice(exerciceName);
 
         let html = "";
         html += `

@@ -148,12 +148,12 @@
                 </p>
                 <div id="toolboxExplanation"></div>
                 <script>
-                    let TBEXplanation = new ToolBox();
+                    //let TBEXplanation = new ToolBox();
                     let explanations = [];
                     {% for elem in page.toolboxButtonDescription %}
                     explanations.push("{{ elem }}");
                     {% endfor %}
-                    TBEXplanation.drawExplanation("{{ page.toolbarActivityName }}", "toolboxExplanation", explanations);
+                    TB.drawExplanation("toolboxExplanation", explanations);
                 </script>
             {% endif %}
 
