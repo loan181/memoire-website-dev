@@ -311,23 +311,7 @@ LanguageCode.init = function() {
     LanguageCode.initLanguage();
 
     var rtl = LanguageCode.isRtl();
-    var blocklyDiv = document.getElementById('blocklyDiv');
-    var onresize = function(e) {
-        var element = blocklyArea;
-        var boundingBox = element.getBoundingClientRect();
-        blocklyDiv.style.left = boundingBox.left + 'px';
-        blocklyDiv.style.top = boundingBox.top + 'px';
-        blocklyDiv.style.width = boundingBox.width + 'px';
-        blocklyDiv.style.height = boundingBox.height + 'px';
-
-        // Make the 'Blocks' tab line up with the toolbox.
-        // if (LanguageCode.workspace && LanguageCode.workspace.toolbox_.width) {
-        //   document.getElementById('tab_blocks').style.minWidth =
-        //       (LanguageCode.workspace.toolbox_.width - 38) + 'px';
-        //       // Account for the 19 pixel margin and on each side.
-        // }
-    };
-    window.addEventListener('resize', onresize, false);
+    window.addEventListener('resize', LanguageCode.onresize, false);
 
     // The toolbox XML specifies each category name using Blockly's messaging
     // format (eg. `<category name="%{BKY_CATLOGIC}">`).
@@ -369,10 +353,7 @@ LanguageCode.init = function() {
     // and the infinite loop detection function.
     Blockly.JavaScript.addReservedWords('code,timeouts,checkTimeout');
 
-    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
-        LanguageCode.workspace);
-
-    LanguageCode.loadBlocks('');
+    //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), LanguageCode.workspace);
 
     if ('BlocklyStorage' in window) {
         // Hook a save function onto unload.
@@ -402,9 +383,9 @@ LanguageCode.init = function() {
     //   LanguageCode.bindClick('tab_' + name,
     //       function(name_) {return function() {LanguageCode.tabClick(name_);};}(name));
     // }
-    onresize();
-    Blockly.svgResize(LanguageCode.workspace);
 
+    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), LanguageCode.workspace);
+    Blockly.svgResize(LanguageCode.workspace);
     // Lazy-load the syntax-highlighting.
     window.setTimeout(LanguageCode.importPrettify, 1);
 };

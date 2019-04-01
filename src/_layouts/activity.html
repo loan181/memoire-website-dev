@@ -38,33 +38,101 @@
 <body>
 {% include nav.html %}
 <main role="main" class="container" style="max-width: 95%">
-    <h1>{{ page.title }}</h1>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab-activity" role="tablist">
+            <a class="nav-item nav-link" data-toggle="tab" href="#nav-objective" role="tab" aria-controls="nav-objective" aria-selected="true"><i class="fas fa-flag-checkered"></i> Objectif</a>
+            <a class="nav-item nav-link active" data-toggle="tab" href="#nav-activity" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-gamepad"></i> Activité</a>
+            <a class="nav-item nav-link" data-toggle="tab" href="#nav-example" role="tab" aria-controls="nav-example" aria-selected="false"><i class="fas fa-drafting-compass"></i> Exemples</a>
+            {% if page.goalSteps %}
+            <a class="nav-item nav-link" data-toggle="tab" href="#nav-hints" role="tab" aria-controls="nav-hints" aria-selected="false"><i class="fas fa-puzzle-piece"></i> Aide pour résoudre l'activité</a>
+            {% endif %}
+            <a class="nav-item nav-link" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="false"><i class="fas fa-info"></i> Détails sur l'interface</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent-activity">
+        <!-- Objective Tab -->
+        <div class="tab-pane fade" id="nav-objective" role="tabpanel" aria-labelledby="nav-objective-tab">
+            <h1>Objectif</h1>
+            <p>
+                L'objectif de cette mission est d'obtenir un score de 100% pour cette l'activité.
+                Une fois ce score atteint, le secret de cette activité te seras révélé.
+            </p>
+            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%; height: 32px">100.00%</div>
+            <p>
+                Le score est mis à jour à chaque fois que tu presse le bouton d'exécution <button type="button" class="btn btn-primary"><i class="fas fa-play"></i></button>.
+            </p>
 
-    <!-- Toolbox -->
-    <div id="toolBox"></div>
-    <script src="/static/js/shared/ToolBox.js"></script>
-    <script>
-        let TB = new ToolBox("toolBox");
-        TB.setToolBarForExercice("{{ page.activityName }}");
-        TB.draw();
-    </script>
+            {% if page.goalDescription %}
+                <h2>Le score</h2>
+                {{ page.goalDescription }}
+            {% endif %}
+        </div>
+        <!-- Activity Tab -->
+        <div class="tab-pane fade show active" id="nav-activity" role="tabpanel" aria-labelledby="nav-activity-tab">
+            <h1>{{ page.title }}</h1>
 
-    <!-- Progress bar of prediction -->
-    <div class="mt-2 col-md-12" >
-        <h6 style="float: left; margin-right: 1em;"> Précision actuelle : </h6>
-        <div id="progressBar"></div>
+            <!-- Toolbox -->
+            <div id="toolBox"></div>
+            <script src="/static/js/shared/ToolBox.js"></script>
+            <script>
+                let TB = new ToolBox("toolBox");
+                TB.setToolBarForExercice("{{ page.activityName }}");
+                TB.draw();
+            </script>
+
+            <!-- Progress bar of prediction -->
+            <div class="mt-2 col-md-12" >
+                <h6 style="float: left; margin-right: 1em;"> Précision actuelle : </h6>
+                <div id="progressBar"></div>
+            </div>
+            <script src="/static/js/successBar.js"></script>
+            <script>
+                let pb = new ProgressBar("progressBar");
+                function exerciceSuccess() {
+                    $('#exerciceSuccess').modal('toggle');
+                    fancyPopIn();
+                }
+            </script>
+
+            <!-- Main content of the activity -->
+            {{ content }}
+        </div>
+
+        <!-- Example Tab -->
+        <div class="tab-pane fade" id="nav-example" role="tabpanel" aria-labelledby="nav-example-tab">
+            <h1>Exemple</h1>
+        </div>
+        {% if page.goalSteps %}
+            <!-- Hints/Help for solving the activity Tab -->
+            <div class="tab-pane fade" id="nav-hints" role="tabpanel" aria-labelledby="nav-hints-tab">
+                <h1>Aide pour résoudre l'activité</h1>
+                <p>
+                    L’algorithme peut être séparé en plusieurs étapes distinctes qui, petit à petit, te rapprocheront de la solution.
+                    Je vais t’aider dans cette partie à atteindre la bonne solution en te donnant les intuitions.<br>
+                    Libre à toi de faire autrement si tu le souhaites tant que la prédiction finale est bonne.
+                </p>
+                {% for step in page.goalSteps %}
+                    <h3>Etape {{ forloop.index }} : {{ step.title }}</h3>
+                    {{ step.content }}
+                    {% if step.recommandedBlocks %}
+                        {% include recommendedBlocks.html blocks=step.recommandedBlocks %}
+                    {% endif %}
+                    {% if step.help %}
+                        {% include help.html help=step.help %}
+                    {% endif %}
+                    {% if step.correction %}
+                        {% include correction.html correction=step.correction %}
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+        {% endif %}
+        <!-- Details/documentation Tab -->
+        <div class="tab-pane fade" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
+            <h1>Détails sur l'interface</h1>
+        </div>
     </div>
-    <script src="/static/js/successBar.js"></script>
-    <script>
-        let pb = new ProgressBar("progressBar");
-        function exerciceSuccess() {
-            $('#exerciceSuccess').modal('toggle');
-            fancyPopIn();
-        }
-    </script>
 
-    <!-- Main content of the activity -->
-    {{ content }}
 </main>
 
 <!-- Success Animation when activity is succeded -->

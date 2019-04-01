@@ -13,6 +13,7 @@ function resizePlot() {
     });
 }
 
+
 $(window).ready(function () {
     resizePlot();
 });

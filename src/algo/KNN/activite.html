@@ -13,6 +13,99 @@ extraScripts:
  - /static/js/shared/Blockly/src/blockly_compressed.js
  - /static/js/shared/Blockly/src/blocks_compressed.js
  - /static/js/shared/Blockly/src/javascript_compressed.js
+
+goalDescription : >
+    <p>
+        Ton score dépend de la qualité de la fonction <code>classify(newIris)</code>.<br>
+        Cette fonction prend une fleur en argument <code>newIris</code> et renvoie le nom prédit de cette fleur.
+    </p>
+    <div class="mx-auto" align="center">
+        <img src="/static/img/KNN/classifyFunction.svg" class="img-fluid">
+    </div>
+    <p>
+        Des fleurs de classes connues sont cachées et servent à définir si ta fonction de classification est bonne ou pas.<br>
+        Le score augmente chaque fois qu'une de ces fleur est correctement prédite.<br>
+    </p>
+    <p>
+        Pour atteindre les 100%, il faut que tu modifies la fonction de manière qu’elle implémente le concept vu de l’algorithme des K plus proches voisins.<br>
+        En plus de cela tu as différents paramètres que tu peux faire varier,
+        tu devras trouver la combinaison qui te donnera le meilleure score.
+    </p>
+
+goalSteps :
+-   title: Bien commencer !
+    content: >
+        <p>
+            Dans la section <code>TODO</code> de la boite à outil de blockly tu trouvera une première implémentation de la fonction que tu dois faire.<br>
+            Commence par la prendre et test le résultat de ton prédicteur avec.
+        </p>
+        <div class="mx-auto" align="center">
+            <img src="/static/img/KNN/classifyFunctionDefault.svg" class="img-fluid">
+        </div>
+
+        <p>
+            Normalement tu devrais avoir un résultat d’environ 33% et chaque fois que tu re-test le prédicteur,
+            il donnera un résultat différent.<br>
+            C’est normal car le prédicteur que je te donne ici est totalement aléatoire et se contente de donner un nom parmi ceux disponible de manière aléatoire.
+            Autrement dit, pour chaque fleur il a 1 chance sur 3 de deviner correctement (d’ou les 33%).
+        </p>
+
+        <div class="mt-2 col-md-12">
+            <h6 style="float: left; margin-right: 1em;"> Prédiction courante : </h6>
+            <div class="progress" style="height: 32px;">
+                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%;">33.33%</div>
+            </div>
+        </div>
+-   title: implémenter les K plus proches voisins
+    content: >
+        <p>
+            Pour réaliser à bien ce projet il est important que tu comprenne bien comment utiliser les compteurs et à quoi ils vont nous servir.<br><br>
+            L'idée générale est d'augmenter le compteur de chacune des K fleurs les plus proches pour ensuite déterminer celle qui est en majorité
+        </p>
+
+        <p>
+            Voilà différents exemple pour t'entrainer et voir si tes résultats sont correctes :
+        </p>
+        <small class="text-muted">
+            Le code principal de l'algorithme est ici caché ici dans la fonction <code>code...</code>, mait tu n'es bien-entendu pas obliger d'implémenter une fonction pour ça ;)<br>
+            Tu peux recopier la partie du code avec <code>afficher...</code> si tu veux avoir le même affichage que moi (en supposant que tes compteurs se mettent correctement à jour)<br>
+            Fais bien attention que les paramètres et les coordonnées de la fleur créé changent entre chacun des exemples !
+        </small>
+
+        <div class="mx-auto" align="center">
+            <img src="/static/img/KNN/stepMainEx1.PNG" class="img-fluid">
+            <br>
+            <img src="/static/img/KNN/stepMainEx2.PNG" class="img-fluid">
+            <br>
+            <img src="/static/img/KNN/stepMainEx3.PNG" class="img-fluid">
+        </div>
+    recommandedBlocks: countersReset countersIncrease countersGetMinMax getK forI
+    help: >
+        Une structure correcte du code est la suivante :
+        <ol>
+            <li>Réinitialiser le compteur, chacune des trois fleurs à un compteur qui est mis à 0</li>
+            <li>Pour chacune des K fleurs les plus proches, il faudra augmenter leur compteur individuel de 1</li>
+            <li>Une fois les K fleurs parcouru, il suffit de choisir celle qui à la valeur de compteur la plus haute et mettre à jour le résultat renvoyé</li>
+        </ol>
+    correction: >
+        <div class="mx-auto" align="center">
+            <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
+        </div>
+-   title: Obtenir 100%
+    content: >
+        <p>
+            Une fois que ton implémentation te parait correxte, il ne te reste plus qu’à faire un peu le tri dans ton code !
+            Enlève tout les <code>afficher ...</code> qui seront gênant quand tu évaluera ton prédicteur,
+            choisis bien tes paramètres (K, Axe x et Axe y) et croise les doigts pour atteindre les 100% !
+        </p>
+    correction: >
+        <div class="mx-auto" align="center">
+            <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
+        </div>
+        Avec par exemple comme paramètres :
+        <div class="mx-auto" align="center">
+            <img src="/static/img/KNN/solParametersKNN.png" class="img-fluid">
+        </div>
 ---
 
 
@@ -160,14 +253,11 @@ extraScripts:
     </div>
     <div id="blocklyArea" class="col-sm-8">
         <!-- Blockly here -->
-        <div id="blocklyDiv" style="position: static">
+        <div id="blocklyDiv" style="width: 100%;height: 100%; min-height: 320px">
         </div>
     </div>
 </div>
 
-
-
-</main>
 <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
     {% include KNN/toolbox.xml %}
 </xml>
@@ -179,3 +269,15 @@ extraScripts:
 <script src="/static/js/shared/Blockly/languageCode.js"></script>
 <script src="/static/js/shared/Blockly/BlocklyScripts.js"></script>
 <script src="/static/js/shared/plot.js"></script>
+
+<script>
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        let currentTab = e.target;
+        if (currentTab.href.endsWith("#nav-activity")) {
+            resizePlot();
+            if (LanguageCode.workspace.getAllBlocks().length === 0) // Load defaut blocks if it is empty
+                Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), LanguageCode.workspace);
+            Blockly.svgResize(LanguageCode.workspace);
+        }
+    })
+</script>
