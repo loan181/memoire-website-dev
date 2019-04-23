@@ -54,7 +54,7 @@
       </value>
       <value name="TO">
         <shadow type="math_number">
-          <field name="NUM">10</field>
+          <field name="NUM">784</field>
         </shadow>
       </value>
       <value name="BY">
@@ -70,7 +70,27 @@
             </block>
           </value>
           <value name="picture_pixel">
-            <shadow type="math_random_float"></shadow>
+            <shadow type="math_arithmetic">
+              <field name="OP">MULTIPLY</field>
+              <value name="A">
+                <shadow type="math_arithmetic">
+                  <field name="OP">MINUS</field>
+                  <value name="A">
+                    <shadow type="math_random_float"></shadow>
+                  </value>
+                  <value name="B">
+                    <shadow type="math_number">
+                      <field name="NUM">0.5</field>
+                    </shadow>
+                  </value>
+                </shadow>
+              </value>
+              <value name="B">
+                <shadow type="math_number">
+                  <field name="NUM">2</field>
+                </shadow>
+              </value>
+            </shadow>
           </value>
         </block>
       </statement>
