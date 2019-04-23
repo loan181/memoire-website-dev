@@ -520,7 +520,22 @@ LanguageCode.runJS = function(code) {
     try {
         eval(code);
     } catch (e) {
+        console.error(e);
         alert(MSG['badCode'].replace('%1', e));
+
+        // Better display for undefined functions
+        // ReferenceError: NomDeLaFonction is not defined
+        let eStr = e.toString();
+        let prefix = "ReferenceError: ";
+        if (eStr.startsWith(prefix)) {
+            let startingIndex = prefix.length;
+            let endingIndex = eStr.indexOf(" ", startingIndex+1);
+            let nameOfTheUndefindObject = eStr.slice(startingIndex, endingIndex);
+            // Correct to better looking name
+            nameOfTheUndefindObject = nameOfTheUndefindObject.replace(/_C3_A9/g, "é");
+            nameOfTheUndefindObject = nameOfTheUndefindObject.replace(/_/g, " ");
+            alert(`Il te manque probablement une fonction nécessaire pour le bon fonctionement du code.\nVérifie que tu as bien définis la fonction du nom (approximatif) de :\n${nameOfTheUndefindObject}`)
+        }
     }
 };
 
