@@ -32,6 +32,11 @@ function calculatePrediction(entryHandleFunction, outputHandleFunction) {
 
 // All this functions will be call by blockly blocks
 
+function getDrawnPicture() {
+    return getCanvaPictureToArray();
+}
+
+
 /**
  * Return the maximum/minimum value of the last layer neuron values
  *
