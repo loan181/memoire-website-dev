@@ -49,6 +49,71 @@ goalDescription : >
         Pour atteindre 100%, il faut donc qu'il les classent toutes correctement.
     </p>
 
+goalSteps :
+-   title: Bien commencer !
+    content: >
+        <p>
+            Dans la section <code>TODO</code> de la boite à outil de blockly tu trouvera une première implémentation pour les 2 fonctions que tu dois implémenter<br>
+            Commence par les prendre et glisse les dans ton code.
+        </p>
+        <div class="mx-auto" align="center">
+            <img src="/static/img/NN/acti/defaultBlocks.svg" class="img-fluid">
+        </div>
+
+        <p>
+           Si tu essaye lance la prédiction tu auras normalement un taux de prédiction assez faible, dans les alentours des 10%.<br>
+            C'est normal, pour l'instant il est paramétré aléatoirement et comme il y a 10 résultats possibles, il à 10% de chance de réussir pour chaque prédiction.
+        </p>
+
+        <div class="mt-2 col-md-12">
+            <h6 style="float: left; margin-right: 1em;"> Prédiction courante : </h6>
+            <div class="progress" style="height: 32px;">
+                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 10%;">10.00%</div>
+            </div>
+        </div>
+-   title: Implémentation de la fonction pour gérer les valeurs des neurones d'entrées !
+    content: >
+        <p>
+            Commencons par gérer correctement les valeurs de nos neurones de la couche d'entrées.
+            L'idée de l'implémentation est la même que <a href="exercice#valeur-des-neurones-de-la-premi-re-couche" target="_blank">le premier exercice préparatoire</a>.
+        </p>
+        <p>
+            Cette fonction prends une image en nuance de gris de taille 28 x 28 en argument.<br>
+            Le but de cette fonction est d'initialiser la valeur de tout les neurones de la couche d'entrée à partir de la couleur des pixels de l'image.<br>
+        </p>
+        <div class="mx-auto" align="center">
+            <img src="/static/img/NN/acti/handleEntryDefault.svg" class="img-fluid">
+        </div>
+
+        <p>
+            Dans l'état présent les 784 neurones de la couche d'entrée sont initialisé aléatoirement sans prendre en compte l'image !<br>
+        </p>
+
+        <p>
+            Nous sommes cencé attribuer à chaque neurone la valeur de couleur du pixel correspondant de l'image de la même manière que dans <a href="exercice#valeur-des-neurones-de-la-premi-re-couche" target="_blank">le premier exercice préparatoire</a>.<br>
+            Avec l'implémentation par défaut et tout les blocs de la section <code>NN Entrée</code> tu as tout le nécessaire pour implémenter la fonction ;). <br>
+            Le bloc <img src="/static/img/NN/acti/flattenPicture.svg" class="img-fluid"> te permetra "d'aplatir" une image,
+            l'idée étant de transformer l'image originale en 2D de taille 28 x 28 à son équivalent applatie en 1D de taille 784 ($28 \times 28$)
+         </p>
+
+        <div class="mx-auto" align="center">
+            <img src="/static/img/NN/acti/flattenExample.png" class="img-fluid"><br>
+            <small class="text-muted">Exemple d'aplatisement d'une image en noir et blanc de taille 3 x 3. Le résultat aplatie est une image à 1 dimension de taille 9</small>
+        </div>
+    help: >
+        Voici la structure à suivre pour résoudre cette partie :
+        <ol>
+            <li>Aplatir l'image et la sauvegarder dans <code>imageAplatie</code></li>
+            <li>Pour tout les neurones de 1 à 784 (la longueur de l'image aplatie)</li>
+            <li>Donner au neurone d'entrée du numéro courant la valeur du pixel de l'image du numéro courant de l'image aplatie</li>
+        </ol>
+    correction : >
+        <div class="mx-auto" align="center">
+            <img src="/static/img/NN/acti/handleEntryCorection.svg" class="img-fluid"><br>
+        </div>
+        Cela fonctionne aussi en mettant 784 comme borne de la boucle.
+
+
 ---
 
 <div class="row mt-2 col-md-12">
