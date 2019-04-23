@@ -109,7 +109,7 @@ function setValueOfNeuron(value_neuron_ind, value_picture_pixel) {
  * @param picture a 1D picture (array)
  */
 function getValueOfImgPixel(pixelNumber, picture) {
-    return picture[pixelNumber];
+    return picture[pixelNumber-1];
 }
 
 let NN = {};
