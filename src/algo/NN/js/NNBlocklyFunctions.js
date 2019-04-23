@@ -4,6 +4,10 @@ function getActivityPredictionCode() {
     return "calculatePrediction(g_C3_A9rer_la_couche_d_entr_C3_A9e, pr_C3_A9dire_valeur);\n"
 }
 
+function getActivityInitCode() {
+    resetNNInput();
+}
+
 function launchNNRecognition(picture, entryHandleFunction, outputHandleFunction) {
     entryHandleFunction(picture); // Will modify nnInput
     let nnProcessingRes = nn(nnInput, w12, bias2, w23, bias3);
@@ -92,7 +96,11 @@ function flattenPicture(pictureToFlatten) {
  * @param value_picture_pixel
  */
 function setValueOfNeuron(value_neuron_ind, value_picture_pixel) {
-    nnInput[value_neuron_ind] = value_picture_pixel;
+    if (value_neuron_ind >= 1 && value_neuron_ind <= 784) {
+        nnInput[value_neuron_ind-1] = value_picture_pixel;
+    } else {
+        throw`Impossible de modifier la valeur du neurone n°${value_neuron_ind}. Le numéro du neurone doit être compris entre 1 et 784`;
+    }
 }
 
 /**

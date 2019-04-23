@@ -180,6 +180,12 @@ function getCounterToPrint() {
     return text;
 }
 
+// Overriding functions
+
 function getActivityPredictionCode() {
     return "calculatePrediction(classify);\n";
+}
+
+function getActivityInitCode() {
+    deleteAddedMarkers();
 }

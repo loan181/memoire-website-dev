@@ -17,13 +17,18 @@ var lineWidth = 20;
 
 var clearBeforeDraw = false; // controls whether canvas will be cleared on next mousedown event. Set to true after digit recognition
 
-var nnInput = Array(784).fill(null);
+var nnInput;
 var w12;
 var w23;
 var data;
 var out2;
 var out3;
 var output;
+
+function resetNNInput() {
+    nnInput = Array(784).fill(null);
+}
+resetNNInput();
 
 function resetW12() {
     w12 = JSON.parse(JSON.stringify(w12Orig));
@@ -39,13 +44,20 @@ resetW23();
 function nn(dataPic, w12, bias2, w23, bias3) {
     data = dataPic;
     // just some incomplete sanity checks to find the most obvious errors
-    if (!Array.isArray(data) || data.length == 0 ||
-        !Array.isArray(w12) || w12.length == 0 || !Array.isArray(w12[0]) || data.length != w12[0].length || !Array.isArray(bias2) || bias2.length != w12.length ||
-        !Array.isArray(w23) || w23.length == 0 || !Array.isArray(w23[0]) || w12.length != w23[0].length || !Array.isArray(bias3) || bias3.length != w23.length) {
+    if (!Array.isArray(data) || data.length === 0 ||
+        !Array.isArray(w12) || w12.length === 0 || !Array.isArray(w12[0]) || data.length !== w12[0].length || !Array.isArray(bias2) || bias2.length !== w12.length ||
+        !Array.isArray(w23) || w23.length === 0 || !Array.isArray(w23[0]) || w12.length !== w23[0].length || !Array.isArray(bias3) || bias3.length !== w23.length) {
         console.error('nn(): invalid parameters');
         console.log('d: '+data.length+', w12: '+w12.length+', w12[0]: '+w12[0].length+', bias2: '+bias2.length+
             ', w23: '+w23.length+', w23[0]: '+w23[0].length+', bias3: '+bias3.length);
         return undefined;
+    }
+
+    // Check if all entry neurons values are defined
+    for (let i = 0; i < dataPic.length; i++) {
+        if (dataPic[i] === null) {
+            throw `Impossible de calculer la valeur des neurones de la couche cachée. Le neurone de la couche d'entrée n°${i+1} n'a pas de valeur !`;
+        }
     }
     var t1 = new Date();
 

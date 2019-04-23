@@ -64,9 +64,9 @@ function getPredictionCode() {
 
 function getCode() {
     try {
-        deleteAddedMarkers();
+        getActivityInitCode();
     } catch (e) {
-        // TODO : mieux gérer ça, il n'a sa place que dans KNN
+        console.log("No initialisation functions defined for this activity");
     }
     return Blockly.JavaScript.workspaceToCode(getWorkspace());
 }
