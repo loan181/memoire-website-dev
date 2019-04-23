@@ -1,4 +1,5 @@
 <category name="NN Image" colour="#a5805b">
+  <block type="nnimgdrawn"></block>
   <block type="nnimgempty"></block>
   <block type="nnimgzero"></block>
   <block type="nnimgone"></block>
@@ -13,17 +14,27 @@
   <block type="nnimgmario"></block>
 </category>
 <category name="NN Entrée" colour="#a55b5b">
-  <block type="flattenpicture"></block>
-  <block type="variables_set">
-    <field name="VAR" id="MXvcOAlxfrtjHmcEITU2" variabletype="">imageAplatie</field>
-  </block>
-  <block type="nn_picture_w"></block>
-  <block type="nn_entry_neuron_value"></block>
-  <block type="nn_get_value_of_picture"></block>
+<block type="flattenpicture"></block>
+<block type="variables_set">
+  <field name="VAR" id="MXvcOAlxfrtjHmcEITU2" variabletype="">imageAplatie</field>
+</block>
+<block type="nn_picture_w"></block>
+<block type="nn_entry_neuron_value"></block>
+<block type="nn_get_value_of_picture"></block>
 </category>
 <category name="NN Sortie" colour="#5b93a5">
 <block type="nn_choose_value">
   <field name="NAME">min</field>
+</block>
+</category>
+<category name="NN Test" colour="#5b93a5">
+<block type="classifynn"></block>
+<block type="text_print">
+  <value name="TEXT">
+    <shadow type="text">
+      <field name="TEXT">abc</field>
+    </shadow>
+  </value>
 </block>
 </category>
 <category name="TODO" colour="#a5a55b">
