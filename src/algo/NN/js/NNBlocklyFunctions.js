@@ -29,7 +29,7 @@ function nnSelectOutputLayer(minOrMax, nnOutputNeurons) {
         if (value < nnOutputNeurons[minIndex]) {
             minIndex = i;
         }
-        if (value > nnOutputNeurons[minIndex]) {
+        if (value > nnOutputNeurons[maxIndex]) {
             maxIndex = i;
         }
     }
