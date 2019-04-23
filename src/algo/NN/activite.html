@@ -20,6 +20,35 @@ arbitraryAdditions: >
     <script src="js/NN.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css">
+
+goalDescription : >
+    <p>
+        Dans cette activité, un réseau de neurone déjà entrainée t'es donné.<br>
+        Comme celui des exercices il ne possède qu'une seule couche cachée, cependant le nombre de neurone est bien plus élevé !
+        La première couche est composée de 784 neurones, la couche cachée de 200 neurones et la couche de sortie de 10 neurones.<br>
+        Ce réseau de neurone a été entrainé afin de reconnaitre un chiffre (de 0 à 9) d'une image en nuance de gris de dimension 28 x 28.
+    </p>
+    <p>
+        Ton score dépend de la qualité de ton classifieur (ici le réseau de neurone).
+        Celui-ci dépend de 2 fonctions que tu devra correctement implémenter :
+        <code>gérer la couche d'entrée(image)</code> et <code>prédire valeur(valeur des neurones de la couche de sortie)</code>.<br>
+    </p>
+    <div class="mx-auto" align="center">
+        <img src="/static/img/NN/acti/handleEntryEmpty.svg" class="img-fluid" style="padding-right: 16px">
+        <img src="/static/img/NN/acti/handleOutputEmpty.svg" class="img-fluid">
+    </div>
+
+    <p>
+        Tu auras donc 2 missions dans cette activité.<br>
+        Tu devra d'abord gérer correctement les valeurs des neurones d'entrées à partir d'une image en nuance de gris.<br>
+        Il faudra aussi que tu gère la dernière couche, pour cela les valeurs des neurones de cette couche te seront données, à toi d'en tirer le chiffre résultant.<br>
+        Toute la gestion des calculs entre les couches (produits matriciels, etc.) sont géré automatiquement pour toi, tu n'aura pas à t'en soucier ici ;)
+    </p>
+    <p>
+        Le score augmente chaque fois que ton classifieur trouve le chiffre correspondant à celui de l'image testé.<br>
+        Pour atteindre 100%, il faut donc qu'il les classent toutes correctement.
+    </p>
+
 ---
 
 <div class="row mt-2 col-md-12">

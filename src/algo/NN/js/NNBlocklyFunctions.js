@@ -4,6 +4,12 @@ function getActivityPredictionCode() {
     return "calculatePrediction(g_C3_A9rer_la_couche_d_entr_C3_A9e, pr_C3_A9dire_valeur);\n"
 }
 
+function launchNNRecognition(picture, entryHandleFunction, outputHandleFunction) {
+    entryHandleFunction(picture); // Will modify nnInput
+    let nnProcessingRes = nn(nnInput, w12, bias2, w23, bias3);
+    return outputHandleFunction(nnProcessingRes);
+}
+
 function calculatePrediction(entryHandleFunction, outputHandleFunction) {
 
     let testingPictures = [NN.img.zero, NN.img.one, NN.img.two, NN.img.three, NN.img.four, NN.img.five, NN.img.six, NN.img.seven, NN.img.eight, NN.img.nine];
@@ -13,9 +19,7 @@ function calculatePrediction(entryHandleFunction, outputHandleFunction) {
     let correctGuess = 0;
     for (let i = 0; i < testingPictures.length; i++) {
         let picture = testingPictures[i];
-        entryHandleFunction(picture); // Will modify nnInput
-        let nnProcessingRes = nn(nnInput, w12, bias2, w23, bias3);
-        let guess = outputHandleFunction(nnProcessingRes);
+        let guess = launchNNRecognition(picture, entryHandleFunction, outputHandleFunction);
         let expectedValue = testingExpectedRes[i];
         if (guess === expectedValue) {
             correctGuess += 1;
