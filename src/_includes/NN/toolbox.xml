@@ -1,3 +1,17 @@
+<category name="NN Image" colour="#a5805b">
+  <block type="nnimgempty"></block>
+  <block type="nnimgzero"></block>
+  <block type="nnimgone"></block>
+  <block type="nnimgtwo"></block>
+  <block type="nnimgthree"></block>
+  <block type="nnimgfour"></block>
+  <block type="nnimgfive"></block>
+  <block type="nnimgsix"></block>
+  <block type="nnimgseven"></block>
+  <block type="nnimgeight"></block>
+  <block type="nnimgnine"></block>
+  <block type="nnimgmario"></block>
+</category>
 <category name="NN Entrée" colour="#a55b5b">
   <block type="flattenpicture"></block>
   <block type="variables_set">

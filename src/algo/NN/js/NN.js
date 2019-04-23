@@ -200,7 +200,9 @@ function recognize() {
 
     // now bin image into 10x10 blocks (giving a 28x28 image)
 
-    nnInput = processPicture(copyCtx).flat();
+    nnInput = processPicture(copyCtx);
+    console.log(JSON.stringify(nnInput));
+    nnInput = nnInput.flat();
     // imgData = copyCtx.getImageData(0, 0, 280, 280);
     // grayscaleImg = imageDataToGrayscale(imgData);
     // var nnInput = new Array(784);
