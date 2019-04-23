@@ -6,11 +6,24 @@ function getActivityPredictionCode() {
 
 function calculatePrediction(entryHandleFunction, outputHandleFunction) {
 
-    let testingPicture = NN.img.one;
-    entryHandleFunction(testingPicture); // Will modify nnInput
-    let nnProcessingRes = nn(nnInput, w12, bias2, w23, bias3);
-    let guess = outputHandleFunction(nnProcessingRes);
-    console.log("guess : ", guess);
+    let testingPictures = [NN.img.zero, NN.img.one, NN.img.two, NN.img.three, NN.img.four, NN.img.five, NN.img.six, NN.img.seven, NN.img.eight, NN.img.nine];
+    let testingExpectedRes = [0, 1, 2, 3, 4, 5 , 6 ,7, 8, 9];
+
+    let totalGuessNumber = testingExpectedRes.length;
+    let correctGuess = 0;
+    for (let i = 0; i < testingPictures.length; i++) {
+        let picture = testingPictures[i];
+        entryHandleFunction(picture); // Will modify nnInput
+        let nnProcessingRes = nn(nnInput, w12, bias2, w23, bias3);
+        let guess = outputHandleFunction(nnProcessingRes);
+        let expectedValue = testingExpectedRes[i];
+        if (guess === expectedValue) {
+            correctGuess += 1;
+        }
+    }
+    let predictionRatio = correctGuess/totalGuessNumber;
+    pb.value = predictionRatio*100;
+    return predictionRatio;
 }
 
 // All this functions will be call by blockly blocks
