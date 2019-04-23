@@ -179,3 +179,7 @@ function getCounterToPrint() {
     }
     return text;
 }
+
+function getActivityPredictionCode() {
+    return "calculatePrediction(classify);\n";
+}

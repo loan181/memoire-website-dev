@@ -52,7 +52,13 @@ function getPredictionCode() {
     code += getCode();
     // Delete all "print()" call in prediction code
     code = code.replace(/window.alert(.*);/g, "");
-    code += "calculatePrediction(classify);\n";
+    try {
+        code += getActivityPredictionCode(); // The activity must override this function
+    } catch (e) {
+        console.warn("No prediction code have been defined by this activity.\nPlease define the getActivityPredictionCode() function for this activity.");
+        console.warn(e);
+    }
+
     return code;
 }
 

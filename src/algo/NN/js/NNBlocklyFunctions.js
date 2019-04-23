@@ -1,3 +1,18 @@
+// handle the way the prediction is calculated by the activity
+
+function getActivityPredictionCode() {
+    return "calculatePrediction(g_C3_A9rer_la_couche_d_entr_C3_A9e, pr_C3_A9dire_valeur);\n"
+}
+
+function calculatePrediction(entryHandleFunction, outputHandleFunction) {
+
+    let testingPicture = NN.img.one;
+    entryHandleFunction(testingPicture); // Will modify nnInput
+    let nnProcessingRes = nn(nnInput, w12, bias2, w23, bias3);
+    let guess = outputHandleFunction(nnProcessingRes);
+    console.log("guess : ", guess);
+}
+
 // All this functions will be call by blockly blocks
 
 /**
