@@ -17,7 +17,7 @@ var lineWidth = 20;
 
 var clearBeforeDraw = false; // controls whether canvas will be cleared on next mousedown event. Set to true after digit recognition
 
-var nnInput;
+var nnInput = Array(784).fill(null);
 var w12;
 var w23;
 var data;
