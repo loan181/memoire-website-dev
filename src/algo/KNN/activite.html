@@ -56,29 +56,12 @@ goalSteps :
                 <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%;">33.33%</div>
             </div>
         </div>
--   title: implémenter les K plus proches voisins
+-   title: Implémenter les K plus proches voisins
     content: >
         <p>
             Pour réaliser à bien ce projet il est important que tu comprenne bien comment utiliser les compteurs et à quoi ils vont nous servir.<br><br>
             L'idée générale est d'augmenter le compteur de chacune des K fleurs les plus proches pour ensuite déterminer celle qui est en majorité
         </p>
-
-        <p>
-            Voilà différents exemple pour t'entrainer et voir si tes résultats sont correctes :
-        </p>
-        <small class="text-muted">
-            Le code principal de l'algorithme est ici caché ici dans la fonction <code>code...</code>, mait tu n'es bien-entendu pas obliger d'implémenter une fonction pour ça ;)<br>
-            Tu peux recopier la partie du code avec <code>afficher...</code> si tu veux avoir le même affichage que moi (en supposant que tes compteurs se mettent correctement à jour)<br>
-            Fais bien attention que les paramètres et les coordonnées de la fleur créé changent entre chacun des exemples !
-        </small>
-
-        <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/stepMainEx1.PNG" class="img-fluid">
-            <br>
-            <img src="/static/img/KNN/stepMainEx2.PNG" class="img-fluid">
-            <br>
-            <img src="/static/img/KNN/stepMainEx3.PNG" class="img-fluid">
-        </div>
     recommandedBlocks: countersReset countersIncrease countersGetMinMax getK forI
     help: >
         Une structure correcte du code est la suivante :
@@ -119,7 +102,23 @@ goalSteps :
         <div class="mx-auto" align="center">
             <img src="/static/img/KNN/solParametersKNN.png" class="img-fluid">
         </div>
+
 examples:
+- content : >
+    <p>
+        Dans les exemples suivants, le code principal de l'algorithme est caché dans la fonction <code>code...</code>, mais tu n'es bien-entendu pas obliger d'implémenter une fonction pour ça ;)<br>
+        Tu peux recopier la partie du code avec <code>afficher...</code> si tu veux avoir le même affichage que moi (en supposant que tes compteurs se mettent correctement à jour)<br>
+        Fais bien attention que les paramètres et les coordonnées de la fleur créé changent entre chacun des exemples !
+    </p>
+- content : >
+    <div class="mx-auto" align="center">
+        <img src="/static/img/KNN/stepMainEx1.PNG" class="img-fluid" style="padding-bottom: 30px">
+        <br>
+        <img src="/static/img/KNN/stepMainEx2.PNG" class="img-fluid" style="padding-bottom: 30px">
+        <br>
+        <img src="/static/img/KNN/stepMainEx3.PNG" class="img-fluid">
+    </div>
+actions:
 -   title: Créer une fleur artificielle
     content : >
         <p>
