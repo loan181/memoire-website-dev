@@ -71,7 +71,7 @@ goalSteps :
                 <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: 10%;">10.00%</div>
             </div>
         </div>
--   title: Implémentation de la fonction pour gérer les valeurs des neurones d'entrées !
+-   title: Implémentation de la fonction pour gérer les valeurs des neurones d'entrées
     content: >
         <p>
             Commencons par gérer correctement les valeurs de nos neurones de la couche d'entrées.
@@ -112,7 +112,47 @@ goalSteps :
             <img src="/static/img/NN/acti/handleEntryCorection.svg" class="img-fluid"><br>
         </div>
         Cela fonctionne aussi en mettant 784 comme borne de la boucle.
+-   title: Implémentation de la fonction pour gérer la conclusion des neurones de sortie
+    content: >
+        <p>
+            La dernière partie de cette activité consiste à déduire une conclusion à partir des valeurs des neurones de sortie.<br>
+            L'idée de l'implémentation est la même qu'un des <a href="exercice#tirer-des-conclusions-de-nos-r-sultats" target="_blank">exercice préparatoire</a>.<br>
+        </p>
+        <p>
+            Les valeurs des neurones de sortie sont automatiquement calculé à partir des neurones des autres couches.<br>
+            Les neurones de la couche de sortie ont une valeur entre 0 et 1. Leur somme fait toujours 1.<br>
+            Les 10 neurones de cette couche représente chaque chiffre de 0 à 9. La valeur du neurone représente la probabilité du chiffre qui lui est associé.<br>
+            <small class="text-muted">Par exemple si le 1er neurone à la valeur 0.4, cela signifie qu'il y a 40% de chance que l'image représente le chiffre 0.</small>
+        </p>
+        <div class="mx-auto" align="center">
+            <img src="/static/img/NN/acti/handleOutputDefault.svg" class="img-fluid">
+        </div>
 
+        <p>
+            Dans l'état présent c'est le chiffre de probabilité minimale qui est renvoyé. Mais c'est incorrect.<br>
+        </p>
+
+    help: >
+            Imagine que la valeur des 10 neurones de la couche de sortie soit :
+            <ol start="0">
+                <li>0.1</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0.7</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0</li>
+                <li>0.15</li>
+                <li>0</li>
+                <li>0.05</li>
+            </ol>
+            Quel serait le chiffre qui devrait être déduit ?<br>
+            <code>3</code>, car il a <b>la plus grande</b> probabilité !
+    correction : >
+        <div class="mx-auto" align="center">
+            <img src="/static/img/NN/acti/handleOutputCorection.svg" class="img-fluid"><br>
+        </div>
+        Très simple ici, il suffit de changer le "minimum" en "maximum". C'est le chiffre avec la plus grande probababilité qui nous intéresse !
 
 ---
 
