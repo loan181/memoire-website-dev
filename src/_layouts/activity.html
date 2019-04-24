@@ -45,6 +45,9 @@
             <a class="nav-item nav-link" data-toggle="tab" href="#nav-objective" role="tab" aria-controls="nav-objective" aria-selected="true"><i class="fas fa-flag-checkered"></i> Objectif</a>
             <a class="nav-item nav-link active" data-toggle="tab" href="#nav-activity" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-gamepad"></i> Activité</a>
             {% if page.examples %}
+                <a class="nav-item nav-link" data-toggle="tab" href="#nav-actions" role="tab" aria-controls="nav-example" aria-selected="false"><i class="far fa-lightbulb"></i> Actions Utiles</a>
+            {% endif %}
+            {% if page.actions %}
             <a class="nav-item nav-link" data-toggle="tab" href="#nav-example" role="tab" aria-controls="nav-example" aria-selected="false"><i class="fas fa-drafting-compass"></i> Exemples</a>
             {% endif %}
             {% if page.goalSteps %}
@@ -101,6 +104,16 @@
             <!-- Main content of the activity -->
             {{ content }}
         </div>
+
+        {% if page.actions %}
+            <div class="tab-pane fade" id="nav-actions" role="tabpanel" aria-labelledby="nav-actions-tab">
+                <h1>Exemple</h1>
+                {% for action in page.actions %}
+                    <h3>{{ action.title }}</h3>
+                    {{ action.content }}
+                {% endfor %}
+            </div>
+        {% endif %}
 
         {% if page.examples %}
         <!-- Example Tab -->
