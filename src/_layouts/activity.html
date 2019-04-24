@@ -131,6 +131,7 @@
                         {% include help.html help=step.help %}
                     {% endif %}
                     {% if step.correction %}
+                        <button type="button" class="btn btn-success" onclick="giveCorrection(this)"><i class="fas fa-puzzle-piece"></i> Afficher la correction</button>
                         {% include correction.html correction=step.correction %}
                     {% endif %}
                 {% endfor %}
@@ -229,6 +230,19 @@
     </div>
 </div>
 <script src="/static/js/animationSuccess.js"></script>
+<script>
+    function giveCorrection(elem) {
+        if (confirm("Souhaite tu vraiment afficher la correction ? ")) {
+            let correctionNode = elem.nextElementSibling;
+            if (correctionNode.className.includes("onlyTeacher")) {
+                correctionNode.style.display = "block";
+                $(correctionNode).collapse({
+                    toggle: true
+                })
+            }
+        }
+    }
+</script>
 
 {% include enlargeImage.html %}
 
