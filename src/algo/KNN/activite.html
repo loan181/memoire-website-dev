@@ -88,15 +88,28 @@ goalSteps :
             <li>Une fois les K fleurs parcouru, il suffit de choisir celle qui à la valeur de compteur la plus haute et mettre à jour le résultat renvoyé</li>
         </ol>
     correction: >
+        <p class="lead">Meilleur correction : </p>
         <div class="mx-auto" align="center">
             <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
         </div>
+        <hr />
+        <p>Il existe d'autres solutions équivalents qui mèneront aussi à 100% mais moins robustes tel que : </p>
+        <p>
+            En mettant <code>3</code> au lieu du bloc <img src="/static/img/blocklyBlocks/getK.svg">.
+        </p>
+        <p>
+            On peut également aussi répéter l'instruction <img src="/static/img/blocklyBlocks/countersIncrease.svg"> plusieurs fois au lieu d'utiliser une boucle, par ex :
+        </p>
+        <div class="mx-auto" align="center">
+            <img src="/static/img/KNN/blocklyCorrAlternative.svg" class="img-fluid">
+        </div>
+
+
 -   title: Obtenir 100%
     content: >
         <p>
             Une fois que ton implémentation te parait correxte, il ne te reste plus qu’à faire un peu le tri dans ton code !
-            Enlève tout les <code>afficher ...</code> qui seront gênant quand tu évaluera ton prédicteur,
-            choisis bien tes paramètres (K, Axe x et Axe y) et croise les doigts pour atteindre les 100% !
+            Choisis bien tes paramètres (K, Axe x et Axe y) et croise les doigts pour atteindre les 100% !
         </p>
     correction: >
         <div class="mx-auto" align="center">
