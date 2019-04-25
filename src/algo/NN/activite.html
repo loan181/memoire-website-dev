@@ -183,6 +183,43 @@ examples:
         <img src="/static/img/NN/acti/exampleClassifyDrawBG.JPG" class="img-fluid"><br>
         <p class="text-muted">Le réseau de neurone fera toujours de son mieux pour trouver un chiffre dans l'image dessiné...</p>
     </div>
+
+toolbarActivityName : NN
+toolboxButtonDescription :
+- Commencer un nouveau projet. Cela effacera tous les blocs.
+- Sauvegarder/télécharger ton projet sur ton ordinateur (uniquement les blocs de Blockly).<br>Les paramètres ne sont pas enregistrés
+- Ouvrir un projet précédemment sauvegardé.<br>Uniquement les blocs Blockly sont chargés
+- Exporte le projet (blocs) sous forme d’image (SVG (vectoriel) ou PNG ).<br>Attention que si tu exportes en image tu ne peux pas l’ouvrir comme projet
+- Voir le code JavaScript généré par Blockly dans une fenêtre pop-up
+- Tester le code. Se contentera d’exécuter le code du projet tel quel.
+- <b>Tester le classifieur</b>. Lance le programme en évaluant si les prédictions sont correctes.<br>Cela te permettra de réussir ton objectif !
+- Renvoie vers la page d'aide (celle-ci)
+- Te permet de choisir la langue.<br>Seulement le français est pleinement compatible. Les autres changeront uniquement le texte des blocs de Blockly.
+
+
+rightPartName : Blockly
+rightPartDesc : La partie de droite est l'emplacement où tu pourras modifier le code de l'algorithme afin de réussir l'objectif.
+rightPartContentBlockly :
+-   blockName: NNDrawnPicture
+    desc: Permet de récupérer sous forme d'image le dessin dans le cadre noir
+    returnType: Image
+-   blockName: NNZeroPicture
+    desc: Image pré-dessiné d'un zero (il y a une image pour chaque chiffre)
+    returnType: Image
+-   blockName: NNPictureWidth
+    desc: Calcul et retourne la longueur de l'image. C'est le nombre de pixel horizontal. L'image peut être en 2D ou en 1D.
+    returnType: Nombre
+-   blockName: NNGiveNeuronValue
+    desc: Permet de donner une certaine valeur à un certain neurone de la couche d'entrée
+-   blockName: NNGetPicturePixelValue
+    desc: Récupère la valeur d'un certain pixel de l'image, l'image doit être à 1 dimension.
+    returnType: Nombre
+-   blockName: NNGetMaxMinOutput
+    desc: Récupère le numéro du neurone de probabilité minimale/maximale.
+    returnType: Nombre
+-   blockName: NNClassify
+    desc: Permet d'utiliser le réseau de neurone pour classifier une image.<br>Cela te sera utile seulement en <a href="#" onclick="$('#nav-tab-activity-examples').tab('show')">debug</a>
+    returnType: Nombre
 ---
 
 <div class="row mt-2 col-md-12">
