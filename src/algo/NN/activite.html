@@ -152,8 +152,37 @@ goalSteps :
         <div class="mx-auto" align="center">
             <img src="/static/img/NN/acti/handleOutputCorection.svg" class="img-fluid"><br>
         </div>
-        Très simple ici, il suffit de changer le "minimum" en "maximum". C'est le chiffre avec la plus grande probababilité qui nous intéresse !
+        Très simple ici, il suffit de changer le "minimum" en "maximum". C'est le chiffre avec la plus grande probabilité qui nous intéresse !
+examples:
+- content : >
+    <p>
+        Voici quelques exemples de l'utilisation du programme Blockly.<br>
+        Pour tout ses exemple on va supposer que ton <b>implémentation des 2 fonctions dans <code>TODO</code> sont correctes</b>.<br>
+        Si ça n'est pas le cas tu auras soit un message d'erreur, soit un message avec un résultat différent.<br>
+        N'oublie pas d'utiliser le bouton <button type="button" class="btn btn-warning"><i class="fas fa-bug"></i></button> pour lancer ton code dans cette partie !
+    </p>
+- title : Reconnaitre le chiffre dans une image avec le réseau de neurone
+  content : >
+    <p>
+        Le bloc <img src="/static/img/NN/acti/classify.svg"> te permet de classifier l'image donné en argument en utilisant le réseau de neurone.<br>
+        Tu as également plusieurs images disponible dans la section <code>NN Images</code> que tu peux utiliser avec le bloc précédent afin de vérifier si tes prédictions sont correctes.<br>
+    </p>
+    <div class="mx-auto" align="center">
+        <img src="/static/img/NN/acti/exampleClassify.JPG" class="img-fluid"><br>
+        <p class="text-muted">Je demande de classifier une image d'un 2 à mon réseau de neurone et d'afficher le résultat à l'écran.<br>Le résultat affiché dans la boite de dialogue est bien le chiffre annoncé</p>
+    </div>
 
+    <p>
+        Tu peux aussi dessiner dans le cadre noir à gauche afin qu'il l'utilise comme image.
+    </p>
+    <div class="mx-auto" align="center">
+        <img src="/static/img/NN/acti/exampleClassifyDraw2.JPG" class="img-fluid"><br>
+        <p class="text-muted" style="padding-bottom: 32px">Le réseau a bien reconnu mon superbe 2 !</p>
+        <img src="/static/img/NN/acti/exampleClassifyDraw3.JPG" class="img-fluid" ><br>
+        <p class="text-muted" style="padding-bottom: 32px">Je n'ai rien changé au code! J'ai juste dessiné l'image d'un autre chiffre </p>
+        <img src="/static/img/NN/acti/exampleClassifyDrawBG.JPG" class="img-fluid"><br>
+        <p class="text-muted">Le réseau de neurone fera toujours de son mieux pour trouver un chiffre dans l'image dessiné...</p>
+    </div>
 ---
 
 <div class="row mt-2 col-md-12">
