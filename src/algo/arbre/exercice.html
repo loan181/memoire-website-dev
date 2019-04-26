@@ -151,7 +151,7 @@ exercices:
         <p>
             Pour cet exercice sers toi de l'arbre de décision suivant :
         </p>
-        <img src="/static/img/arbre/ex3Tree.png" class="img-fluid mx-auto d-block">
+        <img id="fruitDecisionTree" src="/static/img/arbre/ex3Tree.png" class="img-fluid mx-auto d-block pinnable">
     question: >
         Quel est la classe majoritaire des fruits suivants ?
     answer:
@@ -180,7 +180,7 @@ exercices:
                 - Noix de coco
             correct : Pomme
         -   kind : selection
-            text : Fruit rond et jaune
+            text : Fruit ovale
             options :
                 - Citron
                 - Pomme
@@ -190,7 +190,7 @@ exercices:
                 - Banane
                 - Melon
                 - Noix de coco
-            correct : Fruit ovale
+            correct : Melon
     help: >
         Faisons le premier ensemble, le fruit est "rond et rouge".<br>
         On commence en haut de l'arbre, la première question est s'il est rond.<br>
@@ -204,4 +204,67 @@ exercices:
     correction: >
         Citron, Pomme et Melon.<br>
         Il suffit de traverser l'arbre en commençant par en haut.<br>
+-   title: La classification
+    introduction: >
+        <p>
+            Quand tu as besoin de classifier un élément avec un arbre de décision, tu choisi la classe majoritaire de la feuille correspondant à l'élément.
+        </p>
+        <p>
+            Utilise l'arbre de décision de <a href="#fruitDecisionTree">l'exercice précédent</a>
+        </p>
+    question: >
+        Quel est le résultat de la classification des éléments suivants en utilisant l'arbre de décision de <a href="#fruitDecisionTree">l'exercice précédent</a> ?
+    answer:
+        -   kind : selection
+            text : Fruit rond et jaune
+            options :
+                - Citron
+                - Pomme
+                - Cerise
+                - Orange
+                - Poire
+                - Banane
+                - Melon
+                - Noix de coco
+            correct : Citron
+        -   kind : selection
+            text : Fruit rond et rouge
+            options :
+                - Citron
+                - Pomme
+                - Cerise
+                - Orange
+                - Poire
+                - Banane
+                - Melon
+                - Noix de coco
+            correct : Pomme
+        -   kind : selection
+            text : Fruit ovale
+            options :
+                - Citron
+                - Pomme
+                - Cerise
+                - Orange
+                - Poire
+                - Banane
+                - Melon
+                - Noix de coco
+            correct : Melon
+        -   kind : selection
+            text : Fruit rond et vert
+            options :
+                - Citron
+                - Pomme
+                - Cerise
+                - Orange
+                - Poire
+                - Banane
+                - Melon
+                - Noix de coco
+            correct : Orange
+    correction: >
+        Citron, Pomme, Melon et Orange.<br>
+        Les résultats sont exactement les mêmes que l'exercice précédent ! Mis à part pour le dernier.<br>
+        D'ailleur une orange n'est pas verte, mais rien ne nous permet de différencier un fruit de couleur orange d'un vert dans notre arbre
 ---
