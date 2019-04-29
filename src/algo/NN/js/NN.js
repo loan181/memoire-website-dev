@@ -305,6 +305,20 @@ function initCanvaDraw() {
     canvasDraw.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
+
+    // Add support for touch screen
+    canvasDraw.addEventListener("touchmove", function (e) {
+      findxy('move', e)
+    }, false);
+    canvasDraw.addEventListener("touchstart", function (e) {
+      findxy('down', e)
+    }, false);
+    canvasDraw.addEventListener("touchend", function (e) {
+       findxy('up', e)
+    }, false);
+    canvasDraw.addEventListener("touchleave", function (e) {
+        findxy('out', e)
+    }, false);
 }
 
 // draws a line from (x1, y1) to (x2, y2) with nice rounded caps
@@ -327,10 +341,17 @@ function erase() {
 
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
-    return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
-    };
+    if (evt.touches === undefined) {
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    } else {
+        return {
+            x: evt.touches[0].clientX - rect.left,
+            y: evt.touches[0].clientY - rect.top
+        };
+    }
 }
 
 function findxy(res, e) {
