@@ -197,6 +197,29 @@ toolboxButtonDescription :
 - Te permet de choisir la langue.<br>Seulement le français est pleinement compatible. Les autres changeront uniquement le texte des blocs de Blockly.
 
 
+leftPartName : Dessin et réseau neuronal
+leftPartDesc : >
+    La partie de gauche te permet plusieurs choses :
+    dessiner dans le cadre noir pour le réseau neuronal, modifier les poids du réseau, lancer le réseau sur le dessin du cadre et observer les probabilité de chaque chiffre (résultat de la classification du réseau neuronal)
+leftPartSections:
+-   title: Panneau Graphe et Données
+    picture: /static/img/NN/acti/parts/DrawFrame.JPG
+    description: >
+        Cadre de dessin, utilise le avec la souris ou au doigt (avec écran tactile) pour dessiner dedans.<br>
+        Tu peux y dessiner ce que tu veux, mais le réseau neuronal tentera de reconnaître toujours un chiffre dans l'image.<br>
+        La case à cocher en dessous te permet d'afficher l'image transformée après que tu es lancée la recherche (par le réseau).
+        Tu y verra normalement une image de 28 x 28 sur fond blanc de ton dessin, c'est cette image transformé qui servira comme entrée au réseau de neurone lors de la reconnaissance.
+-   title: Boutons permettant d'intéragir avec le réseau
+    picture: /static/img/NN/acti/parts/buttons.JPG
+    description: >
+        Le premier bouton te permet de lancer la reconnaissance par le réseau de neurone.
+        L'image dessinée sera lu, les neurones de la couche d'entrée prendront leur valeur à partir de l'image transformée et la classification se lancera.<br>
+        Le dernier bouton te permet simplement d'effacer l'image dessinée.<br>
+        Le second bouton est un peu plus technique, il te permet de modifier directement la valeur des poids de ton réseau de neurone ainsi que consulter les valeurs des neurones.
+        Attention que si tu fais ça, ton réseau de neurone risque de ne plus être en mesure de reconnaître correctement les chiffres !
+        Une explication plus détaillée de l'utilisation de ce bouton se trouve sur <a href="explicationModificationReseau" target="_blank">cette page</a>.
+
+
 rightPartName : Blockly
 rightPartDesc : La partie de droite est l'emplacement où tu pourras modifier le code de l'algorithme afin de réussir l'objectif.
 rightPartContentBlockly :

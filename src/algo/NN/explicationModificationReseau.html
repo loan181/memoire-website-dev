@@ -1,0 +1,99 @@
+---
+layout: template/mainWithToc
+title: Explication de la modification de réseau dans l'activité du réseau neuronal
+---
+
+<h1>Explication de la modification de réseau dans l'activité du réseau neuronal</h1>
+
+<p>
+    Dans <a href="activite" target="_blank">l'activité du réseau neuronal</a>, le bouton <button type="button" class="btn btn-info"><i class="fas fa-edit"></i> Modifier le réseau</button>
+    te permet de pouvoir modifier les poids du réseau de neurone mais également de consulter les valeurs des neurones.<br>
+    L'utilisation de ce bouton est un petit peu complexe, je vais te détailler ici la façon de l'utiliser.
+</p>
+<p>
+    Une fois le bouton appuyé, une fenêtre devrait s'afficher :
+</p>
+<img src="/static/img/NN/acti/parts/NNModal.JPG" class="img-fluid"><br>
+
+<ul>
+    <li><button type="button" class="btn btn-outline-secondary"><i class="far fa-circle"></i></button> = Consulter le neurone X </li>
+    <li><button type="button" class="btn btn-outline-secondary"><i class="fas fa-arrows-alt-h"></i></button> = Consulter et modifier le poids de X</li>
+    <li><button type="button" class="btn btn-outline-secondary"><i class="fas fa-sign-in-alt"></i></button> = Consulter et modifier les poids entrants de X</li>
+    <li><button type="button" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i></button> = Consulter et modifier les poids sortants de X</li>
+</ul>
+<p>
+    X est le nombre que tu aura choisi avec le entrée de donnée/curseur.<br>
+    La couche à laquelle appartient le neurone/poids est indiqué au dessus
+</p>
+
+<div>
+    <img src="/static/img/NN/acti/parts/NNModalEx1.JPG" class="img-fluid"><br>
+    <small class="text-muted">Dans cette exemple je vais consulter le neurone 101 de la première couche</small>
+</div>
+
+<h2>Consulter un neurone</h2>
+<p>
+    Une fois le numéro du neuron choisi, après avoir pressé le bouton <button type="button" class="btn btn-outline-secondary"><i class="far fa-circle"></i></button> de la couche correspondante,
+    une boite de dialogue devrait s'afficher avec diverses informations.<br>
+    Les informations peuvent varier selon les couches.
+</p>
+<div>
+    <img src="/static/img/NN/acti/parts/NNModalExNeuron101.JPG" class="img-fluid"><br>
+    <small class="text-muted">Information sur le neurone 101 de la première couche. On nous indique l'emplacement du pixel de l'image auquel ce neurone correspond</small><br><br>
+    <img src="/static/img/NN/acti/parts/NNModalExNeuron101L2.JPG" class="img-fluid"><br>
+    <small class="text-muted">Information sur le neurone 101 de la seconde couche, sa valeur est différente et il y à moins d'information utile à son sujet</small><br><br>
+    <img src="/static/img/NN/acti/parts/NNModalExNeuron5L3.JPG" class="img-fluid"><br>
+    <small class="text-muted">Information sur le neurone 5 de la dernière couche, on nous indique la probabilité du chiffre 5 (ici 99.99%)</small><br><br>
+</div>
+
+<p>
+    On ne peut pas modifier directement la valeur d'un neurone.
+    Mais elle est modifiée à chaque fois que le réseau effectue une nouvelle classification.
+</p>
+
+<h2>Consulter et modifier un poids</h2>
+<p>
+    Une fois le numéro du neuron choisi pour les 2 couches que le poids relie, après avoir pressé le bouton <button type="button" class="btn btn-outline-secondary"><i class="fas fa-arrows-alt-h"></i></button>,
+    une boite de dialogue devrait s'afficher avec diverses informations.
+</p>
+<div>
+    <img src="/static/img/NN/acti/parts/NNModalExW1.JPG" class="img-fluid"><br>
+    <small class="text-muted">Permet d'ouvrir la boite de dialogue avec les informations du poids reliant le neurone 183 de la couche 1 avec le neurone 94 de la cocuhe 2</small><br><br>
+    <img src="/static/img/NN/acti/parts/NNModalExW2.JPG" class="img-fluid"><br>
+    <small class="text-muted">Résultat de l'exemple précédent</small><br><br>
+</div>
+
+<p>
+    Tu remarquera qu'il y à une entrée te permettant de modifier la valeur du poids ainsi que 2 boutons.<br>
+</p>
+<ul>
+    <li><button class="btn btn-outline-secondary" type="button"><i class="fas fa-undo"></i> Valeur actuelle</button> = Permet de restaurer la valeur actuelle</li>
+    <li><button class="btn btn-outline-secondary" type="button"><i class="fas fa-redo"></i>  Restaurer</button> = Permet de restaurer la valeur originale (est correcte)</li>
+    <li><button type="button" class="btn btn-primary"><i class="fas fa-save"></i> Appliquer</button> = Permet de sauvegarder la valeur dans la boite d'entrée comme nouvelle valeur pour le poids</li>
+</ul>
+
+<div>
+    <img src="/static/img/NN/acti/parts/NNModalExW3.JPG" class="img-fluid"><br>
+    <small class="text-muted">On a modifier la valeur originale du poids pour mettre 45 à la place ! Plus on modifie les valeurs des poids avec des nombre aberrant, plus notre réseau risque de se tromper dans sa classification</small><br><br>
+</div>
+
+<h2>Consulter et modifier les poids entrants/sortants</h2>
+<p>
+    Ce bouton est un raccourci du précédent te permettant de consulter tout les poids d'un même neurone d'une couche. Tu peux ainsi modifier plus facilement les poids d'un seul neurone.<br>
+    Un tableau avec les valeurs de tout les poids apparaitra ainsi que d'autres informations comme la valeur par défaut du poids, etc.
+</p>
+<div>
+    <img src="/static/img/NN/acti/parts/NNModalExW4-0.JPG" class="img-fluid"><br>
+    <small class="text-muted">On consulte tout les poids sortant du neurone 183 de la couche 1</small><br><br>
+    <img src="/static/img/NN/acti/parts/NNModalExW4.JPG" class="img-fluid"><br>
+    <small class="text-muted">On peut trouver plus facilement le poids avec le neurone 94 de la couche 2 qu'on à modifié précédemment</small><br><br>
+    <img src="/static/img/NN/acti/parts/NNModalExW5.JPG" class="img-fluid"><br>
+    <small class="text-muted">On peut aussi trier le tableau pour trouver plus facilement les poids avec des valeurs différentes de celle originale</small><br><br>
+</div>
+<p>
+    Pour modifier un poids, il suffit de cliquer sur sa ligne dans le tableau.
+</p>
+<div>
+    <img src="/static/img/NN/acti/parts/NNModalExW6.JPG" class="img-fluid"><br>
+    <small class="text-muted">On peut modifier directement le poids en cliquant sur sa ligne dans le tableau!</small><br><br>
+</div>
