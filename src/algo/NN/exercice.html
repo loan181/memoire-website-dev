@@ -2,6 +2,18 @@
 layout: exercices
 title: Exercices Réseau neuronnal
 introduction: NN/ex/intro.html
+
+conclusion:
+    - L'algorithme de réseau neuronal est plus complexe à utiliser. Mais il nous permet aussi de pouvoir classifier des choses beaucoup plus complexe !
+    - Un réseau de neurone est composé de 2 choses, des <b>neurones</b> et des <b>poids</b>.
+    - Les neurones et les poids ont une certaine valeur, celle des poids est supposée connue et constante, celle des neurones dépendront de l'entrée donnée et se mettront à jour en fonction des valeurs des neurones et poids de la couche précédente avec un produit matriciel.
+    - Un neurone appartient à une et unique couche et est connecté par un poids à l'ensemble des neurones de la couche suivante.
+    - "Il existe 3 catégories de couches :<br>La première est appelée <b>couche d'entrée</b>, c'est ici que l'entrée sera géré.<br>Les couches suivantes sont appelés <b>couche cachée</b>, se sont des couches intermédiaire qui serviront pour calculer la valeur de la couche finale.<br>La dernière couche est appelée <b>couche de sortie</b>, la valeur de ses neurones déterminera la classification de l'algortihme."
+    - La façon dont doivent être interprété l'entré pour choisir les valeurs des neurones de la couche d'entrée et la façon d'interpréter les neurones de sorties, dépendent directement du réseau lui-même et plus particulièrement de la façon dont les poids ont étaient entraînés pour.
+    - On doit prendre la valeur <b>maximum</b> des valeurs des neurones de sortie pour trouver le résultat de la classification.
+    - Afin d'avoir des probabilité (nombre compris entre 0 et 1) comme valeur de neurones finales, on doit utiliser une fonction d'activation afin de transformer la valeur.
+
+
 exercices:
 -   title: Valeur des neurones de la première couche
     introduction: >

@@ -21,7 +21,9 @@ title: Introduction
                     <div class="card-body">
                         <h5 class="card-title">{{ case.title }}</h5>
                         <p class="card-text">{{ case.description }}</p>
-                        <p class="text-muted">Exemples : {{ case.example }}</p>
+                        {% if case.example %}
+                            <p class="text-muted">Exemples : {{ case.example }}</p>
+                        {% endif %}
                         {% if case.link %}
                             <a href="{{ case.link }}" class="btn btn-info" target="_blank"><i class="fas fa-link"></i></a>
                         {% endif %}
