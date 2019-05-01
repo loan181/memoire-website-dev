@@ -220,8 +220,20 @@ leftPartSections:
         Une explication plus détaillée de l'utilisation de ce bouton se trouve sur <a href="explicationModificationReseau" target="_blank">cette page</a>.
 
 
-rightPartName : Blockly
-rightPartDesc : La partie de droite est l'emplacement où tu pourras modifier le code de l'algorithme afin de réussir l'objectif.
+rightPartName : Blockly et vue graphique
+rightPartDesc : La partie de droite est l'emplacement où tu pourras modifier le code de l'algorithme à l'aide de Blockly afin de réussir l'objectif. Tu peux aussi consulter une version graphique du réseau de neuron
+rightPartContent : >
+    <h2>Graphique du réseau</h2>
+    <img src="/static/img/NN/acti/parts/NetworkRepr.JPG" class="img-fluid">
+    <p>
+        Un cercle représente un neurone, son numéro est indiqué à l'intérieur. Plus sa couleur est foncé, plus sa valeur est grande.<br>
+        Les lignes reliant les cercles représente les poids, plus la ligne est opaque, plus sa valeur est grande.<br>
+        Chaque colonne correspond à une couche, elles augmentent de gauche à droite.<br>
+        Tu peux cliquer sur les neurones et poids pour afficher une popup d'information / modification à leur sujet.<br><br>
+        Comme le réseau est immense ( 784 x 200 x 10 neurones), tout les neurones des 2 premières couches ne peuvent pas être représenté.
+        Les neurones changent du coup à chaque reconnaissance avec le réseau, les neurones ayant la plus grande contribution au résultat final sont alors choisis
+        (c'est pour ça que la transparence des poids augmente du haut vers le bas).
+    </p>
 rightPartContentBlockly :
 -   blockName: NNDrawnPicture
     desc: Permet de récupérer sous forme d'image le dessin dans le cadre noir

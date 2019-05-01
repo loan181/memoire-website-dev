@@ -196,7 +196,8 @@
 
                 {% if page.rightPartContent %}
                     {{ page.rightPartContent }}
-                {% else if page.rightPartContentBlockly %}
+                {% endif %}
+                {% if page.rightPartContentBlockly %}
                     <h4>Blocs supplémentaires</h4>
 
                     <table class="table table-hover">
