@@ -19,6 +19,7 @@ conclusion:
 
 exercices:
 -   title: Identification de 2 facteurs importants
+    difficulty : 2
     introduction: >
         <p>
             Regarde attentivement les résultats obtenus dans le <a href="#table1">Tableau 1</a>.
@@ -37,6 +38,7 @@ exercices:
                 - longueur pétale & largeur pétale
             correct : longueur pétale & largeur pétale
             arbitraryAddOn : >
+                <br>
                 <img id="previewMetricGraph" class="img-fluid" src="" style="display: none;">
                 <script>
                     let picturePath = "/static/img/KNN/graphs/";
@@ -54,6 +56,8 @@ exercices:
                         }
                     );
                 </script>
+    help: >
+        Ton but est de choisir 2 axes de manière que cela forme des petits groupes distinct (pas tout mélanger) les plus éloignés possibles.
     correction: >
         Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
         Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
@@ -61,6 +65,7 @@ exercices:
         <img src="/static/img/KNN/graphs/PWPH.jpg" class="img-fluid">
 
 -   title: Identifier une nouvelle fleur
+    difficulty : 2
     introduction: >
         <p>
             En te fiant au <a href="#table1">Tableau 1</a> et à la nouvelle fleur suivante :
@@ -94,15 +99,20 @@ exercices:
                 - Iris versicolor
                 - Iris viriginica
             correct : Iris viriginica
+    help: >
+        Pour cette exercice il faut regarder les valeurs et les comparer à celle du <a href="#table1">Tableau 1</a>,
+        par exemple ici on à une longueur de sépale de 5.1, si on regarde le <a href="#table1">Tableau 1</a> ça ne nous donne pas beaucoup d'information car les 3 variété de fleur ont des valeurs très proches.<br>
+        Par contre si on regarde la longueur de pétale, 4.7, la valeur est très proche d'une seule variété de fleur dans le tableau.
     correction: >
         C'est (probalement) un <i>Iris virginica</i>.<br>
         La longueur et la largeur du sépale ne nous permettent pas de donner des informations fiables sur la fleur.<br>
         Cependant la longueur et la largeur du pétale sont très proches des <i>Iris virginica</i>déjà présents.
 
 -   title: Vérification graphique
+    difficulty : 2
     introduction: >
         <p>
-            Voici le graphique correspondant aux données du <a href="#table1">Tableau 1</a> en utilisant la sépale comme mesure pour les axes :
+            Voici le graphique correspondant aux données du <a href="#table1">Tableau 1</a> en utilisant la pétale comme mesure pour les axes :
             <img src="/static/img/KNN/GrilleKNNCorr.png" class="img-fluid"><br>
             Visualise où serait la <a href="#unknownIrisPar">nouvelle fleur</a> dans le graphique.
         </p>
@@ -115,10 +125,13 @@ exercices:
             -   groupe
             -   vert
             -   virginica
+    help: >
+        <img src="/static/img/KNN/GrilleKNNCorrFInc.jpg" class="img-fluid">
     correction: >
         La fleur ajoutée se trouve proche du groupe formé par toutes les autres <i>Iris virginica</i>
 
 -   title: K-plus proches voisins
+    difficulty : 1
     introduction: >
         <p>
             Sur le graphique suivant, visualise un marqueur au coordonnée (5.1, 2.6)
@@ -136,6 +149,7 @@ exercices:
         Jaune (il est juste un peu plus bas)
 -   question : >
         Quelle est la couleur des trois points les plus proches ?
+    difficulty : 1
     answer:
         -   kind : selection
             text: Plus proche
@@ -159,6 +173,7 @@ exercices:
         Jaune, puis vert et encore vert
 -   question : >
         Quelle est la couleur majoritaire parmi les trois points les plus proches ?
+    difficulty : 1
     answer:
         -   kind : selection
             options :
@@ -169,6 +184,7 @@ exercices:
         Verte (2 vert pour 1 jaune)
 -   question : >
         Quelle serait la couleur majoritaire si on avait pris seulement les deux points les plus proches ?
+    difficulty : 2
     answer:
         -   kind : selection
             options :
@@ -184,6 +200,7 @@ exercices:
 -   introduction : Supposons maintenant que les points jaunes représentent des <i>Iris versicolor</i> et les verts des <i>Iris virginica</i>.
     question : >
         Quel serait la classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
+    difficulty : 1
     answer:
         -   kind : text
             correctWords :
@@ -197,6 +214,7 @@ exercices:
         Cette exercice n’a pas de réponse absolue, l’important c’est que tu comprennes la notion de majorité et que selon les paramètres qu’on pose (ici le nombre de voisins) la réponse peut changer.
 
 -   title: Utilisation de compteur
+    difficulty : 1
     introduction: >
         <p>
             Dans l'activité qui va suivre, on utilise la notion de <b>compteur</b>.<br>
@@ -277,6 +295,7 @@ exercices:
 
 -   question : >
         <b>Juste à partir de la valeur des compteurs</b>, pourrai-tu déduire la fleur qui serai prédite par l'algorithme ?
+    difficulty : 2
     answer:
         -   kind : selection
             options :
@@ -344,58 +363,75 @@ exercices:
         <p>
             Notre but dans cette partie va être de <b>prédire</b> la variété des fleurs à partir des données et <b>ensuite</b> on va vérifier si nos prédictions sont exactes.
         </p>
--   title: Prédiction pour différentes métriques
+-   difficulty : 3
     introduction: >
         <p>
             Soit les trois fleurs données dans le <a href="#table2">Tableau 2</a>, avec le <a href="#table1">Tableau 1</a>
             comme modèle d’entrainement.
             Tu détermineras la classe de la fleur en regardant la majorité parmi <b>les trois voisins les plus proches</b>.<br>
-            Pour cela tu peux t'aider des graphiques que je te donne : <br>
+            Pour cela tu peux t'aider du graphiques que je te donne : <br>
         </p>
         <div style="text-align: center">
             <img src="/static/img/KNN/exKNNGraphiqueMetriqueSepale.png" class="img-fluid pinnable" style="padding-right: 16px">
-            <img src="/static/img/KNN/exKNNGraphiqueMetriquePetale.png" class="img-fluid pinnable">
         </div>
     question : >
-        Détermine les fleurs avec les métriques suivantes:
+        Détermine les fleurs avec la métrique sépale :
     answer:
         -   kind : selection
-            text : Classifieur 1 Iris 1
+            text : Iris inconnue 1
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris virginica
         -   kind : selection
-            text : Classifieur 1 Iris 2
+            text : Iris inconnue 2
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris setosa
         -   kind : selection
-            text : Classifieur 1 Iris 3
+            text : Iris inconnue 3
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris versicolor
+    help: >
+        Il suffit de regarder le graphique est de voir la majorité avec les 3 fleurs les plus proches.<br>
+        Par exemple pour le premier, les 3 points plus proches de ma fleur Inconnue 1 sont des carrés vert, ça serait donc une <i>Versicolor</i>.
+    correction: >
+        Les données sont choisies de sorte qu’il n’y ait pas d’ambiguïtés pour déterminer la majorité.<br>
+        Classifieur 1 : Virginica, Setosa et Versicolor <br>
+
+-   difficulty : 3
+    introduction: >
+        <p>
+            Question identique à la précédente, j'ai juste modifié les métriques.
+        </p>
+        <div style="text-align: center">
+            <img src="/static/img/KNN/exKNNGraphiqueMetriquePetale.png" class="img-fluid pinnable">
+        </div>
+    question : >
+        Détermine les fleurs avec la métrique pétale:
+    answer:
         -   kind : selection
-            text : Classifieur 2 Iris 1
+            text : Iris inconnue 1
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris setosa
         -   kind : selection
-            text : Classifieur 2 Iris 2
+            text : Iris inconnue 2
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris versicolor
         -   kind : selection
-            text : Classifieur 2 Iris 3
+            text : Iris inconnue 3
             options :
                 - Iris setosa
                 - Iris versicolor
@@ -403,10 +439,10 @@ exercices:
             correct : Iris virginica
     correction: >
         Les données sont choisies de sorte qu’il n’y ait pas d’ambiguïtés pour déterminer la majorité.<br>
-        Classifieur 1 : Virginica, Setosa et Versicolor <br>
         Classifieur 2 : Setosa, Versicolor et Virginica <br>
 
 -   title: Précision de notre prédiction
+    difficulty: 3
     introduction: >
         <p>
             Une fois l’étape précédente terminée, nous allons analyser l’exactitude de nos prédictions.<br>
@@ -466,6 +502,7 @@ exercices:
 -   question: >
         A partir de tes résultats, quel classifieur utiliserais-tu pour deviner une fleur d'iris ?
         Pourquoi ?
+    difficulty: 3
     answer:
         -   kind : selection
             text : Classifieur
