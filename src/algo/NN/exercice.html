@@ -16,6 +16,7 @@ conclusion:
 
 exercices:
 -   title: Valeur des neurones de la première couche
+    difficulty : 1
     introduction: >
         <p>
             En entrée nous avons une image de 3x3 pixels, notre but va être d'utiliser cette image pour donner les valeurs de nos 9 neuronnes de la couche d'entrée.<br>
@@ -28,61 +29,52 @@ exercices:
             Quelle est la valeur de chaque neurone d'entrée pour la grille suivante ?
             <img class="img-fluid mx-auto d-block" src="/static/img/NN/ex/grilleEx.PNG">
         </p>
-    answer: >
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°1</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°2</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°3</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°4</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°5</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°6</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°7</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°8</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="0">
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Neuronne n°9</span>
-            </div>
-            <input type="number" value="0" min="0" max="1" class="form-control" data-answer="1">
-        </div>
+    answer:
+        -   kind : number
+            label : Neuronne n°1
+            min : 0
+            max : 1
+            correct : 0
+        -   kind : number
+            label : Neuronne n°2
+            min : 0
+            max : 1
+            correct : 1
+        -   kind : number
+            label : Neuronne n°3
+            min : 0
+            max : 1
+            correct : 1
+        -   kind : number
+            label : Neuronne n°4
+            min : 0
+            max : 1
+            correct : 1
+        -   kind : number
+            label : Neuronne n°5
+            min : 0
+            max : 1
+            correct : 0
+        -   kind : number
+            label : Neuronne n°6
+            min : 0
+            max : 1
+            correct : 0
+        -   kind : number
+            label : Neuronne n°7
+            min : 0
+            max : 1
+            correct : 0
+        -   kind : number
+            label : Neuronne n°8
+            min : 0
+            max : 1
+            correct : 0
+        -   kind : number
+            label : Neuronne n°9
+            min : 0
+            max : 1
+            correct : 1
     help : >
         Cette grille devrait t'aider :
         <img class="img-fluid mx-auto d-block" src="/static/img/NN/ex/grilleExHelp.PNG">
@@ -93,6 +85,7 @@ exercices:
         On peut aussi utilise l'astuce de lire dans le sens de lecture en sautant les lignes.
         La réponse est : (0, 1, 1, 1, 0, 0, 0, 0, 1).
 -   title: Produit matriciel
+    difficulty : 2
     introduction: >
         <p>
             Pour faire le calcul de la valeur d'un neuronne, cela demandera que tu sache faire un produit matriciel.<br>
@@ -175,6 +168,7 @@ exercices:
         Soit sûr d'avoir bien compris la démarche ;)
 
 -   title: Calcul de la valeur d'un neurone d'une couche autre que la première
+    difficulty : 2
     introduction: >
         <p>
             Le calcul de la valeur d'un neurone de la couche en dehors de la première est plus délicat.<br>
@@ -210,6 +204,7 @@ exercices:
             Chaque colonne de cette matrice correspond à une matrice de poids.
             Par exemple, la première colonne correspond à la matrice de poids associé au premier neurone de la couche 2, c'est celle que je t'ai donné dans l'exercice précédent.
         </p>
+    difficulty : 2
     question: >
         <p>
             En gardant la matrice des valeurs de la couche précédente de l'exercice précédent $\begin{pmatrix}0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \end{pmatrix}$ et la matrice de la couche 2,  calcul la valeur des 2 neurone restant de la couche 2.
@@ -242,6 +237,7 @@ exercices:
             \]
             Encore un dernier effort ! Plus que 2 produits matriciels à calculer et on pourra enfin tirer des conclusions interessantes de tout ces calculs.
         </p>
+    difficulty : 2
     question: >
         <p>
             Calcul les valeurs des 2 neurones de la couche de sortie en utilisant la matrice de poids de la couche 3 et les valeurs des neurones de la couche précédents (donc celles que tu as calculé juste avant).
@@ -269,6 +265,7 @@ exercices:
         Le second : le résultat est l'opposé de celui au dessus vu que le sedonc vecteur est l'opposé du premier = 158
 
 -   title: Tirer des conclusions de nos résultats
+    difficulty : 1
     introduction: >
         <p>
             Une fois les valeurs des neurones de la dernière couche connues, on peut en tirer des conclusions.<br>
@@ -298,6 +295,7 @@ exercices:
             <img src="/static/img/NN/ex/GrilleEx3.PNG">
             Valeur des neuronnes de sorties : (-176, 176)
         </div>
+    difficulty : 1
     answer: >
         <select class="form-control" data-answer="Ligne horizontale">
             <option>Ligne verticale</option>
@@ -310,6 +308,7 @@ exercices:
             <img src="/static/img/NN/ex/GrilleEx4.PNG">
             Valeur des neuronnes de sorties : (-131, 131)
         </div>
+    difficulty : 1
     answer: >
         <select class="form-control" data-answer="Ligne horizontale">
             <option>Ligne verticale</option>
@@ -321,6 +320,7 @@ exercices:
         La raison est que je ne l'ai pas entrainé à reconnaitre ce types de lignes verticales, du coup les poids ne sont pas paramétré pour cela.
 
 -   title: Transformer nos données avec une fonction d'activation
+    difficulty : 2
     introduction: >
         <p>
             Jusqu'à présent, les valeurs des neurones sont assez arbitraires, leurs valeurs dans l'aboslues ne signifie rien de particulier et elles n'ont pas de significations particulière.
@@ -375,6 +375,7 @@ exercices:
             Pour passer à la couche 3 il faudra de nouveau appliquer un produit matriciel avec la matrice de poids.<br>
             Je t'épargne cette étape de calcul, les résultats sont : (-8.98262476, 8.98262476)
         </p>
+    difficulty : 2
     question: >
         <p>
             Cacule la fonction sigmoide pour chacune des valeurs des neurones de sorties.
@@ -399,6 +400,7 @@ exercices:
         <p>
             Quelle est le pourcentage de conclusion du réseau (arrondi 2 chiffres après la virgule), que la ligne est horizontale ?
         </p>
+    difficulty : 2
     answer: >
         <div class="input-group">
             <input type="number" value="0" step="0.01" class="form-control" data-answer="99.98">
