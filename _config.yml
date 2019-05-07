@@ -5,18 +5,6 @@ source: src
 # Other global variables:
 test : test
 algorithms:
- -  name: Méthodes des K plus proches voisins
-    href: KNN
-    picture: /static/img/KNN.svg
-    icon: <i class="far fa-dot-circle"></i>
-    currentVersion: 1.0
-    missionDescription: Cette mission consiste à déterminer le type d'une certaine fleur en comptant la majorité parmis les K fleurs les plus proches.
-    kindOfMethod: Méthode de classification
-    shortDescription: >
-      A partir d'une entrée x on déterminera sa classe à partir de ses K voisins les plus proches.
-      Après cela avec l'information de la classe réelle de l'entrée, nous serons en mesure d'évaluer l'exactitude de notre classifieur.
-    sections:
-      activityName: Blockly
  -  name: Arbre de décisions
     href: arbre
     picture: /static/img/ArbreDecision.svg
@@ -29,6 +17,18 @@ algorithms:
       Les différentes décisions possibles sont situées aux extrémités des branches (les « feuilles » de l'arbre), et sont atteints en fonction de décisions prises à chaque étape.
     sections:
       activityName: Arbre interactif
+ -  name: Méthodes des K plus proches voisins
+    href: KNN
+    picture: /static/img/KNN.svg
+    icon: <i class="far fa-dot-circle"></i>
+    currentVersion: 1.0
+    missionDescription: Cette mission consiste à déterminer le type d'une certaine fleur en comptant la majorité parmis les K fleurs les plus proches.
+    kindOfMethod: Méthode de classification
+    shortDescription: >
+      A partir d'une entrée x on déterminera sa classe à partir de ses K voisins les plus proches.
+      Après cela avec l'information de la classe réelle de l'entrée, nous serons en mesure d'évaluer l'exactitude de notre classifieur.
+    sections:
+      activityName: Blockly
  - name: Réseau neuronal
    href: NN
    picture: /static/img/NN.svg
