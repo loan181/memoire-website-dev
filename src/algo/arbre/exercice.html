@@ -12,6 +12,7 @@ conclusion:
 
 exercices:
 -   title: Construire un arbre de décision
+    difficulty: 1
     introduction: >
         <p>
             En utilisant le <a href="#tableExample">tableau précédent</a> quel sont les pourcentages de chaque fruit pour les arbres suivants ?
@@ -22,10 +23,15 @@ exercices:
     leafNumber : 3
     categories: [Banane, Pomme, Orange, Citron]
     correctValues: [[0,0,100,0],[100,0,0,0],[0,50,0,50]]
+    help : >
+        Prenons la feuille 1 par exemple.<br>
+        C'est tout les fruit qui sont orange. Dans notre cas il n'y à que l'orange qui est orange. Elle représente donc 100%, les autres fruits eux sont à 0%.<br>
+        La feuille 2 correspond à tout les fruits qui ne sont pas orange, mais courbé, ...
     correction: >
         <img src="/static/img/arbre/ex1corr1.PNG" class="img-fluid mx-auto d-block">
 -   question: >
         <img src="/static/img/arbre/ex1help2.png" class="img-fluid mx-auto d-block">
+    difficulty: 1
     decisionTreeAnswer: true
     leafNumber : 4
     categories: [Banane, Pomme, Orange, Citron]
@@ -34,16 +40,21 @@ exercices:
         <img src="/static/img/arbre/ex1corr2.PNG" class="img-fluid mx-auto d-block">
 -   question: >
         <img src="/static/img/arbre/ex1help3.png" class="img-fluid mx-auto d-block">
+    difficulty: 1
     decisionTreeAnswer: true
     leafNumber : 1
     categories: [Banane, Pomme, Orange, Citron]
     correctValues: [[25,25,25,25]]
+    help: >
+        Oui aucun fruit ne correspond à toute ses questions, c'est le but.<br>
+        Mais du coup si j'ai un fruit qui n'est ni rose, ni hélicoidale, ni bleue, quelle fruit ça peut être dans notre tableau ? <small class="text-muted"> (tous)</small>
     correction: >
         <img src="/static/img/arbre/ex1corr3.PNG" class="img-fluid mx-auto d-block">
 -   question: >
         <p>
             D'après les différents arbres de cet exercice, quel arbre serai le plus adapté pour différencier une pomme d’un citron ? Justifie ton choix :
         </p>
+    difficulty: 2
     answer: >
         <div class="form-group">
             <select class="form-control" data-answer="Arbre 2">
@@ -58,7 +69,8 @@ exercices:
         Le 2eme arbre est plus adapté que les autres pour différencier une pomme d’un citron.<br>
         Les questions/décisions du premier ne permettent pas de distinguer les 2 fruits (ils sont tout les 2 pas orange ni courbé).<br>
         Le dernier arbre est encore pire, on ne peut y distinguer aucun fruit !
--   title: Classifier quand il y à des classes identiques
+-   title: Classifier quand il y a des classes identiques
+    difficulty: 2
     introduction: >
         <p>
             Précédemment, nous avons considéré que chaque fruit était distinct, cepandant cela peut ne pas être le cas.<br>
@@ -136,14 +148,20 @@ exercices:
     correction: >
         4 fruits sont jaune et rond. 3 sont des pommes et 1 est un citron. Cela nous fait donc 1/4 de chance soit 25% pour le citron et 3/4 soit 75% pour la pomme.
 -   question: >
-        <img src="/static/img/arbre/ex2help.PNG" class="img-fluid mx-auto d-block">
+        <img src="/static/img/arbre/ex2help.PNG" class="img-fluid mx-auto d-block" style="padding-bottom: 5px;">
+    difficulty: 2
     decisionTreeAnswer: true
     leafNumber : 3
     categories: [Banane, Pomme, Orange, Citron]
     correctValues: [[0,75,0,25],[0,50,50,0],[100,0,0,0]]
+    help : >
+        La subtilité ici est que la feuille 1 n'est plus la même qu'avec le tableau du début des exercices.
+        En effet, il ne faut pas oublier nos nouvelles pommes dedans !<br>
+        Pour les pourcentage, je te laisse deviner ;) mais c'est très lié à l'exercice précédent.
     correction: >
         <img src="/static/img/arbre/ex2corr.PNG" class="img-fluid">
 -   title: Classe majoritaire
+    difficulty: 1
     introduction: >
         <p>
             Afin de déterminer la classe d'un fruit inconnu, on choisi la classe majoritaire dans la feuille de l'arbre de décision.
@@ -205,6 +223,7 @@ exercices:
         Citron, Pomme et Melon.<br>
         Il suffit de traverser l'arbre en commençant par en haut.<br>
 -   title: La classification
+    difficulty: 1
     introduction: >
         <p>
             Quand tu as besoin de classifier un élément avec un arbre de décision, tu choisi la classe majoritaire de la feuille correspondant à l'élément.
