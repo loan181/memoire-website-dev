@@ -13,6 +13,19 @@ conclusion:
     - On doit prendre la valeur <b>maximum</b> des valeurs des neurones de sortie pour trouver le résultat de la classification.
     - Afin d'avoir des probabilité (nombre compris entre 0 et 1) comme valeur de neurones finales, on doit utiliser une fonction d'activation afin de transformer la valeur.
 
+moreInfo:
+    - >
+        En pratique trouver les valeurs des poids et la plus grande difficulté d'un réseau de neurone.
+        C'est ce qu'on appelle "entrainer" le réseau, il existe des algorithmes dédiés pour ça par "apprentissage automatique".
+    - >
+        Il n'y a pas seulement les poids qui intervienne dans le calcul des valeurs des neurones.
+        En pratique chaque neurone a aussi un "biai" (<i>bias</i> en anglais) qui doit être additionné en plus de la valeur du produit matriciel.
+    - >
+        Si j'avais voulu être rigoureux dans l'exemple de cette exercice j'aurai du mettre qu'un seul neurone de sortie et non deux.
+        Une valeur positif dans le neurone de sortie aurait signifier une ligne verticale, et une valeur négative une ligne horizontale.<br>
+        D'ailleur à cause du fait d'avoir représenté 2 décisions opposées les vecteur de poids de la matrice des poids de la dernière couche sont opposé,
+        du coup les valeurs des neurones de la couche de sortie sont toujours l'opposé l'un de l'autre.
+
 
 exercices:
 -   title: Valeur des neurones de la première couche
