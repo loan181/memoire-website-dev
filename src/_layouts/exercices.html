@@ -16,11 +16,33 @@ title: Exercices
 
 {% if page.conclusion %}
 <h2>Bilan</h2>
-    <ul>
+    <ul class="list-group list-group-flush">
         {% for remarks in page.conclusion %}
-        <li>{{ remarks }}</li>
+            <li class="list-group-item">{{ remarks }}</li>
         {% endfor %}
     </ul>
+{% endif %}
+
+{% if page.moreInfo %}
+    <div class="card" style="margin-top: 20px;">
+        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-info-circle"></i> Pour en savoir plus !
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse">
+            <div class="card-body">
+                <ul>
+                    {% for info in page.moreInfo %}
+                        <li>{{ info }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endif %}
 
 {% include preventQuitPage.html %}

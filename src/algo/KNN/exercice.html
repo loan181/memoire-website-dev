@@ -17,6 +17,13 @@ conclusion:
     - Les résultats ne sont pas toujours fiables ! Il ne faut pas croire à 100% ce que nous dit le classifieur, même s'il est bien fait.
     - Un classifieur ne reconnait que ce pour quoi il a été entrainé. Ici si on lui donne une autre fleur, une marguerite par exemple, il va nous déduire l'iris qui s'en rapproche le plus.
 
+moreInfo:
+    - On n'est pas obligé de se limiter à 2 métriques. En pratique on peut en prendre autant qu'on veut ! Avec plus de 2 métriques il n'est plus possible de le représenter sur un graphique à 2 dimensions et il faudra adapter ta façon de calculer la distance pour prendre en compte toutes les métriques.
+    - >
+        Il existe différente façon de calculer la distance entre les données. Ici on n'utilise la plus classique et intuitive, la <a target="_blank" href="https://fr.wikipedia.org/wiki/Espace_euclidien"> distance euclidienne </a>.<br>
+        Mais il en existe d'autres qui peuvent être utile dans certains contextes comme la <a target="_blank" href="https://fr.wikipedia.org/wiki/Distance_de_Manhattan">distance de Manhattan</a>, la distance de Minkowski ou la <a target="_blank" href="https://fr.wikipedia.org/wiki/Distance_de_Tchebychev">distance de Tchebychev</a>.
+
+
 exercices:
 -   title: Identification de 2 facteurs importants
     difficulty : 2
