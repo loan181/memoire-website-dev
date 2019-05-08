@@ -296,11 +296,12 @@ exercices:
             <img src="/static/img/NN/ex/GrilleEx2.PNG">
             Valeur des neuronnes de sorties : (56, -56)
         </div>
-    answer: >
-        <select class="form-control" data-answer="Ligne verticale">
-            <option>Ligne verticale</option>
-            <option>Ligne horizontale</option>
-        </select>
+    answer:
+        -   kind : selection
+            options :
+                - Ligne verticale
+                - Ligne horizontale
+            correct : Ligne verticale
     correction: >
         Le réseau pense que c'est une ligne verticale, en effet 56 > -56 et le premier neuronne correspond à celui à conclure que c'est une ligne verticale.
 -   question: >
@@ -309,11 +310,12 @@ exercices:
             Valeur des neuronnes de sorties : (-176, 176)
         </div>
     difficulty : 1
-    answer: >
-        <select class="form-control" data-answer="Ligne horizontale">
-            <option>Ligne verticale</option>
-            <option>Ligne horizontale</option>
-        </select>
+    answer:
+        -   kind : selection
+            options :
+                - Ligne verticale
+                - Ligne horizontale
+            correct : Ligne horizontale
     correction: >
         Le réseau pense que c'est une ligne horizontale, en effet -176 > 176 et le second neuronne correspond à celui à conclure que c'est une ligne horizontale.
 -   question: >
@@ -322,11 +324,12 @@ exercices:
             Valeur des neuronnes de sorties : (-131, 131)
         </div>
     difficulty : 1
-    answer: >
-        <select class="form-control" data-answer="Ligne horizontale">
-            <option>Ligne verticale</option>
-            <option>Ligne horizontale</option>
-        </select>
+    answer:
+        -   kind : selection
+            options :
+                - Ligne verticale
+                - Ligne horizontale
+            correct : Ligne horizontale
     correction: >
         Le réseau pense que c'est une ligne horizontale, en effet -131 > 131 et le second neuronne correspond à celui à conclure que c'est une ligne horizontale.<br>
         Ca peut paraitre bizarre, mais oui, le réseau détecte cette image comme une ligne horizontale et non une verticale !<br>
