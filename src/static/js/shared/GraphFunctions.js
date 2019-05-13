@@ -19,6 +19,9 @@ window.onload = function() {
         refreshPlotInformation();
     });
     refreshPlotInformation();
+    try {
+        afterPlotFirstDraw();
+    } catch(e) {}
 };
 
 function translation(originalList, translationList, word) {

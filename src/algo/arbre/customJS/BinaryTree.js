@@ -9,6 +9,23 @@ var operationType = {
 };
 var operationChar = ["NONE", '=', '≠', '>', '⩾', '<', '⩽'];
 
+function transform(stringToTransform) {
+    let res = "Unknown";
+    switch (stringToTransform) {
+        case "Iris-setosa":
+            res = "Banane";break;
+        case "Iris-versicolor":
+            res = "Poire";break;
+        case "Iris-virginica":
+            res = "Melon";break;
+        case "petal length":
+            res = "longueur";break;
+        case "petal width":
+            res = "hauteur";break;
+    }
+    return res;
+}
+
 class Node {
     constructor() {
         this.associatedFlower = [];
@@ -179,10 +196,10 @@ class Node {
         var hightlightText = "";
         for (var key in flowerProportions){
             if (key === this.maxProportionKey) {
-                hightlightText += key + " : " + flowerProportions[key].toFixed(2) +"%\n";
+                hightlightText += transform(key) + " : " + flowerProportions[key].toFixed(2) +"%\n";
             }
             else {
-                text += key + " : " + flowerProportions[key].toFixed(2) + "%\n"
+                text += transform(key) + " : " + flowerProportions[key].toFixed(2) + "%\n"
             }
         }
 
@@ -360,7 +377,7 @@ class Node {
             stroke: "#000",
             "stroke-width": 1
         });
-        this.drawText = paper.text(0, 0, frenchTranslationCat(this.parameter )+ " " + operationChar[this.operator] + " " + this.valueToCompare).attr({
+        this.drawText = paper.text(0, 0, transform(this.parameter )+ " " + operationChar[this.operator] + " " + this.valueToCompare).attr({
             "font-size": 14
         });
 

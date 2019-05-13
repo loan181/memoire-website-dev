@@ -15,7 +15,7 @@ activityName: decision-tree
 goalDescription : >
     <p>
         Ton but dans cette mission est de créer un arbre de décision qui classifiera correctement les données de prédictions (cachés).<br>
-        Autrement dit, j'ai des fleurs de classes connues que je vais les introduire dans ton arbre de décision, je vais ensuite vérifier si la classe prédite par ton arbre (classe majoritaire de la feuille) est bien celle de la fleur.
+        Autrement dit, j'ai des fleurs de classes connues que je vais introduire dans ton arbre de décision, je vais ensuite vérifier si la classe prédite par ton arbre (classe majoritaire de la feuille) est bien celle de la fleur.
     </p>
     <p>
         Pour améliorer ton score tu peux intéragir avec l'arbre de décision qui se trouve dans la partie de droite
@@ -41,14 +41,14 @@ goalSteps :
             </div>
         </div>
         <p>
-            Il faudra chercher un peu à taton pour créer ton arbre de décision.<br>
+            Il faudra chercher un peu à tâtons pour créer ton arbre de décision.<br>
             Ton but étant de séparer au mieux les 3 classes de fleurs différentes en choisissant bien tes axes, operations et paramètres.
         </p>
     help : >
         <p>
-            Il faut déjà bien fixer nos axes, les 2 qui sépare mieux les groupes sont les métriques de pétale (largeur et longueur).<br>
+            Il faut déjà bien fixer nos axes, les 2 qui séparent mieux les groupes sont les métriques de pétale (largeur et longueur).<br>
             Après ça il faut trouver les valeurs qui "coupe" les groupes en 2.<br>
-            Par exemple dans les alentours de 3 en largeur pétale (avec l'opérateur > par exemple) permet de mettre toutes les <i>setosa</i> d'un coté et les 2 autres classes de l'autre.<br>
+            Par exemple dans les alentours de 3 en largeur pétale (avec l'opérateur <code>></code> par exemple) permet de mettre toutes les <i>setosa</i> d'un coté et les 2 autres classes de l'autre.<br>
             Il nous reste maintenant à séparer ce nouveau groupe pour différencier une <i>versicolor</i> d'une <i>viriginica</i>.
         </p>
     correction : >
@@ -124,7 +124,7 @@ actions:
         <p>
             Pour ajouter un nouveau noeud interne à l'arbre, il suffit de cliquer sur une des feuilles existantes de l'arbre.
             Elles sont indiquées par un cercle avec un "+" noir à l'intérieur.<br>
-            Une fois cliquée, une boite de dialogue vous demandera de choisir une métrique (l'axe <code>x</code> ou l'axe <code>y</code>), un opérateur et la valeur avec laquelle comparé.
+            Une fois cliquée, une boite de dialogue vous demandera de choisir une métrique (l'axe <code>x</code> ou l'axe <code>y</code>), un opérateur et la valeur avec laquelle comparer.
             Après confirmation la feuille deviendra un noeud interne et triera automatiquement les données du modèle d'entrainement selon l'axe, opérateur et valeur choisie.
             Ainsi, deux branches seront créés, celle de gauche contenant l'ensemble des données du modèle d'entrainement répondant à l'évaluation, et celle de droite n'y répondant pas.
         </p>
@@ -139,8 +139,8 @@ actions:
  -  title: Supprimer un noeud interne / Transformer un noeud interne en feuille
     content : >
         <p>
-            Pour cela in suffit de cliquer sur un noeud interne existant.
-            Dans la boite de dialogue apparaissant un boutton te permet de supprimer le noeud.<br>
+            Pour cela il suffit de cliquer sur un noeud interne existant.
+            Dans la boite de dialogue apparaissant un bouton te permet de supprimer le noeud.<br>
             La supression du noeud interne crééra automatiquement une feuille et détruira tout les enfants du noeud.
         </p>
         <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animSupression.gif">
@@ -159,18 +159,18 @@ actions:
         </p>
 
         <p>
-            Les noeuds internes modifies également le graphique lors du survol de la souris, indiquant les fleurs concernées par l'évaluation du noeud.<br>
+            Les noeuds internes modifient également le graphique lors du survol de la souris, indiquant les fleurs concernées par l'évaluation du noeud.<br>
             Toutes les fleurs qui sont sur fond rouge sont les fleurs qui ne répondent pas à l'évaluation, au contraire, celles sur fond vert sont celles qui y répondent.
-            Il y aura également une ligne qui sera déssiné qui délimite la frontière avec la valeur du noeud, le code couleur est le même que celui des zones.
+            Il y aura également une ligne qui sera déssinée qui délimite la frontière avec la valeur du noeud, le code couleur est le même que celui des zones.
         </p>
 
         <div>
             Voici le graphique pour l'évaluation du noeud interne <code>largeur sépale &ge; 6</code>
             <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverEvaluation.PNG">
             <small class="text-muted"><br>
-                Toutes les fleurs qui ont une largeur se sépale <code> < 6 </code>(ne répondant pas à l'évaluation) sont dans la zone rouge à gauche de la ligne.<br>
+                Toutes les fleurs qui ont une largeur de sépale <code> < 6 </code>(ne répondant pas à l'évaluation) sont dans la zone rouge à gauche de la ligne.<br>
                 Les fleurs répondant à l'évaluation (donc qui ont une <code>largeur sépale &ge; 6 </code>) sont bien dans la zone verte à droite de la ligne.<br>
-                Comme l'opération est inclusif (&ge; et non >) la ligne est verte)
+                Comme l'opération est inclusive (&ge; et non >) la ligne est verte)
             </small>
         </div>
 ---
@@ -180,6 +180,7 @@ actions:
     <div class="col-sm-4">
         <div id="graphContainer" class="container plotly-graph-div">
         </div>
+        <!--
         <div class="form-group row">
             <label for="axisXChoice" class="col-sm-3 col-form-label">Axe x :</label>
             <select class="form-control col-sm-9" id="axisXChoice">
@@ -198,6 +199,7 @@ actions:
         </div>
 
         <div class="form-group row">
+
             <label for="axisYChoice" class="col-sm-3 col-form-label">Axe y :</label>
             <select class="form-control col-sm-9" id="axisYChoice">
                 <script>
@@ -213,6 +215,7 @@ actions:
                 </script>
             </select>
         </div>
+        -->
     </div>
 
     <!-- Visualisation graphique -->
@@ -276,7 +279,24 @@ actions:
         resizeTreeCanva();
     });
 
+    //TODO : petit bricolage, faudrait mieux gérer ça !!
+    currentXCat = categories[2];
+    currentYCat = categories[3];
+    function afterPlotFirstDraw() {
+        Plotly.restyle(graphContainer, {name : "Banane"}, 0);
+        Plotly.restyle(graphContainer, {name : "Poire"}, 1);
+        Plotly.restyle(graphContainer, {name : "Melon"}, 2);
+        //figure.data[0].marker.name = "Kiwi";
+        modifyXAxisName("longueur");
+        modifyYAxisName("hauteur");
+        $('#axisXName').text(frenchTranslationCat("longueur"));
+        $('#axisYName').text(frenchTranslationCat("hauteur"));
+        redrawPlot();
+    }
+
+
     // Update modal text
+    /*
     function afterXChange() {
         $('#axisXName').text(frenchTranslationCat(currentXCat));
         BT.reset();
@@ -288,4 +308,5 @@ actions:
     }
     afterXChange();
     afterYChange();
+     */
 </script>
