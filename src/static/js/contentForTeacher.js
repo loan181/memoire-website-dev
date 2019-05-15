@@ -11,6 +11,10 @@ $(document).ready(function () {
 // Automatic collapse
 // Source : https://stackoverflow.com/questions/12805825/can-you-specify-a-data-target-for-bootstrap-which-refers-to-a-sibling-dom-elem
 function toggleNext(e) {
-    var $target = $(e).parent().next();
-    $target.collapse('toggle');
+    let target = $(e).parent().next();
+    target.collapse('toggle');
+}
+function toggleSib(e) {
+    let target = $(e).next(".collapse");
+    target.collapse('toggle');
 }
