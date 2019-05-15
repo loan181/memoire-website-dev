@@ -3,20 +3,20 @@
 {% assign difficultyBgColor = "" %}
 {% assign badgeDifficulty = "" %}
 {% if include.ex.difficulty == 1 %}
-    {% assign difficultyColor = "border border-success" %}
+    {% assign difficultyColor = "border border-success ex-easy" %}
     {% assign difficultyBgColor = "rgba(40, 167, 69, 0.07)" %}
     {% assign badgeDifficulty = "<span class='badge badge-success'>Facile</span>" %}
 {% elsif include.ex.difficulty == 2 %}
-    {% assign difficultyColor = "border border-warning" %}
+    {% assign difficultyColor = "border border-warning ex-medium" %}
     {% assign difficultyBgColor = "rgba(255, 193, 7, 0.07)" %}
     {% assign badgeDifficulty = "<span class='badge badge-warning'>Moyen</span>" %}
 {% elsif include.ex.difficulty == 3 %}
-    {% assign difficultyColor = "border border-danger" %}
+    {% assign difficultyColor = "border border-danger ex-hard" %}
     {% assign difficultyBgColor = "rgba(220, 53, 69, 0.07)" %}
     {% assign badgeDifficulty = "<span class='badge badge-danger'>Difficile</span>" %}
 {% endif %}
 
-<div data-ex="exercice" class="{{difficultyColor}}" style="padding: 10px; margin-bottom: 10px; background-color:{{difficultyBgColor}};">
+<div data-ex="exercice" class="exercice {{difficultyColor}}" style="padding: 10px; margin-bottom: 10px; background-color:{{difficultyBgColor}};">
     {% if include.ex.title %}
         <h3 data-ex="title">{{ include.ex.title }}</h3>
     {% endif %}

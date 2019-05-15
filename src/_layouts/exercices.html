@@ -12,6 +12,10 @@ title: Exercices
 {% for exercice in page.exercices %}
     {% include exercice.html ex=exercice %}
 {% endfor %}
+<p>
+    Tu as terminé tout les exercices <span class="badge badge-success">Facile</span> ? <br>
+</p>
+<button type="button" onclick="revealHarderExercice()" class="btn btn-success">Afficher des exercices <b>plus difficiles</b> !</button>
 
 
 {% if page.conclusion %}
