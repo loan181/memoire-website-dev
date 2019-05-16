@@ -79,8 +79,26 @@ function checkAnswer(elem) {
     value *= 100;
     feedbackSpan.innerHTML = feedbackSpanText;
 
+    /*
+    let lastEasyExercice = $(elem.parentNode.parentNode.parentNode).nextAll('.ex-easy').length === 0;
+    console.log(lastEasyExercice);
+    if (lastEasyExercice) {
+        $('html, body').animate({
+            scrollTop: $("#moreExercices").get(0).offsetTop
+        }, 300, "swing", function() {
+            $("#moreExercicesBtn").animate({
+                fontSize: "1.4em"
+            });
+            $("#moreExercicesBtn").animate({
+                fontSize: "1em"
+            });
+        });
+    }
+    */
+
     if (exerciceSuccess) {
         showCorrection(elem);
+
     } else {
         let attemptsNumber = $(elem).data('attempts');
         $(elem).data('attempts', attemptsNumber+1); // Update it
