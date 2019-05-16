@@ -141,70 +141,70 @@ exercices:
     difficulty : 1
     introduction: >
         <p>
-            Sur le graphique suivant, visualise un marqueur au coordonnée (5.1, 2.6)
+            Sur le graphique suivant, <b>visualise</b> un marqueur au coordonnée <b>(4.8, 2.7)</b>
         </p>
-        <img src="/static/img/KNN/exKNNGraphique.png" class="img-fluid pinnable">
+        <img src="/static/img/KNN/exKNNGraphique2.jpg" class="img-fluid pinnable">
     question : >
-        Quelle est la couleur du point le plus proche de celui ajouté ?
+        Quelle est le point le plus proche de celui ajouté ?
     answer:
         -   kind : selection
             options :
-                - Jaune
-                - Vert
-            correct : Jaune
+                - Triangle Rouge
+                - Carré Vert
+            correct : Carré Vert
     correction: >
-        Jaune (il est juste un peu plus bas)
+        Un Carré Vert (il est juste un peu plus bas à droite)
 -   question : >
-        Quelle est la couleur des trois points les plus proches ?
+        Quelle sont des <b>trois</b> points les plus proches ?
     difficulty : 1
     answer:
         -   kind : selection
             text: Plus proche
             options :
-                - Jaune
-                - Vert
-            correct : Jaune
+                - Triangle Rouge
+                - Carré Vert
+            correct : Carré Vert
         -   kind : selection
             text: 2eme plus proche
             options :
-                - Jaune
-                - Vert
-            correct : Vert
+                - Triangle Rouge
+                - Carré Vert
+            correct : Triangle Rouge
         -   kind : selection
             text: 3eme plus proche
             options :
-                - Jaune
-                - Vert
-            correct : Vert
+                - Triangle Rouge
+                - Carré Vert
+            correct : Triangle Rouge
     correction: >
-        Jaune, puis vert et encore vert
+        Un carré vert puis 2 triangles rouges
 -   question : >
         Quelle est la couleur majoritaire parmi les trois points les plus proches ?
     difficulty : 1
     answer:
         -   kind : selection
             options :
-                - Jaune
-                - Vert
-            correct : Vert
+                - Triangle Rouge
+                - Carré Vert
+            correct : Triangle Rouge
     correction: >
-        Verte (2 vert pour 1 jaune)
+        Triangle Rouge (2 Triangle Rouge pour 1 Carré Vert)
 -   question : >
         Quelle serait la couleur majoritaire si on avait pris seulement les deux points les plus proches ?
     difficulty : 2
     answer:
         -   kind : selection
             options :
-                - Jaune
-                - Vert
+                - Triangle Rouge
+                - Carré Vert
         -   kind : text
             correctWords :
             -   égalité
             -   pas
             -   égale
     correction: >
-        Pas de majorité car on a une égalité (1 jaune et 1 vert)
--   introduction : Supposons maintenant que les points jaunes représentent des <i>Iris versicolor</i> et les verts des <i>Iris virginica</i>.
+        Pas de majorité car on a une égalité (1 Triangle Rouge et 1 Carré Vert)
+-   introduction : Supposons maintenant que les Triangles Rouge représentent des <i>Iris versicolor</i> et les Carré Vert des <i>Iris virginica</i>.
     question : >
         Quel serait la classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
     difficulty : 1
@@ -217,8 +217,8 @@ exercices:
             -   virginica
             -   nombre
     correction: >
-        Si on se fie uniquement à la fleur la plus proche on peut penser que c’est une versicolor. Mais si l’on regarde les fleurs plus éloigné, il est plus probable que ça soit une Iris virginica.<br>
-        Cette exercice n’a pas de réponse absolue, l’important c’est que tu comprennes la notion de majorité et que selon les paramètres qu’on pose (ici le nombre de voisins) la réponse peut changer.
+        Si on se fie uniquement à la fleur la plus proche on peut penser que c’est une <i>virginica</i>. Mais si l’on regarde les fleurs plus éloigné, il est plus probable que ça soit une <i>Iris versicolor</i>.<br>
+        Cette exercice <b>n’a pas de réponse absolue</b>, l’important c’est que tu comprennes la notion de majorité et que selon les paramètres qu’on pose (ici le nombre de voisins) la réponse peut changer.
 
 -   title: Utilisation de compteur
     difficulty : 1
@@ -279,25 +279,25 @@ exercices:
             Pour rappel, les points jaunes représentent des <i>Iris versicolor</i> et les verts des <i>Iris virginica</i>.
             Le marqueur gris en forme de croix est un iris inconnu.
         </p>
-        <img src="/static/img/KNN/exKNNGraphiqueCorr.png" class="img-fluid pinnable">
+        <img src="/static/img/KNN/exKNNGraphiqueInc2.jpg" class="img-fluid pinnable">
     question : >
-        Détermine la valeur des compteurs pour les 4 voisins les plus proches :
+        Détermine la valeur des compteurs pour les <b>4 voisins les plus proches</b> :
     answer:
         -   kind : number
             label : Compteur d'<i>Iris versicolor</i>
             min : 0
             max : 4
-            correct : 1
+            correct : 3
         -   kind : number
             label : Compteur d'<i>Iris virginica</i>
             min : 0
             max : 4
-            correct : 3
+            correct : 1
     correction: >
         <p>
-            La plus proche est un <i>Iris versicolor</i>, son compteur passe à 1.<br>
-            Les 3 plus proches suivantes sont 3 <i>Iris virginica</i>, leur compteur passe donc à 3.<br>
-            On se retrouve donc au final avec un compteur de 1 pour les <i>Iris versicolor</i> et de un pour les <i>Iris virginica</i>.
+            La plus proche est un <i>Iris virginica</i>, son compteur passe à 1.<br>
+            Les 3 plus proches suivantes sont 3 <i>Iris versicolor</i>, leur compteur passe donc à 3.<br>
+            On se retrouve donc au final avec un compteur de 1 pour les <i>Iris virginica</i> et de 1 pour les <i>Iris versicolor</i>.
         </p>
 
 -   question : >
