@@ -9,11 +9,6 @@
       <field name="NUM">1</field>
     </shadow>
   </value>
-  <value name="valueToIncrease">
-    <shadow type="math_number">
-      <field name="NUM">1</field>
-    </shadow>
-  </value>
 </block>
 <block type="retrievecounterflower">
   <field name="NAME">min</field>
