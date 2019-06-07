@@ -77,7 +77,16 @@ function checkAnswer(elem) {
     }
     value /= feedbacks.length;
     value *= 100;
-    feedbackSpan.innerHTML = feedbackSpanText;
+
+    let overallMark;
+    if (exerciceSuccess) {
+        overallMark = '<i class="fas fa-check" style="color: green; font-size: 20px"></i> '
+        feedbackSpan.innerHTML = overallMark
+    } else {
+        overallMark = '<i class="fas fa-times" style="color: red; font-size: 20px"></i> '
+        feedbackSpan.innerHTML = overallMark + " " + feedbackSpanText;
+    }
+
 
     /*
     let lastEasyExercice = $(elem.parentNode.parentNode.parentNode).nextAll('.ex-easy').length === 0;
