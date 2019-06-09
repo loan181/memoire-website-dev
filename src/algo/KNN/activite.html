@@ -1,6 +1,6 @@
 ---
 layout: activity
-title : Méthode des K plus proches voisins interactif
+title: Méthode des K plus proches voisins interactive
 plotly: true
 activityName: KNN
 secret :
@@ -36,17 +36,17 @@ goalSteps :
 -   title: Bien commencer !
     content: >
         <p>
-            Dans la section <code>TODO</code> de la boite à outil de blockly tu trouvera une première implémentation de la fonction que tu dois faire.<br>
-            Commence par la prendre et test le résultat de ton prédicteur avec.
+            Dans la section <code>TODO</code> de la boite à outil de Blockly tu trouveras une première implémentation de la fonction que tu dois créer.<br>
+            Commence par la prendre et teste le résultat de ton prédicteur avec.
         </p>
         <div class="mx-auto" align="center">
             <img src="/static/img/KNN/classifyFunctionDefault.svg" class="img-fluid">
         </div>
 
         <p>
-            Normalement tu devrais avoir un résultat d’environ 33% et chaque fois que tu re-test le prédicteur,
+            Normalement tu devrais avoir un résultat d’environ 33% et chaque fois que tu re-testes le prédicteur,
             il donnera un résultat différent.<br>
-            C’est normal car le prédicteur que je te donne ici est totalement aléatoire et se contente de donner un nom parmi ceux disponible de manière aléatoire.
+            C’est normal, car le prédicteur que je te donne ici est totalement aléatoire et se contente de donner un nom parmi ceux disponibles, de manière aléatoire.
             Autrement dit, pour chaque fleur il a 1 chance sur 3 de deviner correctement (d’ou les 33%).
         </p>
 
@@ -59,16 +59,16 @@ goalSteps :
 -   title: Implémenter les K plus proches voisins
     content: >
         <p>
-            Pour réaliser à bien ce projet il est important que tu comprenne bien comment utiliser les compteurs et à quoi ils vont nous servir.<br><br>
-            L'idée générale est d'augmenter le compteur de chacune des K fleurs les plus proches pour ensuite déterminer celle qui est en majorité
+            Pour mener à bien ce projet il est important que tu comprennes bien comment utiliser les compteurs et à quoi ils vont nous servir.<br><br>
+            L'idée générale est d'augmenter le compteur de chacune des K fleurs les plus proches, pour ensuite déterminer celle qui est en majorité.
         </p>
     recommandedBlocks: countersReset countersIncrease countersGetMinMax getK forI
     help: >
         Une structure correcte du code est la suivante :
         <ol>
-            <li>Réinitialiser le compteur, chacune des trois fleurs à un compteur qui est mis à 0</li>
+            <li>Réinitialiser le compteur, chacune des trois fleurs a un compteur qui est mis à 0</li>
             <li>Pour chacune des K fleurs les plus proches, il faudra augmenter leur compteur individuel de 1</li>
-            <li>Une fois les K fleurs parcouru, il suffit de choisir celle qui à la valeur de compteur la plus haute et mettre à jour le résultat renvoyé</li>
+            <li>Une fois les K fleurs parcourues, il suffit de choisir celle qui a la valeur de compteur la plus haute et mettre à jour le résultat renvoyé</li>
         </ol>
     correction: >
         <p class="lead">Meilleur correction : </p>
@@ -76,7 +76,7 @@ goalSteps :
             <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
         </div>
         <hr />
-        <p>Il existe d'autres solutions équivalents qui mèneront aussi à 100% mais moins robustes tel que : </p>
+        <p>Il existe d'autres solutions équivalentes qui mèneront aussi à 100% mais moins robustes telles que : </p>
         <p>
             En mettant <code>3</code> au lieu du bloc <img src="/static/img/blocklyBlocks/getK.svg">.
         </p>
@@ -91,7 +91,7 @@ goalSteps :
 -   title: Obtenir 100%
     content: >
         <p>
-            Une fois que ton implémentation te parait correxte, il ne te reste plus qu’à faire un peu le tri dans ton code !
+            Une fois que ton implémentation te parait correcte, il ne te reste plus qu’à faire un peu de tri dans ton code !
             Choisis bien tes paramètres (K, Axe x et Axe y) et croise les doigts pour atteindre les 100% !
         </p>
     correction: >
@@ -106,9 +106,9 @@ goalSteps :
 examples:
 - content : >
     <p>
-        Dans les exemples suivants, le code principal de l'algorithme est caché dans la fonction <code>code...</code>, mais tu n'es bien-entendu pas obliger d'implémenter une fonction pour ça ;)<br>
+        Dans les exemples suivants, le code principal de l'algorithme est caché dans la fonction <code>code...</code>, mais tu n'es bien-entendu pas obligé d'implémenter une fonction pour ça ;)<br>
         Tu peux recopier la partie du code avec <code>afficher...</code> si tu veux avoir le même affichage que moi (en supposant que tes compteurs se mettent correctement à jour)<br>
-        Fais bien attention que les paramètres et les coordonnées de la fleur créé changent entre chacun des exemples !
+        Fais bien attention car les paramètres et les coordonnées de la fleur créée changent entre chacun des exemples !
     </p>
 - content : >
     <div class="mx-auto" align="center">
@@ -126,7 +126,7 @@ actions:
             Ce sont des fleurs qui apparaîtront sur le graphe, mais qui ne sont pas dans le training set.<br>
         </p>
         <p>
-            Pour cela on va d'abord créer une fleur avec le bloc supplémentaire en spécifiant les coordonnées <code>x</code> et <code>y</code> désirés.
+            Pour cela on va d'abord créer une fleur avec le bloc supplémentaire, en spécifiant les coordonnées <code>x</code> et <code>y</code> désirées.
         </p>
         <div class="mx-auto" align="center">
             <img src="/static/img/blocklyBlocks/createFlower.svg" class="img-fluid">
@@ -134,12 +134,12 @@ actions:
         <p>
             Après cela il faut qu'on exécute le code pour mettre à jour le graphe via le bouton
             <button id="buttonDebug" type="button" class="btn btn-warning"><i class="fas fa-bug"></i></button><br>
-            Une croix cyan apparaitra comme marqueur de ta/tes fleur(s) ajouté.
+            Une croix cyan apparaitra comme marqueur de ta/tes fleur(s) ajoutée(s).
         </p>
         <div class="card">
             <div class="card-body">
                 <p>
-                    Attention que le graphique se mettra à jour selon les paramètres que tu as choisis pour l’axe x et y dans le panneau des paramètres.<br>
+                    Attention : le graphique se mettra à jour selon les paramètres que tu as choisis pour l’axe x et y dans le panneau des paramètres.<br>
                 </p>
                 <div class="container-fluid">
                     <div class="row">
@@ -151,13 +151,13 @@ actions:
                         </div>
                     </div>
                 </div>
-                <small class="text-muted"><br>Ici la même fleur est ajoutée (au coordonnées (6.1, 1.7)), mais les axes sont différents</small>
+                <small class="text-muted"><br>Ici la même fleur est ajoutée (aux coordonnées (6.1, 1.7)), mais les axes sont différents</small>
             </div>
         </div>
 -   title : Manipuler une fleur artificielle
     content : >
         <p>
-            Les fleurs que tu créés artificiellement sont considérées comme des fleurs "classiques" dans le code.
+            Les fleurs que tu crées artificiellement sont considérées comme des fleurs "classiques" dans le code.
             Tu peux les utiliser avec tous les autres blocs utilisant des fleurs.
         </p>
         <p>
@@ -172,7 +172,7 @@ actions:
         </div>
         <small class="text-muted">
             Dans cet exemple, on ajoute une fleur artificielle en (4.9, 4.2) avec comme axe x le sepal length et y le petal length.<br>
-            On commence par réinitialiser les compteurs des 3 fleurs en les mettant à zéro<br>
+            On commence par réinitialiser les compteurs des 3 fleurs en les mettant à zéro.<br>
             Ensuite, on ajoute au compteur de la fleur la plus proche la valeur -10. Dans notre cas, la fleur la plus proche est un carré vert (virginica), son compteur étant de 0, il passe à -10.<br>
             Après cela, on ajoute au compteur de la 2ème fleur la plus proche la valeur 20. Dans notre cas, la 2ème fleur la plus proche est un triangle rouge (versicolor), son compteur étant de 0, il passe à 20.<br>
             Enfin, on affiche la valeur des compteurs :
@@ -181,7 +181,7 @@ actions:
                 <li>20 pour les Iris-versicolor</li>
                 <li>-10 pour les Iris-virginica</li>
             </ul>
-            Attention que <code>K</code> est totalement ignoré dans cet exemple, il faudra le prendre en compte quand tu devras résoudre le problème ;)
+            Attention : <code>K</code> est totalement ignoré dans cet exemple, il faudra le prendre en compte quand tu devras résoudre le problème ;)
         </small>
         <br>
         <br>
@@ -193,20 +193,20 @@ actions:
             <img src="/static/img/KNN/exampleBlockAppCompteurRes.PNG" class="img-fluid">
         </div>
         <small class="text-muted">
-            Pareil que l'exemple précédent, sauf qu'au lieu d'afficher les valeurs des compteurs on indique les fleurs avec les valeurs de compteur minimale et maximale
+            Pareil que l'exemple précédent, sauf qu'au lieu d'afficher les valeurs des compteurs on indique les fleurs avec les valeurs de compteur minimale et maximale.
         </small>
 
 toolbarActivityName : KNN
 toolboxButtonDescription :
 - Commencer un nouveau projet. Cela effacera tous les blocs.
-- Sauvegarder/télécharger ton projet sur ton ordinateur (uniquement les blocs de Blockly).<br>Les paramètres ne sont pas enregistrés
-- Ouvrir un projet précédemment sauvegardé.<br>Uniquement les blocs Blockly sont chargés
-- Exporte le projet (blocs) sous forme d’image (SVG (vectoriel) ou PNG ).<br>Attention que si tu exportes en image tu ne peux pas l’ouvrir comme projet
-- Voir le code JavaScript généré par Blockly dans une fenêtre pop-up
+- Sauvegarder/télécharger ton projet sur ton ordinateur (uniquement les blocs de Blockly).<br>Les paramètres ne sont pas enregistrés.
+- Ouvrir un projet précédemment sauvegardé.<br>Uniquement les blocs Blockly sont chargés.
+- "Exporte le projet (blocs) sous forme d’image (SVG (vectoriel) ou PNG).<br> Attention : si tu exportes en image tu ne peux pas l’ouvrir comme projet."
+- Voir le code JavaScript généré par Blockly dans une fenêtre pop-up.
 - Tester le code. Se contentera d’exécuter le code du projet tel quel.
 - <b>Tester le classifieur</b>. Lance le programme en évaluant si les prédictions sont correctes.<br>Cela te permettra de réussir ton objectif !
-- Renvoie vers la page d'aide (celle-ci)
-- Te permet de choisir la langue.<br>Seulement le français et l’anglais sont pleinement compatible. Les autres changeront uniquement le texte des blocs de Blockly.
+- Renvoie vers la page d'aide (celle-ci).
+- Te permet de choisir la langue.<br>Seulement le français et l’anglais sont pleinement compatibles. Les autres changeront uniquement le texte des blocs de Blockly.
 
 leftPartName : Données et Paramètres
 leftPartDesc : La partie de gauche te permet d'observer les données ainsi que de modifier les paramètres de l'algorithme.
@@ -218,8 +218,8 @@ leftPartSections:
         Chaque point du graphe correspond à une fleur du modèle d'entrainement.
         Sa forme et couleur définit sa classe comme légendé en dessous du graphe.<br>
         Tu peux survoler avec ta souris un point pour obtenir des informations le concernant.<br>
-        Tu pourras également ajouter des fleurs "artificielle" dans le graphe via Blockly.
-        Pour effacer ces derniers tu pourras utiliser le bouton jaune avec la gomme<br>
+        Tu pourras également ajouter des fleurs "artificielles" dans le graphe via Blockly.
+        Pour effacer ces dernières tu pourras utiliser le bouton jaune avec la gomme.<br>
 -   title: Panneau paramètres
     picture: /static/img/KNN/site-parameters.png
     description: >
@@ -235,15 +235,15 @@ rightPartContentBlockly :
 -   blockName: countersReset
     desc: Permet de mettre le compteur de chaque fleur à zéro
 -   blockName: countersIncrease
-    desc: Ajoute la valeur donné à la classe de la i-ème fleur la plus proche.
+    desc: Ajoute la valeur donnée à la classe de la i-ème fleur la plus proche
 -   blockName: countersGetMinMax
     desc: Récupère la fleur associée au compteur avec la valeur minimale/maximale
     returnType: Texte (nom de fleur)
 -   blockName: getCounters
-    desc: Permet de consulter la valeur des compteurs.<br>Ce bloc est utile seulement pour débugger afin de pouvoir voir les valeurs des compteurs
+    desc: Permet de consulter la valeur des compteurs<br>(Ce bloc est utile seulement pour débugger, afin de pouvoir voir les valeurs des compteurs)
     returnType: Texte
 -   blockName: createFlower
-    desc: Permet de créer une fleur artificielle qui aura les valeurs données en <code>x</code> et <code>y</code> (dépend de ce que tu as fixé comme paramètres).<br>Voir exemples ci-dessous
+    desc: Permet de créer une fleur artificielle qui aura les valeurs données en <code>x</code> et <code>y</code> (dépend de ce que tu as fixé comme paramètres)<br>Voir exemples ci-dessous
     returnType: Fleur
 
 ---

@@ -1,20 +1,20 @@
 ---
 layout: exercices
-title: Exercices préparatoires pour l'arbre de décisions
+title: Exercices préparatoires pour l'arbre de décision
 introduction: arbre/ex/intro.html
 
 moreInfo:
-    - Dans un vrai arbre de décision, les questions ne sont pas forcément binaire. C'est à dire que chaque question peut avoir autant de branche qu'elle veut. Par exemple si on demande l'âge, on pourrait avoir une branche "âge <= 18 ans" une autre "18 < âge < 60" et une dernière "âge >= 60 ans".
+    - Dans un véritable arbre de décision, les questions ne sont pas forcément binaires. C'est à dire que chaque question peut avoir autant de branches que l'on veut. Par exemple si on demande l'âge, on pourrait avoir une branche "âge <= 18 ans" une autre "18 < âge < 60" et une dernière "âge >= 60 ans".
     - >
-        Les arbres peuvent être générés très efficacement par des algorithmes de Machine Learning comme <a target="_blank" href="https://fr.wikipedia.org/wiki/Algorithme_ID3">ID3</a>, cependant son utilisation est complexe et repose sur des concepts mathématiques et informatiques trop avancés (l'entropie de Shannon, logarithme, récursivité, ...).<br>
-        Les arbres de décisions ici sont suffisamment petit pour pouvoir les créer à la main très efficacement sans difficulté, mais en pratique, avec beaucoup de données, des algorithmes sont employés.
+        Les arbres peuvent être générés très efficacement par des algorithmes de Machine Learning comme <a target="_blank" href="https://fr.wikipedia.org/wiki/Algorithme_ID3">ID3</a>, cependant son utilisation est complexe et repose sur des concepts mathématiques et informatiques trop avancés (l'entropie de Shannon, logarithme, récursivité...).<br>
+        Les arbres de décisions ici sont suffisamment petits pour pouvoir les créer à la main très efficacement sans difficulté, mais en pratique, avec beaucoup de données, des algorithmes sont employés.
 
 conclusion:
     - Le procédé d'un arbre de décision repose sur un principe assez simple.
     - "Un arbre est composé de 2 types d'éléments : les feuilles et les noeuds internes. Ils sont liés par des branches."
-    - Un noeud interne est une question qui peut être répondu par oui ou non. La branche de gauche représentera toujours la réponse « oui » et celle de droite la réponse « non ».
-    - Les feuilles représentent l'ensemble des données ayant répondu à tout les critères des branches ayant mené à la feuille.
-    - La classe ayant le plus grand pourcentage dans la feuille est appelée classe majoritaire. Si on cherche à prédire une donné et qu'elle se retrouve dans cette feuille, c'est cette classe qui sera déduite.
+    - Un noeud interne est une question à laquelle on peut répondre par oui ou non. La branche de gauche représentera toujours la réponse « oui » et celle de droite la réponse « non ».
+    - Les feuilles représentent l'ensemble des données ayant répondu à tous les critères des branches ayant mené à la feuille.
+    - La classe ayant le plus grand pourcentage dans la feuille est appelée classe majoritaire. Si on cherche à prédire une donnée et qu'elle se retrouve dans cette feuille, c'est cette classe qui sera déduite.
 
 exercices:
 -   title: Construire un arbre de décision
@@ -31,8 +31,8 @@ exercices:
     correctValues: [[0,0,100,0],[100,0,0,0],[0,50,0,50]]
     help : >
         Prenons la feuille 1 par exemple.<br>
-        C'est tout les fruit qui sont orange. Dans notre cas il n'y à que l'orange qui est orange. Elle représente donc 100%, les autres fruits eux sont à 0%.<br>
-        La feuille 2 correspond à tout les fruits qui ne sont pas orange, mais courbé, ...
+        Elle représente tous les fruits qui sont oranges. Dans notre cas, il n'y a que l'orange qui est orange. Elle représente donc 100%, les autres fruits eux sont à 0%.<br>
+        La feuille 2 correspond à tous les fruits qui ne sont pas oranges, mais courbés ou autres caractéristiques...
     correction: >
         <img src="/static/img/arbre/ex1corr1.PNG" class="img-fluid mx-auto d-block">
 -   question: >
@@ -52,13 +52,13 @@ exercices:
     categories: [Banane, Pomme, Orange, Citron]
     correctValues: [[25,25,25,25]]
     help: >
-        Oui aucun fruit ne correspond à toute ses questions, c'est le but.<br>
-        Mais du coup si j'ai un fruit qui n'est ni rose, ni hélicoidale, ni bleu, quelle fruit ça peut être dans notre tableau ? <small class="text-muted"> (tous)</small>
+        Oui, aucun fruit ne correspond à toutes ces questions, c'est le but.<br>
+        Mais du coup si j'ai un fruit qui n'est ni rose, ni cubique, ni bleu, quel fruit ça peut être dans notre tableau ? <small class="text-muted"> (tous)</small>
     correction: >
         <img src="/static/img/arbre/ex1corr3.PNG" class="img-fluid mx-auto d-block">
 -   question: >
         <p>
-            D'après les différents arbres de cet exercice, quel arbre serai le plus adapté pour différencier une pomme d’un citron ? Justifie ton choix :
+            D'après les différents arbres de cet exercice, quel arbre serait le plus adapté pour différencier une pomme d’un citron ? Justifie ton choix :
         </p>
     difficulty: 2
     answer: >
@@ -73,15 +73,15 @@ exercices:
         </div>
     correction: >
         Le 2eme arbre est plus adapté que les autres pour différencier une pomme d’un citron.<br>
-        Les questions/décisions du premier ne permettent pas de distinguer les 2 fruits (ils sont tout les 2 pas orange ni courbé).<br>
+        Les questions/décisions du premier ne permettent pas de distinguer les 2 fruits (ils sont, tous les 2, ni oranges ni courbés).<br>
         Le dernier arbre est encore pire, on ne peut y distinguer aucun fruit !
 -   title: Classifier quand il y a des classes identiques
     difficulty: 2
     introduction: >
         <p>
-            Précédemment, nous avons considéré que chaque fruit était distinct, cepandant cela peut ne pas être le cas.<br>
+            Précédemment, nous avons considéré que chaque fruit était distinct, cependant cela peut ne pas être le cas.<br>
             Je peux par exemple avoir des pommes qui sont de couleurs jaunes en plus.<br>
-            Tu remarquera qu'avec ses nouvelles pommes, il nous est impossible de les distinguer des citrons maintenant !
+            Tu remarqueras qu'avec ses nouvelles pommes, il nous est impossible de les distinguer des citrons maintenant !
         </p>
 
         <table class="table table-light table-striped table-bordered table-hover pinnable" id="tableExample2">
@@ -95,7 +95,7 @@ exercices:
             <tbody>
             <tr>
                 <td scope="row">Banane</td>
-                <td>Courbé</td>
+                <td>Courbée</td>
                 <td>Jaune</td>
             </tr>
             <tr >
@@ -152,7 +152,7 @@ exercices:
             </div>
         </div>
     correction: >
-        4 fruits sont jaune et rond. 3 sont des pommes et 1 est un citron. Cela nous fait donc 1/4 de chance soit 25% pour le citron et 3/4 soit 75% pour la pomme.
+        4 fruits sont jaunes et ronds. 3 sont des pommes et 1 est un citron. Cela nous fait donc 1/4 de chance soit 25% pour le citron et 3/4 soit 75% pour la pomme.
 -   question: >
         <img src="/static/img/arbre/ex2help.PNG" class="img-fluid mx-auto d-block" style="padding-bottom: 5px;">
     difficulty: 2
@@ -163,14 +163,14 @@ exercices:
     help : >
         La subtilité ici est que la feuille 1 n'est plus la même qu'avec le tableau du début des exercices.
         En effet, il ne faut pas oublier nos nouvelles pommes dedans !<br>
-        Pour les pourcentage, je te laisse deviner ;) mais c'est très lié à l'exercice précédent.
+        Pour les pourcentages, je te laisse deviner ;) mais c'est très lié à l'exercice précédent.
     correction: >
         <img src="/static/img/arbre/ex2corr.PNG" class="img-fluid">
 -   title: Classe majoritaire
     difficulty: 1
     introduction: >
         <p>
-            Afin de déterminer la classe d'un fruit inconnu, on choisi la classe majoritaire dans la feuille de l'arbre de décision.
+            Afin de déterminer la classe d'un fruit inconnu, on choisit la classe majoritaire dans la feuille de l'arbre de décision.
         </p>
         <p>
             Pour cet exercice sers toi de l'arbre de décision suivant :
@@ -216,11 +216,11 @@ exercices:
                 - Noix de coco
             correct : Melon
     help: >
-        Faisons le premier ensemble, le fruit est "rond et rouge".<br>
+        Faisons le deuxième ensemble, le fruit est "rond et rouge".<br>
         On commence en haut de l'arbre, la première question est s'il est rond.<br>
         C'est le cas, on va donc dans la partie gauche.<br>
         La prochaine question est de savoir s'il est jaune.<br>
-        C'est pas le cas, on va donc dans la partie de droite.<br>
+        Ce n'est pas le cas, on va donc dans la partie de droite.<br>
         La prochaine question est de savoir s'il est rouge.<br>
         C'est le cas, on va donc dans la partie de gauche.<br>
         On est dans une feuille, il ne nous reste plus qu'à prendre le fruit avec le plus grand pourcentage.<br>
@@ -232,7 +232,7 @@ exercices:
     difficulty: 1
     introduction: >
         <p>
-            Quand tu as besoin de classifier un élément avec un arbre de décision, tu choisi la classe majoritaire de la feuille correspondant à l'élément.
+            Quand tu as besoin de classifier un élément avec un arbre de décision, tu choisis la classe majoritaire de la feuille correspondant à l'élément.
         </p>
         <p>
             Utilise l'arbre de décision de <a href="#fruitDecisionTree">l'exercice précédent</a>
@@ -291,5 +291,5 @@ exercices:
     correction: >
         Citron, Pomme, Melon et Orange.<br>
         Les résultats sont exactement les mêmes que l'exercice précédent ! Mis à part pour le dernier.<br>
-        D'ailleur une orange n'est pas verte, mais rien ne nous permet de différencier un fruit de couleur orange d'un vert dans notre arbre
+        D'ailleurs une orange n'est pas verte, mais rien ne nous permet de différencier un fruit de couleur orange d'un vert dans notre arbre
 ---

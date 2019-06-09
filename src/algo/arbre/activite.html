@@ -14,16 +14,15 @@ activityName: decision-tree
 
 goalDescription : >
     <p>
-        Ton but dans cette mission est de créer un arbre de décision qui classifiera correctement les données de prédictions (cachés).<br>
-        Autrement dit, j'ai des fleurs de classes connues que je vais introduire dans ton arbre de décision, je vais ensuite vérifier si la classe prédite par ton arbre (classe majoritaire de la feuille) est bien celle de la fleur.
+        Ton but dans cette mission est de créer un arbre de décision qui classifiera correctement les données de prédictions (cachées).<br>
+        Autrement dit, j'ai des fruits de classes connues que je vais introduire dans ton arbre de décision, je vais ensuite vérifier si la classe prédite par ton arbre (classe majoritaire de la feuille) est bien celle du fruit.
     </p>
     <p>
-        Pour améliorer ton score tu peux intéragir avec l'arbre de décision qui se trouve dans la partie de droite
-        de diverses façons.
+        Pour améliorer ton score, tu peux interagir de diverses façons avec l'arbre de décision qui se trouve dans la partie de droite.
     </p>
     <p>
-        Garde bien à l'esprit qu'il existe plusieurs arbre de décisions pour résoudre cette exercice. Ton but n'est <b>PAS</b> de faire un arbre dont chaque feuille est à 100% d'une fleur.<br>
-        Personellement j'ai réussis l'activité en créant 2 décisions (noeuds internes), réfléchis donc bien à tes différents choix de décisions.<br>
+        Garde bien à l'esprit qu'il existe plusieurs arbres de décision pour résoudre cet exercice. Ton but n'est <b>PAS</b> de faire un arbre dont chaque feuille est à 100% d'un fruit.<br>
+        Il est possible de réussir l'activité en créant 2 décisions (noeuds internes), réfléchis donc bien à tes différents choix de décisions.<br>
         N'oublie pas que le choix des axes est important.
     </p>
 
@@ -32,7 +31,7 @@ goalSteps :
     content: >
         <p>
             Dans l'état présent notre arbre de décision classifie très mal.<br>
-            Il classifie toutes les fleurs comme des <i>Iris-setosa</i>, du coup seulement 1/3 des fleurs testés sont correctes.
+            Il classifie tous les fruits comme des <i>bananes</i>, du coup seulement 1/3 des fruits testés sont corrects.
         </p>
         <div class="mt-2 col-md-12">
             <h6 style="float: left; margin-right: 1em;"> Prédiction courante : </h6>
@@ -41,15 +40,14 @@ goalSteps :
             </div>
         </div>
         <p>
-            Il faudra chercher un peu à tâtons pour créer ton arbre de décision.<br>
-            Ton but étant de séparer au mieux les 3 classes de fleurs différentes en choisissant bien tes axes, operations et paramètres.
+            Il faudra peut-être chercher à tâtons pour créer ton arbre de décision.<br>
+            Ton but étant de séparer au mieux les 3 classes de fruits en choisissant bien tes axes, opérations et paramètres.
         </p>
     help : >
         <p>
-            Il faut déjà bien fixer nos axes, les 2 qui séparent mieux les groupes sont les métriques de pétale (largeur et longueur).<br>
-            Après ça il faut trouver les valeurs qui "coupe" les groupes en 2.<br>
-            Par exemple dans les alentours de 3 en largeur pétale (avec l'opérateur <code>></code> par exemple) permet de mettre toutes les <i>setosa</i> d'un coté et les 2 autres classes de l'autre.<br>
-            Il nous reste maintenant à séparer ce nouveau groupe pour différencier une <i>versicolor</i> d'une <i>viriginica</i>.
+            Il faut trouver les valeurs qui "coupent" les groupes en 2.<br>
+            Par exemple dans les alentours de 3 en longueur (avec l'opérateur <code>></code> par exemple) permet de mettre toutes les <i>bananes</i> d'un coté et les 2 autres classes de l'autre.<br>
+            Il nous reste maintenant à séparer ce nouveau groupe pour différencier une <i>poire</i> d'un <i>melon</i>.
         </p>
     correction : >
         Un exemple d'arbre qui fonctionne à 100% est le suivant :<br>
@@ -61,7 +59,7 @@ goalSteps :
             <img src="/static/img/arbre/paraSol.JPG" class="img-fluid"><br>
         </div>
         <br>
-        Le graphique ressemblerai à :<br>
+        Le graphique ressemblerait à :<br>
         <div class="mx-auto" align="center">
             <img src="/static/img/arbre/plotCorr.jpg" class="img-fluid"><br>
         </div>
@@ -69,9 +67,9 @@ goalSteps :
 
 toolbarActivityName : decision-tree
 toolboxButtonDescription :
-    - Réinitialiser l'arbre à zéro en effacant tout les noeuds existant.
+    - Réinitialiser l'arbre à zéro en effaçant tous les noeuds existant.
     - Sauvegarder/télécharger ton projet sur ton ordinateur
-    - Ouvrir un projet précédemment sauvegardé.<br>L'arbre ainsi que tes pramètres d'axes seront rétablis
+    - Ouvrir un projet précédemment sauvegardé.<br>L'arbre ainsi que tes paramètres d'axes seront rétablis
     - Tester le classifieur sur l'arbre de décision courant.<br>Cela te permettra de réussir ton objectif !
     - Renvoie vers la page d'aide (celle-ci)
 
@@ -82,39 +80,39 @@ leftPartSections:
     picture: /static/img/arbre/graph.PNG
     description: >
         Te permet de consulter et visualiser les données du training set.
-        Chaque point du graphe correspond à une fleur du training set.
+        Chaque point du graphe correspond à une fleur/un fruit du training set.
         Sa forme et couleur définit sa classe comme légendé en dessous du graphe.<br>
         Tu peux survoler avec ta souris un point pour obtenir des informations le concernant.<br>
-        Les informations montrer peuvent varier en fonction des actions que tu effectus avec l'arbre interactif.<br>
+        Les informations montrées peuvent varier en fonction des actions que tu effectues avec l'arbre interactif.<br>
 -   title: Panneau paramètres
     picture: /static/img/arbre/axisParameters.PNG
     description: >
         Te permet de modifier le choix des axes <code>x</code> et <code>y</code> parmi les différentes métriques.
 
 rightPartName : Arbre interactif
-rightPartDesc : La partie de droite est l'emplacement ou tu pourra créer et modifier ton arbre de décision.
+rightPartDesc : La partie de droite est l'emplacement où tu pourras créer et modifier ton arbre de décision.
 rightPartContent : >
     <div class="text-center">
         <img src="/static/img/arbre/exempleInteractifSchema.png" class="img-fluid rounded">
         <img src="/static/img/arbre/arbreInreactifEx.png" class="img-fluid rounded">
         <small class="text-muted"><br>
-            Deux représentation du même arbre de décision.
+            Deux représentations du même arbre de décision.
             A gauche la version utilisée dans les exercices préparatoires.
             A droite celle utilisée dans l'outil interactif.
         </small>
     </div>
     <br>
-    L'ensemble des fonctionnalités disponibles se feront majoritairement à l'aide de cette interface. Ainsi tu sera capable de faire diverses actions tels qu'ajouter, modifier les noeuds de ton arbre,
+    L'ensemble des fonctionnalités disponibles se feront majoritairement à l'aide de cette interface. Ainsi tu seras capable de faire diverses actions telles qu'ajouter, modifier les noeuds de ton arbre,
     consulter l'arbre et modifier la visualisation du graphique.<br>
-    Le schéma représente l'arbre de décision correspondant au données d'un modèle d'entrainement d'Iris.<br>
+    Le schéma représente l'arbre de décision correspondant aux données d'un modèle d'entrainement de fleurs d'Iris.<br>
     <br>
-    Les cercles représente les <b>feuilles</b> de l'arbre de décision.
+    Les cercles représentent les <b>feuilles</b> de l'arbre de décision.
     La coloration symbolise le pourcentage de chaque classe du modèle, c'est comme un diagramme en camembert. Tu peux survoler de ta souris la feuille pour qu'une version textuelle t'indique la même information
     La couleur du contour détermine la classe majoritaire de cette feuille (texte mis en gras lors du survol de la souris)
     <br>
-    Les rectangles arrondis représente les <b>noeuds interne</b> de l'arbre de décision. Ce sont l'ensemble des décisions qui crééront dynamiquement les feuilles de notre arbre de décision.
-    Chaque décision est composé de 3 paramètres : un axe, l'opérateur et la valeur (par exemple <code>x = 12</code> ou <code>y > 42</code>).
-    Pour chaque donnée du modèle d'entrainement, si l'évaluation avec cet axe, opérateur et valeur est vrai, alors cette donnée sera dans la branche de droite, sinon elle sera dans cette de gauche.
+    Les rectangles arrondis représentent les <b>noeuds internes</b> de l'arbre de décision. Ce sont l'ensemble des décisions qui créeront dynamiquement les feuilles de notre arbre de décision.
+    Chaque décision est composée de 3 paramètres : un axe, l'opérateur et la valeur (par exemple <code>x = 12</code> ou <code>y > 42</code>).
+    Pour chaque donnée du modèle d'entrainement, si l'évaluation avec cet axe, opérateur et valeur est vrai, alors cette donnée sera dans la branche de droite (verte), sinon elle sera dans cette de gauche (rouge).
     <br>
     <img class="img-fluid mx-auto d-block" src="/static/img/arbre/arbreInteractifLegende.png">
 
@@ -126,42 +124,42 @@ actions:
             Elles sont indiquées par un cercle avec un "+" noir à l'intérieur.<br>
             Une fois cliquée, une boite de dialogue vous demandera de choisir une métrique (l'axe <code>x</code> ou l'axe <code>y</code>), un opérateur et la valeur avec laquelle comparer.
             Après confirmation la feuille deviendra un noeud interne et triera automatiquement les données du modèle d'entrainement selon l'axe, opérateur et valeur choisie.
-            Ainsi, deux branches seront créés, celle de gauche contenant l'ensemble des données du modèle d'entrainement répondant à l'évaluation, et celle de droite n'y répondant pas.
+            Ainsi, deux branches seront créés, la verte contenant l'ensemble des données du modèle d'entrainement répondant à l'évaluation, et la rouge n'y répondant pas.
         </p>
         <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animCreation.gif">
  -  title: Modifier un noeud interne
     content : >
         <p>
             Pour cela il te suffit de cliquer sur un noeud interne existant.
-            Une boite de dialogue identique à celle d'ajout de noeud apparaitra permettant de modifier les données
+            Une boite de dialogue identique à celle d'ajout de noeud apparaitra, permettant de modifier les données
         </p>
         <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animModification.gif">
  -  title: Supprimer un noeud interne / Transformer un noeud interne en feuille
     content : >
         <p>
             Pour cela il suffit de cliquer sur un noeud interne existant.
-            Dans la boite de dialogue apparaissant un bouton te permet de supprimer le noeud.<br>
-            La supression du noeud interne crééra automatiquement une feuille et détruira tout les enfants du noeud.
+            Dans la boite de dialogue apparaissant, un bouton te permet de supprimer le noeud.<br>
+            La suppression du noeud interne créera automatiquement une feuille et détruira tous les enfants du noeud.
         </p>
         <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animSupression.gif">
  -  title: Visualiser les données
     content : >
         <p>
-            Afin d'éviter de surcharger l'interface, les données n'apparaissent que lorsque tu survole de la souris des éléments spécifiques.
+            Afin d'éviter de surcharger l'interface, les données n'apparaissent que lorsque tu survoles de la souris des éléments spécifiques.
         </p>
         <p>
             Lors du survol d'une feuille, un texte apparait en dessous avec les proportions de chaque classe ainsi que la classe majoritaire indiquée en gras.<br>
             <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverLeaf.PNG">
-            Si la feuille ne contient aucune fleur, le texte <i>(vide)</i> sera indiqué.<br>
+            Si la feuille ne contient aucun fruit, le texte <i>(vide)</i> sera indiqué.<br>
             <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverLeafEmpty.PNG">
 
-            Tu remarquera que le graphique se met également à jour en focalisant en jaune les fleurs concernées.<br>
+            Tu remarqueras que le graphique se met également à jour en surlignant en jaune les fruits concernés.<br>
         </p>
 
         <p>
             Les noeuds internes modifient également le graphique lors du survol de la souris, indiquant les fleurs concernées par l'évaluation du noeud.<br>
             Toutes les fleurs qui sont sur fond rouge sont les fleurs qui ne répondent pas à l'évaluation, au contraire, celles sur fond vert sont celles qui y répondent.
-            Il y aura également une ligne qui sera déssinée qui délimite la frontière avec la valeur du noeud, le code couleur est le même que celui des zones.
+            Il y aura également une ligne qui sera dessinée qui délimite la frontière avec la valeur du noeud, le code couleur est le même que celui des zones.
         </p>
 
         <div>

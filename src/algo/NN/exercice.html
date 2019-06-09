@@ -1,30 +1,30 @@
 ---
 layout: exercices
-title: Exercices Réseau neuronnal
+title: Exercices Réseau neuronal
 introduction: NN/ex/intro.html
 
 conclusion:
-    - L'algorithme de réseau neuronal est plus complexe à utiliser. Mais il nous permet aussi de pouvoir classifier des choses beaucoup plus complexe !
-    - Un réseau de neurone est composé de 2 choses, des <b>neurones</b> et des <b>poids</b>.
-    - Les neurones et les poids ont une certaine valeur, celle des poids est supposée connue et constante, celle des neurones dépendront de l'entrée donnée et se mettront à jour en fonction des valeurs des neurones et poids de la couche précédente avec un produit matriciel.
-    - Un neurone appartient à une et unique couche et est connecté par un poids à l'ensemble des neurones de la couche suivante.
-    - "Il existe 3 catégories de couches :<br>La première est appelée <b>couche d'entrée</b>, c'est ici que l'entrée sera géré.<br>Les couches suivantes sont appelés <b>couche cachée</b>, se sont des couches intermédiaire qui serviront pour calculer la valeur de la couche finale.<br>La dernière couche est appelée <b>couche de sortie</b>, la valeur de ses neurones déterminera la classification de l'algortihme."
-    - La façon dont doivent être interprété l'entré pour choisir les valeurs des neurones de la couche d'entrée et la façon d'interpréter les neurones de sorties, dépendent directement du réseau lui-même et plus particulièrement de la façon dont les poids ont étaient entraînés pour.
-    - On doit prendre la valeur <b>maximum</b> des valeurs des neurones de sortie pour trouver le résultat de la classification.
-    - Afin d'avoir des probabilité (nombre compris entre 0 et 1) comme valeur de neurones finales, on doit utiliser une fonction d'activation afin de transformer la valeur.
+    - L'algorithme de réseau neuronal est plus complexe à utiliser. Mais il nous permet aussi de pouvoir classifier des choses beaucoup plus complexes !
+    - Un réseau de neurones est composé de 2 choses, des <b>neurones</b> et des <b>poids</b>.
+    - Les neurones et les poids ont chacun une certaine valeur, celle des poids est supposée connue et constante, celle des neurones dépendra de l'entrée donnée et se mettra à jour en fonction des valeurs des neurones et poids de la couche précédente avec un produit matriciel.
+    - Un neurone appartient à une seule et unique couche et est connecté par un poids à l'ensemble des neurones de la couche suivante.
+    - "Il existe 3 catégories de couches :<br>La première est appelée <b>couche d'entrée</b>, c'est ici que l'entrée sera gérée.<br>Les couches suivantes sont appelées <b>couches cachées</b>, se sont des couches intermédiaires qui serviront pour calculer la valeur de la couche finale.<br>La dernière couche est appelée <b>couche de sortie</b>, la valeur de ses neurones déterminera la classification de l'algortihme."
+    - La façon dont doit être interprétée l'entrée, pour choisir les valeurs des neurones de la couche d'entrée, et la façon d'interpréter les neurones de sortie, dépendent directement du réseau lui-même et plus particulièrement de la façon dont les poids ont été entraînés.
+    - On doit prendre le <b>maximum</b> des valeurs des neurones de sortie pour trouver le résultat de la classification.
+    - Afin d'avoir des probabilités (nombre compris entre 0 et 1) comme valeurs finales de neurones, on doit utiliser une fonction d'activation afin de transformer la valeur.
 
 moreInfo:
     - >
-        En pratique trouver les valeurs des poids et la plus grande difficulté d'un réseau de neurone.
+        En pratique trouver les valeurs des poids est la plus grande difficulté d'un réseau de neurones.
         C'est ce qu'on appelle "entrainer" le réseau, il existe des algorithmes dédiés pour ça par "apprentissage automatique".
     - >
-        Il n'y a pas seulement les poids qui intervienne dans le calcul des valeurs des neurones.
-        En pratique chaque neurone a aussi un "biai" (<i>bias</i> en anglais) qui doit être additionné en plus de la valeur du produit matriciel.
+        Il n'y a pas seulement les poids qui interviennent dans le calcul des valeurs des neurones.
+        En pratique, chaque neurone a aussi un "biais" (<i>bias</i> en anglais) qui doit être additionné en plus de la valeur du produit matriciel.
     - >
-        Si j'avais voulu être rigoureux dans l'exemple de cette exercice j'aurai du mettre qu'un seul neurone de sortie et non deux.
-        Une valeur positif dans le neurone de sortie aurait signifier une ligne verticale, et une valeur négative une ligne horizontale.<br>
-        D'ailleur à cause du fait d'avoir représenté 2 décisions opposées les vecteur de poids de la matrice des poids de la dernière couche sont opposé,
-        du coup les valeurs des neurones de la couche de sortie sont toujours l'opposé l'un de l'autre.
+        Pour être plus rigoureux dans l'exemple de cet exercice j'aurais pu mettre un seul neurone de sortie et non deux.
+        Une valeur positive dans le neurone de sortie aurait signifié une ligne verticale, et une valeur négative une ligne horizontale.<br>
+        D'ailleurs, à cause du fait d'avoir représenté 2 décisions opposées, les vecteurs de poids de la matrice des poids de la dernière couche sont opposés,
+        ainsi les valeurs des neurones de la couche de sortie sont toujours l'opposé l'un de l'autre.
 
 
 exercices:
@@ -32,10 +32,10 @@ exercices:
     difficulty : 1
     introduction: >
         <p>
-            En entrée nous avons une image de 3x3 pixels, notre but va être d'utiliser cette image pour donner les valeurs de nos 9 neuronnes de la couche d'entrée.<br>
+            En entrée nous avons une image de 3x3 pixels, notre but va être d'utiliser cette image pour donner les valeurs de nos 9 neurones de la couche d'entrée.<br>
             L'image est en noir et blanc, la valeur du neurone associé vaudra <code>1</code> si le pixel correspondant est noir et <code>0</code> s'il est blanc.<br>
-            Tu peux regarder le <a href="#NNSchema">schéma du réseau</a> si tu as un doute sur le lien entre les coordonnées des pixels et son neuronne associé.
-            Par exemple le pixel en x = 2 et y = 0 correspond au neuronne n°3 de la couche d'entrée.
+            Tu peux regarder le <a href="#NNSchema">schéma du réseau</a> si tu as un doute sur le lien entre les coordonnées des pixels et son neurone associé.
+            Par exemple le pixel en x = 2 et y = 0 correspond au neurone n°3 de la couche d'entrée.
         </p>
     question: >
         <p>
@@ -44,47 +44,47 @@ exercices:
         </p>
     answer:
         -   kind : number
-            label : Neuronne n°1
+            label : Neurone n°1
             min : 0
             max : 1
             correct : 0
         -   kind : number
-            label : Neuronne n°2
+            label : Neurone n°2
             min : 0
             max : 1
             correct : 1
         -   kind : number
-            label : Neuronne n°3
+            label : Neurone n°3
             min : 0
             max : 1
             correct : 1
         -   kind : number
-            label : Neuronne n°4
+            label : Neurone n°4
             min : 0
             max : 1
             correct : 1
         -   kind : number
-            label : Neuronne n°5
+            label : Neurone n°5
             min : 0
             max : 1
             correct : 0
         -   kind : number
-            label : Neuronne n°6
+            label : Neurone n°6
             min : 0
             max : 1
             correct : 0
         -   kind : number
-            label : Neuronne n°7
+            label : Neurone n°7
             min : 0
             max : 1
             correct : 0
         -   kind : number
-            label : Neuronne n°8
+            label : Neurone n°8
             min : 0
             max : 1
             correct : 0
         -   kind : number
-            label : Neuronne n°9
+            label : Neurone n°9
             min : 0
             max : 1
             correct : 1
@@ -95,13 +95,13 @@ exercices:
         Le pixel 2 est noir, donc la valeur du neurone d'entrée n°2 est 1 ...
     correction: >
         La grille de l'aide permet de comprendre facilement.
-        On peut aussi utilise l'astuce de lire dans le sens de lecture en sautant les lignes.
+        On peut aussi utiliser l'astuce de lire dans le sens de lecture en passant d'une ligne à l'autre.
         La réponse est : (0, 1, 1, 1, 0, 0, 0, 0, 1).
 -   title: Produit matriciel
     difficulty : 2
     introduction: >
         <p>
-            Pour faire le calcul de la valeur d'un neuronne, cela demandera que tu sache faire un produit matriciel.<br>
+            Pour faire le calcul de la valeur d'un neurone, cela demandera que tu saches faire un produit matriciel.<br>
             Si tu ne sais pas ce que c'est, va d'abord faire les exercices de <a target="_blank" href="produitMatriciel"> cette page </a>.
         </p>
         <div class="container pinnable">
@@ -152,7 +152,7 @@ exercices:
         </script>
     question: >
         <p>
-            Calcul le produit matriciel <code>AB</code> avec
+            Calcule le produit matriciel <code>AB</code> avec
             <code>A=</code>$\begin{pmatrix}0 & 1 & 0 & 1 & 1\end{pmatrix}$
             <code>B=</code>$\begin{pmatrix}1 & -1 & 51 \\ 2 & 2 & 2 \\ 3 & 4 & -42 \\ 4 & 5 & 4 \\ 5 & 3 & 5  \end{pmatrix}$
         </p>
@@ -170,29 +170,29 @@ exercices:
         )
     help : >
         Si tu as oublié le calcul, jette un oeil à la <a target="_blank" href="produitMatriciele"> page dédiée</a>.<br>
-        Les détail de calcul pour la première valeur est par exemple :
+        Par exemple, pour la première valeur, les détails de calcul :
         0 * 1 + 1 * 2 + 0 * 3 + 1 * 4 + 1 * 5 = 11
     correction: >
         Le résultat est $\begin{pmatrix}11 & 10 & 11\end{pmatrix}$. Détail des calculs :<br>
         (0 * 1 + 1 * 2 + 0 * 3 + 1 * 4 + 1 * 5,<br>
         0 * (-1) + 1 * 2 + 0 * 4 + 1 * 5 + 1 * 3,<br>
         0 * 51 + 1 * 2 + 0 * (-42) + 1 * 4 + 1 * 5) = (11, 10, 11)<br>
-        Attention que le calcul de produit matriciel est super important pour la suite des exercices.
-        Soit sûr d'avoir bien compris la démarche ;)
+        Attention : le calcul de produit matriciel est super important pour la suite des exercices.
+        Sois sûr d'avoir bien compris la démarche ;)
 
 -   title: Calcul de la valeur d'un neurone d'une couche autre que la première
     difficulty : 2
     introduction: >
         <p>
             Le calcul de la valeur d'un neurone de la couche en dehors de la première est plus délicat.<br>
-            Pour cela tu vas devoir appliquer un produit matriciel entre la valeur de tout les neuronnes de la couche précédente avec la valeur des poids associé au neurone que tu souhaite calculer.
+            Pour cela tu vas devoir appliquer un produit matriciel entre la valeur de tous les neurones de la couche précédente avec la valeur des poids associés aux neurones que tu souhaites calculer.
         </p>
         <p>
             On va commencer doucement en calculant la valeur du premier neurone de la seconde couche.
             Pour cela je te donne les 2 matrices dont tu as besoin :
         </p>
         <ul>
-            <li>Matrice des valeurs des neuronnes de la couche précédente $\begin{pmatrix}0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \end{pmatrix}$ <small class="text-muted">ça correspond à l'image d'une ligne horizontale</small></li>
+            <li>Matrice des valeurs des neurones de la couche précédente $\begin{pmatrix}0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \end{pmatrix}$ <small class="text-muted">ça correspond à l'image d'une ligne horizontale</small></li>
             <li>Matrice des poids associé au premier neurone de la couche 2 $\begin{pmatrix}6 \\ -4 \\ 6 \\ 8 \\ -5 \\ 8 \\ 6 \\ -4 \\ 7 \end{pmatrix}$</li>
         </ul>
     question: >
@@ -209,7 +209,7 @@ exercices:
 -   introduction: >
         <p>
             Il ne nous reste plus qu'à faire de même pour les deux autres neurones de la même couche.
-            Je t'ai precemment donné le vecteur des poids uniquement pour la premier neuronne, je te donne maintenant la matrice entière pour cette couche.
+            Je t'ai précédemment donné le vecteur des poids uniquement pour le premier neurone, je te donne maintenant la matrice entière pour cette couche.
             \[
             \begin{pmatrix}6 & 6 & 0 \\ -4 & 8 & -1 \\ 6 & 7 & 9 \\ 8 & -4 & -3 \\ -5 & -5 & -1 \\ 8 & -4 & 7 \\ 6 & 4 & 1 \\ -4 & 9 & -1 \\ 7 & 7 & 8 \end{pmatrix}
             \]
@@ -220,7 +220,7 @@ exercices:
     difficulty : 2
     question: >
         <p>
-            En gardant la matrice des valeurs de la couche précédente de l'exercice précédent $\begin{pmatrix}0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \end{pmatrix}$ et la matrice de la couche 2,  calcul la valeur des 2 neurone restant de la couche 2.
+            En gardant la matrice des valeurs de la couche précédente de l'exercice précédent $\begin{pmatrix}0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \end{pmatrix}$ et la matrice de la couche 2,  calcule la valeur des 2 neurones restant de la couche 2.
         </p>
     answer: >
         <div class="input-group">
@@ -248,12 +248,12 @@ exercices:
             \[
             \begin{pmatrix}-5 & 5 \\ 7 & -7 \\ -4 & 4 \end{pmatrix}
             \]
-            Encore un dernier effort ! Plus que 2 produits matriciels à calculer et on pourra enfin tirer des conclusions interessantes de tout ces calculs.
+            Encore un dernier effort ! Plus que 2 produits matriciels à calculer et on pourra enfin tirer des conclusions intéressantes de tous ces calculs.
         </p>
     difficulty : 2
     question: >
         <p>
-            Calcul les valeurs des 2 neurones de la couche de sortie en utilisant la matrice de poids de la couche 3 et les valeurs des neurones de la couche précédents (donc celles que tu as calculé juste avant).
+            Calcule les valeurs des 2 neurones de la couche de sortie en utilisant la matrice de poids de la couche 3 et les valeurs des neurones de la couche précédente (donc celles que tu as calculées juste avant).
         </p>
     help : >
         Si tu n'as pas réussi l'exercice précédent, je te donne les valeurs des 3 neurones : 11, -13 et 3.<br>
@@ -275,26 +275,26 @@ exercices:
         </div>
     correction: >
         Le premier : (11, -13, 3) * (-5, 7, -4) = 11*(-5) + (-13)*7 + 3*(-4) = -55 - 91 - 12 = -158<br>
-        Le second : le résultat est l'opposé de celui au dessus vu que le sedonc vecteur est l'opposé du premier = 158
+        Le second : le résultat est l'opposé de celui au dessus vu que le second vecteur est l'opposé du premier = 158
 
 -   title: Tirer des conclusions de nos résultats
     difficulty : 1
     introduction: >
         <p>
             Une fois les valeurs des neurones de la dernière couche connues, on peut en tirer des conclusions.<br>
-            Dans notre cas, les poids que je t'es donné ont été choisi de manière à pouvoir différencier une ligne verticale d'une ligne horizontale.<br>
+            Dans notre cas, les poids que je t'ai donnés ont été choisis de manière à pouvoir différencier une ligne verticale d'une ligne horizontale.<br>
             J'ai également choisi que le premier neurone de la couche de sortie représente une ligne verticale, et l'autre la ligne horizontale.
-            Ainsi, plus la valeur du premier neurone de la couche de sortie est grande, plus le réseau pense que c'est une ligne verticale et inversément pour l'autre neurone.
-            Autrement dit, il te suffit de prendre le maximum des deux pour obtenir la conclusion obtenu par le réseau.
+            Ainsi, plus la valeur du premier neurone de la couche de sortie est grande, plus le réseau pense que c'est une ligne verticale et inversement pour l'autre neurone.
+            Autrement dit, il te suffit de prendre le maximum des deux pour obtenir la conclusion du réseau.
         </p>
         <p>
-            Etant donné que l'exercice précédent était un peu épuisant, je vais te donner les images ainsi que les valeurs des neurones de sorties pour l'image (donc tu n'aura pas à les calculer).
+            Etant donné que l'exercice précédent était un peu épuisant, je vais te donner les images ainsi que les valeurs des neurones de sorties pour l'image (donc tu n'auras pas à les calculer).
             Tu devras pour chaque image et valeur des neurones de sorties, tirer la conclusion que le réseau donnerait (ligne horizontale ou ligne verticale ?).
         </p>
     question: >
         <div style="text-align: center">
             <img src="/static/img/NN/ex/GrilleEx2.PNG">
-            Valeur des neuronnes de sorties : (56, -56)
+            Valeur des neurones de sorties : (56, -56)
         </div>
     answer:
         -   kind : selection
@@ -303,13 +303,13 @@ exercices:
                 - Ligne horizontale
             correct : Ligne verticale
     help : >
-        C'est très facile ! Tu regarde les 2 valeurs des neurones de sortie. Si la première est plus grande que la seconde alors le réseau pense que c'est une ligne verticale, si non, alors le réseau pense que c'est une ligne horizontale.
+        C'est très facile ! Tu regardes les 2 valeurs des neurones de sortie. Si la première est plus grande que la seconde alors le réseau pense que c'est une ligne verticale, sinon, alors le réseau pense que c'est une ligne horizontale.
     correction: >
-        Le réseau pense que c'est une ligne verticale, en effet 56 > -56 et le premier neuronne correspond à celui à conclure que c'est une ligne verticale.
+        Le réseau pense que c'est une ligne verticale, en effet 56 > -56 et le premier neurone correspond à celui qui conclut que c'est une ligne verticale.
 -   question: >
         <div style="text-align: center">
             <img src="/static/img/NN/ex/GrilleEx3.PNG">
-            Valeur des neuronnes de sorties : (-176, 176)
+            Valeur des neurones de sorties : (-176, 176)
         </div>
     difficulty : 1
     answer:
@@ -319,11 +319,11 @@ exercices:
                 - Ligne horizontale
             correct : Ligne horizontale
     correction: >
-        Le réseau pense que c'est une ligne horizontale, en effet -176 > 176 et le second neuronne correspond à celui à conclure que c'est une ligne horizontale.
+        Le réseau pense que c'est une ligne horizontale, en effet -176 > 176 et le second neurone correspond à celui à conclure que c'est une ligne horizontale.
 -   question: >
         <div style="text-align: center">
             <img src="/static/img/NN/ex/GrilleEx4.PNG">
-            Valeur des neuronnes de sorties : (-131, 131)
+            Valeur des neurones de sorties : (-131, 131)
         </div>
     difficulty : 1
     answer:
@@ -333,20 +333,20 @@ exercices:
                 - Ligne horizontale
             correct : Ligne horizontale
     correction: >
-        Le réseau pense que c'est une ligne horizontale, en effet -131 > 131 et le second neuronne correspond à celui à conclure que c'est une ligne horizontale.<br>
+        Le réseau pense que c'est une ligne horizontale, en effet -131 > 131 et le second neurone correspond à celui qui conclut que c'est une ligne horizontale.<br>
         Ca peut paraitre bizarre, mais oui, le réseau détecte cette image comme une ligne horizontale et non une verticale !<br>
-        La raison est que je ne l'ai pas entrainé à reconnaitre ce types de lignes verticales, du coup les poids ne sont pas paramétré pour cela.
+        La raison est que je ne l'ai pas entrainé à reconnaitre ce type de ligne verticale, du coup les poids ne sont pas paramétrés pour cela.
 
 -   title: Transformer nos données avec une fonction d'activation
     difficulty : 2
     introduction: >
         <p>
-            Jusqu'à présent, les valeurs des neurones sont assez arbitraires, leurs valeurs dans l'aboslues ne signifie rien de particulier et elles n'ont pas de significations particulière.
-            Par exemple : est ce qu'une valeur de 56 est grande ? Ca dépend, si les autres valeurs sont 3 et 5 alors oui, mais si elles sont de 1996 et 2019 alors non.<br>
+            Jusqu'à présent, les valeurs des neurones sont assez arbitraires, leurs valeurs dans l'aboslue ne signifient rien de particulier et elles n'ont pas de signification particulière.
+            Par exemple : est-ce qu'une valeur de 56 est grande ? ça dépend, si les autres valeurs sont 3 et 5 alors oui, mais si elles sont de 1996 et 2019 alors non.<br>
             Pour cela on va utiliser une <b>fonction d'activation</b>, l'idée étant de restreindre les données sur un certain domaine (par exemple entre 0 et 1).
         </p>
         <p>
-            Il existe diverses fonctions d'activation que l'on peut utiliser, la plus utilisé est la <i>sigmoide</i>.<br>
+            Il existe diverses fonctions d'activation que l'on peut utiliser, la plus utilisée est la <i>sigmoide</i>.<br>
             Son équation est la suivante : <span style="font-size: 180%">$f(x) = \frac{1}{1+e^{-x}}$</span><br>
             Son graphique est le suivant : <br>
             <img class="img-fluid mx-auto d-block" src="https://cdn-images-1.medium.com/max/1600/0*5euYS7InCmDP08ir."><br>
@@ -358,8 +358,8 @@ exercices:
 
         <p>
             Cette fonction comporte de nombreux avantages, mais ici ce qui va nous intéresser c'est qu'elle permet de transformer nos valeurs pour les mettre entre 0 et 1.<br>
-            En l'appliquant successivement sur tout les neurones calculés tu verras qu'à la fin on n'aura les probabilités pour chaque conclusion au lieu d'avoir une valeur arbitraire.<br>
-            Par exemple en l'appliquant sur l'exemple de l'exercice précédent qui avait comme valeur de neurones de sorties (56, -56), on obtient maintenant (92%, 8%) qui signifie que le réseau pense à 92% que c'est une ligne verticale.
+            En l'appliquant successivement sur tous les neurones calculés tu verras qu'à la fin on aura les probabilités liées à chaque conclusion au lieu d'avoir une valeur arbitraire.<br>
+            Par exemple en l'appliquant sur l'exemple de l'exercice précédent, qui avait comme valeur de neurones de sorties (56, -56), on obtient maintenant (92%, 8%) qui signifie que le réseau pense à 92% que c'est une ligne verticale.
         </p>
     question: >
         <p>
@@ -416,19 +416,19 @@ exercices:
         Les valeurs sont : 0.00012556, 0.99987444
 -   question: >
         <p>
-            Quelle est le pourcentage de conclusion du réseau (arrondi 2 chiffres après la virgule), que la ligne est horizontale ?
+            Quelle est le pourcentage de conclusion du réseau (arrondi 3 chiffres après la virgule), que la ligne est horizontale ?
         </p>
     difficulty : 2
     answer: >
         <div class="input-group">
-            <input type="number" value="0" step="0.01" class="form-control" data-answer="99.98">
+            <input type="number" value="0" step="0.01" class="form-control" data-answer="99.987">
             <div class="input-group-append">
                 <span class="input-group-text">%</span>
             </div>
         </div>
     correction: >
         La valeur du neurone de sortie après application de la sigmoide de la conclusion que la ligne est horizontale est de 0.99987444.<br>
-        Ce qui est équivalent à 99.98%
+        Ce qui est équivalent à 99.987%
 
 
 ---

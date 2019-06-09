@@ -62,11 +62,11 @@
             <h1>Objectif</h1>
             <p>
                 L'objectif de cette mission est d'obtenir un score de 100% pour cette activité.
-                Une fois ce score atteint, le secret de cette activité te seras révélé.
+                Une fois ce score atteint, le secret de cette activité te sera révélé.
             </p>
             <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%; height: 32px">100.00%</div>
             <p>
-                Le score est mis à jour à chaque fois que tu presse le bouton d'exécution <button type="button" class="btn btn-primary"><i class="fas fa-play"></i></button>.
+                Le score est mis à jour à chaque fois que tu presses le bouton d'exécution <button type="button" class="btn btn-primary"><i class="fas fa-play"></i></button>.
             </p>
 
             {% if page.goalDescription %}
@@ -246,7 +246,7 @@
 <script src="/static/js/animationSuccess.js"></script>
 <script>
     function giveCorrection(elem) {
-        if (confirm("Souhaite tu vraiment afficher la correction ? ")) {
+        if (confirm("Souhaites-tu vraiment afficher la correction ? ")) {
             let correctionNode = elem.nextElementSibling;
             if (correctionNode.className.includes("onlyTeacher")) {
                 correctionNode.style.display = "block";

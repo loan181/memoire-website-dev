@@ -5,14 +5,14 @@ practicalCase:
  -  title: Aide à la décision
     description: >
         Répondre de manière univoque et logique pour une même entrée permet de gagner du temps en étant automatisé.
-    example: Support téléphonique, Chat-Bot, ...
+    example: Support téléphonique, Chat-Bot...
  -  title: Le domaine économique
     description: >
-        Là ou il y a de l'argent, des grandes décisions doivent être prise. Certaines d'entres elles repose sur la logique d'un arbre de décision
+        Là où il y a de l'argent, des grandes décisions doivent être prises. Certaines d'entres elles reposent sur la logique d'un arbre de décision.
     example: Prévoir les résultats futurs de la bourse, approbation de prêt bancaire...
- -  title: La vie en générale...
+ -  title: La vie en général...
     description: >
-        Tu appliques le principe d'arbre de décisions sans même t'en rendre compte dès que tu te pose une question ou tu dois faire un choix !
+        Tu appliques le principe d'arbre de décision sans même t'en rendre compte dès que tu te poses une question où tu dois faire un choix !
     example: Comment s'habiller, quoi mettre dans mon sac, comment me rendre là où je veux aller, quoi manger...
 ---
 <p>
@@ -31,39 +31,39 @@ practicalCase:
     <li>La branche de gauche représentera toujours la réponse « oui » et celle de droite la réponse « non »</li>
     <li>Les questions sont formulées dans des cadres rectangulaires</li>
     <li>Les feuilles de l'arbre sont dans des cadres ovales</li>
-    <li>Indiquer entre parenthèse les % pour toutes les feuilles</li>
+    <li>Indiquer entre parenthèses les % pour toutes les feuilles</li>
 </ul>
 
 <h2>Exemple</h2>
 
 <p>
-    Prenons ce tableau avec ses quelques caractéristiques pour 4 fruits distincts :
+    Prenons ce tableau avec ces quelques caractéristiques pour 4 fruits distincts :
 </p>
 {% include arbre/ex/fruitTable.html %}
 
 <p>
-    Découvrons ensemble comment construire un arbre de décition à partir d'un <a href="#tableExample"> ensemble de données</a>.
+    Découvrons ensemble comment construire un arbre de décision à partir d'un <a href="#tableExample"> ensemble de données</a>.
 </p>
 <p>
-    Au début on a une seule feuille composée de tout les éléments de notre ensemble de données.<br>
+    Au début on a une seule feuille composée de tous les éléments de notre ensemble de données.<br>
     Dans notre cas on aurait la banane, la pomme, l'orange et le citron.
     Chacun représente 1/4 (soit 25%) du total.
 </p>
 <img src="/static/img/arbre/arbreExempleS1.png" class="img-fluid mx-auto d-block">
 <p>
     On va maintenant poser une question, le choix de la question est arbitraire.
-    Cepandant il reste important, si la questions n'est pas pertinente, l'arbre final nous donnera des résultats moins intéressant.<br>
+    Cependant il reste important, si la question n'est pas pertinente, l'arbre final nous donnera des résultats moins intéressant.<br>
     Par exemple ici je vais me demander si <i>le fruit est rond</i>.<br>
-    Dans mon cas uniquement la banane n'est pas ronde, elle se retrouvera donc dans la branche "non", les autres fruits sont tous ronds.
+    Dans mon cas, seule la banane n'est pas ronde, elle se retrouvera donc dans la branche "non", les autres fruits sont tous ronds.
     Comme la banane est seule dans sa feuille, son pourcentage est de 100%. Les autres sont à 1/3 (soit 33.33 %).
 </p>
 <img src="/static/img/arbre/arbreExempleS2.png" class="img-fluid mx-auto d-block">
 <p>
     On peut encore approfondir un peu l'arbre en posant une nouvelle question.<br>
     Il n'est pas utile de poser des questions dans la partie droite de l'arbre vu que la banane est déjà à 100%.
-    Cepandant on peut être un peu plus précis dans la partie de gauche.<br>
+    Cependant on peut être un peu plus précis dans la partie de gauche.<br>
     On va poser une nouvelle question dans cette partie, <i>est-ce que le fruit est rouge ?</i><br>
-    Seulement la pomme est rouge, elle se retrouvera dont toute seule dans la branche de gauche, le citron et l'orange se retrouveront dans l'autre branche.
+    Seule la pomme est rouge, elle se retrouvera dont toute seule dans la branche de gauche, le citron et l'orange se retrouveront dans l'autre branche.
 </p>
 <img src="/static/img/arbre/arbreExemple.PNG" class="img-fluid mx-auto d-block">
 <p>

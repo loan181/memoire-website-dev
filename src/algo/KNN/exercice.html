@@ -10,18 +10,18 @@ introduction: KNN/ex/intro.html
 
 conclusion:
     - L'algorithme des K plus proches voisins repose sur un principe assez simple.
-    - On se base sur des données connues (modèle d'entrainement) pour déduire la catégorie (classe) d'un nouvel élément en y trouvant celle qui est la plus présente parmi les données avec les valeurs les plus proches.
+    - On se base sur des données connues (modèle d'entrainement) pour déduire la catégorie (classe) d'un nouvel élément en trouvant, parmi les données avec les valeurs les plus proches, celle qui est la plus représentée.
     - On peut choisir le nombre de données les plus proches (K). Généralement on choisit 3.
-    - Chaque classe a un compteur qui lui est associé. Il commence à 0 et augmente de 1 chaque fois qu'un voisin de sa classe est rencontré. <br>Après avoir fait cette opération K fois, la classe associé au compteur de classe maximal est celle prédite par le classifieur.
-    - Le choix des mesures (métriques) pour lesquels on décide si l'élément est proche est important. On essaiera de choisir au mieux celles qui permettent de différencier les classes (critère discriminant).
+    - Chaque classe a un compteur associé. Il commence à 0 et augmente de 1 chaque fois qu'un voisin de sa classe est rencontré. <br>Après avoir fait cette opération K fois, la classe associée au compteur de classe maximal est celle prédite par le classifieur.
+    - Le choix des mesures (métriques), pour lesquelles on compare si l'élément est proche, est important. On essaiera de choisir au mieux celles qui permettent de différencier les classes (critère discriminant).
     - Les résultats ne sont pas toujours fiables ! Il ne faut pas croire à 100% ce que nous dit le classifieur, même s'il est bien fait.
-    - Un classifieur ne reconnait que ce pour quoi il a été entrainé. Ici si on lui donne une autre fleur, une marguerite par exemple, il va nous déduire l'iris qui s'en rapproche le plus.
+    - Un classifieur ne reconnait que ce pour quoi il a été entrainé. Ici, si on lui donne une autre fleur, une marguerite par exemple, il va nous déduire l'iris qui s'en rapproche le plus.
 
 moreInfo:
     - On n'est pas obligé de se limiter à 2 métriques. En pratique on peut en prendre autant qu'on veut ! Avec plus de 2 métriques il n'est plus possible de le représenter sur un graphique à 2 dimensions et il faudra adapter ta façon de calculer la distance pour prendre en compte toutes les métriques.
     - >
-        Il existe différente façon de calculer la distance entre les données. Ici on n'utilise la plus classique et intuitive, la <a target="_blank" href="https://fr.wikipedia.org/wiki/Espace_euclidien"> distance euclidienne </a>.<br>
-        Mais il en existe d'autres qui peuvent être utile dans certains contextes comme la <a target="_blank" href="https://fr.wikipedia.org/wiki/Distance_de_Manhattan">distance de Manhattan</a>, la distance de Minkowski ou la <a target="_blank" href="https://fr.wikipedia.org/wiki/Distance_de_Tchebychev">distance de Tchebychev</a>.
+        Il existe différentes façons de calculer la distance entre les données. Ici on n'utilise la plus classique et intuitive, la <a target="_blank" href="https://fr.wikipedia.org/wiki/Espace_euclidien"> distance euclidienne </a>.<br>
+        Mais il en existe d'autres qui peuvent être utiles dans certains contextes comme la <a target="_blank" href="https://fr.wikipedia.org/wiki/Distance_de_Manhattan">distance de Manhattan</a>, la distance de Minkowski ou la <a target="_blank" href="https://fr.wikipedia.org/wiki/Distance_de_Tchebychev">distance de Tchebychev</a>.
 
 
 exercices:
@@ -64,7 +64,7 @@ exercices:
                     );
                 </script>
     help: >
-        Ton but est de choisir 2 axes de manière que cela forme des petits groupes distinct (pas tout mélanger) les plus éloignés possibles.
+        Ton but est de choisir 2 axes de manière que cela forme des petits groupes distincts (et non tout mélangés) les plus éloignés possibles.
     correction: >
         Les 2 meilleurs critères à choisir ici sont les 2 derniers (longueur pétale et largeur pétale).<br>
         Les mesures en utilisant les sépales peuvent trop facilement permettre de confondre les 3 fleurs.<br>
@@ -107,13 +107,13 @@ exercices:
                 - Iris viriginica
             correct : Iris viriginica
     help: >
-        Pour cette exercice il faut regarder les valeurs et les comparer à celle du <a href="#table1">Tableau 1</a>,
-        par exemple ici on à une longueur de sépale de 5.1, si on regarde le <a href="#table1">Tableau 1</a> ça ne nous donne pas beaucoup d'information car les 3 variété de fleur ont des valeurs très proches.<br>
+        Pour cet exercice il faut regarder les valeurs et les comparer à celles du <a href="#table1">Tableau 1</a>,
+        par exemple ici on à une longueur de sépale de 5.1, si on regarde le <a href="#table1">Tableau 1</a> ça ne nous donne pas beaucoup d'information car les 3 variétés de fleur ont des valeurs très proches.<br>
         Par contre si on regarde la longueur de pétale, 4.7, la valeur est très proche d'une seule variété de fleur dans le tableau.
     correction: >
-        C'est (probalement) un <i>Iris virginica</i>.<br>
+        C'est (probablement) un <i>Iris virginica</i>.<br>
         La longueur et la largeur du sépale ne nous permettent pas de donner des informations fiables sur la fleur.<br>
-        Cependant la longueur et la largeur du pétale sont très proches des <i>Iris virginica</i>déjà présents.
+        Par contre, la longueur et la largeur du pétale sont très proches des <i>Iris virginica</i> déjà présents.
 
 -   title: Vérification graphique
     difficulty : 2
@@ -141,7 +141,7 @@ exercices:
     difficulty : 1
     introduction: >
         <p>
-            Sur le graphique suivant, <b>visualise</b> un marqueur au coordonnée <b>(4.8, 2.7)</b>
+            Sur le graphique suivant, <b>visualise</b> un marqueur aux coordonnées <b>(4.8, 2.7)</b>
         </p>
         <img src="/static/img/KNN/exKNNGraphique2.jpg" class="img-fluid pinnable">
     question : >
@@ -204,9 +204,9 @@ exercices:
             -   égale
     correction: >
         Pas de majorité car on a une égalité (1 Triangle Rouge et 1 Carré Vert)
--   introduction : Supposons maintenant que les Triangles Rouge représentent des <i>Iris versicolor</i> et les Carré Vert des <i>Iris virginica</i>.
+-   introduction : Supposons maintenant que les Triangles Rouges représentent des <i>Iris versicolor</i> et les Carrés Verts des <i>Iris virginica</i>.
     question : >
-        Quel serait la classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
+        Quelle serait la classe de la fleur qu’on vient d’ajouter ? Pourquoi ?
     difficulty : 1
     answer:
         -   kind : text
@@ -217,10 +217,10 @@ exercices:
             -   virginica
             -   nombre
     correction: >
-        Si on se fie uniquement à la fleur la plus proche on peut penser que c’est une <i>virginica</i>. Mais si l’on regarde les fleurs plus éloigné, il est plus probable que ça soit une <i>Iris versicolor</i>.<br>
-        Cette exercice <b>n’a pas de réponse absolue</b>, l’important c’est que tu comprennes la notion de majorité et que selon les paramètres qu’on pose (ici le nombre de voisins) la réponse peut changer.
+        Si on se fie uniquement à la fleur la plus proche on peut penser que c’est une <i>virginica</i>. Mais si l’on regarde les fleurs plus éloignées, il est plus probable que ça soit une <i>Iris versicolor</i>.<br>
+        Cet exercice <b>n’a pas de réponse absolue</b>, l’important c’est que tu comprennes la notion de majorité et que selon les paramètres qu’on pose (ici le nombre de voisins) la réponse peut changer.
 
--   title: Utilisation de compteur
+-   title: Utilisation de compteurs
     difficulty : 1
     introduction: >
         <p>
@@ -276,8 +276,8 @@ exercices:
         </div>
         <p>
             Réutilisons le graphique précédent dans cet exercice.<br>
-            Pour rappel, les points jaunes représentent des <i>Iris versicolor</i> et les verts des <i>Iris virginica</i>.
-            Le marqueur gris en forme de croix est un iris inconnu.
+            Pour rappel, les triangles rouges représentent des <i>Iris versicolor</i> et les carrés verts des <i>Iris virginica</i>.
+            Le marqueur gris en forme de losange est un Iris inconnu.
         </p>
         <img src="/static/img/KNN/exKNNGraphiqueInc2.jpg" class="img-fluid pinnable">
     question : >
@@ -297,11 +297,11 @@ exercices:
         <p>
             La plus proche est un <i>Iris virginica</i>, son compteur passe à 1.<br>
             Les 3 plus proches suivantes sont 3 <i>Iris versicolor</i>, leur compteur passe donc à 3.<br>
-            On se retrouve donc au final avec un compteur de 1 pour les <i>Iris virginica</i> et de 1 pour les <i>Iris versicolor</i>.
+            On se retrouve donc au final avec un compteur de 1 pour les <i>Iris virginica</i> et de 3 pour les <i>Iris versicolor</i>.
         </p>
 
 -   question : >
-        <b>Juste à partir de la valeur des compteurs</b>, pourrai-tu déduire la fleur qui serai prédite par l'algorithme ?
+        <b>Juste à partir de la valeur des compteurs</b>, pourrai-tu déduire la fleur qui serait prédite par l'algorithme ?
     difficulty : 2
     answer:
         -   kind : selection
@@ -317,9 +317,8 @@ exercices:
             -   grande
     correction : >
         <p>
-            Oui, la valeur des compteurs nous donne beaucoup d'information sur les voisins les plus proches.<br>
-            Pour déduire la fleur prédite par l'algorithme, il suffit de prendre la fleur associée au compteur qui a la valeur <b>maximale</b>
-            (exactement comme les votes de l'exercice précédent).<br>
+            Oui, la valeur des compteurs nous donne beaucoup d'informations sur les voisins les plus proches.<br>
+            Pour déduire la fleur prédite par l'algorithme, il suffit de prendre la fleur associée au compteur qui a la valeur <b>maximale</b>.<br>
             Dans notre cas, l'Iris versicolor a le compteur de valeur maximum (3 vs 1)
         </p>
 
@@ -378,7 +377,7 @@ exercices:
             Soit les trois fleurs données dans le <a href="#table2">Tableau 2</a>, avec le <a href="#table1">Tableau 1</a>
             comme modèle d’entrainement.
             Tu détermineras la classe de la fleur en regardant la majorité parmi <b>les trois voisins les plus proches</b>.<br>
-            Pour cela tu peux t'aider du graphiques que je te donne : <br>
+            Pour cela tu peux t'aider du graphique que je te donne : <br>
         </p>
         <div style="text-align: center">
             <img src="/static/img/KNN/exKNNGraphiqueMetriqueSepale.png" class="img-fluid pinnable" style="padding-right: 16px">
@@ -387,31 +386,31 @@ exercices:
         Détermine les fleurs avec la métrique sépale :
     answer:
         -   kind : selection
-            text : Iris inconnue 1
+            text : Iris inconnu 1
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris virginica
         -   kind : selection
-            text : Iris inconnue 2
+            text : Iris inconnu 2
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris setosa
         -   kind : selection
-            text : Iris inconnue 3
+            text : Iris inconnu 3
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris versicolor
     help: >
-        Il suffit de regarder le graphique est de voir la majorité avec les 3 fleurs les plus proches.<br>
-        Par exemple pour le premier, les 3 points plus proches de ma fleur Inconnue 1 sont des carrés vert, ça serait donc une <i>Versicolor</i>.
+        Il suffit de regarder le graphique et de voir la majorité avec les 3 fleurs les plus proches.<br>
+        Par exemple pour le premier, les 3 points plus proches de ma fleur Inconnue 1 sont des carrés vert, ce serait donc une <i>Virginica</i>.
     correction: >
-        Les données sont choisies de sorte qu’il n’y ait pas d’ambiguïtés pour déterminer la majorité.<br>
+        Les données sont choisies de sorte qu’il n’y ait pas d’ambiguïté pour déterminer la majorité.<br>
         Classifieur 1 : Virginica, Setosa et Versicolor <br>
 
 -   difficulty : 3
@@ -426,28 +425,28 @@ exercices:
         Détermine les fleurs avec la métrique pétale:
     answer:
         -   kind : selection
-            text : Iris inconnue 1
+            text : Iris inconnu 1
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris setosa
         -   kind : selection
-            text : Iris inconnue 2
+            text : Iris inconnu 2
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris versicolor
         -   kind : selection
-            text : Iris inconnue 3
+            text : Iris inconnu 3
             options :
                 - Iris setosa
                 - Iris versicolor
                 - Iris virginica
             correct : Iris virginica
     correction: >
-        Les données sont choisies de sorte qu’il n’y ait pas d’ambiguïtés pour déterminer la majorité.<br>
+        Les données sont choisies de sorte qu’il n’y ait pas d’ambiguïté pour déterminer la majorité.<br>
         Classifieur 2 : Setosa, Versicolor et Virginica <br>
 
 -   title: Précision de notre prédiction
@@ -526,7 +525,7 @@ exercices:
             -   exacte
             -   meilleurs prédictions
     correction: >
-        Le second est du coup plus intéressant puisqu’il prédit mieux. Autrement dit, on peut deviner avec plus de certitude un Iris en mesurant son pétale plutôt que son sépale.<br>
+        Le second est plus intéressant puisqu’il prédit mieux. Autrement dit, on peut deviner avec plus de certitude un Iris en mesurant son pétale plutôt que son sépale.<br>
         Intéressant de noter ici que notre classifieur n’est pas parfait non plus (il n’a pas un score de  3/3).<br>
-        A noter également que le nombre de données est trop petit pour pouvoir affirmer avec conviction que le second est toujours meilleur que le premier.
+        A noter également que le nombre de données est trop petit pour pouvoir affirmer avec conviction que le second classifieur est toujours meilleur que le premier.
 ---
