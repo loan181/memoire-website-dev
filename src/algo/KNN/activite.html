@@ -7,12 +7,12 @@ secret :
     name : cookie
     icon : <i class="fas fa-cookie-bite"></i>
 extraScripts:
- - /static/js/shared/iris.js
- - /static/js/shared/GraphFunctions.js
+ - /master-thesis-website-ia-introduction/static/js/shared/iris.js
+ - /master-thesis-website-ia-introduction/static/js/shared/GraphFunctions.js
  - customJS/KNNFunctions.js
- - /static/js/shared/Blockly/src/blockly_compressed.js
- - /static/js/shared/Blockly/src/blocks_compressed.js
- - /static/js/shared/Blockly/src/javascript_compressed.js
+ - /master-thesis-website-ia-introduction/static/js/shared/Blockly/src/blockly_compressed.js
+ - /master-thesis-website-ia-introduction/static/js/shared/Blockly/src/blocks_compressed.js
+ - /master-thesis-website-ia-introduction/static/js/shared/Blockly/src/javascript_compressed.js
 
 goalDescription : >
     <p>
@@ -20,7 +20,7 @@ goalDescription : >
         Cette fonction prend une fleur en argument <code>newIris</code> et renvoie le nom prédit de cette fleur.
     </p>
     <div class="mx-auto" align="center">
-        <img src="/static/img/KNN/classifyFunction.svg" class="img-fluid">
+        <img src="/master-thesis-website-ia-introduction/static/img/KNN/classifyFunction.svg" class="img-fluid">
     </div>
     <p>
         Des fleurs de classes connues sont cachées et servent à définir si ta fonction de classification est bonne ou pas.<br>
@@ -40,7 +40,7 @@ goalSteps :
             Commence par la prendre et teste le résultat de ton prédicteur avec.
         </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/classifyFunctionDefault.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/classifyFunctionDefault.svg" class="img-fluid">
         </div>
 
         <p>
@@ -73,18 +73,18 @@ goalSteps :
     correction: >
         <p class="lead">Meilleur correction : </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/solutionKNN.svg" class="img-fluid">
         </div>
         <hr />
         <p>Il existe d'autres solutions équivalentes qui mèneront aussi à 100% mais moins robustes telles que : </p>
         <p>
-            En mettant <code>3</code> au lieu du bloc <img src="/static/img/blocklyBlocks/getK.svg">.
+            En mettant <code>3</code> au lieu du bloc <img src="/master-thesis-website-ia-introduction/static/img/blocklyBlocks/getK.svg">.
         </p>
         <p>
-            On peut également aussi répéter l'instruction <img src="/static/img/blocklyBlocks/countersIncrease.svg"> plusieurs fois au lieu d'utiliser une boucle, par ex :
+            On peut également aussi répéter l'instruction <img src="/master-thesis-website-ia-introduction/static/img/blocklyBlocks/countersIncrease.svg"> plusieurs fois au lieu d'utiliser une boucle, par ex :
         </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/blocklyCorrAlternative.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/blocklyCorrAlternative.svg" class="img-fluid">
         </div>
 
 
@@ -96,11 +96,11 @@ goalSteps :
         </p>
     correction: >
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/solutionKNN.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/solutionKNN.svg" class="img-fluid">
         </div>
         Avec par exemple comme paramètres :
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/solParametersKNN.png" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/solParametersKNN.png" class="img-fluid">
         </div>
 
 examples:
@@ -112,11 +112,11 @@ examples:
     </p>
 - content : >
     <div class="mx-auto" align="center">
-        <img src="/static/img/KNN/stepMainEx1.PNG" class="img-fluid" style="padding-bottom: 30px">
+        <img src="/master-thesis-website-ia-introduction/static/img/KNN/stepMainEx1.PNG" class="img-fluid" style="padding-bottom: 30px">
         <br>
-        <img src="/static/img/KNN/stepMainEx2.PNG" class="img-fluid" style="padding-bottom: 30px">
+        <img src="/master-thesis-website-ia-introduction/static/img/KNN/stepMainEx2.PNG" class="img-fluid" style="padding-bottom: 30px">
         <br>
-        <img src="/static/img/KNN/stepMainEx3.PNG" class="img-fluid">
+        <img src="/master-thesis-website-ia-introduction/static/img/KNN/stepMainEx3.PNG" class="img-fluid">
     </div>
 actions:
 -   title: Créer une fleur artificielle
@@ -129,7 +129,7 @@ actions:
             Pour cela on va d'abord créer une fleur avec le bloc supplémentaire, en spécifiant les coordonnées <code>x</code> et <code>y</code> désirées.
         </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/blocklyBlocks/createFlower.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/blocklyBlocks/createFlower.svg" class="img-fluid">
         </div>
         <p>
             Après cela il faut qu'on exécute le code pour mettre à jour le graphe via le bouton
@@ -144,10 +144,10 @@ actions:
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm">
-                            <img src="/static/img/KNN/addFlowerPar1.PNG" class="img-fluid float-left">
+                            <img src="/master-thesis-website-ia-introduction/static/img/KNN/addFlowerPar1.PNG" class="img-fluid float-left">
                         </div>
                         <div class="col-sm">
-                            <img src="/static/img/KNN/addFlowerPar2.PNG" class="img-fluid float-right">
+                            <img src="/master-thesis-website-ia-introduction/static/img/KNN/addFlowerPar2.PNG" class="img-fluid float-right">
                         </div>
                     </div>
                 </div>
@@ -164,11 +164,11 @@ actions:
             Voici un exemple un peu complexe d'utilisation possible:
         </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/exampleBlockAppCompteur2.svg" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/exampleBlockAppCompteur2.svg" class="img-fluid"><br>
         </div>
         <br>
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/exampleBlockAppCompteurRes2.PNG" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/exampleBlockAppCompteurRes2.PNG" class="img-fluid">
         </div>
         <small class="text-muted">
             Dans cet exemple, on ajoute une fleur artificielle en (4.9, 4.2) avec comme axe x le sepal length et y le petal length.<br>
@@ -186,11 +186,11 @@ actions:
         <br>
         <br>
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/exampleBlockAppCompteur.svg" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/exampleBlockAppCompteur.svg" class="img-fluid"><br>
         </div>
         <br>
         <div class="mx-auto" align="center">
-            <img src="/static/img/KNN/exampleBlockAppCompteurRes.PNG" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/KNN/exampleBlockAppCompteurRes.PNG" class="img-fluid">
         </div>
         <small class="text-muted">
             Pareil que l'exemple précédent, sauf qu'au lieu d'afficher les valeurs des compteurs on indique les fleurs avec les valeurs de compteur minimale et maximale.
@@ -212,7 +212,7 @@ leftPartName : Données et Paramètres
 leftPartDesc : La partie de gauche te permet d'observer les données ainsi que de modifier les paramètres de l'algorithme.
 leftPartSections:
 -   title: Panneau Graphe et Données
-    picture: /static/img/KNN/site-graphAndDatas.png
+    picture: /master-thesis-website-ia-introduction/static/img/KNN/site-graphAndDatas.png
     description: >
         Te permet de consulter et visualiser les données du modèle d'entrainement.
         Chaque point du graphe correspond à une fleur du modèle d'entrainement.
@@ -221,7 +221,7 @@ leftPartSections:
         Tu pourras également ajouter des fleurs "artificielles" dans le graphe via Blockly.
         Pour effacer ces dernières tu pourras utiliser le bouton jaune avec la gomme.<br>
 -   title: Panneau paramètres
-    picture: /static/img/KNN/site-parameters.png
+    picture: /master-thesis-website-ia-introduction/static/img/KNN/site-parameters.png
     description: >
         Te permet de modifier certains paramètres de l'algorithme des K plus proches voisins.<br>
         La modification des axes mettra également à jour le graphe du modèle d'entrainement selon le choix.
@@ -406,9 +406,9 @@ rightPartContentBlockly :
     {% include KNN/startBlocks.xml %}
 </xml>
 
-<script src="/static/js/shared/Blockly/languageCode.js"></script>
-<script src="/static/js/shared/Blockly/BlocklyScripts.js"></script>
-<script src="/static/js/shared/plot.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/Blockly/languageCode.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/Blockly/BlocklyScripts.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/plot.js"></script>
 
 <script>
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

@@ -35,7 +35,7 @@
         {% for card in site.algorithms %}
           <a href= "algo/{{ card.href }}" class= "card custom-card text-white bg-primary border-light mb-3">
             <div class="card-header"><h5 class="card.name">{{ card.icon }} {{ card.name }}</h5></div>
-            <img class="card-img-top" style="height:220px; padding: 8px" src={{ card.picture }} >
+            <img class="card-img-top" style="height:220px; padding: 8px" src="{{ site.baseurl }}/{{ card.picture }}" >
               <!--<div class="card-body">
 
               <p class="card-text">
@@ -52,7 +52,7 @@
     </div>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
   <script>
-    particlesJS.load('particles-js', '/static/other/particlesjs-config.json');
+    particlesJS.load('particles-js', '{{ site.baseurl }}/static/other/particlesjs-config.json');
   </script>
 
 </body>

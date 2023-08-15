@@ -1,6 +1,7 @@
 # Jekyll datas
 exclude: ['_site', '.idea']
 source: src
+baseurl: /master-thesis-website-ia-introduction
 
 # Other global variables:
 test : test

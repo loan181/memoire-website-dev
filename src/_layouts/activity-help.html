@@ -5,7 +5,7 @@
     <title>{{ page.title }}</title>
     {% include head.html %}
     {% include table_content.html %}
-    <script src="/static/js/contentForTeacher.js"></script>
+    <script src="{{ site.baseurl }}/static/js/contentForTeacher.js"></script>
 </head>
 
 <body data-spy="scroll" data-target="#toc">
@@ -41,7 +41,7 @@
                     Dans la partie supérieure de l’écran tu as différents boutons te permettant de réaliser certaines actions que nous allons détailler ici.
                 </p>
                 <div id="toolboxExplanation"></div>
-                <script src="/static/js/shared/ToolBox.js"></script>
+                <script src="{{ site.baseurl }}/static/js/shared/ToolBox.js"></script>
                 <script>
                     let TB = new ToolBox();
                     let explanations = [];

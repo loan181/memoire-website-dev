@@ -8,9 +8,9 @@
 
     {% if page.plotly %}
         <!-- Plotlyjs -->
-        <script type="text/javascript" src="/static/js/shared/plotlyjs-bundle.js"></script>
-        <script type="text/javascript" src="/static/js/shared/figure.js"></script>
-        <script type="text/javascript" src="/static/js/shared/plotInteraction.js"></script>
+        <script type="text/javascript" src="{{ site.baseurl }}/static/js/shared/plotlyjs-bundle.js"></script>
+        <script type="text/javascript" src="{{ site.baseurl }}/static/js/shared/figure.js"></script>
+        <script type="text/javascript" src="{{ site.baseurl }}/static/js/shared/plotInteraction.js"></script>
         <script type="text/javascript" src="customJS/plotInteraction.js"></script>
         <script src="https://cdn.plot.ly/plotly-locale-fr-latest.js"></script>
     {% endif %}
@@ -29,10 +29,10 @@
         {{ page.arbitraryAdditions }}
     {% endif %}
 
-    <script src="/static/js/contentForTeacher.js"></script>
+    <script src="{{ site.baseurl }}/static/js/contentForTeacher.js"></script>
 
     <!-- Success Message -->
-    <link rel="stylesheet" href="/static/css/animationSuccess.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/static/css/animationSuccess.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 </head>
@@ -80,7 +80,7 @@
 
             <!-- Toolbox -->
             <div id="toolBox"></div>
-            <script src="/static/js/shared/ToolBox.js"></script>
+            <script src="{{ site.baseurl }}/static/js/shared/ToolBox.js"></script>
             <script>
                 let TB = new ToolBox("toolBox");
                 TB.setToolBarForExercice("{{ page.activityName }}");
@@ -92,7 +92,7 @@
                 <h6 style="float: left; margin-right: 1em;"> Précision actuelle : </h6>
                 <div id="progressBar"></div>
             </div>
-            <script src="/static/js/successBar.js"></script>
+            <script src="{{ site.baseurl }}/static/js/successBar.js"></script>
             <script>
                 let pb = new ProgressBar("progressBar");
                 function exerciceSuccess() {
@@ -243,7 +243,7 @@
         </div>
     </div>
 </div>
-<script src="/static/js/animationSuccess.js"></script>
+<script src="{{ site.baseurl }}/static/js/animationSuccess.js"></script>
 <script>
     function giveCorrection(elem) {
         if (confirm("Souhaites-tu vraiment afficher la correction ? ")) {

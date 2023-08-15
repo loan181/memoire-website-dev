@@ -7,9 +7,9 @@ secret :
     name : sucre d'orge
     icon : <i class="fas fa-candy-cane"></i>
 extraScripts:
-- /static/js/shared/Blockly/src/blockly_compressed.js
-- /static/js/shared/Blockly/src/blocks_compressed.js
-- /static/js/shared/Blockly/src/javascript_compressed.js
+- /master-thesis-website-ia-introduction/static/js/shared/Blockly/src/blockly_compressed.js
+- /master-thesis-website-ia-introduction/static/js/shared/Blockly/src/blocks_compressed.js
+- /master-thesis-website-ia-introduction/static/js/shared/Blockly/src/javascript_compressed.js
 arbitraryAdditions: >
     <!-- MDBootstrap Datatables  -->
     <link href="js/MDB/datatables.min.css" rel="stylesheet">
@@ -37,8 +37,8 @@ goalDescription : >
         <code>gérer_la_couche_d'entrée(image)</code> et <code>prédire_valeur(valeur des neurones de la couche de sortie)</code>.<br>
     </p>
     <div class="mx-auto" align="center">
-        <img src="/static/img/NN/acti/handleEntryEmpty.svg" class="img-fluid" style="padding-right: 16px">
-        <img src="/static/img/NN/acti/handleOutputEmpty.svg" class="img-fluid">
+        <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/handleEntryEmpty.svg" class="img-fluid" style="padding-right: 16px">
+        <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/handleOutputEmpty.svg" class="img-fluid">
     </div>
 
     <p>
@@ -60,7 +60,7 @@ goalSteps :
             Commence par les prendre et glisse les dans ton code.
         </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/NN/acti/defaultBlocks.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/defaultBlocks.svg" class="img-fluid">
         </div>
 
         <p>
@@ -85,7 +85,7 @@ goalSteps :
             Le but de cette fonction est d'initialiser la valeur de tous les neurones de la couche d'entrée à partir de la couleur des pixels de l'image.<br>
         </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/NN/acti/handleEntryDefault.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/handleEntryDefault.svg" class="img-fluid">
         </div>
 
         <p>
@@ -95,12 +95,12 @@ goalSteps :
         <p>
             Nous sommes censés attribuer à chaque neurone la valeur de couleur du pixel correspondant de l'image de la même manière que dans <a href="exercice#valeur-des-neurones-de-la-premi-re-couche" target="_blank">le premier exercice préparatoire</a>.<br>
             Avec l'implémentation par défaut et tous les blocs de la section <code>NN Entrée</code> tu as tout le nécessaire pour implémenter la fonction ;). <br>
-            Le bloc <img src="/static/img/NN/acti/flattenPicture.svg" class="img-fluid"> te permettra "d'aplatir" une image,
+            Le bloc <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/flattenPicture.svg" class="img-fluid"> te permettra "d'aplatir" une image,
             l'idée étant de transformer l'image originale en 2D de taille 28 x 28 à son équivalent aplatie en 1D de taille 784 ($28 \times 28$)
          </p>
 
         <div class="mx-auto" align="center">
-            <img src="/static/img/NN/acti/flattenExample.png" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/flattenExample.png" class="img-fluid"><br>
             <small class="text-muted">Exemple d'aplatisement d'une image en noir et blanc de taille 3 x 3. Le résultat aplatie est une image à 1 dimension de taille 9</small>
         </div>
     help: >
@@ -112,7 +112,7 @@ goalSteps :
         </ol>
     correction : >
         <div class="mx-auto" align="center">
-            <img src="/static/img/NN/acti/handleEntryCorection.svg" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/handleEntryCorection.svg" class="img-fluid"><br>
         </div>
         Cela fonctionne aussi en mettant 784 comme borne de la boucle.
 -   title: Implémentation de la fonction pour gérer la conclusion des neurones de sortie
@@ -128,7 +128,7 @@ goalSteps :
             <small class="text-muted">Par exemple si le 1er neurone à la valeur 0.4, cela signifie qu'il y a 40% de chance que l'image représente le chiffre 0.</small>
         </p>
         <div class="mx-auto" align="center">
-            <img src="/static/img/NN/acti/handleOutputDefault.svg" class="img-fluid">
+            <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/handleOutputDefault.svg" class="img-fluid">
         </div>
 
         <p>
@@ -153,7 +153,7 @@ goalSteps :
             <code>3</code>, car il a <b>la plus grande</b> probabilité !
     correction : >
         <div class="mx-auto" align="center">
-            <img src="/static/img/NN/acti/handleOutputCorection.svg" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/handleOutputCorection.svg" class="img-fluid"><br>
         </div>
         Très simple ici, il suffit de changer le "minimum" en "maximum". C'est le chiffre avec la plus grande probabilité qui nous intéresse !
 examples:
@@ -167,11 +167,11 @@ examples:
 - title : Reconnaitre le chiffre dans une image avec le réseau de neurones
   content : >
     <p>
-        Le bloc <img src="/static/img/NN/acti/classify.svg"> te permet de classifier l'image donnée en argument, en utilisant le réseau de neurones.<br>
+        Le bloc <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/classify.svg"> te permet de classifier l'image donnée en argument, en utilisant le réseau de neurones.<br>
         Tu as également plusieurs images disponibles dans la section <code>NN Images</code> que tu peux utiliser avec le bloc précédent afin de vérifier si tes prédictions sont correctes.<br>
     </p>
     <div class="mx-auto" align="center">
-        <img src="/static/img/NN/acti/exampleClassify.JPG" class="img-fluid"><br>
+        <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/exampleClassify.JPG" class="img-fluid"><br>
         <p class="text-muted">Je demande de classifier une image d'un 2 à mon réseau de neurones et d'afficher le résultat à l'écran.<br>Le résultat affiché dans la boite de dialogue est bien le chiffre annoncé</p>
     </div>
 
@@ -179,11 +179,11 @@ examples:
         Tu peux aussi dessiner dans le cadre noir à gauche afin qu'il l'utilise comme image.
     </p>
     <div class="mx-auto" align="center">
-        <img src="/static/img/NN/acti/exampleClassifyDraw2.JPG" class="img-fluid"><br>
+        <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/exampleClassifyDraw2.JPG" class="img-fluid"><br>
         <p class="text-muted" style="padding-bottom: 32px">Le réseau a bien reconnu mon superbe 2 !</p>
-        <img src="/static/img/NN/acti/exampleClassifyDraw3.JPG" class="img-fluid" ><br>
+        <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/exampleClassifyDraw3.JPG" class="img-fluid" ><br>
         <p class="text-muted" style="padding-bottom: 32px">Je n'ai rien changé au code! J'ai juste dessiné l'image d'un autre chiffre </p>
-        <img src="/static/img/NN/acti/exampleClassifyDrawBG.JPG" class="img-fluid"><br>
+        <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/exampleClassifyDrawBG.JPG" class="img-fluid"><br>
         <p class="text-muted">Le réseau de neurones fera toujours de son mieux pour trouver un chiffre dans l'image dessinée...</p>
     </div>
 
@@ -206,14 +206,14 @@ leftPartDesc : >
     dessiner dans le cadre noir pour le réseau neuronal, modifier les poids du réseau, lancer le réseau sur le dessin du cadre et observer les probabilités de chaque chiffre (résultat de la classification du réseau neuronal).
 leftPartSections:
 -   title: Panneau Graphe et Données
-    picture: /static/img/NN/acti/parts/DrawFrame.JPG
+    picture: /master-thesis-website-ia-introduction/static/img/NN/acti/parts/DrawFrame.JPG
     description: >
         Cadre de dessin, utilise-le avec la souris ou au doigt (avec écran tactile) pour dessiner dedans.<br>
         Tu peux y dessiner ce que tu veux, mais le réseau neuronal tentera de reconnaître toujours un chiffre dans l'image.<br>
         La case à cocher en dessous te permet d'afficher l'image transformée après que tu aies lancé la recherche (par le réseau).
         Tu y verras normalement une image de 28 x 28 sur fond blanc de ton dessin, c'est cette image transformée qui servira comme entrée au réseau de neurones lors de la reconnaissance.
 -   title: Boutons permettant d'interagir avec le réseau
-    picture: /static/img/NN/acti/parts/buttons.JPG
+    picture: /master-thesis-website-ia-introduction/static/img/NN/acti/parts/buttons.JPG
     description: >
         Le premier bouton te permet de lancer la reconnaissance par le réseau de neurones.
         L'image dessinée sera lue, les neurones de la couche d'entrée prendront leur valeur à partir de l'image transformée et la classification se lancera.<br>
@@ -227,7 +227,7 @@ rightPartName : Blockly et vue graphique
 rightPartDesc : La partie de droite est l'emplacement où tu pourras modifier le code de l'algorithme à l'aide de Blockly afin de réussir l'objectif. Tu peux aussi consulter une version graphique du réseau de neurones.
 rightPartContent : >
     <h2>Graphique du réseau</h2>
-    <img src="/static/img/NN/acti/parts/NetworkRepr.JPG" class="img-fluid">
+    <img src="/master-thesis-website-ia-introduction/static/img/NN/acti/parts/NetworkRepr.JPG" class="img-fluid">
     <p>
         Un cercle représente un neurone, son numéro est indiqué à l'intérieur. Plus sa couleur est foncée, plus sa valeur est grande.<br>
         Les lignes reliant les cercles représentent les poids, plus la ligne est opaque, plus sa valeur est grande.<br>
@@ -541,10 +541,10 @@ rightPartContentBlockly :
     {% include NN/startBlocks.xml %}
 </xml>
 
-<script src="/static/js/shared/Blockly/src/blockly_compressed.js"></script>
-<script src="/static/js/shared/Blockly/src/blocks_compressed.js"></script>
-<script src="/static/js/shared/Blockly/src/javascript_compressed.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/Blockly/src/blockly_compressed.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/Blockly/src/blocks_compressed.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/Blockly/src/javascript_compressed.js"></script>
 
-<script src="/static/js/shared/Blockly/languageCode.js"></script>
-<script src="/static/js/shared/Blockly/BlocklyScripts.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/Blockly/languageCode.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/Blockly/BlocklyScripts.js"></script>
 <script src="js/NNBlocklyFunctions.js"></script>

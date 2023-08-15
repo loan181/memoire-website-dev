@@ -7,8 +7,8 @@ secret :
     name : houx
     icon : <i class="fas fa-holly-berry"></i>
 extraScripts:
- - /static/js/shared/iris.js
- - /static/js/shared/GraphFunctions.js
+ - /master-thesis-website-ia-introduction/static/js/shared/iris.js
+ - /master-thesis-website-ia-introduction/static/js/shared/GraphFunctions.js
 activityName: decision-tree
 
 
@@ -52,16 +52,16 @@ goalSteps :
     correction : >
         Un exemple d'arbre qui fonctionne à 100% est le suivant :<br>
         <div class="mx-auto" align="center">
-            <img src="/static/img/arbre/arbreSol.JPG" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/arbre/arbreSol.JPG" class="img-fluid"><br>
         </div>
         Avec les paramètres d'axes :<br>
         <div class="mx-auto" align="center">
-            <img src="/static/img/arbre/paraSol.JPG" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/arbre/paraSol.JPG" class="img-fluid"><br>
         </div>
         <br>
         Le graphique ressemblerait à :<br>
         <div class="mx-auto" align="center">
-            <img src="/static/img/arbre/plotCorr.jpg" class="img-fluid"><br>
+            <img src="/master-thesis-website-ia-introduction/static/img/arbre/plotCorr.jpg" class="img-fluid"><br>
         </div>
 
 
@@ -77,7 +77,7 @@ leftPartName : Données et Paramètres
 leftPartDesc : La partie de gauche te permet d'observer les données ainsi que de modifier les paramètres de l'arbre.
 leftPartSections:
 -   title: Panneau Graphe et Données
-    picture: /static/img/arbre/graph.PNG
+    picture: /master-thesis-website-ia-introduction/static/img/arbre/graph.PNG
     description: >
         Te permet de consulter et visualiser les données du training set.
         Chaque point du graphe correspond à une fleur/un fruit du training set.
@@ -85,7 +85,7 @@ leftPartSections:
         Tu peux survoler avec ta souris un point pour obtenir des informations le concernant.<br>
         Les informations montrées peuvent varier en fonction des actions que tu effectues avec l'arbre interactif.<br>
 -   title: Panneau paramètres
-    picture: /static/img/arbre/axisParameters.PNG
+    picture: /master-thesis-website-ia-introduction/static/img/arbre/axisParameters.PNG
     description: >
         Te permet de modifier le choix des axes <code>x</code> et <code>y</code> parmi les différentes métriques.
 
@@ -93,8 +93,8 @@ rightPartName : Arbre interactif
 rightPartDesc : La partie de droite est l'emplacement où tu pourras créer et modifier ton arbre de décision.
 rightPartContent : >
     <div class="text-center">
-        <img src="/static/img/arbre/exempleInteractifSchema.png" class="img-fluid rounded">
-        <img src="/static/img/arbre/arbreInreactifEx.png" class="img-fluid rounded">
+        <img src="/master-thesis-website-ia-introduction/static/img/arbre/exempleInteractifSchema.png" class="img-fluid rounded">
+        <img src="/master-thesis-website-ia-introduction/static/img/arbre/arbreInreactifEx.png" class="img-fluid rounded">
         <small class="text-muted"><br>
             Deux représentations du même arbre de décision.
             A gauche la version utilisée dans les exercices préparatoires.
@@ -114,7 +114,7 @@ rightPartContent : >
     Chaque décision est composée de 3 paramètres : un axe, l'opérateur et la valeur (par exemple <code>x = 12</code> ou <code>y > 42</code>).
     Pour chaque donnée du modèle d'entrainement, si l'évaluation avec cet axe, opérateur et valeur est vrai, alors cette donnée sera dans la branche de droite (verte), sinon elle sera dans cette de gauche (rouge).
     <br>
-    <img class="img-fluid mx-auto d-block" src="/static/img/arbre/arbreInteractifLegende.png">
+    <img class="img-fluid mx-auto d-block" src="/master-thesis-website-ia-introduction/static/img/arbre/arbreInteractifLegende.png">
 
 actions:
  -  title: Ajouter un nouveau noeud interne / Créer deux nouvelles feuilles
@@ -126,14 +126,14 @@ actions:
             Après confirmation la feuille deviendra un noeud interne et triera automatiquement les données du modèle d'entrainement selon l'axe, opérateur et valeur choisie.
             Ainsi, deux branches seront créés, la verte contenant l'ensemble des données du modèle d'entrainement répondant à l'évaluation, et la rouge n'y répondant pas.
         </p>
-        <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animCreation.gif">
+        <img class="img-fluid mx-auto d-block" src="/master-thesis-website-ia-introduction/static/img/arbre/animCreation.gif">
  -  title: Modifier un noeud interne
     content : >
         <p>
             Pour cela il te suffit de cliquer sur un noeud interne existant.
             Une boite de dialogue identique à celle d'ajout de noeud apparaitra, permettant de modifier les données
         </p>
-        <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animModification.gif">
+        <img class="img-fluid mx-auto d-block" src="/master-thesis-website-ia-introduction/static/img/arbre/animModification.gif">
  -  title: Supprimer un noeud interne / Transformer un noeud interne en feuille
     content : >
         <p>
@@ -141,7 +141,7 @@ actions:
             Dans la boite de dialogue apparaissant, un bouton te permet de supprimer le noeud.<br>
             La suppression du noeud interne créera automatiquement une feuille et détruira tous les enfants du noeud.
         </p>
-        <img class="img-fluid mx-auto d-block" src="/static/img/arbre/animSupression.gif">
+        <img class="img-fluid mx-auto d-block" src="/master-thesis-website-ia-introduction/static/img/arbre/animSupression.gif">
  -  title: Visualiser les données
     content : >
         <p>
@@ -149,9 +149,9 @@ actions:
         </p>
         <p>
             Lors du survol d'une feuille, un texte apparait en dessous avec les proportions de chaque classe ainsi que la classe majoritaire indiquée en gras.<br>
-            <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverLeaf.PNG">
+            <img class="img-fluid mx-auto d-block" src="/master-thesis-website-ia-introduction/static/img/arbre/exampleHoverLeaf.PNG">
             Si la feuille ne contient aucun fruit, le texte <i>(vide)</i> sera indiqué.<br>
-            <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverLeafEmpty.PNG">
+            <img class="img-fluid mx-auto d-block" src="/master-thesis-website-ia-introduction/static/img/arbre/exampleHoverLeafEmpty.PNG">
 
             Tu remarqueras que le graphique se met également à jour en surlignant en jaune les fruits concernés.<br>
         </p>
@@ -164,7 +164,7 @@ actions:
 
         <div>
             Voici le graphique pour l'évaluation du noeud interne <code>largeur sépale &ge; 6</code>
-            <img class="img-fluid mx-auto d-block" src="/static/img/arbre/exampleHoverEvaluation.PNG">
+            <img class="img-fluid mx-auto d-block" src="/master-thesis-website-ia-introduction/static/img/arbre/exampleHoverEvaluation.PNG">
             <small class="text-muted"><br>
                 Toutes les fleurs qui ont une largeur de sépale <code> < 6 </code>(ne répondant pas à l'évaluation) sont dans la zone rouge à gauche de la ligne.<br>
                 Les fleurs répondant à l'évaluation (donc qui ont une <code>largeur sépale &ge; 6 </code>) sont bien dans la zone verte à droite de la ligne.<br>
@@ -260,7 +260,7 @@ actions:
 
 
 <script src="customJS/BinaryTree.js"></script>
-<script src="/static/js/shared/plot.js"></script>
+<script src="/master-thesis-website-ia-introduction/static/js/shared/plot.js"></script>
 <script>
     let treeContainer = document.getElementById("treeContainer");
 
